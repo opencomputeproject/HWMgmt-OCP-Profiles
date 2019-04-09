@@ -205,29 +205,29 @@
 				"FQDN": {},
 				"HTTP": {
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"HTTPS": {
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"SSH": {
 					"ReadRequirement": "Recommended",
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"SSDP": {
 					"ReadRequirement": "Recommended",
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {},
-						"NotifyMulticstIntervalSeconds": {},
+						"NotifyMulticastIntervalSeconds": {},
 						"NotifyIPv6Scope": {},
 						"NotifyTTL": {}
 					}
