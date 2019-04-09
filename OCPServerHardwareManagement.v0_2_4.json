@@ -1,13 +1,13 @@
 {
 	"SchemaDefinition": "RedfishInteroperabilityProfile.v1_0_0",
 	"ProfileName": "OCPServerHardwareManagement",
-	"ProfileVersion": "0.2.3",
+	"ProfileVersion": "0.2.4",
 	"Purpose": "Specifies the OCP management requirements for the Redfish interface on OCP Server platforms",
 	"OwningEntity": "Open Compute Project",
 	"ContactInfo": "redfish@opencompute.org",
 	"RequiredProfiles": {
 		"OCPBaselineHardwareManagement": {
-			"MinVersion": "1_0_0"
+			"MinVersion": "1.0.0"
 		}
 	},
 	"Resources": {
