@@ -1,0 +1,305 @@
+{
+  "SchemaDefinition": "RedfishInteroperabilityProfile.v0_1_0",
+  "ProfileName": "OCPRackManagerController",
+  "ProfileVersion": "2019.1",
+  "Purpose": "Profile for OpenRMC Rack Manager Controller.",
+  "ContactInfo": "john.leung@opencompute.org",
+  "OwningEntity": "Open Compute Project",
+  "Protocol": {
+    "MinVersion": "1.0"
+  },
+  "Resources": {
+     "ServiceRoot": {
+      "Purpose": "Entry point for the whole API. It contains ",
+      "PropertyRequirements": {
+        "Chassis": {
+          "Purpose": "To enumerate Chassis."
+        },
+        "Managers": {
+          "Purpose": "To enumerate Managers."
+        },
+        "Systems": {
+          "Purpose": "To enumerate Computer Systems."
+        },
+        "Tasks": {
+          "Purpose": "To provide support long time operations as asynchronous calls."
+        },
+        "Sessions": {
+          "Purpose": "To provide support for Sessions."
+        },
+        "EventService": {
+          "Purpose": "To provide support for asynchronous event."
+        }
+      }
+    },
+
+    "ManagerCollection": {
+      "PropertyRequirements": {
+        "Members": {
+           "MinCount": 1
+        }
+      }
+    },
+    "Manager": {
+      "Purpose": "Represents the rack management controller.",
+      "PropertyRequirements": {
+				"ManagerType": {
+          "Values": ["RackManager"]
+        },
+        "Description": {},
+        "UUID": {},
+        "Model": {},
+        "DateTime": {},
+        "DateTimeLocalOffset": {},
+        "FirmwareVersion": {},
+				"PowerState": {},
+        "SerialConsole": {},
+				"Status": {
+					"PropertyRequirements": {
+						"State": {},
+						"Health": {},
+            "HealthRollup": {}
+					}
+        },
+ 			  "EthernetInterfaces": { "Purpose": "Reference to Ethernet interface." },
+        "ManagerNetworkProtocol": { "Purpose": "Reference to supported network protocols." },
+        "Links": {
+          "PropertyRequirements": {
+            "ManagerForChassis": {
+              "Purpose": "Associates rack manager to managed rack."
+            },
+            "ManagerInChassis": {
+              "Purpose": "The chassis which contains the rack manager."
+            }
+          }
+        }
+      },
+      "ActionRequirements": {
+        "Reset": {
+          "Purpose": "Q: Is there a rqmt to reset the manager?.",
+          "Parameters": {
+            "ResetType": {
+              "MinSupportValues": [ "PowerCycle" ]
+            }
+          }
+        }
+      }
+    },
+
+    "ManagerNetworkProtocol": {
+      "Purpose": "Network protocols supported by the rack manager."},
+			"PropertyRequirements": {
+				"Status": {},
+				"HTTP": {
+					"PropertyRequirements": {
+						"ProtocolEnable": {},
+						"Port": {}
+					}
+				},
+				"HTTPS": {
+					"PropertyRequirements": {
+						"ProtocolEnable": {},
+						"Port": {}
+					}
+				}
+			}
+		},
+
+    "EthernetInterface": {
+			"MinVersion": "1.1.0",
+			"ReadRequirement": "Recommended",
+			"ConditionalRequirements": [{
+				"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+				"ReadRequirement": "Mandatory"
+			}],
+			"PropertyRequirements": {
+				"MACAddress": {},
+				"SpeedMbps": {},
+				"InterfaceEnabled": {},
+				"LinkStatus": {},
+				"Status": {
+					"PropertyRequirements": {
+						"Health": {},
+						"State": {}
+					}
+				},
+				"DHCPv4": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended"
+				},
+				"DHCPv6": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended"
+				},
+				"HostName": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}]
+				},
+				"FQDN": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}]
+				},
+				"NameServers": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"						
+					}]
+				},
+				"IPv4Addresses": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}],
+					"PropertyRequirements": {
+						"Address": {},
+						"SubnetMask": {},
+						"AddressOrigin": {},
+						"Gateway": {}
+					}
+				},
+				"IPv4StaticAddresses": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6AddressPolicyTable": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6StaticAddresses": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6StaticDefaultGateways": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6Addresses": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"Address": {},
+						"PrefixLength": {},
+						"AddressOrigin": {},
+						"AddressState": {}
+					}
+				},
+				"StaticNameServers": {
+					"ReadRequirement": "Recommended"
+				}
+			}
+		},
+
+    "ChassisCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "Chassis": {
+      "Purpose": "Represents the physical rack.",
+      "PropertyRequirements": {
+				"ChassisType": {
+          "Values": ["Rack"]
+        },
+				"PowerState": {},
+				"Status": {
+					"PropertyRequirements": {
+						"State": {},
+						"Health": {}
+					}
+        }, 
+				"Manufacturer": {},
+				"Model": {},
+				"SerialNumber": {},
+				"Thermal": { "Purpose": "Reference to subordinate Thermal resource." },
+        "Power":   { "Purpose": "Reference to subordinate Power resource." },
+        "Links": {
+          "PropertyRequirements": {
+ 						"ManagedBy": {},
+            "ManagersInChassis": {
+              "Purpose": "Used to create physical topology and relations."
+            }
+          }
+        }
+      },
+      "ActionRequirements": {
+        "Reset": {
+          "Purpose": "To control power state of the Rack.",
+          "Parameters": {
+            "ResetType": {
+              "MinSupportValues": [
+                "On",
+                "ForceOff",
+                "PowerCycle"
+              ]
+            }
+          }
+        }
+      }
+    },
+
+
+    "ComputerSystemCollection": {
+      "PropertyRequirements": {
+        "Members": {
+           "MinCount": 1
+        }
+      }
+    },
+    "ComputerSystem": {
+      "Purpose": "Used to model and manage server's configuration.",
+      "PropertyRequirements": {
+        "ProcessorSummary": {},
+        "MemorySummary": {},
+        "PowerState": {},
+        "Boot": {
+          "Purpose": "Used to control Computer System's BIOS boot options for composition and/or decomposition.",
+          "PropertyRequirements": {
+            "BootSourceOverrideEnabled": {},
+            "BootSourceOverrideTarget": {},
+            "BootSourceOverrideMode": {}
+          }
+        }
+      },
+      "ActionRequirements": {
+        "Reset": {
+          "Purpose": "Used to control power state of a Computer System.",
+          "Parameters": {
+            "ResetType": {
+              "MinSupportValues": [
+                "On",
+                 "PowerCycle"
+              ]
+            }
+          }
+        }
+      }
+    },
+
+    "EthernetInterfaceCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "Purpose": "A collection of EthernetInterface resources.",
+          "MinCount": 1
+        }
+      }
+    },
+    "EthernetInterface": {
+      "Purpose": "Used to represent the Ethernet Interface.",
+      "MinVersion": "1.0.0",
+      "PropertyRequirements": {
+        "PermanentMACAddress": {
+          "Purpose": "Used to uniquely identify Network Interface."
+        }
+      }
+    }
+  }
+}
