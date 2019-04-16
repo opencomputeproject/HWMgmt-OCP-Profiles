@@ -12,24 +12,31 @@
      "ServiceRoot": {
       "Purpose": "Entry point for the whole API. It contains ",
       "PropertyRequirements": {
-        "Chassis": {
-          "Purpose": "To enumerate Chassis."
-        },
         "Managers": {
-          "Purpose": "To enumerate Managers."
+          "Purpose": "To allow the OpenRMC to be managed."
+        },
+        "Chassis": {
+          "Purpose": "To support the inventory, power telemetry, temperature telemetry and power capping."
         },
         "Systems": {
-          "Purpose": "To enumerate Computer Systems."
+          "Purpose": "To support the inventory and rebooting of computer systems."
         },
         "Tasks": {
-          "Purpose": "To provide support long time operations as asynchronous calls."
+          "Purpose": "To support long running operations. Task resources are created by Redfish service, automatically."
         },
         "Sessions": {
-          "Purpose": "To provide support for Sessions."
+          "Purpose": "To support multiple client sessions."
         },
         "EventService": {
-          "Purpose": "To provide support for asynchronous event."
+          "Purpose": "To support for asynchronous event."
+        },
+        "UpdateService": {
+          "Purpose": "To support updating the OpenRMC firmware."
+        },
+        "AccountService": {
+          "Purpose": "To support user accounts and roles."
         }
+
       }
     },
 
@@ -61,16 +68,12 @@
             "HealthRollup": {}
 					}
         },
- 			  "EthernetInterfaces": { "Purpose": "Reference to Ethernet interface." },
+ 			  "EthernetInterfaces":     { "Purpose": "Reference to Ethernet interface." },
         "ManagerNetworkProtocol": { "Purpose": "Reference to supported network protocols." },
         "Links": {
           "PropertyRequirements": {
-            "ManagerForChassis": {
-              "Purpose": "Associates rack manager to managed rack."
-            },
-            "ManagerInChassis": {
-              "Purpose": "The chassis which contains the rack manager."
-            }
+            "ManagerForChassis":  { "Purpose": "Associates rack manager to managed rack." },
+            "ManagerInChassis":   { "Purpose": "The chassis which contains the rack manager." }
           }
         }
       },
@@ -105,7 +108,16 @@
 			}
 		},
 
+    "EthernetInterfaceCollection": {
+      "PropertyRequirements": {
+        "Members": {
+           "MinCount": 1
+        }
+      }
+    },
+
     "EthernetInterface": {
+      "Purpose": "Manager's Ethernet Interface",
 			"MinVersion": "1.1.0",
 			"ReadRequirement": "Recommended",
 			"ConditionalRequirements": [{
@@ -136,6 +148,12 @@
 					"ConditionalRequirements": [{
 						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
 						"ReadRequirement": "Mandatory",
+       "Links": {
+          "PropertyRequirements": {
+            "ManagerForChassis":  { "Purpose": "Associates rack manager to managed rack." },
+            "ManagerInChassis":   { "Purpose": "The chassis which contains the rack manager." }
+          }
+        }
 						"WriteRequirement": "Mandatory"
 					}]
 				},
@@ -219,28 +237,86 @@
 				"Manufacturer": {},
 				"Model": {},
 				"SerialNumber": {},
-				"Thermal": { "Purpose": "Reference to subordinate Thermal resource." },
-        "Power":   { "Purpose": "Reference to subordinate Power resource." },
+				"Thermal": {                "Purpose": "Reference to subordinate Thermal resource." },
+        "Power":   {                "Purpose": "Reference to subordinate Power resource." },
         "Links": {
           "PropertyRequirements": {
  						"ManagedBy": {},
-            "ManagersInChassis": {
-              "Purpose": "Used to create physical topology and relations."
-            }
+            "ManagersInChassis": {  "Purpose": "Used to create physical topology and relations." }
           }
         }
       },
       "ActionRequirements": {
-        "Reset": {
-          "Purpose": "To control power state of the Rack.",
+        "Reset": {                  "Purpose": "To control power state of the Rack.",
           "Parameters": {
             "ResetType": {
               "MinSupportValues": [
                 "On",
                 "ForceOff",
+       "Links": {
+          "PropertyRequirements": {
+            "ManagerForChassis":  { "Purpose": "Associates rack manager to managed rack." },
+            "ManagerInChassis":   { "Purpose": "The chassis which contains the rack manager." }
+          }
+        }
                 "PowerCycle"
               ]
             }
+          }
+        }
+      }
+    },
+
+    "Power": {
+      "Purpose": "Represents a power domain.",
+      "PropertyRequirements": {
+				"Status": {},
+        "PowerControl": {
+					"PropertyRequirements": {
+            "Status": {},
+						"PhysicalContext": {},
+						"PowerConsumedWatts": {},
+						"PowerMetrics": {       "Purpose": "Obtain power statistics.",
+              "PropertyRequirements": {
+                "MinConsumedWatts": {},
+                "MaxConsumedWatts": {},
+                "AverageConsumedWatts": {}
+              }
+            },
+            "PowerLimit": {         "Purpose": "Set power capping limit.",
+              "PropertyRequirements": {
+                "LimitInWatts": {
+                  "ReadRequirement": "Mandatory",
+					      	"WriteRequirement": "Mandatory"
+                }
+              }
+            }
+					},
+          "PowerSupplies": {
+            "Purpose": "Q: Needed for inventory?"
+          },
+          "Redundancy": {
+            "Purpose": "Q: Describe redundant power supplies?"
+          }
+        }
+      }
+    },
+
+    "Thermal": {
+      "Purpose": "Represents a cooling domain.",
+      "PropertyRequirements": {
+        "Status": {},
+				"Fans": {
+          "Purpose": "Q: Needed for inventory?"
+        },
+        "Temperatures": {
+          "PropertyRequirements": {
+              "Name": {
+                "Values": ["CPU1 Temp", "CPU2 Temp", "Chassis Intake Temp"]
+              },
+              "Status": {},
+              "ReadingCelsius": {},
+              "PhysicalContext": {}
           }
         }
       }
@@ -255,49 +331,37 @@
       }
     },
     "ComputerSystem": {
-      "Purpose": "Used to model and manage server's configuration.",
+      "Purpose": "Used to manage the computer system (or server).",
       "PropertyRequirements": {
+        "Status": {},
+        "BIOSVersion": {},
         "ProcessorSummary": {},
         "MemorySummary": {},
         "PowerState": {},
         "Boot": {
-          "Purpose": "Used to control Computer System's BIOS boot options for composition and/or decomposition.",
+          "Purpose": "Used to control computer system's BIOS boot options.",
           "PropertyRequirements": {
             "BootSourceOverrideEnabled": {},
             "BootSourceOverrideTarget": {},
             "BootSourceOverrideMode": {}
           }
+        },
+        "EthernetInterfaces":     { "Purpose": "Reference to Ethernet interfaces" },
+        "Links": {
+          "PropertyRequirements": {
+            "Chassis":            { "Purpose": "Associates system to rack or tray." },
+            "ManagerBy":          { "Purpose": "Associates system to tray manager (BMC)." }
+          }
         }
       },
       "ActionRequirements": {
         "Reset": {
-          "Purpose": "Used to control power state of a Computer System.",
+          "Purpose": "Used to control power state of the computer system.",
           "Parameters": {
             "ResetType": {
-              "MinSupportValues": [
-                "On",
-                 "PowerCycle"
-              ]
+              "MinSupportValues": [ "On", "PowerCycle" ]
             }
           }
-        }
-      }
-    },
-
-    "EthernetInterfaceCollection": {
-      "PropertyRequirements": {
-        "Members": {
-          "Purpose": "A collection of EthernetInterface resources.",
-          "MinCount": 1
-        }
-      }
-    },
-    "EthernetInterface": {
-      "Purpose": "Used to represent the Ethernet Interface.",
-      "MinVersion": "1.0.0",
-      "PropertyRequirements": {
-        "PermanentMACAddress": {
-          "Purpose": "Used to uniquely identify Network Interface."
         }
       }
     }
