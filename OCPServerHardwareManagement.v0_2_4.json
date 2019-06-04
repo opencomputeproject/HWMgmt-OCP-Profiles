@@ -29,7 +29,7 @@
               "CompareProperty": "ChassisType",
               "CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
             }
-          ]      
+          ]
         },
 				"Power": {
 					"ReadRequirement": "Recommended",
@@ -41,7 +41,7 @@
               "CompareProperty": "ChassisType",
               "CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
             }
-          ]      
+          ]
 			  }
       }
 		},
