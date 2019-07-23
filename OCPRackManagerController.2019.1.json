@@ -1,0 +1,369 @@
+{
+  "SchemaDefinition": "RedfishInteroperabilityProfile.v0_1_0",
+  "ProfileName": "OCPRackManagerController",
+  "ProfileVersion": "2019.1",
+  "Purpose": "Profile for OpenRMC Rack Manager Controller.",
+  "ContactInfo": "john.leung@opencompute.org",
+  "OwningEntity": "Open Compute Project",
+  "Protocol": {
+    "MinVersion": "1.0"
+  },
+  "Resources": {
+     "ServiceRoot": {
+      "Purpose": "Entry point for the whole API. It contains ",
+      "PropertyRequirements": {
+        "Managers": {
+          "Purpose": "To allow the OpenRMC to be managed."
+        },
+        "Chassis": {
+          "Purpose": "To support the inventory, power telemetry, temperature telemetry and power capping."
+        },
+        "Systems": {
+          "Purpose": "To support the inventory and rebooting of computer systems."
+        },
+        "Tasks": {
+          "Purpose": "To support long running operations. Task resources are created by Redfish service, automatically."
+        },
+        "Sessions": {
+          "Purpose": "To support multiple client sessions."
+        },
+        "EventService": {
+          "Purpose": "To support for asynchronous event."
+        },
+        "UpdateService": {
+          "Purpose": "To support updating the OpenRMC firmware."
+        },
+        "AccountService": {
+          "Purpose": "To support user accounts and roles."
+        }
+
+      }
+    },
+
+    "ManagerCollection": {
+      "PropertyRequirements": {
+        "Members": {
+           "MinCount": 1
+        }
+      }
+    },
+    "Manager": {
+      "Purpose": "Represents the rack management controller.",
+      "PropertyRequirements": {
+				"ManagerType": {
+          "Values": ["RackManager"]
+        },
+        "Description": {},
+        "UUID": {},
+        "Model": {},
+        "DateTime": {},
+        "DateTimeLocalOffset": {},
+        "FirmwareVersion": {},
+				"PowerState": {},
+        "SerialConsole": {},
+				"Status": {
+					"PropertyRequirements": {
+						"State": {},
+						"Health": {},
+            "HealthRollup": {}
+					}
+        },
+ 			  "EthernetInterfaces":     { "Purpose": "Reference to Ethernet interface." },
+        "ManagerNetworkProtocol": { "Purpose": "Reference to supported network protocols." },
+        "Links": {
+          "PropertyRequirements": {
+            "ManagerForChassis":  { "Purpose": "Associates rack manager to managed rack." },
+            "ManagerInChassis":   { "Purpose": "The chassis which contains the rack manager." }
+          }
+        }
+      },
+      "ActionRequirements": {
+        "Reset": {
+          "Purpose": "Q: Is there a rqmt to reset the manager?.",
+          "Parameters": {
+            "ResetType": {
+              "MinSupportValues": [ "PowerCycle" ]
+            }
+          }
+        }
+      }
+    },
+
+    "ManagerNetworkProtocol": {
+      "Purpose": "Network protocols supported by the rack manager."},
+			"PropertyRequirements": {
+				"Status": {},
+				"HTTP": {
+					"PropertyRequirements": {
+						"ProtocolEnable": {},
+						"Port": {}
+					}
+				},
+				"HTTPS": {
+					"PropertyRequirements": {
+						"ProtocolEnable": {},
+						"Port": {}
+					}
+				}
+			}
+		},
+
+    "EthernetInterfaceCollection": {
+      "PropertyRequirements": {
+        "Members": {
+           "MinCount": 1
+        }
+      }
+    },
+
+    "EthernetInterface": {
+      "Purpose": "Manager's Ethernet Interface",
+			"MinVersion": "1.1.0",
+			"ReadRequirement": "Recommended",
+			"ConditionalRequirements": [{
+				"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+				"ReadRequirement": "Mandatory"
+			}],
+			"PropertyRequirements": {
+				"MACAddress": {},
+				"SpeedMbps": {},
+				"InterfaceEnabled": {},
+				"LinkStatus": {},
+				"Status": {
+					"PropertyRequirements": {
+						"Health": {},
+						"State": {}
+					}
+				},
+				"DHCPv4": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended"
+				},
+				"DHCPv6": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended"
+				},
+				"HostName": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+       "Links": {
+          "PropertyRequirements": {
+            "ManagerForChassis":  { "Purpose": "Associates rack manager to managed rack." },
+            "ManagerInChassis":   { "Purpose": "The chassis which contains the rack manager." }
+          }
+        }
+						"WriteRequirement": "Mandatory"
+					}]
+				},
+				"FQDN": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}]
+				},
+				"NameServers": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"						
+					}]
+				},
+				"IPv4Addresses": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}],
+					"PropertyRequirements": {
+						"Address": {},
+						"SubnetMask": {},
+						"AddressOrigin": {},
+						"Gateway": {}
+					}
+				},
+				"IPv4StaticAddresses": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6AddressPolicyTable": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6StaticAddresses": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6StaticDefaultGateways": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6Addresses": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"Address": {},
+						"PrefixLength": {},
+						"AddressOrigin": {},
+						"AddressState": {}
+					}
+				},
+				"StaticNameServers": {
+					"ReadRequirement": "Recommended"
+				}
+			}
+		},
+
+    "ChassisCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "Chassis": {
+      "Purpose": "Represents the physical rack.",
+      "PropertyRequirements": {
+				"ChassisType": {
+          "Values": ["Rack"]
+        },
+				"PowerState": {},
+				"Status": {
+					"PropertyRequirements": {
+						"State": {},
+						"Health": {}
+					}
+        }, 
+				"Manufacturer": {},
+				"Model": {},
+				"SerialNumber": {},
+				"Thermal": {                "Purpose": "Reference to subordinate Thermal resource." },
+        "Power":   {                "Purpose": "Reference to subordinate Power resource." },
+        "Links": {
+          "PropertyRequirements": {
+ 						"ManagedBy": {},
+            "ManagersInChassis": {  "Purpose": "Used to create physical topology and relations." }
+          }
+        }
+      },
+      "ActionRequirements": {
+        "Reset": {                  "Purpose": "To control power state of the Rack.",
+          "Parameters": {
+            "ResetType": {
+              "MinSupportValues": [
+                "On",
+                "ForceOff",
+       "Links": {
+          "PropertyRequirements": {
+            "ManagerForChassis":  { "Purpose": "Associates rack manager to managed rack." },
+            "ManagerInChassis":   { "Purpose": "The chassis which contains the rack manager." }
+          }
+        }
+                "PowerCycle"
+              ]
+            }
+          }
+        }
+      }
+    },
+
+    "Power": {
+      "Purpose": "Represents a power domain.",
+      "PropertyRequirements": {
+				"Status": {},
+        "PowerControl": {
+					"PropertyRequirements": {
+            "Status": {},
+						"PhysicalContext": {},
+						"PowerConsumedWatts": {},
+						"PowerMetrics": {       "Purpose": "Obtain power statistics.",
+              "PropertyRequirements": {
+                "MinConsumedWatts": {},
+                "MaxConsumedWatts": {},
+                "AverageConsumedWatts": {}
+              }
+            },
+            "PowerLimit": {         "Purpose": "Set power capping limit.",
+              "PropertyRequirements": {
+                "LimitInWatts": {
+                  "ReadRequirement": "Mandatory",
+					      	"WriteRequirement": "Mandatory"
+                }
+              }
+            }
+					},
+          "PowerSupplies": {
+            "Purpose": "Q: Needed for inventory?"
+          },
+          "Redundancy": {
+            "Purpose": "Q: Describe redundant power supplies?"
+          }
+        }
+      }
+    },
+
+    "Thermal": {
+      "Purpose": "Represents a cooling domain.",
+      "PropertyRequirements": {
+        "Status": {},
+				"Fans": {
+          "Purpose": "Q: Needed for inventory?"
+        },
+        "Temperatures": {
+          "PropertyRequirements": {
+              "Name": {
+                "Values": ["CPU1 Temp", "CPU2 Temp", "Chassis Intake Temp"]
+              },
+              "Status": {},
+              "ReadingCelsius": {},
+              "PhysicalContext": {}
+          }
+        }
+      }
+    },
+
+
+    "ComputerSystemCollection": {
+      "PropertyRequirements": {
+        "Members": {
+           "MinCount": 1
+        }
+      }
+    },
+    "ComputerSystem": {
+      "Purpose": "Used to manage the computer system (or server).",
+      "PropertyRequirements": {
+        "Status": {},
+        "BIOSVersion": {},
+        "ProcessorSummary": {},
+        "MemorySummary": {},
+        "PowerState": {},
+        "Boot": {
+          "Purpose": "Used to control computer system's BIOS boot options.",
+          "PropertyRequirements": {
+            "BootSourceOverrideEnabled": {},
+            "BootSourceOverrideTarget": {},
+            "BootSourceOverrideMode": {}
+          }
+        },
+        "EthernetInterfaces":     { "Purpose": "Reference to Ethernet interfaces" },
+        "Links": {
+          "PropertyRequirements": {
+            "Chassis":            { "Purpose": "Associates system to rack or tray." },
+            "ManagerBy":          { "Purpose": "Associates system to tray manager (BMC)." }
+          }
+        }
+      },
+      "ActionRequirements": {
+        "Reset": {
+          "Purpose": "Used to control power state of the computer system.",
+          "Parameters": {
+            "ResetType": {
+              "MinSupportValues": [ "On", "PowerCycle" ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
