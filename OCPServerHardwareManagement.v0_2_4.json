@@ -92,7 +92,7 @@
 					"ConditionalRequirements": [{
 						"Purpose": "Physical Systems must have a writable Indicator LED",
 						"CompareProperty": "SystemType",
-						"Comparison": "AnyOf",
+						"CompareType": "AnyOf",
 						"CompareValues": ["Physical"],
 						"ReadRequirement": "Mandatory",
 						"WriteRequirement": "Mandatory"
@@ -116,7 +116,7 @@
 							"ConditionalRequirements": [{
 								"Purpose": "If UEFI mode is selected, must allow for UEFI target.",
 								"CompareProperty": "BootSourceOverrideMode",
-								"Comparison": "Equal",
+								"CompareType": "Equal",
 								"CompareValues": ["UEFI"],
 								"ReadRequirement": "Mandatory"
 							}]
