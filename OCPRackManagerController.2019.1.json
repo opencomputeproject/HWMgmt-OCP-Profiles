@@ -12,31 +12,34 @@
      "ServiceRoot": {
       "Purpose": "Entry point for the whole API. It contains ",
       "PropertyRequirements": {
-        "Managers": {
-          "Purpose": "To allow the OpenRMC to be managed."
+       "AccountService": {
+          "Purpose": "To support user accounts and roles."
         },
         "Chassis": {
           "Purpose": "To support the inventory, power telemetry, temperature telemetry and power capping."
         },
-        "Systems": {
-          "Purpose": "To support the inventory and rebooting of computer systems."
+        "EventService": {
+          "Purpose": "To support asynchronous event service."
+        },
+        "Managers": {
+          "Purpose": "To allow the OpenRMC to be managed."
+        },
+        "Registries": {
+          "Purpose": "To support message registries."
+        },
+        "SessionService": {
+          "Purpose": "To support multiple client sessions."
         },
         "Tasks": {
           "Purpose": "To support long running operations. Task resources are created by Redfish service, automatically."
         },
-        "Sessions": {
-          "Purpose": "To support multiple client sessions."
-        },
-        "EventService": {
-          "Purpose": "To support for asynchronous event."
+        "Telemetry": {
+          "Purpose": "To support telemetry operations."
         },
         "UpdateService": {
           "Purpose": "To support updating the OpenRMC firmware."
-        },
-        "AccountService": {
-          "Purpose": "To support user accounts and roles."
         }
-
+ 
       }
     },
 
@@ -59,14 +62,14 @@
         "DateTime": {},
         "DateTimeLocalOffset": {},
         "FirmwareVersion": {},
-				"PowerState": {},
+			  "PowerState": {},
         "SerialConsole": {},
-				"Status": {
-					"PropertyRequirements": {
-						"State": {},
-						"Health": {},
-            "HealthRollup": {}
-					}
+			  "Status": {
+				  "PropertyRequirements": {
+						  "State": {},
+						  "Health": {},
+              "HealthRollup": {}
+				  }
         },
  			  "EthernetInterfaces":     { "Purpose": "Reference to Ethernet interface." },
         "ManagerNetworkProtocol": { "Purpose": "Reference to supported network protocols." },
@@ -148,12 +151,6 @@
 					"ConditionalRequirements": [{
 						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
 						"ReadRequirement": "Mandatory",
-       "Links": {
-          "PropertyRequirements": {
-            "ManagerForChassis":  { "Purpose": "Associates rack manager to managed rack." },
-            "ManagerInChassis":   { "Purpose": "The chassis which contains the rack manager." }
-          }
-        }
 						"WriteRequirement": "Mandatory"
 					}]
 				},
@@ -247,18 +244,13 @@
         }
       },
       "ActionRequirements": {
-        "Reset": {                  "Purpose": "To control power state of the Rack.",
+        "Reset": {                  
+          "Purpose": "To control power state of the Rack.",
           "Parameters": {
             "ResetType": {
               "MinSupportValues": [
                 "On",
                 "ForceOff",
-       "Links": {
-          "PropertyRequirements": {
-            "ManagerForChassis":  { "Purpose": "Associates rack manager to managed rack." },
-            "ManagerInChassis":   { "Purpose": "The chassis which contains the rack manager." }
-          }
-        }
                 "PowerCycle"
               ]
             }
@@ -271,19 +263,22 @@
       "Purpose": "Represents a power domain.",
       "PropertyRequirements": {
 				"Status": {},
+    		"PowerConsumedWatts": {},
         "PowerControl": {
 					"PropertyRequirements": {
             "Status": {},
 						"PhysicalContext": {},
 						"PowerConsumedWatts": {},
-						"PowerMetrics": {       "Purpose": "Obtain power statistics.",
+						"PowerMetrics": {
+              "Purpose": "Obtain power statistics.",
               "PropertyRequirements": {
                 "MinConsumedWatts": {},
                 "MaxConsumedWatts": {},
                 "AverageConsumedWatts": {}
               }
             },
-            "PowerLimit": {         "Purpose": "Set power capping limit.",
+            "PowerLimit": {
+              "Purpose": "Set power capping limit.",
               "PropertyRequirements": {
                 "LimitInWatts": {
                   "ReadRequirement": "Mandatory",
@@ -291,13 +286,13 @@
                 }
               }
             }
-					},
-          "PowerSupplies": {
-            "Purpose": "Q: Needed for inventory?"
-          },
-          "Redundancy": {
-            "Purpose": "Q: Describe redundant power supplies?"
           }
+				},
+        "PowerSupplies": {
+          "Purpose": "Needed for inventory"
+        },
+        "Redundancy": {
+          "Purpose": "Describe redundant power supplies"
         }
       }
     },
