@@ -1,7 +1,7 @@
 {
 	"SchemaDefinition": "RedfishInteroperabilityProfile.v1_0_0",
 	"ProfileName": "OCPBaselineHardwareManagement",
-	"ProfileVersion": "1.0.0",
+	"ProfileVersion": "1.0.1",
 	"Purpose": "Specifies the OCP baseline hardware management requirements for the Redfish interface on platforms.",
 	"OwningEntity": "Open Compute Project",
 	"ContactInfo": "hwpl@opencompute.org",
@@ -110,7 +110,7 @@
 					"ConditionalRequirements": [{
 						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
 						"ReadRequirement": "Mandatory",
-						"WriteRequirement": "Mandatory"						
+						"WriteRequirement": "Mandatory"
 					}]
 				},
 				"IPv4Addresses": {
@@ -153,7 +153,7 @@
 				}
 			}
 		},
-		"EthernetInterfacesCollection": {
+		"EthernetInterfaceCollection": {
 			"PropertyRequirements": {
 				"Members": {
 					"MinCount": 1
@@ -192,7 +192,7 @@
 				"Reset": {
 					"Parameters": {
 						"ResetType": {
-							"MinSupportValues": ["ForceRestart"]
+							"ParameterValues": ["ForceRestart"]
 						}
 					}
 				}

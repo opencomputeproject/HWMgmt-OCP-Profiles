@@ -29,7 +29,7 @@
               "CompareProperty": "ChassisType",
               "CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
             }
-          ]      
+          ]
         },
 				"Power": {
 					"ReadRequirement": "Recommended",
@@ -41,7 +41,7 @@
               "CompareProperty": "ChassisType",
               "CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
             }
-          ]      
+          ]
 			  }
       }
 		},
@@ -92,8 +92,8 @@
 					"ConditionalRequirements": [{
 						"Purpose": "Physical Systems must have a writable Indicator LED",
 						"CompareProperty": "SystemType",
-						"Comparison": "AnyOf",
-						"Values": ["Physical"],
+						"CompareType": "AnyOf",
+						"CompareValues": ["Physical"],
 						"ReadRequirement": "Mandatory",
 						"WriteRequirement": "Mandatory"
 					}]
@@ -116,8 +116,8 @@
 							"ConditionalRequirements": [{
 								"Purpose": "If UEFI mode is selected, must allow for UEFI target.",
 								"CompareProperty": "BootSourceOverrideMode",
-								"Comparison": "Equal",
-								"Values": ["UEFI"],
+								"CompareType": "Equal",
+								"CompareValues": ["UEFI"],
 								"ReadRequirement": "Mandatory"
 							}]
 						}
@@ -136,10 +136,10 @@
 			"ActionRequirements": {
 				"Reset": {
 					"ReadRequirement": "Mandatory",
+					"Purpose": "Minimal set to allow power on, off and reboot.",
 					"Parameters": {
 						"ResetType": {
-							"AllowableValues": ["ForceOff", "On", "ForceRestart"],
-							"Purpose": "Minimal set to allow power on, off and reboot.",
+							"ParameterValues": ["ForceOff", "On", "ForceRestart"],
 							"ReadRequirement": "Mandatory"
 						}
 					}
