@@ -93,7 +93,7 @@
     },
 
     "ManagerNetworkProtocol": {
-      "Purpose": "Network protocols supported by the rack manager."},
+      "Purpose": "Network protocols supported by the rack manager.",
 			"PropertyRequirements": {
 				"Status": {},
 				"HTTP": {
