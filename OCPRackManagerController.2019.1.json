@@ -437,7 +437,7 @@
         },
 
 		    "LogServices": {
-			    "Purpose": "Reference to LogService Collection."
+			    "Purpose": "Reference to LogServices Collection."
 		    },
 
         "Links": {
@@ -480,7 +480,9 @@
         "DateTimeLocalOffset": {},
         "ServiceEnabled": {},
         "Status": {},
-        "Entries": {}
+        "Entries": {
+          "Purpose": "Reference to LogEntry Collection."
+        }
       },
       "ActionRequirements": {
         "ClearLog": {}
@@ -497,19 +499,15 @@
     "LogEntry": {
       "PropertyRequirements": {
         "Created": {},
-        "EntryCode": {},
         "EntryType": {},
-        "GeneratorId": {},
         "Message": {},
         "MessageId": {},
-        "SensorType": {},
-        "SensorNumber": {},
+        "MessageArgs": {},
+        "SensorNumber": {
+				  "ReadRequirement": "Recommended"
+        },
         "Severity": {}
-      },
-      "ActionRequirements": {
-        "ClearLog": {}
       }
     }
-
   }
 }
