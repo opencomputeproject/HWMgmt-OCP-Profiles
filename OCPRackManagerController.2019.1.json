@@ -1,7 +1,7 @@
 {
-  "SchemaDefinition": "RedfishInteroperabilityProfile.v0_1_0",
+  "SchemaDefinition": "RedfishInteroperabilityProfile.v0_9_0",
   "ProfileName": "OCPRackManagerController",
-  "ProfileVersion": "2019.1",
+  "ProfileVersion": "2020.1.RC",
   "Purpose": "Profile for OpenRMC Rack Manager Controller.",
   "ContactInfo": "john.leung@opencompute.org",
   "OwningEntity": "Open Compute Project",
@@ -10,9 +10,11 @@
   },
   "Resources": {
      "ServiceRoot": {
-      "Purpose": "Entry point for the whole API. It contains ",
+      "Purpose": "Entry point for the OpenRMC northbound API ",
       "PropertyRequirements": {
-       "AccountService": {
+        "RedfishVersion": {},
+        "UUID": {},
+        "AccountService": {
           "Purpose": "To support user accounts and roles."
         },
         "Chassis": {
@@ -22,7 +24,7 @@
           "Purpose": "To support asynchronous event service."
         },
         "Managers": {
-          "Purpose": "To allow the OpenRMC to be managed."
+          "Purpose": "To support managing the rack management controller."
         },
         "Registries": {
           "Purpose": "To support message registries."
@@ -58,6 +60,7 @@
         },
         "Description": {},
         "UUID": {},
+        "ServiceEntryPointUUID": {},
         "Model": {},
         "DateTime": {},
         "DateTimeLocalOffset": {},
@@ -71,12 +74,20 @@
               "HealthRollup": {}
 				  }
         },
- 			  "EthernetInterfaces":     { "Purpose": "Reference to Ethernet interface." },
-        "ManagerNetworkProtocol": { "Purpose": "Reference to supported network protocols." },
+ 			  "EthernetInterfaces": {
+          "Purpose": "Reference to Ethernet interface."
+        },
+        "ManagerNetworkProtocol": {
+          "Purpose": "Reference to supported network protocols."
+        },
         "Links": {
           "PropertyRequirements": {
-            "ManagerForChassis":  { "Purpose": "Associates rack manager to managed rack." },
-            "ManagerInChassis":   { "Purpose": "The chassis which contains the rack manager." }
+            "ManagerForChassis": {
+              "Purpose": "Associates rack manager to managed rack."
+            },
+            "ManagerInChassis": {
+              "Purpose": "The chassis which contains the rack manager."
+            }
           }
         }
       },
@@ -123,10 +134,15 @@
       "Purpose": "Manager's Ethernet Interface",
 			"MinVersion": "1.1.0",
 			"ReadRequirement": "Recommended",
-			"ConditionalRequirements": [{
-				"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
-				"ReadRequirement": "Mandatory"
-			}],
+			"ConditionalRequirements": [
+        {
+				  "SubordinateToResource": [
+            "Manager",
+            "EthernetInterfaceCollection"
+          ],
+				  "ReadRequirement": "Mandatory"
+        }
+			],
 			"PropertyRequirements": {
 				"MACAddress": {},
 				"SpeedMbps": {},
@@ -149,34 +165,52 @@
 				"HostName": {
 					"ReadRequirement": "Recommended",
 					"ConditionalRequirements": [{
-						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"SubordinateToResource": [
+              "Manager",
+              "EthernetInterfaceCollection"
+            ],
 						"ReadRequirement": "Mandatory",
 						"WriteRequirement": "Mandatory"
 					}]
 				},
 				"FQDN": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
-						"ReadRequirement": "Mandatory",
-						"WriteRequirement": "Mandatory"
-					}]
+					"ConditionalRequirements": [
+            {
+						  "SubordinateToResource": [
+                "Manager",
+                "EthernetInterfaceCollection"
+              ],
+						  "ReadRequirement": "Mandatory",
+						  "WriteRequirement": "Mandatory"
+					  }
+          ]
 				},
 				"NameServers": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
-						"ReadRequirement": "Mandatory",
-						"WriteRequirement": "Mandatory"						
-					}]
+					"ConditionalRequirements": [
+            {
+						  "SubordinateToResource": [
+                "Manager",
+                "EthernetInterfaceCollection"
+              ],
+						  "ReadRequirement": "Mandatory",
+						  "WriteRequirement": "Mandatory"						
+					  }
+          ]
 				},
 				"IPv4Addresses": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
-						"ReadRequirement": "Mandatory",
-						"WriteRequirement": "Mandatory"
-					}],
+					"ConditionalRequirements": [
+            {
+						  "SubordinateToResource": [
+                "Manager",
+                "EthernetInterfaceCollection"
+              ],
+						  "ReadRequirement": "Mandatory",
+						  "WriteRequirement": "Mandatory"
+					  }
+          ],
 					"PropertyRequirements": {
 						"Address": {},
 						"SubnetMask": {},
@@ -224,22 +258,33 @@
 				"ChassisType": {
           "Values": ["Rack"]
         },
+				"Assettag": {},
+        "Manufacturer": {},
+				"Model": {},
+        "PartNumber": {},
 				"PowerState": {},
+				"SerialNumber": {},
 				"Status": {
 					"PropertyRequirements": {
 						"State": {},
 						"Health": {}
 					}
-        }, 
-				"Manufacturer": {},
-				"Model": {},
-				"SerialNumber": {},
-				"Thermal": {                "Purpose": "Reference to subordinate Thermal resource." },
-        "Power":   {                "Purpose": "Reference to subordinate Power resource." },
+        },
+				"Thermal": {
+          "Purpose": "Reference to subordinate Thermal resource."
+        },
+        "Power": {
+          "Purpose": "Reference to subordinate Power resource."
+        },
         "Links": {
           "PropertyRequirements": {
+				    "ComputerSystems": {},
+				    "ContainedBy": {},
+				    "Contains": {},
  						"ManagedBy": {},
-            "ManagersInChassis": {  "Purpose": "Used to create physical topology and relations." }
+            "ManagersInChassis": {
+              "Purpose": "Used to create physical topology and relations."
+            }
           }
         }
       },
@@ -249,9 +294,7 @@
           "Parameters": {
             "ResetType": {
               "MinSupportValues": [
-                "On",
-                "ForceOff",
-                "PowerCycle"
+                "ForceRestart"
               ]
             }
           }
@@ -288,8 +331,42 @@
             }
           }
 				},
+		    "Voltages": [
+			    {
+				    "PropertyRequirements": {
+					    "Name": "VRM1 Voltage",
+					    "SensorNumber": {},
+					    "Status": {},
+				    	"ReadingVolts": {},
+					    "PhysicalContext": "VoltageRegulator"
+				    }
+			    }
+		    ],
         "PowerSupplies": {
-          "Purpose": "Needed for inventory"
+ 			    "Purpose": "Needed for inventory. Min info - N Watt DC power supply",
+			    "PropertyRequirements": {
+				    "Status": {},
+				    "PowerCapacityWatts": {},
+				    "PowerSupplyType": {},
+				    "LineInputVoltage": {
+					    "ReadRequirement": "Recommended"
+				    },
+				    "Model": {
+					    "ReadRequirement": "Recommended"
+				    },
+				    "Manufacturer": {
+					    "ReadRequirement": "Recommended"
+				    },
+				    "FirmwareVersion": {
+					    "ReadRequirement": "Recommended"
+				    },
+				    "SerialNumber": {
+					    "ReadRequirement": "Recommended"
+				    },
+				    "PartNumber": {
+				    	"ReadRequirement": "Recommended"
+				    }
+			    }
         },
         "Redundancy": {
           "Purpose": "Describe redundant power supplies"
@@ -301,18 +378,30 @@
       "Purpose": "Represents a cooling domain.",
       "PropertyRequirements": {
         "Status": {},
-				"Fans": {
-          "Purpose": "Q: Needed for inventory?"
-        },
         "Temperatures": {
           "PropertyRequirements": {
               "Name": {
-                "Values": ["CPU1 Temp", "CPU2 Temp", "Chassis Intake Temp"]
+                "Values": [
+                  "CPU1 Temp",
+                  "CPU2 Temp",
+                  "Chassis Intake Temp"
+                ]
               },
               "Status": {},
               "ReadingCelsius": {},
               "PhysicalContext": {}
           }
+        },
+				"Fans": {
+			    "PropertyRequirements": {
+				    "PhysicalContext": {},
+				    "HotPluggable": {},
+				    "Status": {
+					    "PropertyRequirements": {
+						    "Health": {}
+					    }
+				    }
+			    }
         }
       }
     },
@@ -329,6 +418,8 @@
       "Purpose": "Used to manage the computer system (or server).",
       "PropertyRequirements": {
         "Status": {},
+        "UUID": {},
+        "SerialNumber": {},
         "BIOSVersion": {},
         "ProcessorSummary": {},
         "MemorySummary": {},
@@ -341,11 +432,22 @@
             "BootSourceOverrideMode": {}
           }
         },
-        "EthernetInterfaces":     { "Purpose": "Reference to Ethernet interfaces" },
+        "EthernetInterfaces":     {
+          "Purpose": "Reference to Ethernet interfaces"
+        },
+
+		    "LogServices": {
+			    "Purpose": "Reference to LogServices Collection."
+		    },
+
         "Links": {
           "PropertyRequirements": {
-            "Chassis":            { "Purpose": "Associates system to rack or tray." },
-            "ManagerBy":          { "Purpose": "Associates system to tray manager (BMC)." }
+            "Chassis": {
+              "Purpose": "Associates system to rack or tray."
+            },
+            "ManagerBy": {
+              "Purpose": "Associates system to tray manager (BMC)."
+            }
           }
         }
       },
@@ -354,10 +456,57 @@
           "Purpose": "Used to control power state of the computer system.",
           "Parameters": {
             "ResetType": {
-              "MinSupportValues": [ "On", "PowerCycle" ]
+              "MinSupportValues": [
+                "On",
+                "PowerCycle"
+              ]
             }
           }
         }
+      }
+    },
+
+    "LogServicesCollection": {
+      "PropertyRequirements": {
+        "Members": {
+           "MinCount": 1
+        }
+      }
+    },
+    "LogService": {
+      "PropertyRequirements": {
+        "OverWritePolicy": {},
+        "DateTime": {},
+        "DateTimeLocalOffset": {},
+        "ServiceEnabled": {},
+        "Status": {},
+        "Entries": {
+          "Purpose": "Reference to LogEntry Collection."
+        }
+      },
+      "ActionRequirements": {
+        "ClearLog": {}
+      }
+    },
+
+    "LogEntryCollection": {
+      "PropertyRequirements": {
+        "Members": {
+           "MinCount": 0
+        }
+      }
+    },
+    "LogEntry": {
+      "PropertyRequirements": {
+        "Created": {},
+        "EntryType": {},
+        "Message": {},
+        "MessageId": {},
+        "MessageArgs": {},
+        "SensorNumber": {
+				  "ReadRequirement": "Recommended"
+        },
+        "Severity": {}
       }
     }
   }
