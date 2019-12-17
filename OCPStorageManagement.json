@@ -1,0 +1,36 @@
+{
+  "SchemaDefinition": "./RedfishInteroperabilityProfile.v1_3_0.json",
+  "ProfileName": "OCPStorageManagement",
+  "ProfileVersion": "0.1.0",
+  "OwningEntity": "Open Compute Project",
+  "Purpose": "Specifies the OCP management requirements for the Swordfish interface on OCP Storage platforms",
+  "ContactInfo": "swordfish@opencompute.org",
+  "RequiredProfiles": {
+    "SwordfishDiscovery": {
+      "OwningEntity": "SNIA.org",
+      "Repository": "https://redfish.dmtf.org/profiles/swordfish",
+      "MinVersion": "1.0.1"
+    },
+    "SwordfishEventNotification": {
+      "OwningEntity": "SNIA.org",
+      "Repository": "https://redfish.dmtf.org/profiles/swordfish",
+      "MinVersion": "1.0.1"
+    },
+    "SwordfishBlockProvisioning": {
+      "OwningEntity": "SNIA.org",
+      "Repository": "https://redfish.dmtf.org/profiles/swordfish",
+      "MinVersion": "1.0.1"
+    }
+  },
+  "Registries": {
+    "Features": {
+      "MinVersion": "1.0.2",
+      "Repository": "https://redfish.dmtf.org/registries/swordfish/v1",
+      "SupportedFeatures": {
+        "SNIA.Swordfish.Discovery": {},
+        "SNIA.Swordfish.EventNotification": {},
+        "SNIA.Swordfish.Block.Provisioning": {}
+      }
+    }
+  }
+}
