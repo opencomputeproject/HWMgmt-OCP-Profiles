@@ -1,0 +1,364 @@
+{
+  "SchemaDefinition": "RedfishInteroperabilityProfile.v1_0_0",
+  "ProfileName": "OCPDoorHeatExchangerController",
+  "ProfileVersion": "0.0.5",
+  "Purpose": "Profile for the OCP Door Heat Exchanger Controller.",
+  "OwningEntity": "Open Compute Project",
+  "ContactInfo": "redfish@opencompute.org",
+  "RequiredProfiles": {
+    "OCPBaselineHardwareManagement": {
+      "MinVersion": "1.0.0"
+    },
+    "Chassis": {
+      "MinVersion": "1.15.0"
+    },
+    "Control": {
+      "MinVersion": "0.5.0"
+    },
+    "Sensor": {
+      "MinVersion": "1.2.0"
+    },
+    "Thermal": {
+      "MinVersion": "1.4.0"
+    }
+  },
+  "Resources": {
+    "Chassis": {
+      "MinVersion": "1.15.0",
+      "PropertyRequirements": {
+        "AssetTag": {},
+        "ChassisType": {
+          "ReadRequirement": "Recommended",
+          "Comparison": "AnyOf",
+          "Purpose": "Need to know the type of the Chassis",
+          "Values": [
+            "Enclosure, Other, Rack, RackMount, Sidecar, StandAlone"
+          ]
+        },
+        "Control": {
+          "MinVersion": "0.5.0",
+          "Purpose": "To control the Thermal resource",
+          "PropertyRequirements": {
+            "Accuracy": {
+              "ReadRequirement": "Recommended"
+            },
+            "Actions": {
+              "ReadRequirement": "Recommended"
+            },
+            "AssociatedSensors": {
+              "ReadRequirement": "Recommended"
+            },
+            "ControlExcerpt": {
+              "Purpose": "To define an Excerpt of Control for the Thermal resource",
+              "MinVersion": "0.5.0"
+            },
+            "ControlLoop": {
+              "Purpose": "To define the Control Loop for the Thermal resource",
+              "MinVersion": "0.5.0",
+              "PropertyRequirements": {
+                "Differential": {
+                  "ReadRequirement": "Recommended",
+                  "WriteRequirement": "Recommended"
+                },
+                "Integral": {
+                  "ReadRequirement": "Recommended",
+                  "WriteRequirement": "Recommended"
+                },
+                "Proportional": {
+                  "ReadRequirement": "Recommended",
+                  "WriteRequirement": "Recommended"
+                }
+              }
+            },
+            "ControlType": {
+              "Purpose": "Supported Control Types",
+              "Comparison": "AnyOf",
+              "Values": [
+                "Air temperature, In",
+                "Air temperature, Out",
+                "Air temperature, Differential",
+                "Air pressure, Differential ",
+                "Water temperature, Out",
+                "Water temperature, Differential"
+              ],
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "DeadBand": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Description": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Id": {
+              "ReadRequirement": "Recommended"
+            },
+            "Increment": {
+              "ReadRequirement": "Recommended"
+            },
+            "Location": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Name": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Oem": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "OperatingMode": {
+              "Purpose": "To define the Operating Mode of the Control Loop for the Thermal resource",
+              "MinVersion": "0.5.0"
+            },
+            "PhysicalContext": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "PhysicalSubContext": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Sensor": {
+              "ReadRequirement": "Recommended"
+            },
+            "SetPoint": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "SetPointRangeMax": {
+              "ReadRequirement": "Recommended"
+            },
+            "SetPointRangeMin": {
+              "ReadRequirement": "Recommended"
+            },
+            "SetPointUnits": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "SetPointUpdateTime": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Status": {
+              "ReadRequirement": "Recommended"
+            }
+          }
+        },
+        "ControlCollection": {
+          "PropertyRequirements": {
+            "Members": {
+              "MinCount": 0
+            }
+          }
+        },
+        "OemActions": {
+          "Purpose": "To define OEM Actions for the Control Loop for the Thermal resource",
+          "MinVersion": "0.5.0"
+        },
+        "Links": {},
+        "LogServices": {
+          "Purpose": "Reference to LogServices Collection."
+        },
+        "Manufacturer": {},
+        "Model": {},
+        "PartNumber": {
+          "ReadRequirement": "Recommended",
+          "ConditionalRequirements": [
+            {
+              "Purpose": "Either PartNumber or SKU (or both) must be implemented.",
+              "CompareProperty": "SKU",
+              "Comparison": "Absent",
+              "ReadRequirement": "Mandatory"
+            }
+          ]
+        },
+        "Power": {
+          "Purpose": "Reference to subordinate Power resource."
+        },
+        "PowerState": {},
+        "SKU": {
+          "ReadRequirement": "Recommended",
+          "ConditionalRequirements": [
+            {
+              "Purpose": "Either PartNumber or SKU (or both) must be implemented.",
+              "CompareProperty": "PartNumber",
+              "Comparison": "Absent",
+              "ReadRequirement": "Mandatory"
+            }
+          ]
+        },
+        "Sensor": {
+          "MinVersion": "1.2.0",
+          "Purpose": "Required Air Temperature Sensors",
+          "ReadRequirement": "Mandatory",
+          "MinCount": 2,
+          "Comparison": "AllOf",
+          "Values": [
+            "Air temperature, In",
+            "Air temperature, Out"
+          ]
+        },
+        "SerialNumber": {},
+        "Status": {
+          "PropertyRequirements": {
+            "State": {},
+            "Health": {}
+          }
+        },
+        "Thermal": {
+          "Purpose": "Reference to subordinate Thermal resource."
+        }
+      },
+      "ActionRequirements": {
+        "Reset": {
+          "Purpose": "To monitor the power state of the Door Heat Exchanger.",
+          "Parameters": {
+            "ResetType": {
+              "MinSupportValues": [
+                "ForceRestart"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ChassisCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "EthernetInterface": {
+      "MinVersion": "1.1.0"
+    },
+    "EthernetInterfaceCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "LogEntry": {
+      "MinVersion": "1.1.0"
+    },
+    "LogEntryCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 0
+        }
+      }
+    },
+    "LogService": {
+      "MinVersion": "1.1.0"
+    },
+    "LogServicesCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "Manager": {
+      "MinVersion": "1.7.0"
+    },
+    "ManagerCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "ManagerNetworkProtocol": {
+      "MinVersion": "1.2.0"
+    },
+    "Power": {
+      "PropertyRequirements": {
+        "Status": {},
+        "PowerConsumedWatts": {},
+        "PowerControl": {
+          "PropertyRequirements": {
+            "Status": {},
+            "PhysicalContext": {},
+            "PowerConsumedWatts": {},
+            "PowerMetrics": {
+              "Purpose": "Obtain power statistics.",
+              "PropertyRequirements": {
+                "MinConsumedWatts": {},
+                "MaxConsumedWatts": {},
+                "AverageConsumedWatts": {}
+              }
+            }
+          }
+        },
+        "Voltages": [
+          {
+            "PropertyRequirements": {
+              "Name": "VRM1 Voltage",
+              "SensorNumber": {},
+              "Status": {},
+              "ReadingVolts": {},
+              "PhysicalContext": "VoltageRegulator"
+            }
+          }
+        ]
+      }
+    },
+    "ServiceRoot": {
+      "MinVersion": "1.1.0"
+    },
+    "Thermal": {
+      "PropertyRequirements": {
+        "Status": {},
+        "Temperatures": {
+          "PropertyRequirements": {
+            "DeltaPhysicalContext": {},
+            "LowerThresholdCritical": {},
+            "LowerThresholdFatal": {},
+            "LowerThresholdNonCritical": {},
+            "MaxReadingRangeTemp": {},
+            "MinCount": 2,
+            "MinReadingRangeTemp": {},
+            "Name": {
+              "Comparison": "AllOf",
+              "Values": [
+                "Air temperature, In",
+                "Air temperature, Out"
+              ]
+            },
+            "PhysicalContext": {},
+            "Purpose": "Required Air Temperature Sensors",
+            "ReadRequirement": "Mandatory",
+            "ReadingCelsius": {},
+            "Status": {},
+            "UpperThresholdCritical": {},
+            "UpperThresholdFatal": {},
+            "UpperThresholdNonCritical": {}
+          }
+        },
+        "Fans": {
+          "PropertyRequirements": {
+            "HotPluggable": {},
+            "Location": {},
+            "LowerThresholdCritical": {},
+            "LowerThresholdFatal": {},
+            "LowerThresholdNonCritical": {},
+            "Name": {},
+            "PhysicalContext": {},
+            "ReadingUnits": {},
+            "Reading": {},
+            "Status": {
+              "PropertyRequirements": {
+                "Health": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
