@@ -21,7 +21,7 @@
             "Enclosure, Other, Rack, RackMount, Sidecar, StandAlone"
           ]
         },
-        "Control": {
+        "Controls": {
           "ReadRequirement": "Recommended"
         },
         "PartNumber": {
