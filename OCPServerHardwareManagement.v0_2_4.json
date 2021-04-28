@@ -71,7 +71,7 @@
 					"ConditionalRequirements": [{
 						"Purpose": "Either PartNumber or SKU (or both) must be implemented.",
 						"CompareProperty": "PartNumber",
-						"Comparison": "Absent",
+						"CompareType": "Absent",
 						"ReadRequirement": "Mandatory"
 					}]
 				},
@@ -80,7 +80,7 @@
 					"ConditionalRequirements": [{
 						"Purpose": "Either PartNumber or SKU (or both) must be implemented.",
 						"CompareProperty": "SKU",
-						"Comparison": "Absent",
+						"CompareType": "Absent",
 						"ReadRequirement": "Mandatory"
 					}]
 				},
