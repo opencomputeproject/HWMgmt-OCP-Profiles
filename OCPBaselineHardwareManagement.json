@@ -1,7 +1,7 @@
 {
 	"SchemaDefinition": "RedfishInteroperabilityProfile.v1_0_0",
 	"ProfileName": "OCPBaselineHardwareManagement",
-	"ProfileVersion": "1.0.0",
+	"ProfileVersion": "1.0.1",
 	"Purpose": "Specifies the OCP baseline hardware management requirements for the Redfish interface on platforms.",
 	"OwningEntity": "Open Compute Project",
 	"ContactInfo": "hwpl@opencompute.org",
@@ -25,7 +25,24 @@
 				"ChassisType": {},
 				"IndicatorLED": {
 					"ReadRequirement": "Recommended",
-					"WriteRequirement": "Recommended"
+					"WriteRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
+						"CompareProperty": "LocationIndicatorActive",
+						"Comparison": "Absent",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"LocationIndicatorActive": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
+						"CompareProperty": "IndicatorLED",
+						"Comparison": "Absent",
+						"ReadRequirement": "Mandatory"
+					}]
+
 				},
 				"Manufacturer": {},
 				"Model": {},
@@ -110,7 +127,7 @@
 					"ConditionalRequirements": [{
 						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
 						"ReadRequirement": "Mandatory",
-						"WriteRequirement": "Mandatory"						
+						"WriteRequirement": "Mandatory"
 					}]
 				},
 				"IPv4Addresses": {
@@ -192,7 +209,7 @@
 				"Reset": {
 					"Parameters": {
 						"ResetType": {
-							"MinSupportValues": ["ForceRestart"]
+							"ParameterValues": ["ForceRestart"]
 						}
 					}
 				}
@@ -205,29 +222,29 @@
 				"FQDN": {},
 				"HTTP": {
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"HTTPS": {
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"SSH": {
 					"ReadRequirement": "Recommended",
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"SSDP": {
 					"ReadRequirement": "Recommended",
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {},
-						"NotifyMulticstIntervalSeconds": {},
+						"NotifyMulticastIntervalSeconds": {},
 						"NotifyIPv6Scope": {},
 						"NotifyTTL": {}
 					}
