@@ -1,7 +1,7 @@
 {
   "SchemaDefinition": "RedfishInteroperabilityProfile.v0_9_0",
   "ProfileName": "OCPRackManagerController",
-  "ProfileVersion": "2020.1.RC",
+  "ProfileVersion": "1.0.0",
   "Purpose": "Profile for OpenRMC Rack Manager Controller.",
   "ContactInfo": "john.leung@opencompute.org",
   "OwningEntity": "Open Compute Project",
