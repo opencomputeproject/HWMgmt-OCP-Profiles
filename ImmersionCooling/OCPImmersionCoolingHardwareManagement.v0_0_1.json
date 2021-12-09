@@ -10,76 +10,7 @@
       "MinVersion": "1.0.0"
     }
   },
-  "Resources": {
-    "Chassis": {
-      "MinVersion": "1.15.0",
-      "PropertyRequirements": {
-        "AssetTag": {},
-        "ChassisType": {
-          "Purpose": "Need to know the type of the Chassis",
-          "Values": [
-            "Enclosure, Other, Rack, RackMount, Sidecar, StandAlone"
-          ]
-        },
-        "Controls": {
-          "ReadRequirement": "Recommended"
-        },
-        "PartNumber": {
-          "ConditionalRequirements": [
-            {
-              "Purpose": "Either PartNumber or SKU (or both) must be implemented.",
-              "CompareProperty": "SKU",
-              "Comparison": "Absent",
-              "ReadRequirement": "Mandatory"
-            }
-          ]
-        },
-        "Power": {
-          "Purpose": "Reference to subordinate Power resource."
-        },
-        "PowerState": {},
-        "SKU": {
-          "ReadRequirement": "Recommended",
-          "ConditionalRequirements": [
-            {
-              "Purpose": "Either PartNumber or SKU (or both) must be implemented.",
-              "CompareProperty": "PartNumber",
-              "Comparison": "Absent",
-              "ReadRequirement": "Mandatory"
-            }
-          ]
-        },
-        "SerialNumber": {},
-        "Status": {
-          "PropertyRequirements": {
-            "State": {},
-            "Health": {}
-          }
-        },
-        "Thermal": {
-          "Purpose": "Reference to subordinate Thermal resource."
-        }
-      },
-      "ActionRequirements": {
-        "Reset": {
-          "Purpose": "To monitor the power state of the Door Heat Exchanger.",
-          "Parameters": {
-            "ResetType": {
-              "MinSupportValues": [
-                "ForceRestart"
-              ]
-            }
-          }
-        }
-      }
-    },
-    "ChassisCollection": {
-      "PropertyRequirements": {
-        "Members": {
-          "MinCount": 1
-        }
-      }
-    },
+  "Resources": {    
     "Control": {
       "MinVersion": "0.5.0",
       "Purpose": "To control the Thermal resource",
@@ -283,55 +214,6 @@
     },
     "ServiceRoot": {
       "MinVersion": "1.1.0"
-    },
-    "Thermal": {
-      "PropertyRequirements": {
-        "Status": {},
-        "Temperatures": {
-          "PropertyRequirements": {
-            "DeltaPhysicalContext": {},
-            "LowerThresholdCritical": {},
-            "LowerThresholdFatal": {},
-            "LowerThresholdNonCritical": {},
-            "MaxReadingRangeTemp": {},
-            "MinCount": 2,
-            "MinReadingRangeTemp": {},
-            "Name": {
-              "Comparison": "AnyOf",
-              "Values": [
-                "Air temperature, In",
-                "Air temperature, Out"
-              ]
-            },
-            "PhysicalContext": {},
-            "Purpose": "Required Air Temperature Sensors",
-            "ReadRequirement": "Mandatory",
-            "ReadingCelsius": {},
-            "Status": {},
-            "UpperThresholdCritical": {},
-            "UpperThresholdFatal": {},
-            "UpperThresholdNonCritical": {}
-          }
-        },
-        "Fans": {
-          "PropertyRequirements": {
-            "HotPluggable": {},
-            "Location": {},
-            "LowerThresholdCritical": {},
-            "LowerThresholdFatal": {},
-            "LowerThresholdNonCritical": {},
-            "Name": {},
-            "PhysicalContext": {},
-            "ReadingUnits": {},
-            "Reading": {},
-            "Status": {
-              "PropertyRequirements": {
-                "Health": {}
-              }
-            }
-          }
-        }
-      }
-    }
+    }    
   }
 }
