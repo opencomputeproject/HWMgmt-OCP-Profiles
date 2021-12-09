@@ -1,0 +1,558 @@
+{
+    "SchemaDefinition": "RedfishInteroperabilityProfile.v0_9_0",
+    "ProfileName": "OCPRackManagerController",
+    "ProfileVersion": "1.0.0",
+    "Purpose": "Profile for OpenRMC Rack Manager Controller.",
+    "ContactInfo": "john.leung@opencompute.org",
+    "OwningEntity": "Open Compute Project",
+    "Protocol": {
+        "MinVersion": "1.0"
+    },
+    "Resources": {
+        "ServiceRoot": {
+            "Purpose": "Entry point for the OpenRMC northbound API ",
+            "PropertyRequirements": {
+                "RedfishVersion": {},
+                "UUID": {},
+                "AccountService": {
+                    "Purpose": "To support user accounts and roles."
+                },
+                "Chassis": {
+                    "Purpose": "To support the inventory, power telemetry, temperature telemetry and power capping."
+                },
+                "EventService": {
+                    "Purpose": "To support asynchronous event service."
+                },
+                "Managers": {
+                    "Purpose": "To support managing the rack management controller."
+                },
+                "Registries": {
+                    "Purpose": "To support message registries."
+                },
+                "SessionService": {
+                    "Purpose": "To support multiple client sessions."
+                },
+                "Tasks": {
+                    "Purpose": "To support long running operations. Task resources are created by Redfish service, automatically."
+                },
+                "TelemetryService": {
+                    "Purpose": "To support telemetry operations."
+                },
+                "UpdateService": {
+                    "Purpose": "To support updating the OpenRMC firmware."
+                }
+            }
+        },
+        "ManagerCollection": {
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 1
+                }
+            }
+        },
+        "Manager": {
+            "Purpose": "Represents the rack management controller.",
+            "PropertyRequirements": {
+                "ManagerType": {
+                    "Values": [
+                        "RackManager"
+                    ]
+                },
+                "Description": {},
+                "UUID": {},
+                "ServiceEntryPointUUID": {},
+                "Model": {},
+                "DateTime": {},
+                "DateTimeLocalOffset": {},
+                "FirmwareVersion": {},
+                "PowerState": {},
+                "SerialConsole": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "State": {},
+                        "Health": {},
+                        "HealthRollup": {}
+                    }
+                },
+                "EthernetInterfaces": {
+                    "Purpose": "Reference to Ethernet interface."
+                },
+                "ManagerNetworkProtocol": {
+                    "Purpose": "Reference to supported network protocols."
+                },
+                "Certificates": {
+                    "Purpose": "Reference to manager certificates."
+                },
+                "Links": {
+                    "PropertyRequirements": {
+                        "ManagerForChassis": {
+                            "Purpose": "Associates rack manager to managed rack."
+                        },
+                        "ManagerInChassis": {
+                            "Purpose": "The chassis which contains the rack manager."
+                        }
+                    }
+                }
+            },
+            "ActionRequirements": {
+                "Reset": {
+                    "Purpose": "Power cycle the manager.",
+                    "Parameters": {
+                        "ResetType": {
+                            "MinSupportValues": [
+                                "PowerCycle"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ManagerNetworkProtocol": {
+            "Purpose": "Network protocols supported by the rack manager.",
+            "PropertyRequirements": {
+                "Status": {},
+                "HTTP": {
+                    "PropertyRequirements": {
+                        "ProtocolEnable": {},
+                        "Port": {}
+                    }
+                },
+                "HTTPS": {
+                    "PropertyRequirements": {
+                        "ProtocolEnable": {},
+                        "Port": {}
+                    }
+                }
+            }
+        },
+        "EthernetInterfaceCollection": {
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 1
+                }
+            }
+        },
+        "EthernetInterface": {
+            "Purpose": "Required on Manager's Ethernet Interface",
+            "MinVersion": "1.1.0",
+            "ReadRequirement": "Recommended",
+            "ConditionalRequirements": [
+                {
+                    "SubordinateToResource": [
+                        "Manager",
+                        "EthernetInterfaceCollection"
+                    ],
+                    "ReadRequirement": "Mandatory"
+                }
+            ],
+            "PropertyRequirements": {
+                "MACAddress": {},
+                "SpeedMbps": {},
+                "InterfaceEnabled": {},
+                "LinkStatus": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "DHCPv4": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Recommended"
+                },
+                "DHCPv6": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Recommended"
+                },
+                "HostName": {
+                    "ReadRequirement": "Recommended",
+                    "ConditionalRequirements": [
+                        {
+                            "SubordinateToResource": [
+                                "Manager",
+                                "EthernetInterfaceCollection"
+                            ],
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    ]
+                },
+                "FQDN": {
+                    "ReadRequirement": "Recommended",
+                    "ConditionalRequirements": [
+                        {
+                            "SubordinateToResource": [
+                                "Manager",
+                                "EthernetInterfaceCollection"
+                            ],
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    ]
+                },
+                "NameServers": {
+                    "ReadRequirement": "Recommended",
+                    "ConditionalRequirements": [
+                        {
+                            "SubordinateToResource": [
+                                "Manager",
+                                "EthernetInterfaceCollection"
+                            ],
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    ]
+                },
+                "IPv4Addresses": {
+                    "ReadRequirement": "Recommended",
+                    "ConditionalRequirements": [
+                        {
+                            "SubordinateToResource": [
+                                "Manager",
+                                "EthernetInterfaceCollection"
+                            ],
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    ],
+                    "PropertyRequirements": {
+                        "Address": {},
+                        "SubnetMask": {},
+                        "AddressOrigin": {},
+                        "Gateway": {}
+                    }
+                },
+                "IPv4StaticAddresses": {
+                    "ReadRequirement": "Recommended"
+                },
+                "IPv6AddressPolicyTable": {
+                    "ReadRequirement": "Recommended"
+                },
+                "IPv6StaticAddresses": {
+                    "ReadRequirement": "Recommended"
+                },
+                "IPv6StaticDefaultGateways": {
+                    "ReadRequirement": "Recommended"
+                },
+                "IPv6Addresses": {
+                    "ReadRequirement": "IfImplemented",
+                    "PropertyRequirements": {
+                        "Address": {},
+                        "PrefixLength": {},
+                        "AddressOrigin": {},
+                        "AddressState": {}
+                    }
+                },
+                "StaticNameServers": {
+                    "ReadRequirement": "Recommended"
+                }
+            }
+        },
+        "CertificateCollection": {
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 1
+                }
+            }
+        },
+        "Certificate": {
+            "Purpose": "Represents the certificate for the rack manager.",
+            "PropertyRequirements": {
+                "CertificateType": {},
+                "CertificateString": {}
+            }
+        },
+        "ChassisCollection": {
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 1
+                }
+            }
+        },
+        "Chassis": {
+            "Purpose": "Represents the physical rack.",
+            "PropertyRequirements": {
+                "ChassisType": {
+                    "Values": [
+                        "Rack"
+                    ]
+                },
+                "Assettag": {},
+                "Manufacturer": {},
+                "Model": {},
+                "PartNumber": {},
+                "PowerState": {},
+                "SerialNumber": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "State": {},
+                        "Health": {}
+                    }
+                },
+                "Thermal": {
+                    "Purpose": "Reference to Chassis Thermal resource."
+                },
+                "Power": {
+                    "Purpose": "Reference to Chassis Power resource."
+                },
+                "Links": {
+                    "PropertyRequirements": {
+                        "ComputerSystems": {},
+                        "ContainedBy": {},
+                        "Contains": {},
+                        "ManagedBy": {},
+                        "ManagersInChassis": {
+                            "Purpose": "Used to create physical topology and relations."
+                        }
+                    }
+                }
+            },
+            "ActionRequirements": {
+                "Reset": {
+                    "Purpose": "To control power state of the Rack.",
+                    "Parameters": {
+                        "ResetType": {
+                            "MinSupportValues": [
+                                "ForceRestart"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Power": {
+            "Purpose": "Represents a power domain.",
+            "PropertyRequirements": {
+                "Status": {},
+                "PowerConsumedWatts": {},
+                "PowerControl": {
+                    "PropertyRequirements": {
+                        "Status": {},
+                        "PhysicalContext": {},
+                        "PowerConsumedWatts": {},
+                        "PowerMetrics": {
+                            "Purpose": "Obtain power statistics.",
+                            "PropertyRequirements": {
+                                "MinConsumedWatts": {},
+                                "MaxConsumedWatts": {},
+                                "AverageConsumedWatts": {}
+                            }
+                        },
+                        "PowerLimit": {
+                            "Purpose": "Set power capping limit.",
+                            "PropertyRequirements": {
+                                "LimitInWatts": {
+                                    "ReadRequirement": "Mandatory",
+                                    "WriteRequirement": "Mandatory"
+                                }
+                            }
+                        }
+                    }
+                },
+                "Voltages": [
+                    {
+                        "PropertyRequirements": {
+                            "Name": "VRM1 Voltage",
+                            "SensorNumber": {},
+                            "Status": {},
+                            "ReadingVolts": {},
+                            "PhysicalContext": "VoltageRegulator"
+                        }
+                    }
+                ],
+                "PowerSupplies": {
+                    "Purpose": "Needed for inventory. Min info - N Watt DC power supply",
+                    "PropertyRequirements": {
+                        "Status": {},
+                        "PowerCapacityWatts": {},
+                        "PowerSupplyType": {},
+                        "LineInputVoltage": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "Model": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "Manufacturer": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "FirmwareVersion": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "SerialNumber": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "PartNumber": {
+                            "ReadRequirement": "Recommended"
+                        }
+                    }
+                },
+                "Redundancy": {
+                    "Purpose": "Describe redundant power supplies"
+                }
+            }
+        },
+        "Thermal": {
+            "Purpose": "Represents a cooling domain.",
+            "PropertyRequirements": {
+                "Status": {},
+                "Temperatures": {
+                    "PropertyRequirements": {
+                        "Name": {
+                            "Values": [
+                                "CPU1 Temp",
+                                "CPU2 Temp",
+                                "Chassis Intake Temp"
+                            ]
+                        },
+                        "Status": {},
+                        "ReadingCelsius": {},
+                        "PhysicalContext": {}
+                    }
+                },
+                "Fans": {
+                    "PropertyRequirements": {
+                        "PhysicalContext": {},
+                        "HotPluggable": {},
+                        "Status": {
+                            "PropertyRequirements": {
+                                "Health": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ComputerSystemCollection": {
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 1
+                }
+            }
+        },
+        "ComputerSystem": {
+            "Purpose": "Used to manage the computer system (or server).",
+            "PropertyRequirements": {
+                "Status": {},
+                "UUID": {},
+                "SerialNumber": {},
+                "BIOSVersion": {},
+                "ProcessorSummary": {},
+                "MemorySummary": {},
+                "PowerState": {},
+                "Boot": {
+                    "Purpose": "Used to control computer system's BIOS boot options.",
+                    "PropertyRequirements": {
+                        "BootSourceOverrideEnabled": {},
+                        "BootSourceOverrideTarget": {},
+                        "BootSourceOverrideMode": {}
+                    }
+                },
+                "EthernetInterfaces": {
+                    "Purpose": "Reference to Ethernet interfaces"
+                },
+                "LogServices": {
+                    "Purpose": "Reference to LogServices Collection."
+                },
+                "Links": {
+                    "PropertyRequirements": {
+                        "Chassis": {
+                            "Purpose": "Associates system to rack or tray."
+                        },
+                        "ManagerBy": {
+                            "Purpose": "Associates system to tray manager (BMC)."
+                        }
+                    }
+                }
+            },
+            "ActionRequirements": {
+                "Reset": {
+                    "Purpose": "Used to control power state of the computer system.",
+                    "Parameters": {
+                        "ResetType": {
+                            "MinSupportValues": [
+                                "On",
+                                "PowerCycle"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "LogServicesCollection": {
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 1
+                }
+            }
+        },
+        "LogService": {
+            "PropertyRequirements": {
+                "OverWritePolicy": {},
+                "DateTime": {},
+                "DateTimeLocalOffset": {},
+                "ServiceEnabled": {},
+                "Status": {},
+                "Entries": {
+                    "Purpose": "Reference to LogEntry Collection."
+                }
+            },
+            "ActionRequirements": {
+                "ClearLog": {}
+            }
+        },
+        "LogEntryCollection": {
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 0
+                }
+            }
+        },
+        "LogEntry": {
+            "PropertyRequirements": {
+                "Created": {},
+                "EntryType": {},
+                "Message": {},
+                "MessageId": {},
+                "MessageArgs": {},
+                "SensorNumber": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Severity": {}
+            },
+            "ActionRequirements": {
+                "SimpleUpdate": {}
+            }
+        },
+        "UpdateService": {
+            "PropertyRequirements": {
+                "Status": {},
+                "FirmwareInventory": {
+                    "Purpose": "Reference to firmware on rack mananager"
+                }
+            }
+        },
+        "SoftwareInventoryCollection": {
+            "URIs": [
+                "/redfish/v1/UpdateService/FirmwareInventory"
+            ],
+            "PropertyRequirements": {
+                "Members": {
+                    "Purpose": "The inventory shall include firmware for the Rackmgr, System and BMC instances",
+                    "MinCount": 3
+                }
+            }
+        },
+        "SoftwareInventory": {
+            "PropertyRequirements": {
+                "Status": {},
+                "Updateable": {
+                    "Purpose": "The firmware shall be updateable",
+                    "Comparison": "Equal",
+                    "Values": [
+                        true
+                    ]
+                }
+            }
+        }
+    }
+}
