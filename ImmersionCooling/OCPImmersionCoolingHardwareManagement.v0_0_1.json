@@ -1,19 +1,16 @@
 {
-  "SchemaDefinition": "RedfishInteroperabilityProfile.v1_0_0",
-  "ProfileName": "OCPDoorHeatExchangerController",
-  "ProfileVersion": "0.5.0",
-  "Purpose": "Profile for the OCP Door Heat Exchanger Controller.",
+  "SchemaDefinition": "RedfishInteroperabilityProfile.v1_4_1",
+  "ProfileName": "OCPImmersionCoolingController",
+  "ProfileVersion": "0.0.1",
+  "Purpose": "Profile for the OCP Immersion Cooling Controller.",
   "OwningEntity": "Open Compute Project",
   "ContactInfo": "redfish@opencompute.org",
-  "RequiredProfiles": {
-    "OCPBaselineHardwareManagement": {
-      "MinVersion": "1.0.0"
-    }
+  "RequiredProfiles": {    
   },
   "Resources": {    
     "Control": {
-      "MinVersion": "0.5.0",
-      "Purpose": "To control the Thermal resource",
+      "MinVersion": "1.1.0",
+      "Purpose": "To control the Cooling Unit resource",
       "PropertyRequirements": {
         "Accuracy": {
           "ReadRequirement": "Recommended"
@@ -121,85 +118,10 @@
           "MinCount": 1
         }
       }
-    },
-    "EthernetInterface": {
-      "MinVersion": "1.1.0"
-    },
-    "EthernetInterfaceCollection": {
-      "PropertyRequirements": {
-        "Members": {
-          "MinCount": 1
-        }
-      }
-    },
-    "LogEntry": {
-      "MinVersion": "1.1.0"
-    },
-    "LogEntryCollection": {
-      "PropertyRequirements": {
-        "Members": {
-          "MinCount": 0
-        }
-      }
-    },
-    "LogService": {
-      "MinVersion": "1.1.0"
-    },
-    "LogServicesCollection": {
-      "PropertyRequirements": {
-        "Members": {
-          "MinCount": 1
-        }
-      }
-    },
-    "Manager": {
-      "MinVersion": "1.7.0"
-    },
-    "ManagerCollection": {
-      "PropertyRequirements": {
-        "Members": {
-          "MinCount": 1
-        }
-      }
-    },
-    "ManagerNetworkProtocol": {
-      "MinVersion": "1.2.0"
-    },
-    "Power": {
-      "PropertyRequirements": {
-        "Status": {},
-        "PowerConsumedWatts": {},
-        "PowerControl": {
-          "PropertyRequirements": {
-            "Status": {},
-            "PhysicalContext": {},
-            "PowerConsumedWatts": {},
-            "PowerMetrics": {
-              "Purpose": "Obtain power statistics.",
-              "PropertyRequirements": {
-                "MinConsumedWatts": {},
-                "MaxConsumedWatts": {},
-                "AverageConsumedWatts": {}
-              }
-            }
-          }
-        },
-        "Voltages": [
-          {
-            "PropertyRequirements": {
-              "Name": "VRM1 Voltage",
-              "SensorNumber": {},
-              "Status": {},
-              "ReadingVolts": {},
-              "PhysicalContext": "VoltageRegulator"
-            }
-          }
-        ]
-      }
-    },
+    },                
     "Sensor": {
-      "MinVersion": "1.2.0",
-      "Purpose": "Required Air Temperature Sensors",
+      "MinVersion": "1.5.0",
+      "Purpose": "Required Temperature Sensors",
       "ReadRequirement": "Mandatory",
       "MinCount": 2,
       "PropertyRequirements": {
@@ -212,8 +134,72 @@
         }
       }
     },
+    "SensorCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "Facility": {
+      "MinVersion": "1.4.0",
+      "Purpose": "The Facility that the cooling units belong to",
+      "ReadRequirement": "Mandatory",
+      "PropertyRequirements": {
+        "FacilityType": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "Recommended"
+        },
+        "AmbientMetrics": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Description": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Links": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Location": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Status": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "CoolingDomains": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        }
+      }
+    },
+    "Resource": {
+      "Purpose": "Common Redfish resources"
+    },
+    "CoolingLoop": {
+      "MinVersion": "1.0.0"
+    },
+    "LoopConnection": {
+      "MinVersion": "1.0.0"
+    },
+    "LoopConnectionCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "CoolingUnit": {
+      "MinVersion": "1.0.0"
+    },
+    "Circuit": {
+      "MinVersion": "1.4.0"
+    },
     "ServiceRoot": {
-      "MinVersion": "1.1.0"
+      "MinVersion": "1.12.0"
     }    
   }
 }
