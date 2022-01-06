@@ -35,7 +35,7 @@
         "Tasks": {
           "Purpose": "To support long running operations. Task resources are created by Redfish service, automatically."
         },
-        "Telemetry": {
+        "TelemetryService": {
           "Purpose": "To support telemetry operations."
         },
         "UpdateService": {
