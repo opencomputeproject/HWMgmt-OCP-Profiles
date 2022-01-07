@@ -214,7 +214,7 @@
     "LogService": {
       "MinVersion": "1.1.0"
     },
-    "LogServicesCollection": {
+    "LogServiceCollection": {
       "PropertyRequirements": {
         "Members": {
           "MinCount": 1
