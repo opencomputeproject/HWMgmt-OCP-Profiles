@@ -3,6 +3,9 @@
     "ProfileName": "OCPRackManagerController",
     "ProfileVersion": "1.0.0",
     "Purpose": "Profile for OpenRMC Rack Manager Controller.",
+    "OwningEntity": "Open Compute Project",
+	"ContributedBy": "Intel Corporation",
+	"License": "Creative Commons Attribution-ShareAlike 4.0 International License",
     "ContactInfo": "john.leung@opencompute.org",
     "OwningEntity": "Open Compute Project",
     "Protocol": {
@@ -277,7 +280,7 @@
                         "Rack"
                     ]
                 },
-                "Assettag": {},
+                "AssetTag": {},
                 "Manufacturer": {},
                 "Model": {},
                 "PartNumber": {},
@@ -435,7 +438,7 @@
                 "Status": {},
                 "UUID": {},
                 "SerialNumber": {},
-                "BIOSVersion": {},
+                "BiosVersion": {},
                 "ProcessorSummary": {},
                 "MemorySummary": {},
                 "PowerState": {},
