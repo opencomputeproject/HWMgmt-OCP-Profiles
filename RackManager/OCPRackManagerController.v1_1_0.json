@@ -258,10 +258,18 @@
             }
         },
         "Certificate": {
-            "Purpose": "Represents the certificate for the rack manager.",
-            "PropertyRequirements": {
+			"MinVersion": "1.1.0",
+			"ReadRequirement": "Recommended",
+			"ConditionalRequirements": [{
+				"SubordinateToResource": ["Manager", "CertificateCollection"],
+				"ReadRequirement": "Mandatory"
+			}],
+			"PropertyRequirements": {
+                "Purpose": "Represents the certificate for the rack manager.",
                 "CertificateType": {},
-                "CertificateString": {}
+                "CertificateString": {},
+				"Issuer": {},
+				"Subject": {}
             }
         },
         "ChassisCollection": {
