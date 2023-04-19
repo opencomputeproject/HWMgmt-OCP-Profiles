@@ -111,13 +111,13 @@
 				"Status": {},
 				"HTTP": {
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"HTTPS": {
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				}
