@@ -4,7 +4,6 @@
   "ProfileVersion": "1.0.2",
   "Purpose": "Profile for OpenRMC Rack Manager Controller.",
   "OwningEntity": "Open Compute Project",
-  "ContactInfo": "OpenRMC@OCP-All.groups.io",
   "License": "Creative Common Attribution-ShareAlike 4.0 International License",
 
   "Protocol": {
