@@ -4,7 +4,7 @@
   "ProfileVersion": "1.0.2",
   "Purpose": "Profile for OpenRMC Rack Manager Controller.",
   "OwningEntity": "Open Compute Project",
-  "ContactInfo": "OpenRMC@OCP-All.groups.io",
+  "ContactInfo": "OpenRMC-DM Project Leads",
   "License": "Creative Common Attribution-ShareAlike 4.0 International License",
 
   "Protocol": {
@@ -79,7 +79,7 @@
  			  "EthernetInterfaces": {
           "Purpose": "Reference to Ethernet interface."
         },
-        "ManagerNetworkProtocol": {
+        "NetworkProtocol": {
           "Purpose": "Reference to supported network protocols."
         },
         "Links": {
@@ -111,13 +111,13 @@
 				"Status": {},
 				"HTTP": {
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"HTTPS": {
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				}
@@ -260,7 +260,7 @@
 				"ChassisType": {
           "Values": ["Rack"]
         },
-				"Assettag": {},
+				"AssetTag": {},
         "Manufacturer": {},
 				"Model": {},
         "PartNumber": {},
@@ -422,7 +422,7 @@
         "Status": {},
         "UUID": {},
         "SerialNumber": {},
-        "BIOSVersion": {},
+        "BiosVersion": {},
         "ProcessorSummary": {},
         "MemorySummary": {},
         "PowerState": {},
@@ -447,7 +447,7 @@
             "Chassis": {
               "Purpose": "Associates system to rack or tray."
             },
-            "ManagerBy": {
+            "ManagedBy": {
               "Purpose": "Associates system to tray manager (BMC)."
             }
           }
