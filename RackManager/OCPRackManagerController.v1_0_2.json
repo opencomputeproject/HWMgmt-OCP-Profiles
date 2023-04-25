@@ -79,7 +79,7 @@
  			  "EthernetInterfaces": {
           "Purpose": "Reference to Ethernet interface."
         },
-        "ManagerNetworkProtocol": {
+        "NetworkProtocol": {
           "Purpose": "Reference to supported network protocols."
         },
         "Links": {
@@ -447,7 +447,7 @@
             "Chassis": {
               "Purpose": "Associates system to rack or tray."
             },
-            "ManagerBy": {
+            "ManagedBy": {
               "Purpose": "Associates system to tray manager (BMC)."
             }
           }
