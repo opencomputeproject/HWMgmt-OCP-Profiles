@@ -260,7 +260,7 @@
 				"ChassisType": {
           "Values": ["Rack"]
         },
-				"Assettag": {},
+				"AssetTag": {},
         "Manufacturer": {},
 				"Model": {},
         "PartNumber": {},
@@ -422,7 +422,7 @@
         "Status": {},
         "UUID": {},
         "SerialNumber": {},
-        "BIOSVersion": {},
+        "BiosVersion": {},
         "ProcessorSummary": {},
         "MemorySummary": {},
         "PowerState": {},
