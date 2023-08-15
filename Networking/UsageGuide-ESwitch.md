@@ -646,7 +646,7 @@ log.
 ```
 GET /redfish/v1/
 Fabrics/{id=Ethernet}/Switches/{id}/LogServices/Log/Entries
-		```
+```
 
 The following fragment is
 
