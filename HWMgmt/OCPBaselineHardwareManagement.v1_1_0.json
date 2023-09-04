@@ -328,9 +328,9 @@
 			}
 		},
 		"Sensor": {
-			"Purpose": "Sensor equivalent Power.PowerControl.PowerConsumedWatts.",
+			"Purpose": "Equivalent Power.PowerControl.PowerConsumedWatts.",
 			"PropertyRequirements": {
-				"ID": {
+				"Id": {
  					"Values": ["TotalPower"]
         		},
 				"Reading": {},
@@ -338,9 +338,9 @@
 			}
 		},
 		"Control": {
-			"Purpose": "Sensor equivalent Power.PowerControl.PowerLimit.",
+			"Purpose": "Equivalent Power.PowerControl.PowerLimit.",
 			"PropertyRequirements": {
-				"ID": {
+				"Id": {
  					"Values": ["PowerLimit"]
         		},
 				"SetPoint": {},
@@ -399,17 +399,6 @@
 			}
 		},
 
-		"Sensor": {
-			"Purpose": "Sensor for the power consumed.",
-			"PropertyRequirements": {
-				"ID": {
- 					"Values": ["TotalPower"]
-        		},
-				"ReadingType": {},
-				"Reading": {},
-				"ReadingUnit": {}
-			}
-		},
 
 		"ThermalSubsystem": {
 			"MinVersion": "1.0.0",
@@ -443,6 +432,7 @@
 			}
 		},
 		"Fan": {
+			"ReadRequirement": "IfImplemented",
 			"Purpose": "Equivalent of Thermal.Fans",
 			"PropertyRequirements": {
 				"Name": {
