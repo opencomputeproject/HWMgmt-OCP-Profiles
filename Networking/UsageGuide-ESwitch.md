@@ -697,6 +697,7 @@ The system log is cleared by POST'ing to the ClearLog action for
 POST
 /redfish/v1/Fabrics/Ethernet/Switches/Switch1/LogService/Log/Actions/LogService.ClearLog
 ```
+No response is provide.
 
 # References
 
