@@ -95,6 +95,15 @@
 						"ReadRequirement": "Mandatory"
 					}]
 				},
+				"EnvironmentMetrics": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "If the PowerSubsystem resource is present, this resource must be implemented.",
+						"CompareProperty": "PowerSubsystem",
+						"Comparison": "Present",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
 				"Sensors": {
 					"ReadRequirement": "Recommended",
 					"ConditionalRequirements": [{
@@ -124,6 +133,18 @@
 			"PropertyRequirements": {
 				"Members": {
 					"MinCount": 1
+				}
+			}
+		},
+		"EnvironmentMetrics": {
+			"Purpose": "Equivalent Power.PowerControl.PowerConsumedWatts and Power.PowerControl.PowerLimit.",
+			"PropertyRequirements": {
+				"Members": {
+					"PowerWatts": {},
+					"PowerLimitWatts": {
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}
 				}
 			}
 		},
@@ -325,26 +346,6 @@
 					"Purpose": "Equivalent for Power.PowerControl.PowerCapacityWatts.",
 					"ReadRequirement": "Recommended"
 				}
-			}
-		},
-		"Sensor": {
-			"Purpose": "Equivalent Power.PowerControl.PowerConsumedWatts.",
-			"PropertyRequirements": {
-				"Id": {
- 					"Values": ["TotalPower"]
-        		},
-				"Reading": {},
-				"ReadingUnits": {}
-			}
-		},
-		"Control": {
-			"Purpose": "Equivalent Power.PowerControl.PowerLimit.",
-			"PropertyRequirements": {
-				"Id": {
- 					"Values": ["PowerLimit"]
-        		},
-				"SetPoint": {},
-				"SetPointUnits": {}
 			}
 		},
 		"SessionService": {},
