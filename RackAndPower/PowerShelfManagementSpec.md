@@ -68,13 +68,13 @@ The following table lists the capabilities prescribed in the Power Shelf Managem
 | Cooling              | [Get fan speeds](#get-fan-speeds)                           | If implemented, mandatory |
 |                      | [Get fan redundancy](#get-fan-redundancy)                   | If implemented, mandatory |
 | Power Equipment      | [Get power shelf info](#get-power-shelf-info)               | Mandatory |
-|                      | [Get power shelf metrics](get-power-shelf-metrics)          | Mandatory |
+|                      | [Get power shelf metrics](#get-power-shelf-metrics)          | Mandatory |
 |                      | [Get main circuits](#get-main-circuits)                     | Mandatory |
 |                      | [Get branch circuits](#get-branch-circuits)                 | Mandatory |
 |                      | [Get outlets](#get-outlets)                                 | If implemented, mandatory |
 
-[Figure 1](#figure-1) shows a diagram of the power distribution unit model for a power shelf, which represents the functional view of the power shelf.
-[Figure 2](#figure-2) shows a diagram of the chassis model for a power shelf, which represents the physical view of the power shelf.
+Figure 1 shows a diagram of the power distribution unit model for a power shelf, which represents the functional view of the power shelf.
+Figure 2 shows a diagram of the chassis model for a power shelf, which represents the physical view of the power shelf.
 
 | ![Figure 1](PowerShelf-Figure-FunctionalModel.jpg "Figure 1") |
 | :--------: |
