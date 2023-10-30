@@ -57,21 +57,32 @@ These capabilities are described in the "Usage Guide and Requirements for the OC
 
 The following table lists the capabilities prescribed in the Power Shelf Management profile.
 
-| Use Case             | Management Task             | Requirement |
-| :---                 | :---------                  | :---        |
-| Power                | Get power supply info       | Mandatory |
-|                      | Get power supply redundancy | If implemented, mandatory |
-|                      | Get power supply metrics    | Mandatory |
-|                      | Get/set power supply LED    | Mandatory |
-|                      | Get power consumption       | Mandatory |
-| Temperature          | Get the temperature         | If implemented, mandatory |
-| Cooling              | Get fan speeds              | If implemented, mandatory |
-|                      | Get fan redundancy          | If implemented, mandatory |
-| Power Equipment      | Get power shelf info        | Mandatory |
-|                      | Get power shelf metrics     | Mandatory |
-|                      | Get main circuits           | Mandatory |
-|                      | Get branch circuits         | Mandatory |
-|                      | Get outlets                 | If implemented, mandatory |
+| Use Case             | Management Task                                             | Requirement |
+| :---                 | :---------                                                  | :---        |
+| Power                | [Get power supply info](#get-the-power-supply-info)         | Mandatory |
+|                      | [Get power supply redundancy](#get-power-supply-redundancy) | If implemented, mandatory |
+|                      | [Get power supply metrics](#get-power-supply-metrics)       | Mandatory |
+|                      | [Get/set power supply LED](#getset-power-supply-led)        | Mandatory |
+|                      | [Get power consumption](#get-power-consumption)             | Mandatory |
+| Temperature          | [Get the temperature](#get-the-temperature)                 | If implemented, mandatory |
+| Cooling              | [Get fan speeds](#get-fan-speeds)                           | If implemented, mandatory |
+|                      | [Get fan redundancy](#get-fan-redundancy)                   | If implemented, mandatory |
+| Power Equipment      | [Get power shelf info](#get-power-shelf-info)               | Mandatory |
+|                      | [Get power shelf metrics](get-power-shelf-metrics)          | Mandatory |
+|                      | [Get main circuits](#get-main-circuits)                     | Mandatory |
+|                      | [Get branch circuits](#get-branch-circuits)                 | Mandatory |
+|                      | [Get outlets](#get-outlets)                                 | If implemented, mandatory |
+
+[Figure 1](#figure-1) shows a diagram of the power distribution unit model for a power shelf, which represents the functional view of the power shelf.
+[Figure 2](#figure-2) shows a diagram of the chassis model for a power shelf, which represents the physical view of the power shelf.
+
+| ![Figure 1](PowerShelf-Figure-FunctionalModel.jpg "Figure 1") |
+| :--------: |
+| *Figure 1* |
+
+| ![Figure 2](PowerShelf-Figure-PhysicalModel.jpg "Figure 2") |
+| :--------: |
+| *Figure 2* |
 
 # Use Cases
 
@@ -635,7 +646,9 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Branches/DC
 # References
 
 \[1\] Usage Guide and Requirements for the OCP Baseline Hardware Management Profile v1.0.1
-\[2\] "Redfish API Specification" - [*https://www.dmtf.org/dsp/DSP0266*](https://www.dmtf.org/dsp/DSP0266)
+\[2\] "Redfish Specification" - [*https://www.dmtf.org/dsp/DSP0266*](https://www.dmtf.org/dsp/DSP0266)
+\[3\] "Redfish Data Model Specification" - [*https://www.dmtf.org/dsp/DSP0268*](https://www.dmtf.org/dsp/DSP0268)
+\[4\] "Redfish Interoperability Profiles Specification" - [*https://www.dmtf.org/dsp/DSP0270*](https://www.dmtf.org/dsp/DSP0270)
 
 # Revision 
 
