@@ -289,7 +289,7 @@ The response message contains the following fragment.
 	}
 
 
-The temperature is obtained from the Thermal resource by retrieving the Thermal resource.
+The temperature can be obtained from the Thermal resource by retrieving the Thermal resource.
 
 	GET /redfish/v1/Chassis/Ch-1/Thermal
 
@@ -327,12 +327,46 @@ The threshold properties are optional.
 
 ## Get fan speeds
 
-The fan speeds are obtained from the of a node is obtained from the Thermal resource subordinate to Chassis resource which represents node\'s chassis.
+The fan speeds can be obtained via the ThermalSubsystem or Thermal resource, both are subordinate to the Chassis resource.
+The Thermal resource has been deprecated in favor of the ThermalSubsystem resource.
+
+The fan speeds are obtained via the ThermalSubsystem resource by retrieving the Fans collection resource.
+
+	GET /redfish/v1/Chassis/Ch-1/ThermalSubsystem/Fans
+
+The response message contains the following fragment.
+
+	{
+		"Members@odata.count": 2,
+		"Members": {
+			{
+				"@odata.id"://redfish/v1/Chassis/Ch-1/ThermalSubsystem/Fans/Bay1
+			},
+			{
+				"@odata.id"://redfish/v1/Chassis/Ch-1/ThermalSubsystem/Fans/CPU1
+			}
+		}
+	}
+
+The fan speed of a specific fan is obtained by retrieving the Fan resource
+
+	GET /redfish/v1/Chassis/Ch-1/ThermalSubsystem/Fans/Bay1
+
+The response message contains the following fragment.
+	
+	
+	{
+		"SpeedPercent": {
+			"Reading": 45,
+			"SpeedRPM": 2200"
+		}
+	}
+
+The fan speeds can be obtained from the Thermal resource by retrieving the Thermal resource.
 
 	GET /redfish/v1/Chassis/Ch-1/Thermal
 
-The response contains the following fragment. Within the Fans array
-property, each array member has a Reading and ReadingUnits property.
+The response message contains the following fragment. Within the Fans array property, each array member has a Reading and ReadingUnits property.
 
 	{
 		"Fans": [
@@ -346,9 +380,32 @@ property, each array member has a Reading and ReadingUnits property.
 
 ## Get fan redundancy
 
-Fans which are configured in a redundancy set should be available via the resource model.
+Fans which are configured in a redundancy set should be available via the resource model. The fan speeds can be obtained via the ThermalSubsystem or Thermal resource, both are subordinate to the Chassis resource.
+The Thermal resource has been deprecated in favor of the ThermalSubsystem resource.
 
-The fans redundancy structure is obtained from Thermal resource.
+The fan redundancy can be obtained via the ThermalSubsystem resource by retrieving the Fans collection resource.
+
+	GET /redfish/v1/Chassis/Ch-1/ThermalSubsystem/Fans
+
+The response message contains the following fragment.
+
+	{
+		"FanRedundancy": [
+			{
+				"RedundancyType: "NPlusM",
+				"RedundancyGroup": {
+					{
+						"@odata.id"://redfish/v1/Chassis/Ch-1/ThermalSubsystem/Fans/Bay1
+					},
+					{
+						"@odata.id"://redfish/v1/Chassis/Ch-1/ThermalSubsystem/Fans/Bay2
+					}
+				}
+			}
+		]
+	}
+
+The fans redundancy can be obtained from Thermal resource.
 
 	GET /redfish/v1/Chassis/Ch-1/Thermal
 
@@ -501,55 +558,55 @@ The response message may contain properties from the following fragment.
 			"fc00:1234:200:2500"
 		],
 		"DHCPv4": {
-		"DHCPEnabled": true,
-		"UseDNSServers": true,
-		"UseGateway": true,
-		"UseNTPServers": false,
-		"UseStaticRoutes": true,
-		"UseDomainName": true,
-		"FallbackAddress": "Static"
-	},
-	"IPv4StaticAddresses: [
-		{
-			"Address": "192.168.88.130",
-			"SubnetMask": "255.255.0.0",
-			"Gateway": "192.168.0.1"
-		}
-	],
-	"DHCPv6": {
-		"OperatingMode": "Stateful",
-		"UseDNSServers": true,
-		"UseDomainName": false,
-		"UseNTPServers": false,
-		"UseRapidCommit": false
-	},
-	"IPv6Addresses": [
-		{
-			"Address": "2001:1:3:5::100",
-			"PrefixLength": 64,
-			"AddressOrigin": "DHCPv6",
-			"AddressState": "Preferred"
-		}
-	],
-	"IPv6AddressPolicyTable": [
-		{
-			"Prefix": "::1/128",
-			"Precedence": 50,
-			"Label": 0
-		}
-	],
-	"IPv6StaticAddresses: [
-		{
-			"Address": "fc00:1234::a:b:c:d",
-			"PrefixLength": 64
-		}
-	],
-	"IPv6StaticDefaultGateways": [
-		{
-			"Address": "fe80::fe15:b4ff:fe97:90cd",
-			"PrefixLength": 64
-		}
-	]
+			"DHCPEnabled": true,
+			"UseDNSServers": true,
+			"UseGateway": true,
+			"UseNTPServers": false,
+			"UseStaticRoutes": true,
+			"UseDomainName": true,
+			"FallbackAddress": "Static"
+		},
+		"IPv4StaticAddresses: [
+			{
+				"Address": "192.168.88.130",
+				"SubnetMask": "255.255.0.0",
+				"Gateway": "192.168.0.1"
+			}
+		],
+		"DHCPv6": {
+			"OperatingMode": "Stateful",
+			"UseDNSServers": true,
+			"UseDomainName": false,
+			"UseNTPServers": false,
+			"UseRapidCommit": false
+		},
+		"IPv6Addresses": [
+			{
+				"Address": "2001:1:3:5::100",
+				"PrefixLength": 64,
+				"AddressOrigin": "DHCPv6",
+				"AddressState": "Preferred"
+			}
+		],
+		"IPv6AddressPolicyTable": [
+			{
+				"Prefix": "::1/128",
+				"Precedence": 50,
+				"Label": 0
+			}
+		],
+		"IPv6StaticAddresses: [
+			{
+				"Address": "fc00:1234::a:b:c:d",
+				"PrefixLength": 64
+			}
+		],
+		"IPv6StaticDefaultGateways": [
+			{
+				"Address": "fe80::fe15:b4ff:fe97:90cd",
+				"PrefixLength": 64
+			}
+		]
 	}
 
 ## Reset controller
@@ -574,6 +631,9 @@ contains type of reset to perform.
 | **Revision** 	| **Date**   	| **Description** |
 | :---			| :---			| :---	|
 | 1.0			| 6/15/2021		| Initial Baseline usage guide and profile contribution |
-| 1.1			| TBD			| Add PowerSubsystem and ThermalSubsystem resource	
+| 1.1			| TBD			| Allow either PowerSubsystem or Power resource |
+|               |               | Allow either ThermalSubsystem or Thermal resource |
+|               |               | Require the StaticNameServers to be writable |
+|               |               | Require power limit to be writeable | 	
 
 
