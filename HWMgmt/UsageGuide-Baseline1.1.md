@@ -1,18 +1,15 @@
 # Scope
 
-This document references requirements and provide the usage examples for the OCP Baseline Hardware Management API v1.1.0.
+This document references requirements and provide the usage examples for the OCP Baseline Hardware Management API v1.1.x.
 
 # Requirements
 
-As a Redfish-based interface, the required Redfish interface model
-elements are specified in a profile document. For the Baseline Hardware
-Management API v1.1, the profile is located at --
+As a Redfish-based interface, the required Redfish interface model elements are specified in a profile document.
+For the Baseline Hardware Management API v1.1, the profile is located at --
 
 <https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1.json>
 
-The Redfish Interop Validator is an open source conformance test.
-It reads the profile, executes the tests against an implementation and
-generates a test report.
+The profile file is read by the open-source conformance test, Redfish Interop Validator. With the following command, the validator will auto-generate test, execute the tests against an implementation, and create a test report.
 
 	$> python RedfishInteropValidator.py <profileName> \--ip <host:port>
 
@@ -23,94 +20,32 @@ The Redfish Interop Validator is located at
 
 The following use cases and associated resources have been identified to allow the BMC interface to provide baseline management capabilities.
 
-+--------------+-------------------------------+------------+--------+
-| **Use Case** | **Manageable Capabilities**   | **Req      |        |
-|              |                               | uirement** |        |
-+==============+===============================+============+========+
-| Account      | -   Get accounts              | Mandatory  | S      |
-| Management   |                               |            | ection |
-|              |                               |            | 5.1    |
-+--------------+-------------------------------+------------+--------+
-| Session      | -   Get sessions              | Mandatory  | S      |
-| Management   |                               |            | ection |
-|              |                               |            | 5.2    |
-+--------------+-------------------------------+------------+--------+
-| Hardware     | -   Get the FRU information   | Mandatory  | S      |
-| inventory    |                               |            | ection |
-|              | -   Get and Set the Asset Tag | R          | 5.3    |
-|              |                               | ecommended |        |
-|              |                               |            | S      |
-|              |                               |            | ection |
-|              |                               |            | 5.4    |
-+--------------+-------------------------------+------------+--------+
-| Hardware     | -   Get the location LED      | R          | Section       |
-| location     |                               | ecommended |       |
-|              | -   Set the location LED      |            | 5.5    |
-|              |                               | R          |        |
-|              |                               | ecommended | S      |
-|              |                               |            | ection |
-|              |                               |            | 5.6    |
-+--------------+-------------------------------+------------+--------+
-| Status       | -   Get status of chassis     | Mandatory  | S      |
-|              |                               |            | ection |
-|              |                               |            | 5.7    |
-+--------------+-------------------------------+------------+--------+
-| Power        | -   Get power state           | Mandatory  | S      |
-|              |                               |            | ection |
-|              | -   Get power usage           | R          | 5.8    |
-|              |                               | ecommended |        |
-|              | -   Get power limit           |            | S      |
-|              |                               | R          | ection |
-|              |                               | ecommended | 5.9    |
-|              |                               |            |        |
-|              |                               |            | S      |
-|              |                               |            | ection |
-|              |                               |            | 5.10   |
-+--------------+-------------------------------+------------+--------+
-| Temperature  | -   Get the temperature       | If Impl,   | S      |
-|              |                               | Mandatory  | ection |
-|              | -   Get temperature           |            | 5.11   |
-|              |     thresholds                | If Impl,   |        |
-|              |                               | Recom      | S      |
-|              |                               |            | ection |
-|              |                               |            | 5.12   |
-+--------------+-------------------------------+------------+--------+
-| Cooling      | -   Get fan speeds            | If Impl,   | S      |
-|              |                               | Mandatory  | ection |
-|              | -   Get fan redundancies      |            | 5.13   |
-|              |                               | If Impl,   |        |
-|              |                               | Recom      | S      |
-|              |                               |            | ection |
-|              |                               |            | 5.14   |
-+--------------+-------------------------------+------------+--------+
-| Log          | -   Get log entry             | Mandatory  | S      |
-|              |                               |            | ection |
-|              | -   Clear the log             | R          | 5.15   |
-|              |                               | ecommended |        |
-|              |                               |            | S      |
-|              |                               |            | ection |
-|              |                               |            | 5.16   |
-+--------------+-------------------------------+------------+--------+
-| Management   | -   Get version of firmware   | Mandatory  | S      |
-| Controller   |     for mgmt controller       |            | ection |
-|              |                               | Mandatory  | 5.17   |
-|              | -   Get status of mgmt        |            |        |
-|              |     controller                | Mandatory  | S      |
-|              |                               |            | ection |
-|              | -   Get network information   | Mandatory  | 5.18   |
-|              |     for mgmt controller       |            |        |
-|              |                               |            | S      |
-|              | -   Reset the mgmt controller |            | ection |
-|              |                               |            | 5.19   |
-|              |                               |            |        |
-|              |                               |            | S      |
-|              |                               |            | ection |
-|              |                               |            | 5.20   |
-+--------------+-------------------------------+------------+--------+
+| **Use Case** 			| **Management Task**   								| **Requirement** |
+| :---					| :-----------											| :---	|
+| Account Management 	| [Get accounts](#get-accounts) 						| Mandatory |
+| Service Management	| [Get sessions](#get-sessions) 						| Mandatory |
+| Hardware Inventory	| [Get FRU info](#get-fru-info) 						| Mandatory |
+|						| [Get and Set the Asset Tag](#get-and-set-asset-tag)	| Recommended |
+| Hardware Location		| [Get location LED](#get-location-led)					| Recommended |
+|						| [Set location LED](#set-location-led)					| Recommended |
+| Status				| [Get Chassis status](#get-chassis-status)				| Mandatory |
+| Power					| [Get power state](#get-power-state)					| If implemented, mandatory |
+|						| [Get power usage](#get-power-usage)					| Recommended |
+|						| [Get power limit](#get-power-limit)					| Recommended |
+| Temperature			| [Get temperature](#get-temperature)					| If implemented, mandatory |
+|						| [Get temperature thresholds](#get-temperature-thresholds) | If implemented, recommended |
+| Cooling				| [Get fan speeds](#get-fan-speeds)						| If implemented, mandatory |
+| 						| [Get fan redundancy](#get-fan-redundancy)				| If implemented, recommended |
+| Log					| [Get log entry](#get-log-entry)						| Mandatory |
+|						| [Clear system log](#clear-system-log)						| Recommended |
+| Management Controller | [Get firmware version](#get-firmware-version)			| Mandatory |
+|						| [Get controller status](#get-controller-status)		| Mandatory |
+|						| [Get network info](#get-network-info)					| Mandatory |
+|						| [Reset controller](#reset-controller) 				| Mandatory |
 
 # Use Cases
 
-This section describes how each task is accomplished by interacting via the Redfish Interface.
+This section describes how each task is accomplished by interacting with the Redfish Interface.
 
 ## Get accounts
 
@@ -171,9 +106,9 @@ The Redfish service creates a Session resource for each session that is establis
 		"UserName": "Administrator"
 	}
 
-## Get the inventory information
+## Get FRU info
 
-The hardware inventory for the rack in obtained from the Chassis resource representing each node's hardware.
+The hardware FRU (field replaceable unit) for the chassis resource.
 
 	GET /redfish/v1/Chassis/{id}
 
@@ -195,8 +130,7 @@ The AssetTag properties is a client writeable property.
 
 ## Set the asset tag 
 
-The hardware inventory for the rack in obtained from the Chassis
-resource representing each node\'s hardware.
+The asset tag is set by patching to AssetTag property in the Chassis resource.
 
 	PATCH /redfish/v1/Chassis/Ch-1
 
@@ -244,7 +178,7 @@ Or
 		"LocationIndicatorActive": True
 	}
 
-## Get status of the chassis
+## Get chassis status
 
 Redfish models a node as its physical chassis and the logical computer system.
 The relationship between the two resource and specified by references.
@@ -264,7 +198,7 @@ The Status property contains the state and health of the chassis.
 		}
 	}
 
-## Get the power state
+## Get power state
 
 The power state is obtained from the Chassis resource.
 
@@ -277,9 +211,22 @@ The response contains the PowerState property.
 		"PowerState": "On"
 	}
 
-## Get the power consumption
+## Get power usage
 
-The power consumption is obtained from the Chassis resource.
+The power usage can be obtained via the PowerSubsystem or Power resource, both are subordinate to the Chassis resource.
+The Power resource has been deprecated in favor of the PowerSubsystem resource.
+
+The power usage is obtained via the PowerSubsystem resource by retrieving the EnvironmentMetrics resource.
+
+	GET /redfish/v1/Chassis/Ch-1/PowerSubsystem/EnvironmentMetrics
+
+The response message contains the following fragment.
+
+	{
+		"PowerWatts": "215"
+	}
+
+The power usage is obtained via the Power resource by retrieving the Power resource.
 
 	GET /redfish/v1/Chassis/Ch-1/Power
 
@@ -288,14 +235,26 @@ The PowerControl property contains the PowerConsumedWatts PowerCapacityWatts pro
 
 	{
 		"PowerControl": {
-			"PowerConsumedWatts": "215",
-			"PowerCapacityWatts": "230"
+			"PowerConsumedWatts": "215"
 		}
 	}
 
-## Get the power limit
+## Get power limit
 
-The power limit is obtained from the Chassis resource.
+The power limit can be obtained via the PowerSubsystem or Power resource, both are subordinate to the Chassis resource.
+The Power resource has been deprecated in favor of the PowerSubsystem resource.
+
+The power usage is obtained via the PowerSubsystem resource by retrieving the EnvironmentMetrics resource.
+
+	GET /redfish/v1/Chassis/Ch-1/PowerSubsystem/EnvironmentMetrics
+
+The response message contains the following fragment.
+
+	{
+		"PowerLimitWatts": "220"
+	}
+
+The power limit is obtained via the Power resource by retrieving the Power resource.
 
 	GET /redfish/v1/Chassis/Ch-1/Power
 
@@ -305,22 +264,38 @@ The PowerControl property contains the LimitInWatts and LimitException propertie
 	{
 		"PowerControl": {
 			"PowerLimit": {
-				"LimitInWatts": "220",
-				"LimitException": "230"
+				"LimitInWatts": "220"
 			}
 		}
 	}
 
-## Get the temperature
+## Get temperature
 
-The temperature is obtained from the Thermal resource which is subordinate to Chassis resource.
+The temperature can be obtained via the ThermalSubsystem or Thermal resource, both are subordinate to the Chassis resource.
+The Thermal resource has been deprecated in favor of the ThermalSubsystem resource.
 
-	GET /redfish/v1/Chassis/Chassis_1/Thermal
+The temperature is obtained via the ThermalSubsystem resource by retrieving the ThermalSubsystem resource.
+
+	GET /redfish/v1/Chassis/Ch-1/ThermalSubsystem
+
+The response message contains the following fragment.
+
+	{
+		"ThermalMetric": {
+			"TemperatureSummayCelsius": {
+				"Exhaust": 21
+			}
+		}
+	}
+
+
+The temperature is obtained from the Thermal resource by retrieving the Thermal resource.
+
+	GET /redfish/v1/Chassis/Ch-1/Thermal
 
 The response message contains the following fragment.
 One of the elements in the Temperatures array property.
 The ReadingCelsius property contains the value of temperature is required.
-The threshold properties are optional.
 
 	{
 		"Temperatures": [
@@ -330,17 +305,15 @@ The threshold properties are optional.
 		]
 	}
 
-##  Get the temperature thresholds
+##  Get temperature thresholds
 
-The temperature thresholds are obtained from the Thermal resource which
-is subordinate to Chassis resource.
+The temperature thresholds are obtained from the Thermal resource which is subordinate to Chassis resource.
 
 	GET /redfish/v1/Chassis/Chassis_1/Thermal
 
-The response message contains the following fragment. One of the
-elements in the Temperatures array property. The ReadingCelsius property
-contains the value of temperature is required. The threshold properties
-are optional.
+The response message contains the following fragment.
+One of the elements in the Temperatures array property.
+The threshold properties are optional.
 
 	{
 		"Temperatures": [
@@ -352,7 +325,7 @@ are optional.
 		]
 	}
 
-## Obtain fan readings
+## Get fan speeds
 
 The fan speeds are obtained from the of a node is obtained from the Thermal resource subordinate to Chassis resource which represents node\'s chassis.
 
@@ -371,10 +344,9 @@ property, each array member has a Reading and ReadingUnits property.
 		]
 	}
 
-## Get fan redundancies
+## Get fan redundancy
 
-Fans which are configured in a redundancy set should be available via
-the resource model.
+Fans which are configured in a redundancy set should be available via the resource model.
 
 The fans redundancy structure is obtained from Thermal resource.
 
@@ -419,10 +391,9 @@ redundancy set.
 		]
 	}
 
-## Retrieve the system log
+## Get system log
 
-The System\'s log is retrieved is obtained by retrieving the Log
-resource which represent the system log.
+The System's log is retrieved is obtained by retrieving the Log resource which represent the system log.
 
 	GET /redfish/v1/Systems/CS-1/LogService/Log
 
@@ -449,15 +420,13 @@ The following fragment is
 		"Message": "Temperature threshold exceeded",
 	}
 
-[]{#_Ref56410629 .anchor}
-
-## Clear the system log
+## Clear system log
 
 The System's log is retrieved is obtained by retrieving the Log resource which represent the node's log.
 
 	POST /redfish/v1/Systems/CS-1/LogService/Log/Actions/LogService.ClearLog
 
-## Obtain the revision of firmware for the management controller
+## Get firmware version
 
 The version of firmware for the management controller is obtained by
 retrieving the Manager resource which represents the management
@@ -472,7 +441,7 @@ interest is the value of the FirmwareVersion property.
 		"FirmwareVersion": "1.00"
 	}
 
-## Get status of management controller
+## Get controller status
 
 The status of the management controller is obtained by retrieving the
 Manager resource.
@@ -489,7 +458,7 @@ property contains the State and Health properties of the manager.
 		}
 	}
 
-## Get network information for management controller
+## Get network info
 
 The network information for the management controller is obtained by
 retrieving the EthernetInterface resource.
@@ -583,7 +552,7 @@ The response message may contain properties from the following fragment.
 	]
 	}
 
-## Reset the management controller
+## Reset controller
 
 The management controller is reset by performing a POST action.
 
@@ -602,9 +571,9 @@ contains type of reset to perform.
 
 # Revision 
 
-  ---------------------------------------------------------------------------
-  Revision   Date         Description
-  ---------- ------------ ---------------------------------------------------
-  1.0.0      6/15/2021    Final draft - contribution
+| **Revision** 	| **Date**   	| **Description** |
+| :---			| :---			| :---	|
+| 1.0			| 6/15/2021		| Initial Baseline usage guide and profile contribution |
+| 1.1			| TBD			| Add PowerSubsystem and ThermalSubsystem resource	
 
-  ---------------------------------------------------------------------------
+
