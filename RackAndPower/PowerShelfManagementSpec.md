@@ -91,6 +91,7 @@ This section describes how each capability is accomplished by interacting with t
 ## Get the power supply info
 
 The `PowerSupply` resource represents a power supply within a power shelf.
+For the full schema definition, see the `PowerSupply` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/Chassis/PowerShelf/PowerSubsystem/PowerSupplies/1
@@ -110,8 +111,11 @@ GET /redfish/v1/Chassis/PowerShelf/PowerSubsystem/PowerSupplies/1
     "FirmwareVersion": "FW VERSION STRING",
     "SerialNumber": "SERIAL NUMBER STRING",
     "PartNumber": "PART NUMBER STRING",
+    "Version": "HARDWARE VERSION STRING",
+    "ProductionDate": "2023-08-01T08:00:00Z",
     "LocationIndicatorActive": false,
     "PowerCapacityWatts": 2000,
+    "PowerSupplyType": "AC",
     "InputRanges": [
         {
             "NominalVoltageType": "AC200To240V",
@@ -156,6 +160,7 @@ GET /redfish/v1/Chassis/PowerShelf/PowerSubsystem/PowerSupplies/1
 ## Get power supply redundancy
 
 The `PowerSubsystem` resource contains power supply redundancy info within the `PowerSupplyRedundancy` property.
+For the full schema definition, see the `PowerSubsystem` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/Chassis/PowerShelf/PowerSubsystem
@@ -200,6 +205,7 @@ GET /redfish/v1/Chassis/PowerShelf/PowerSubsystem
 ## Get power supply metrics
 
 The `PowerSupplyMetrics` resource represents metrics for a power supply within a power shelf.
+For the full schema definition, see the `PowerSupplyMetrics` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/Chassis/PowerShelf/PowerSubsystem/PowerSupplies/1/Metrics
@@ -259,6 +265,7 @@ GET /redfish/v1/Chassis/PowerShelf/PowerSubsystem/PowerSupplies/1/Metrics
 ## Get/set power supply LED
 
 The `PowerSupply` resource contains an `LocationIndicatorActive` property, which represents the location indicator LED for a power supply within a power shelf.
+For the full schema definition, see the `PowerSupply` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/Chassis/PowerShelf/PowerSubsystem/PowerSupplies/1
@@ -284,6 +291,7 @@ PATCH /redfish/v1/Chassis/PowerShelf/PowerSubsystem/PowerSupplies/1
 ## Get power consumption
 
 The `EnvironmentMetrics` resource subordinate to the `Chassis` resource contains the overall metrics of the enclosure, such as power consumption.
+For the full schema definition, see the `EnvironmentMetrics` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/Chassis/PowerShelf/EnvironmentMetrics
@@ -306,6 +314,7 @@ GET /redfish/v1/Chassis/PowerShelf/EnvironmentMetrics
 ## Get the temperature
 
 The `EnvironmentMetrics` resource subordinate to the `Chassis` resource contains the overall metrics of the enclosure, such as the temperature.
+For the full schema definition, see the `EnvironmentMetrics` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/Chassis/PowerShelf/EnvironmentMetrics
@@ -325,6 +334,7 @@ GET /redfish/v1/Chassis/PowerShelf/EnvironmentMetrics
 ## Get fan speeds
 
 The `Fan` resource represents a fan within a power shelf.
+For the full schema definition, see the `Fan` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/1
@@ -347,7 +357,9 @@ GET /redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/1
         "PartLocation": {
             "ServiceLabel": "Fan 1",
             "LocationType": "Bay",
-            "LocationOrdinalValue": 0
+            "LocationOrdinalValue": 0,
+            "Reference": "Front",
+            "Orientation": "LeftToRight"
         }
     }
 }
@@ -356,6 +368,7 @@ GET /redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/1
 ## Get fan redundancy
 
 The `ThermalSubsystem` resource contains fan redundancy info within the `FanRedundancy` property.
+For the full schema definition, see the `ThermalSubsystem` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/Chassis/PowerShelf/ThermalSubsystem
@@ -408,6 +421,7 @@ GET /redfish/v1/Chassis/PowerShelf/ThermalSubsystem
 ## Get power shelf info
 
 The `PowerDistribution` resource represents the functional view of the power shelf.
+For the full schema definition, see the `PowerDistribution` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/PowerEquipment/PowerShelves/1
@@ -472,6 +486,7 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1
 ## Get power shelf metrics
 
 The `PowerDistributionMetrics` resource contains the overall metrics for the power shelf.
+For the full schema definition, see the `PowerDistributionMetrics` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/PowerEquipment/PowerShelves/1/Metrics
@@ -496,6 +511,9 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Metrics
         "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/ShelfTemp",
         "Reading": 31
     },
+    "PowerLoadPercent": {
+        "Reading": 55
+    },
     "Actions": {
         "#PowerDistributionMetrics.ResetMetrics": {
             "target": "/redfish/v1/PowerEquipment/PowerShelves/1/Metrics/PowerDistributionMetrics.ResetMetrics"
@@ -507,6 +525,7 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Metrics
 ## Get main circuits
 
 The `Circuit` resources in the `Mains` collection represents the inputs to the power shelf with associated readings.
+For the full schema definition, see the `Circuit` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1
@@ -522,7 +541,10 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1
     },
     "CircuitType": "Mains",
     "PhaseWiringType": "OnePhase3Wire",
+    "ElectricalContext": "Total",
+    "RatedCurrentAmps": 20,
     "NominalVoltage": "AC200To240V",
+    "VoltageType": "AC",
     "Voltage": {
         "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/VoltageMains1",
         "Reading": 222.8
@@ -545,6 +567,9 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1
     "Links": {
         "PowerOutlet": {
             "@odata.id": "/redfish/v1/PowerEquipment/ElectricalBuses/Busway/Outlets/A4"
+        },
+        "SourceCircuit": {
+            "@odata.id": "/redfish/v1/PowerEquipment/ElectricalBuses/Busway/Branches/A4"
         }
     }
 }
@@ -553,6 +578,7 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1
 ## Get branch circuits
 
 The `Circuit` resources in the `Branches` collection represents the outputs from the power shelf with associated readings.
+For the full schema definition, see the `Circuit` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
 GET /redfish/v1/PowerEquipment/PowerShelves/1/Branches/DC
@@ -567,10 +593,11 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Branches/DC
         "Health": "OK"
     },
     "CircuitType": "Bus",
-    "VoltageType": "DC",
+    "ElectricalContext": "Total",
     "NominalVoltage": "DC48V",
     "RatedCurrentAmps": 250,
     "BreakerState": "Normal",
+    "VoltageType": "DC",
     "Voltage": {
         "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/VoltageDC",
         "Reading": 48.45
@@ -600,9 +627,10 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Branches/DC
 ## Get outlets
 
 The `Outlet` resources in the `Outlets` collection represents recepticals directly connected to equipment from the power shelf with associated readings.
+For the full schema definition, see the `Outlet` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
-GET /redfish/v1/PowerEquipment/PowerShelves/1/Branches/DC
+GET /redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1
 
 {
     "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1",
