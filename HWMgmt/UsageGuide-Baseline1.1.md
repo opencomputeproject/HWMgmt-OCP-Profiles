@@ -639,10 +639,13 @@ contains type of reset to perform.
 
 # References
 
-\[1\] "Redfish API Specification" - <https://www.dmtf.org/dsp/DSP0266>
-\[2\] "Redfish Data Model Specification" - <https://www.dmtf.org/dsp/DSP0268>
-\[3\] "Redfish Interop Validator" - <https://github.com/DMTF/Redfish-Interop-Validator>
-\[4\] "Baseline v1.1 Profile" - <https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1.json>
+\[1\] "[Redfish API Specification](https://www.dmtf.org/dsp/DSP0266)"
+
+\[2\] "[Redfish Data Model Specification](https://www.dmtf.org/dsp/DSP0268)"
+
+\[3\] "[Redfish Interop Validator](https://github.com/DMTF/Redfish-Interop-Validator)"
+
+\[4\] "[Baseline v1.1 Profile](https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1.json)"
 
 # Revision 
 
