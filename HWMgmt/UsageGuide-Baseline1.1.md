@@ -1,51 +1,71 @@
 # Scope
 
-This document references requirements and provide the usage examples for the OCP Baseline Hardware Management API v1.1.x.
+This document contains requirements and provide usage examples for the OCP Baseline Hardware Management API v1.1.
+The baseline hardware management tasks are a common set of manageability from which OCP platforms can extend.
 
 # Requirements
 
-As a Redfish-based interface, the required Redfish interface model elements are specified in a profile document.
-For the Baseline Hardware Management API v1.1, the profile is located at --
+As a Redfish-based interface, the required Redfish interface model elements are specified in a corresponding profile document.
+For the Baseline Hardware Management API v1.1 [4].
 
-<https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1.json>
+## Validating conformance
 
-The profile file is read by the open-source conformance test, Redfish Interop Validator. With the following command, the validator will auto-generate test, execute the tests against an implementation, and create a test report.
+The profile file can be read by the open-source conformance test, Redfish Interop Validator [3].
+The validator will auto-generate tests, execute the tests against an implementation, and create a test report.
+
+The following command executes the validator.
 
 	$> python RedfishInteropValidator.py <profileName> \--ip <host:port>
 
-The Redfish Interop Validator is located at
-<https://github.com/DMTF/Redfish-Interop-Validator>.
+# Management Tasks
 
-# Capabilities
+The following table lists the baseline management tasks.
 
-The following use cases and associated resources have been identified to allow the BMC interface to provide baseline management capabilities.
 
-| **Use Case** 			| **Management Task**   								| **Requirement** |
-| :---					| :-----------											| :---	|
-| Account Management 	| [Get accounts](#get-accounts) 						| Mandatory |
-| Service Management	| [Get sessions](#get-sessions) 						| Mandatory |
-| Hardware Inventory	| [Get FRU info](#get-fru-info) 						| Mandatory |
-|						| [Get and Set the Asset Tag](#get-and-set-asset-tag)	| Recommended |
-| Hardware Location		| [Get location LED](#get-location-led)					| Recommended |
-|						| [Set location LED](#set-location-led)					| Recommended |
-| Status				| [Get Chassis status](#get-chassis-status)				| Mandatory |
-| Power					| [Get power state](#get-power-state)					| If implemented, mandatory |
-|						| [Get power usage](#get-power-usage)					| Recommended |
-|						| [Get power limit](#get-power-limit)					| Recommended |
-| Temperature			| [Get temperature](#get-temperature)					| If implemented, mandatory |
-|						| [Get temperature thresholds](#get-temperature-thresholds) | If implemented, recommended |
-| Cooling				| [Get fan speeds](#get-fan-speeds)						| If implemented, mandatory |
-| 						| [Get fan redundancy](#get-fan-redundancy)				| If implemented, recommended |
-| Log					| [Get log entry](#get-log-entry)						| Mandatory |
-|						| [Clear system log](#clear-system-log)						| Recommended |
-| Management Controller | [Get firmware version](#get-firmware-version)			| Mandatory |
-|						| [Get controller status](#get-controller-status)		| Mandatory |
-|						| [Get network info](#get-network-info)					| Mandatory |
-|						| [Reset controller](#reset-controller) 				| Mandatory |
+| **Use Case**          | **Management Task**                                       | **Requirement** |
+| :---                  | :-----------                                              | :---	|
+| Account Management    | [Get accounts](#get-accounts)                             | Mandatory |
+| Service Management    | [Get sessions](#get-sessions)                             | Mandatory |
+| Hardware Inventory    | [Get FRU info](#get-fru-info)                             | Mandatory |
+|                       | [Get and Set the Asset Tag](#get-and-set-asset-tag)       | Recommended |
+| Hardware Location     | [Get location LED](#get-location-led)                     | Recommended |
+|                       | [Set location LED](#set-location-led)                     | Recommended |
+| Status                | [Get Chassis status](#get-chassis-status)                 | Mandatory |
+| Power                 | [Get power state](#get-power-state)                       | If implemented, mandatory |
+|                       | [Get power usage](#get-power-usage)                       | Recommended |
+|                       | [Get power limit](#get-power-limit)                       | Recommended |
+| Temperature           | [Get temperature](#get-temperature)                       | If implemented, mandatory |
+|                       | [Get temperature thresholds](#get-temperature-thresholds) | If implemented, recommended |
+| Cooling               | [Get fan speeds](#get-fan-speeds)                         | If implemented, mandatory |
+|                       | [Get fan redundancy](#get-fan-redundancy)                 | If implemented, recommended |
+| Log                   | [Get log entry](#get-log-entry)                           | Mandatory |
+|                       | [Clear system log](#clear-system-log)                     | Recommended |
+| Management Controller | [Get firmware version](#get-firmware-version)             | Mandatory |
+|                       | [Get controller status](#get-controller-status)           | Mandatory |
+|                       | [Get network info](#get-network-info)                     | Mandatory |
+|                       | [Reset controller](#reset-controller)                     | Mandatory |
+
+
 
 # Use Cases
 
 This section describes how each task is accomplished by interacting with the Redfish Interface.
+
+## Redfish model notes
+
+Some aspects of the Redfish model should be comprehend before the interaction with the Redfish model shown below is understood.
+
+Redfish models a managed node in terms of its physical, logical and manager aspects:
+
+- The physical aspect is modeled via the Chassis resource
+- The logical aspect is modeled via the ComputerSystem or Fabric resources
+- The manager aspect is modeled via the Manager resource
+ 
+The relationship between the above resources are specified by the Links property.
+
+- On the Chassis resource, see the Links.ComputerSystems and Links.Storage, Links.Switches, and Links.ManagedBy array properties
+- On the ComputerSystem resource, see the Links.Chassis and Links.ManagedBy array properties
+- On the Manager resource, see the Links.ManagerForChassis, Links.ManagerForServers, Links.ManagerForSwitches and Links.ManagerForManagers array properties.
 
 ## Get accounts
 
@@ -108,16 +128,16 @@ The Redfish service creates a Session resource for each session that is establis
 
 ## Get FRU info
 
-The hardware FRU (field replaceable unit) for the chassis resource.
+The hardware FRU (field replaceable unit) information is obtained from the Chassis resource
 
-	GET /redfish/v1/Chassis/{id}
+	GET /redfish/v1/Chassis/Ch-1
 
 The response message contains the following fragment.
 The response contains the hardware inventory properties for manufacturer, model, SKU, serial number, and part number.
 The AssetTag properties is a client writeable property.
 
 	{
-		"Id": "Node1",
+		"Id": "Ch-1",
 		"ChassisType": "Node",
 		"Manufacturer": "Contoso"
 		"Model": "RackScale_Rack",
@@ -130,7 +150,7 @@ The AssetTag properties is a client writeable property.
 
 ## Set the asset tag 
 
-The asset tag is set by patching to AssetTag property in the Chassis resource.
+The value of the asset tag is set by patching to AssetTag property in the Chassis resource.
 
 	PATCH /redfish/v1/Chassis/Ch-1
 
@@ -163,10 +183,11 @@ Or
 ## Set the location LED
 
 The state of the location LED is set by setting the IndicatorLED or the LocationIndicatorActive property in the Chassis resource.
+The IndicatorLED property has been deprecated in favor of the LocationIndicatorActive property.
 
 	PATCH /redfish/v1/Chassis/Ch-1
 
-The PATCH request includes one of the following two messages, with corresponds to the property returned in the GET request.
+The PATCH request includes one of the following two messages, which corresponds to the property returned in the GET request.
 
 	{
 		"IndicatorLED": "Lit"
@@ -180,16 +201,12 @@ Or
 
 ## Get chassis status
 
-Redfish models a node as its physical chassis and the logical computer system.
-The relationship between the two resource and specified by references.
-
-The status and health the chassis aspect is obtained by retrieving the
-Chassis resource.
+The status and health of the chassis is obtained by retrieving the Chassis resource.
 
 	GET /redfish/v1/Chassis/Ch-1
 
 The response message contains the following fragment.
-The Status property contains the state and health of the chassis.
+The Status property contains the State and Health properties.
 
 	{
 		"Status": {
@@ -200,7 +217,7 @@ The Status property contains the state and health of the chassis.
 
 ## Get power state
 
-The power state is obtained from the Chassis resource.
+The power state of the chassis is obtained from the Chassis resource.
 
 	GET /redfish/v1/Chassis/Ch-1
 
@@ -213,7 +230,7 @@ The response contains the PowerState property.
 
 ## Get power usage
 
-The power usage can be obtained via the PowerSubsystem or Power resource, both are subordinate to the Chassis resource.
+The power usage can obtained via the PowerSubsystem or Power resource, both are subordinate to the Chassis resource.
 The Power resource has been deprecated in favor of the PowerSubsystem resource.
 
 The power usage is obtained via the PowerSubsystem resource by retrieving the EnvironmentMetrics resource.
@@ -288,18 +305,19 @@ The response message contains the following fragment.
 		}
 	}
 
-
-The temperature can be obtained from the Thermal resource by retrieving the Thermal resource.
+The temperature is be obtained via the Thermal resource by retrieving the Thermal resource.
 
 	GET /redfish/v1/Chassis/Ch-1/Thermal
 
 The response message contains the following fragment.
-One of the elements in the Temperatures array property.
-The ReadingCelsius property contains the value of temperature is required.
+Temperatures is an array property.
+Each element of the array is identified by a Name property.
+The ReadingCelsius property contains the temperature.
 
 	{
 		"Temperatures": [
 			{
+				"Name": "Chassis Exhaust Temp",
 				"ReadingCelsius": 21
 			}
 		]
@@ -312,12 +330,12 @@ The temperature thresholds are obtained from the Thermal resource which is subor
 	GET /redfish/v1/Chassis/Chassis_1/Thermal
 
 The response message contains the following fragment.
-One of the elements in the Temperatures array property.
 The threshold properties are optional.
 
 	{
 		"Temperatures": [
 			{
+				"Name": "Chassis Exhaust Temp",
 				"UpperThresholdFatal": "45",
 				"UpperThresholdCritical": "40",
 				"UpperThresholdNonCritical", "35"
@@ -485,14 +503,12 @@ The System's log is retrieved is obtained by retrieving the Log resource which r
 
 ## Get firmware version
 
-The version of firmware for the management controller is obtained by
-retrieving the Manager resource which represents the management
-controller of interest.
+The version of firmware for the management controller is obtained by retrieving the Manager resource which represents the management controller of interest.
 
 	GET /redfish/v1/Managers/BMC_1
 
-The response contains the following fragment. The information of
-interest is the value of the FirmwareVersion property.
+The response contains the following fragment.
+The FirmwareVersion property contains the firmware version of the BMC.
 
 	{
 		"FirmwareVersion": "1.00"
@@ -505,8 +521,8 @@ Manager resource.
 
 	GET /redfish/v1/Managers/BMC
 
-The response message contains the following fragment. The Status
-property contains the State and Health properties of the manager.
+The response message contains the following fragment.
+The Status property contains the State and Health properties of the manager.
 
 	{
 		"Status": {
@@ -517,8 +533,7 @@ property contains the State and Health properties of the manager.
 
 ## Get network info
 
-The network information for the management controller is obtained by
-retrieving the EthernetInterface resource.
+The network information for the management controller is obtained by retrieving the EthernetInterface resource.
 
 	GET /redfish/v1/Managers/BMC/EthernetInterface
 
@@ -550,7 +565,7 @@ The response message contains the following fragment.
 		]
 	}
 
-The response message may contain properties from the following fragment.
+The response message may also contain properties from the following fragment.
 
 	{
 		"StaticNameServers": [
@@ -625,15 +640,18 @@ contains type of reset to perform.
 # References
 
 \[1\] "Redfish API Specification" - <https://www.dmtf.org/dsp/DSP0266>
+\[2\] "Redfish Data Model Specification" - <https://www.dmtf.org/dsp/DSP0268>
+\[3\] "Redfish Interop Validator" - <https://github.com/DMTF/Redfish-Interop-Validator>
+\[4\] "Baseline v1.1 Profile" - <https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1.json>
 
 # Revision 
 
-| **Revision** 	| **Date**   	| **Description** |
-| :---			| :---			| :---	|
-| 1.0			| 6/15/2021		| Initial Baseline usage guide and profile contribution |
-| 1.1			| TBD			| Allow either PowerSubsystem or Power resource |
+| **Revision**  | **Date**      | **Description** |
+| :---          | :---          | :--- |
+| 1.0           | 6/15/2021     | Initial Baseline usage guide and profile contribution |
+| 1.1           | TBD           | Allow either PowerSubsystem or Power resource |
 |               |               | Allow either ThermalSubsystem or Thermal resource |
 |               |               | Require the StaticNameServers to be writable |
-|               |               | Require power limit to be writeable | 	
+|               |               | Require power limit to be writeable | 
 
 
