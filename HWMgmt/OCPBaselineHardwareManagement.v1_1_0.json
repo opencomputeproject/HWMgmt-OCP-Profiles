@@ -289,6 +289,7 @@
 				"Status": {},
 				"FQDN": {},
 				"HTTP": {
+					"ReadRequirement": "IfImplemented",
 					"PropertyRequirements": {
 						"ProtocolEnable": {},
 						"Port": {}
