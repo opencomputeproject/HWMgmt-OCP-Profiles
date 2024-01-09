@@ -10,6 +10,20 @@
 		"Discovery": "Recommended",
 		"HostInterface": "Recommended"
 	},
+	"Registries": {
+		"Base": {
+			"MinVersion": "1.2.0",
+			"Messages": {
+				"Success": {},
+				"GeneralError": {},
+				"NoOperation": {},
+				"ResourceNotFound": {},
+				"InvalidURI": {},
+				"InsufficientPrivilege":{},
+				"InternalError": {}
+			}
+		}
+	},
 	"Resources": {
 		"AccountService": {
 			"PropertyRequirements": {
