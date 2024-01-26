@@ -1,0 +1,612 @@
+{
+	"SchemaDefinition": "RedfishInteroperabilityProfile.v1_0_0",
+	"ProfileName": "OCPBaselineHardwareManagement",
+	"ProfileVersion": "1.1.0",
+	"Purpose": "Specifies the OCP baseline hardware management requirements for the Redfish interface on platforms.",
+	"OwningEntity": "Open Compute Project",
+	"ContactInfo": "hwpl@opencompute.org",
+	"Protocol": {
+		"MinVersion": "1.0",
+		"Discovery": "Recommended",
+		"HostInterface": "Recommended"
+	},
+	"Registries": {
+		"Base": {
+			"MinVersion": "1.2.0",
+			"Messages": {
+				"Success": {},
+				"GeneralError": {},
+				"NoOperation": {},
+				"ResourceNotFound": {},
+				"InvalidURI": {},
+				"InsufficientPrivilege":{},
+				"InternalError": {}
+			}
+		}
+	},
+	"Resources": {
+		"AccountService": {
+			"PropertyRequirements": {
+				"Accounts": {}
+			}
+		},
+		"Chassis": {
+			"PropertyRequirements": {
+				"AssetTag": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended"
+				},
+				"ChassisType": {},
+				"IndicatorLED": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
+						"CompareProperty": "LocationIndicatorActive",
+						"Comparison": "Absent",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"LocationIndicatorActive": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
+						"CompareProperty": "IndicatorLED",
+						"Comparison": "Absent",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"Manufacturer": {
+					"ReadRequirement": "Recommended"
+				},
+				"Model": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [
+						{
+							"Purpose": "Model is required if ChassisType are specific values",
+							"ReadRequirement": "Mandatory",
+							"CompareType": "AnyOf",
+							"CompareProperty": "ChassisType",
+							"CompareValues": ["Drawer", "RackMount", "Sled"]
+						}
+					]
+				},
+				"SerialNumber": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [
+						{
+							"Purpose": "SerialNumber is required if ChassisType are specific values",
+							"ReadRequirement": "Mandatory",
+							"CompareType": "AnyOf",
+							"CompareProperty": "ChassisType",
+							"CompareValues": ["Drawer", "RackMount", "Sled"]
+						}
+					]
+				},
+				"SKU": {
+					"ReadRequirement": "Recommended"
+				},
+				"PartNumber": {
+					"ReadRequirement": "Recommended"
+				},
+				"PowerState": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [
+						{
+							"Purpose": "SerialNumber is required if ChassisType are specific values",
+							"ReadRequirement": "Mandatory",
+							"CompareType": "AnyOf",
+							"CompareProperty": "ChassisType",
+							"CompareValues": ["Drawer", "RackMount", "Sled"]
+						}
+					]
+				},
+				"Status": {
+					"PropertyRequirements": {
+						"State": {},
+						"Health": {}
+					}
+				},
+				"Thermal": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "Either the Thermal or ThermalSubsystem resource must be implemented.  In 2020.4, Thermal resource was deprecated for ThermalSubsystem.",
+						"CompareProperty": "ThermalSubsystem",
+						"Comparison": "Absent",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"ThermalSubsystem": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "Either the Thermal or ThermalSubsystem resource must be implemented.  In 2020.4, Thermal resource was deprecated for ThermalSubsystem.",
+						"CompareProperty": "Thermal",
+						"Comparison": "Absent",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"Power": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "Either the Power or PowerSubsystem resource must be implemented.  In 2020.4, Power resource was deprecated for PowerSubsystem.",
+						"CompareProperty": "PowerSubsystem",
+						"Comparison": "Absent",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"PowerSubsystem": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "Either the Power or PowerSubsystem resource must be implemented.  In 2020.4, Power resource was deprecated for PowerSubsystem.",
+						"CompareProperty": "Power",
+						"Comparison": "Absent",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"EnvironmentMetrics": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "If the PowerSubsystem resource is present, this resource must be implemented.",
+						"CompareProperty": "PowerSubsystem",
+						"Comparison": "Present",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"Sensors": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "In the PowerSubsystem, the Sensors resource must be implemented.",
+						"CompareProperty": "PowerSubsystem",
+						"Comparison": "Present",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"Controls": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "In the PowerSubsystem, the Controls resource must be implemented.",
+						"CompareProperty": "PowerSubsystem",
+						"Comparison": "Present",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"Links": {
+					"PropertyRequirements": {
+						"ManagedBy": {
+							"ReadRequirement": "Recommended",
+							"ConditionalRequirements": [
+								{
+									"Purpose": "ManagedBy is required if ChassisType are specific values",
+									"ReadRequirement": "Mandatory",
+									"CompareType": "AnyOf",
+									"CompareProperty": "ChassisType",
+									"CompareValues": ["Drawer", "RackMount", "Sled"]
+								}
+							]
+						}
+					}
+				}
+			}
+		},
+		"ChassisCollection": {
+			"PropertyRequirements": {
+				"Members": {
+					"MinCount": 1
+				}
+			}
+		},
+		"EnvironmentMetrics": {
+			"Purpose": "Equivalent Power.PowerControl.PowerConsumedWatts and Power.PowerControl.PowerLimit.",
+			"ReadRequirement": "IfImplemented",
+			"PropertyRequirements": {
+				"PowerWatts": {
+					"ReadRequirement": "Recommended"
+				},
+				"PowerLimitWatts": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"SetPoint": {
+							"ReadRequirement": "Mandatory",
+							"WriteRequirement": "Mandatory"
+						}
+					}
+				}
+			}
+		},
+		"EthernetInterface": {
+			"MinVersion": "1.1.0",
+			"ReadRequirement": "Recommended",
+			"ConditionalRequirements": [{
+				"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+				"ReadRequirement": "Mandatory"
+			}],
+			"PropertyRequirements": {
+				"MACAddress": {},
+				"SpeedMbps": {},
+				"InterfaceEnabled": {},
+				"LinkStatus": {},
+				"Status": {
+					"PropertyRequirements": {
+						"Health": {},
+						"State": {}
+					}
+				},
+				"DHCPv4": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended"
+				},
+				"DHCPv6": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended"
+				},
+				"HostName": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}]
+				},
+				"FQDN": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}]
+				},
+				"NameServers": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}]
+				},
+				"IPv4Addresses": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}],
+					"PropertyRequirements": {
+						"Address": {},
+						"SubnetMask": {},
+						"AddressOrigin": {},
+						"Gateway": {}
+					}
+				},
+				"IPv4StaticAddresses": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6AddressPolicyTable": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6StaticAddresses": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6StaticDefaultGateways": {
+					"ReadRequirement": "Recommended"
+				},
+				"IPv6Addresses": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"Address": {},
+						"PrefixLength": {},
+						"AddressOrigin": {},
+						"AddressState": {}
+					}
+				},
+				"StaticNameServers": {
+					"ReadRequirement": "Recommended"
+				}
+			}
+		},
+		"EthernetInterfaceCollection": {
+			"PropertyRequirements": {
+				"Members": {
+					"MinCount": 1
+				}
+			}
+		},
+		"ManagerAccount": {},
+		"ManagerCollection": {
+			"PropertyRequirements": {
+				"Members": {
+					"MinCount": 1
+				}
+			}
+		},
+		"Manager": {
+			"PropertyRequirements": {
+				"ManagerType": {},
+				"UUID": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [
+						{
+							"Purpose": "UUID is required if ManagerType are specific values",
+							"ReadRequirement": "Mandatory",
+							"CompareType": "AnyOf",
+							"CompareProperty": "ManagerType",
+							"CompareValues": ["BMC"]
+						}
+					]
+				},
+				"Status": {},
+				"FirmwareVersion": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [
+						{
+							"Purpose": "FirmwareVersion is required if ManagerType are specific values",
+							"ReadRequirement": "Mandatory",
+							"CompareType": "AnyOf",
+							"CompareProperty": "ManagerType",
+							"CompareValues": ["BMC"]
+						}
+					]
+				},
+				"NetworkProtocol": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [
+						{
+							"Purpose": "NetworkProtocol is required if ManagerType are specific values",
+							"ReadRequirement": "Mandatory",
+							"CompareType": "AnyOf",
+							"CompareProperty": "ManagerType",
+							"CompareValues": ["BMC"]
+						}
+					]
+				},
+				"EthernetInterfaces": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [
+						{
+							"Purpose": "EthernetInterfaces is required if ManagerType are specific values",
+							"ReadRequirement": "Mandatory",
+							"CompareType": "AnyOf",
+							"CompareProperty": "ManagerType",
+							"CompareValues": ["BMC"]
+						}
+					]
+				},
+				"LogServices": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [
+						{
+							"Purpose": "LogServices is required if ManagerType are specific values",
+							"ReadRequirement": "Mandatory",
+							"CompareType": "AnyOf",
+							"CompareProperty": "ManagerType",
+							"CompareValues": ["BMC"]
+						}
+					]
+				},
+				"Links": {
+					"PropertyRequirements": {
+						"ManagerForServers": {
+							"ReadRequirement": "IfImplemented"
+						},
+						"ManagerForChassis": {
+							"ReadRequirement": "IfImplemented"
+						}
+					}
+				}
+			},
+			"ActionRequirements": {
+				"Reset": {
+					"Parameters": {
+						"ResetType": {
+							"MinSupportValues": ["ForceRestart"]
+						}
+					}
+				}
+			}
+		},
+		"ManagerNetworkProtocol": {
+			"PropertyRequirements": {
+				"HostName": {},
+				"Status": {},
+				"FQDN": {},
+				"HTTP": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"ProtocolEnabled": {},
+						"Port": {}
+					}
+				},
+				"HTTPS": {
+					"PropertyRequirements": {
+						"ProtocolEnabled": {},
+						"Port": {}
+					}
+				},
+				"SSH": {
+					"ReadRequirement": "Recommended",
+					"PropertyRequirements": {
+						"ProtocolEnabled": {},
+						"Port": {}
+					}
+				},
+				"SSDP": {
+					"ReadRequirement": "Recommended",
+					"PropertyRequirements": {
+						"ProtocolEnabled": {},
+						"Port": {},
+						"NotifyMulticastIntervalSeconds": {},
+						"NotifyIPv6Scope": {},
+						"NotifyTTL": {}
+					}
+				}
+			}
+		},
+		"Power": {
+			"ReadRequirement": "Recommended",
+			"PropertyRequirements": {
+				"PowerControl": {
+					"PropertyRequirements": {
+						"PowerConsumedWatts": {
+							"ReadRequirement": "Recommended"
+						},
+						"PowerCapacityWatts": {
+							"ReadRequirement": "Recommended"
+						},
+						"PowerLimit": {
+							"ReadRequirement": "Recommended",
+							"PropertyRequirements": {
+								"LimitInWatts": {},
+								"LimitException": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"PowerSubsystem": {
+			"PropertyRequirements": {
+				"CapacityWatts": {
+					"Purpose": "Equivalent for Power.PowerControl.PowerCapacityWatts.",
+					"ReadRequirement": "Recommended"
+				}
+			}
+		},
+		"SessionService": {},
+		"Thermal": {
+			"MinVersion": "1.1.0",
+			"ReadRequirement": "Recommended",
+			"PropertyRequirements": {
+				"Fans": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"Status": {},
+						"Name": {
+							"ReadRequirement": "Recommended",
+							"Purpose": "Transition from the deprecated 'FanName' to 'Name'."
+						},
+						"Reading": {
+							"ReadRequirement": "Recommended"
+						},
+						"ReadingUnits": {
+							"ReadRequirement": "Recommended"
+						}
+					}
+				},
+				"Temperatures": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"ReadingCelsius": {},
+						"UpperThresholdFatal": {
+							"ReadRequirement": "Recommended"
+						},
+						"UpperThresholdCritical": {
+							"ReadRequirement": "Recommended"
+						},
+						"UpperThresholdNonCritical": {
+							"ReadRequirement": "Recommended"
+						},
+						"Status": {}
+					}
+				},
+				"Redundancy": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"MemberId": {},
+						"RedundancySet": {},
+						"Mode": {},
+						"Status": {},
+						"MinNumNeeded": {},
+						"MaxNumSupported": {
+							"ReadRequirement": "Recommended"
+						}
+					}
+				}
+			}
+		},
+		"ThermalSubsystem": {
+			"MinVersion": "1.0.0",
+			"PropertyRequirements": {
+				"ThermalMetrics": {
+					"ReadRequirement": "Recommended"
+				},
+				"Fans": {
+					"ReadRequirement": "Recommended"
+				},
+				"FanRedundancy": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"RedundancyType": {},
+						"MinNeededinGroup": {},
+						"MaxSupportedInGroup": {
+							"ReadRequirement": "Recommended"
+						},
+						"RedundancyGroup": {},
+						"Status": {}
+					}
+				}
+			}
+		},
+		"ThermalMetrics": {
+			"ReadRequirement": "IfImplemented",
+			"Purpose": "Equivalent of Thermal.Temperatures",
+			"PropertyRequirements": {
+				"TemperatureSummaryCelsius": {
+					"ReadRequirement": "Recommended",
+ 					"PropertyRequirements": {
+						"Exhaust": {
+							"ReadRequirement": "Recommended"
+						}
+					}
+        		}
+			}
+		},
+		"Fan": {
+			"ReadRequirement": "IfImplemented",
+			"Purpose": "Equivalent of Thermal.Fans",
+			"PropertyRequirements": {
+				"Name": {
+					"ReadRequirement": "Recommended"
+				},
+				"SpeedPercent": {
+					"ReadRequirement": "Recommended",
+					"PropertyRequirements": {
+						"Reading": {
+							"ReadRequirement": "Recommended"
+						},
+						"SpeedRPM": {
+							"ReadRequirement": "Recommended"
+						}
+ 					}
+        		}
+			}
+		},
+		"LogService": {
+			"PropertyRequirements": {
+				"Entries": {}
+			},
+			"ActionRequirements": {
+				"ClearLog": {
+					"ReadRequirement": "Recommended"
+				}
+			}
+		},
+		"LogEntry": {
+			"PropertyRequirements": {
+				"Created": {},
+				"EntryType": {},
+				"Message": {},
+				"Severity": {}
+			}
+		},
+		"ServiceRoot": {
+			"PropertyRequirements": {
+				"AccountService": {},
+				"UUID": {},
+				"RedfishVersion": {},
+				"Chassis": {},
+				"Managers": {},
+				"SessionService": {}
+			}
+		}
+	}
+}
