@@ -42,9 +42,12 @@
 					"WriteRequirement": "Recommended",
 					"ConditionalRequirements": [{
 						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
-						"CompareProperty": "LocationIndicatorActive",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
+						"ReplacedByProperty": "LocationIndicatorActive",
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory",
+						"CompareType": "AnyOf",
+						"CompareProperty": "ChassisType",
+						"CompareValues": ["Drawer", "RackMount", "Sled"]
 					}]
 				},
 				"LocationIndicatorActive": {
@@ -52,9 +55,12 @@
 					"WriteRequirement": "Recommended",
 					"ConditionalRequirements": [{
 						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
-						"CompareProperty": "IndicatorLED",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
+						"ReplacesProperty": "IndicatorLED",
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory",
+						"CompareType": "AnyOf",
+						"CompareProperty": "ChassisType",
+						"CompareValues": ["Drawer", "RackMount", "Sled"]
 					}]
 				},
 				"Manufacturer": {
@@ -112,36 +118,44 @@
 					"ReadRequirement": "Recommended",
 					"ConditionalRequirements": [{
 						"Purpose": "Either the Thermal or ThermalSubsystem resource must be implemented.  In 2020.4, Thermal resource was deprecated for ThermalSubsystem.",
-						"CompareProperty": "ThermalSubsystem",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
+						"ReplacedByProperty": "ThermalSubsystem",
+						"ReadRequirement": "Mandatory",
+						"CompareType": "AnyOf",
+						"CompareProperty": "ChassisType",
+						"CompareValues": ["Drawer", "RackMount", "Sled"]
 					}]
 				},
 				"ThermalSubsystem": {
 					"ReadRequirement": "Recommended",
 					"ConditionalRequirements": [{
 						"Purpose": "Either the Thermal or ThermalSubsystem resource must be implemented.  In 2020.4, Thermal resource was deprecated for ThermalSubsystem.",
-						"CompareProperty": "Thermal",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
+						"ReplacesProperty": "Thermal",
+						"ReadRequirement": "Mandatory",
+						"CompareType": "AnyOf",
+						"CompareProperty": "ChassisType",
+						"CompareValues": ["Drawer", "RackMount", "Sled"]
 					}]
 				},
 				"Power": {
 					"ReadRequirement": "Recommended",
 					"ConditionalRequirements": [{
 						"Purpose": "Either the Power or PowerSubsystem resource must be implemented.  In 2020.4, Power resource was deprecated for PowerSubsystem.",
-						"CompareProperty": "PowerSubsystem",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
+						"ReplacedByProperty": "PowerSubsystem",
+						"ReadRequirement": "Mandatory",
+						"CompareType": "AnyOf",
+						"CompareProperty": "ChassisType",
+						"CompareValues": ["Drawer", "RackMount", "Sled"]
 					}]
 				},
 				"PowerSubsystem": {
 					"ReadRequirement": "Recommended",
 					"ConditionalRequirements": [{
 						"Purpose": "Either the Power or PowerSubsystem resource must be implemented.  In 2020.4, Power resource was deprecated for PowerSubsystem.",
-						"CompareProperty": "Power",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
+						"ReplacesProperty": "Power",
+						"ReadRequirement": "Mandatory",
+						"CompareType": "AnyOf",
+						"CompareProperty": "ChassisType",
+						"CompareValues": ["Drawer", "RackMount", "Sled"]
 					}]
 				},
 				"EnvironmentMetrics": {
@@ -149,7 +163,7 @@
 					"ConditionalRequirements": [{
 						"Purpose": "If the PowerSubsystem resource is present, this resource must be implemented.",
 						"CompareProperty": "PowerSubsystem",
-						"Comparison": "Present",
+						"CompareType": "Present",
 						"ReadRequirement": "Mandatory"
 					}]
 				},
@@ -158,7 +172,7 @@
 					"ConditionalRequirements": [{
 						"Purpose": "In the PowerSubsystem, the Sensors resource must be implemented.",
 						"CompareProperty": "PowerSubsystem",
-						"Comparison": "Present",
+						"CompareType": "Present",
 						"ReadRequirement": "Mandatory"
 					}]
 				},
@@ -167,7 +181,7 @@
 					"ConditionalRequirements": [{
 						"Purpose": "In the PowerSubsystem, the Controls resource must be implemented.",
 						"CompareProperty": "PowerSubsystem",
-						"Comparison": "Present",
+						"CompareType": "Present",
 						"ReadRequirement": "Mandatory"
 					}]
 				},
