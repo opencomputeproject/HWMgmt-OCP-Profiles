@@ -674,8 +674,11 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1
 # References
 
 \[1\] Usage Guide and Requirements for the OCP Baseline Hardware Management Profile v1.0.1
+
 \[2\] "Redfish Specification" - [*https://www.dmtf.org/dsp/DSP0266*](https://www.dmtf.org/dsp/DSP0266)
+
 \[3\] "Redfish Data Model Specification" - [*https://www.dmtf.org/dsp/DSP0268*](https://www.dmtf.org/dsp/DSP0268)
+
 \[4\] "Redfish Interoperability Profiles Specification" - [*https://www.dmtf.org/dsp/DSP0270*](https://www.dmtf.org/dsp/DSP0270)
 
 # Revision 
