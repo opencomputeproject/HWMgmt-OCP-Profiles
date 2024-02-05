@@ -7,7 +7,9 @@ A profile is a JSON document which prescribes a subset of Redfish resource and r
 
 The format of the profile file is specified by the [Redfish Interoperability Profile Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0272_1.4.0.pdf)
 
-The profiles at the root of the repository have been approved by OCP Incubation Committee. The profiles in the subfolders are still being developed by the associated project.
+The profiles present at the root of the repository have been approved by OCP. Each approved profile is associated to a corresponding Usage Guide, which can be found in the [OCP Contribution database](https://www.opencompute.org/contributions)
 
-If issues are found, please an issue to this repository.
+The profiles present in the subfolders are still being developed by the associated project. See the pull requests for the associated development.
+
+If issues are found, please file an issue to this repository.
 
