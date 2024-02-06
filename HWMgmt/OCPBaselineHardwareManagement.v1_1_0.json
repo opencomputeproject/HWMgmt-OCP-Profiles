@@ -31,177 +31,105 @@
 			}
 		},
 		"Chassis": {
-			"PropertyRequirements": {
-				"AssetTag": {
-					"ReadRequirement": "Recommended",
-					"WriteRequirement": "Recommended"
-				},
-				"ChassisType": {},
-				"IndicatorLED": {
-					"ReadRequirement": "Recommended",
-					"WriteRequirement": "Recommended",
-					"ConditionalRequirements": [{
+			"UseCases": [{
+				"UseCaseTitle": "The primary Chassis requirements.",
+				"UseCaseKeyProperty": "ChassisType",
+				"UseCaseComparison": "Equal",
+				"UseCaseKeyValues": ["Drawer", "RackMount", "Sled"],
+				"PropertyRequirements": {
+					"AssetTag": {
+						"ReadRequirement": "Recommended",
+						"WriteRequirement": "Recommended"
+					},
+					"ChassisType": {},
+					"IndicatorLED": {
 						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
-						"ReplacedByProperty": "LocationIndicatorActive",
 						"ReadRequirement": "Mandatory",
 						"WriteRequirement": "Mandatory",
-						"CompareType": "AnyOf",
-						"CompareProperty": "ChassisType",
-						"CompareValues": ["Drawer", "RackMount", "Sled"]
-					}]
-				},
-				"LocationIndicatorActive": {
-					"ReadRequirement": "Recommended",
-					"WriteRequirement": "Recommended",
-					"ConditionalRequirements": [{
+						"ReplacedByProperty": "LocationIndicatorActive"
+					},
+					"LocationIndicatorActive": {
 						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
-						"ReplacesProperty": "IndicatorLED",
 						"ReadRequirement": "Mandatory",
 						"WriteRequirement": "Mandatory",
-						"CompareType": "AnyOf",
-						"CompareProperty": "ChassisType",
-						"CompareValues": ["Drawer", "RackMount", "Sled"]
-					}]
-				},
-				"Manufacturer": {
-					"ReadRequirement": "Recommended"
-				},
-				"Model": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [
-						{
-							"Purpose": "Model is required if ChassisType are specific values",
-							"ReadRequirement": "Mandatory",
-							"CompareType": "AnyOf",
-							"CompareProperty": "ChassisType",
-							"CompareValues": ["Drawer", "RackMount", "Sled"]
+						"ReplacesProperty": "IndicatorLED"
+					},
+					"Manufacturer": {
+						"ReadRequirement": "Recommended"
+					},
+					"Model": {},
+					"SerialNumber": {},
+					"SKU": {
+						"ReadRequirement": "Recommended"
+					},
+					"PartNumber": {
+						"ReadRequirement": "Recommended"
+					},
+					"PowerState": {},
+					"Status": {
+						"PropertyRequirements": {
+							"State": {},
+							"Health": {}
 						}
-					]
-				},
-				"SerialNumber": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [
-						{
-							"Purpose": "SerialNumber is required if ChassisType are specific values",
-							"ReadRequirement": "Mandatory",
-							"CompareType": "AnyOf",
-							"CompareProperty": "ChassisType",
-							"CompareValues": ["Drawer", "RackMount", "Sled"]
-						}
-					]
-				},
-				"SKU": {
-					"ReadRequirement": "Recommended"
-				},
-				"PartNumber": {
-					"ReadRequirement": "Recommended"
-				},
-				"PowerState": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [
-						{
-							"Purpose": "SerialNumber is required if ChassisType are specific values",
-							"ReadRequirement": "Mandatory",
-							"CompareType": "AnyOf",
-							"CompareProperty": "ChassisType",
-							"CompareValues": ["Drawer", "RackMount", "Sled"]
-						}
-					]
-				},
-				"Status": {
-					"PropertyRequirements": {
-						"State": {},
-						"Health": {}
-					}
-				},
-				"Thermal": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
+					},
+					"Thermal": {
 						"Purpose": "Either the Thermal or ThermalSubsystem resource must be implemented.  In 2020.4, Thermal resource was deprecated for ThermalSubsystem.",
-						"ReplacedByProperty": "ThermalSubsystem",
 						"ReadRequirement": "Mandatory",
-						"CompareType": "AnyOf",
-						"CompareProperty": "ChassisType",
-						"CompareValues": ["Drawer", "RackMount", "Sled"]
-					}]
-				},
-				"ThermalSubsystem": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
+						"WriteRequirement": "Mandatory",
+						"ReplacedByProperty": "ThermalSubsystem"
+					},
+					"ThermalSubsystem": {
 						"Purpose": "Either the Thermal or ThermalSubsystem resource must be implemented.  In 2020.4, Thermal resource was deprecated for ThermalSubsystem.",
-						"ReplacesProperty": "Thermal",
 						"ReadRequirement": "Mandatory",
-						"CompareType": "AnyOf",
-						"CompareProperty": "ChassisType",
-						"CompareValues": ["Drawer", "RackMount", "Sled"]
-					}]
-				},
-				"Power": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
+						"WriteRequirement": "Mandatory",
+						"ReplacesProperty": "Thermal"
+					},
+					"Power": {
 						"Purpose": "Either the Power or PowerSubsystem resource must be implemented.  In 2020.4, Power resource was deprecated for PowerSubsystem.",
-						"ReplacedByProperty": "PowerSubsystem",
 						"ReadRequirement": "Mandatory",
-						"CompareType": "AnyOf",
-						"CompareProperty": "ChassisType",
-						"CompareValues": ["Drawer", "RackMount", "Sled"]
-					}]
-				},
-				"PowerSubsystem": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
+						"WriteRequirement": "Mandatory",
+						"ReplacedByProperty": "PowerSubsystem"
+					},
+					"PowerSubsystem": {
 						"Purpose": "Either the Power or PowerSubsystem resource must be implemented.  In 2020.4, Power resource was deprecated for PowerSubsystem.",
-						"ReplacesProperty": "Power",
 						"ReadRequirement": "Mandatory",
-						"CompareType": "AnyOf",
-						"CompareProperty": "ChassisType",
-						"CompareValues": ["Drawer", "RackMount", "Sled"]
-					}]
-				},
-				"EnvironmentMetrics": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "If the PowerSubsystem resource is present, this resource must be implemented.",
-						"CompareProperty": "PowerSubsystem",
-						"CompareType": "Present",
-						"ReadRequirement": "Mandatory"
-					}]
-				},
-				"Sensors": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "In the PowerSubsystem, the Sensors resource must be implemented.",
-						"CompareProperty": "PowerSubsystem",
-						"CompareType": "Present",
-						"ReadRequirement": "Mandatory"
-					}]
-				},
-				"Controls": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "In the PowerSubsystem, the Controls resource must be implemented.",
-						"CompareProperty": "PowerSubsystem",
-						"CompareType": "Present",
-						"ReadRequirement": "Mandatory"
-					}]
-				},
-				"Links": {
-					"PropertyRequirements": {
-						"ManagedBy": {
-							"ReadRequirement": "Recommended",
-							"ConditionalRequirements": [
-								{
-									"Purpose": "ManagedBy is required if ChassisType are specific values",
-									"ReadRequirement": "Mandatory",
-									"CompareType": "AnyOf",
-									"CompareProperty": "ChassisType",
-									"CompareValues": ["Drawer", "RackMount", "Sled"]
-								}
-							]
+						"WriteRequirement": "Mandatory",
+						"ReplacesProperty": "Power"
+					},
+					"EnvironmentMetrics": {
+						"ReadRequirement": "Recommended",
+						"ConditionalRequirements": [{
+							"Purpose": "If the PowerSubsystem resource is present, this resource must be implemented.",
+							"CompareProperty": "PowerSubsystem",
+							"CompareType": "Present",
+							"ReadRequirement": "Mandatory"
+						}]
+					},
+					"Sensors": {
+						"ReadRequirement": "Recommended",
+						"ConditionalRequirements": [{
+							"Purpose": "In the PowerSubsystem, the Sensors resource must be implemented.",
+							"CompareProperty": "PowerSubsystem",
+							"CompareType": "Present",
+							"ReadRequirement": "Mandatory"
+						}]
+					},
+					"Controls": {
+						"ReadRequirement": "Recommended",
+						"ConditionalRequirements": [{
+							"Purpose": "In the PowerSubsystem, the Controls resource must be implemented.",
+							"CompareProperty": "PowerSubsystem",
+							"CompareType": "Present",
+							"ReadRequirement": "Mandatory"
+						}]
+					},
+					"Links": {
+						"PropertyRequirements": {
+							"ManagedBy": {}
 						}
 					}
 				}
-			}
+			}]
 		},
 		"ChassisCollection": {
 			"PropertyRequirements": {
@@ -334,89 +262,40 @@
 			}
 		},
 		"Manager": {
-			"PropertyRequirements": {
+			"UseCases": [{
+				"UseCaseTitle": "The Manager providing Redfish service.",
+				"UseCaseKeyProperty": "ManagerType",
+				"UseCaseComparison": "Equal",
+				"UseCaseKeyValues": ["BMC", "RackManager", "EnclosureManager"],
+				"PropertyRequirements": {
 				"ManagerType": {},
-				"UUID": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [
-						{
-							"Purpose": "UUID is required if ManagerType are specific values",
-							"ReadRequirement": "Mandatory",
-							"CompareType": "AnyOf",
-							"CompareProperty": "ManagerType",
-							"CompareValues": ["BMC"]
+					"UUID": {},
+					"Status": {},
+					"FirmwareVersion": {},
+					"NetworkProtocol": {},
+					"EthernetInterfaces": {},
+					"LogServices": {},
+					"Links": {
+						"PropertyRequirements": {
+							"ManagerForServers": {
+								"ReadRequirement": "IfImplemented"
+							},
+							"ManagerForChassis": {
+								"ReadRequirement": "IfImplemented"
+							}
 						}
-					]
+					}
 				},
-				"Status": {},
-				"FirmwareVersion": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [
-						{
-							"Purpose": "FirmwareVersion is required if ManagerType are specific values",
-							"ReadRequirement": "Mandatory",
-							"CompareType": "AnyOf",
-							"CompareProperty": "ManagerType",
-							"CompareValues": ["BMC"]
-						}
-					]
-				},
-				"NetworkProtocol": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [
-						{
-							"Purpose": "NetworkProtocol is required if ManagerType are specific values",
-							"ReadRequirement": "Mandatory",
-							"CompareType": "AnyOf",
-							"CompareProperty": "ManagerType",
-							"CompareValues": ["BMC"]
-						}
-					]
-				},
-				"EthernetInterfaces": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [
-						{
-							"Purpose": "EthernetInterfaces is required if ManagerType are specific values",
-							"ReadRequirement": "Mandatory",
-							"CompareType": "AnyOf",
-							"CompareProperty": "ManagerType",
-							"CompareValues": ["BMC"]
-						}
-					]
-				},
-				"LogServices": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [
-						{
-							"Purpose": "LogServices is required if ManagerType are specific values",
-							"ReadRequirement": "Mandatory",
-							"CompareType": "AnyOf",
-							"CompareProperty": "ManagerType",
-							"CompareValues": ["BMC"]
-						}
-					]
-				},
-				"Links": {
-					"PropertyRequirements": {
-						"ManagerForServers": {
-							"ReadRequirement": "IfImplemented"
-						},
-						"ManagerForChassis": {
-							"ReadRequirement": "IfImplemented"
+				"ActionRequirements": {
+					"Reset": {
+						"Parameters": {
+							"ResetType": {
+								"MinSupportValues": ["ForceRestart"]
+							}
 						}
 					}
 				}
-			},
-			"ActionRequirements": {
-				"Reset": {
-					"Parameters": {
-						"ResetType": {
-							"MinSupportValues": ["ForceRestart"]
-						}
-					}
-				}
-			}
+			}]
 		},
 		"ManagerNetworkProtocol": {
 			"PropertyRequirements": {
