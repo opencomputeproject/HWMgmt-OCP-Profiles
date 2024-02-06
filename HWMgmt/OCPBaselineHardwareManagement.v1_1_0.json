@@ -40,22 +40,12 @@
 				"IndicatorLED": {
 					"ReadRequirement": "Recommended",
 					"WriteRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
-						"CompareProperty": "LocationIndicatorActive",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
-					}]
+					"ReplacedByProperty": "LocationIndicatorActive"
 				},
 				"LocationIndicatorActive": {
 					"ReadRequirement": "Recommended",
 					"WriteRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
-						"CompareProperty": "IndicatorLED",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
-					}]
+					"ReplacesProperty": "IndicatorLED"
 				},
 				"Manufacturer": {},
 				"Model": {},
@@ -75,39 +65,19 @@
 				},
 				"Thermal": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "Either the Thermal or ThermalSubsystem resource must be implemented.  In 2020.4, Thermal resource was deprecated for ThermalSubsystem.",
-						"CompareProperty": "ThermalSubsystem",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
-					}]
+					"ReplacedByProperty": "ThermalSubsystem"
 				},
 				"ThermalSubsystem": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "Either the Thermal or ThermalSubsystem resource must be implemented.  In 2020.4, Thermal resource was deprecated for ThermalSubsystem.",
-						"CompareProperty": "Thermal",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
-					}]
+					"ReplacesProperty": "Thermal"
 				},
 				"Power": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "Either the Power or PowerSubsystem resource must be implemented.  In 2020.4, Power resource was deprecated for PowerSubsystem.",
-						"CompareProperty": "PowerSubsystem",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
-					}]
+					"ReplacedByProperty": "PowerSubsystem"
 				},
 				"PowerSubsystem": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "Either the Power or PowerSubsystem resource must be implemented.  In 2020.4, Power resource was deprecated for PowerSubsystem.",
-						"CompareProperty": "Power",
-						"Comparison": "Absent",
-						"ReadRequirement": "Mandatory"
-					}]
+					"ReplacesProperty": "Power"
 				},
 				"EnvironmentMetrics": {
 					"ReadRequirement": "Recommended",
