@@ -352,7 +352,7 @@
                         }
                     }
                 },
-                "Voltages": {
+                "Voltages": [
                     {
                         "PropertyRequirements": {
                             "Name": "VRM1 Voltage",
@@ -362,7 +362,7 @@
                             "PhysicalContext": "VoltageRegulator"
                         }
                     }
-				},
+				],
                 "PowerSupplies": {
                     "Purpose": "Needed for inventory. Min info - N Watt DC power supply",
                     "PropertyRequirements": {
