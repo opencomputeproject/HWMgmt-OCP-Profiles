@@ -20,7 +20,8 @@
                 "EnvironmentMetrics": {},
                 "Links": {
                     "PropertyRequirements": {
-                        "ManagedBy": {}
+                        "ManagedBy": {},
+                        "PowerDistribution": {}
                     }
                 },
                 "Manufacturer": {},
