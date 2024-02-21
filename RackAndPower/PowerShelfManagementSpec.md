@@ -46,8 +46,6 @@ These capabilities are described in the "Usage Guide and Requirements for the OC
 |                       | Get power usage          | Recommended |
 |                       | Get power limit          | Recommended |
 | Temperature           | Get the temperature      | If implemented, mandatory |
-| Cooling               | Get fan speeds           | If implemented, mandatory |
-|                       | Get fan redundancy       | If implemented, recommended |
 | Log                   | Get log entry            | Mandatory |
 |                       | Clear the log            | Recommended |
 | Management Controller | Get firmware version     | Mandatory |
@@ -65,8 +63,6 @@ The following table lists the capabilities prescribed in the Power Shelf Managem
 |                      | [Get/set power supply LED](#getset-power-supply-led)        | Mandatory |
 |                      | [Get power consumption](#get-power-consumption)             | Mandatory |
 | Temperature          | [Get the temperature](#get-the-temperature)                 | If implemented, mandatory |
-| Cooling              | [Get fan speeds](#get-fan-speeds)                           | If implemented, mandatory |
-|                      | [Get fan redundancy](#get-fan-redundancy)                   | If implemented, mandatory |
 | Power Equipment      | [Get power shelf info](#get-power-shelf-info)               | Mandatory |
 |                      | [Get power shelf metrics](#get-power-shelf-metrics)         | Mandatory |
 |                      | [Get main circuits](#get-main-circuits)                     | Mandatory |
@@ -331,93 +327,6 @@ GET /redfish/v1/Chassis/PowerShelf/EnvironmentMetrics
 }
 ```
 
-## Get fan speeds
-
-The `Fan` resource represents a fan within a power shelf.
-For the full schema definition, see the `Fan` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
-
-```
-GET /redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/1
-
-{
-    "@odata.id": "/redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/1"
-    "@odata.type": "#Fan.v1_5_0.Fan",
-    "Id": "1",
-    "Name": "Fan 1",
-    "Status": {
-        "State": "Enabled",
-        "Health": "OK"
-    },
-    "SpeedPercent": {
-        "Reading": 45,
-        "SpeedRPM": 2200,
-        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/Fan1Speed"
-    },
-    "Location": {
-        "PartLocation": {
-            "ServiceLabel": "Fan 1",
-            "LocationType": "Bay",
-            "LocationOrdinalValue": 0,
-            "Reference": "Front",
-            "Orientation": "LeftToRight"
-        }
-    }
-}
-```
-
-## Get fan redundancy
-
-The `ThermalSubsystem` resource contains fan redundancy info within the `FanRedundancy` property.
-For the full schema definition, see the `ThermalSubsystem` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
-
-```
-GET /redfish/v1/Chassis/PowerShelf/ThermalSubsystem
-
-{
-    "@odata.id": "/redfish/v1/Chassis/PowerShelf/ThermalSubsystem",
-    "@odata.type": "#ThermalSubsystem.v1_3_0.ThermalSubsystem",
-    "Id": "ThermalSubsystem",
-    "Name": "Thermal Subsystem for the power shelf",
-    "FanRedundancy": [
-        {
-            "RedundancyType": "NPlusM",
-            "MaxSupportedInGroup": 6,
-            "MinNeededInGroup": 5,
-            "RedundancyGroup": [
-                {
-                    "@odata.id": "/redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/1"
-                },
-                {
-                    "@odata.id": "/redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/2"
-                },
-                {
-                    "@odata.id": "/redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/3"
-                },
-                {
-                    "@odata.id": "/redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/4"
-                },
-                {
-                    "@odata.id": "/redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/5"
-                },
-                {
-                    "@odata.id": "/redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans/6"
-                }
-            ],
-            "Status": {
-                "State": "Enabled",
-                "Health": "OK"
-            }
-        }
-    ],
-    "Fans": {
-        "@odata.id": "/redfish/v1/Chassis/PowerShelf/ThermalSubsystem/Fans"
-    },
-    "ThermalMetrics": {
-        "@odata.id": "/redfish/v1/Chassis/PowerShelf/ThermalSubsystem/ThermalMetrics"
-    }
-}
-```
-
 ## Get power shelf info
 
 The `PowerDistribution` resource represents the functional view of the power shelf.
@@ -444,6 +353,7 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1
         "State": "Enabled",
         "Health": "OK"
     },
+    "LocationIndicatorActive": false,
     "MainsRedundancy": {
         "RedundancyType": "Sharing",
         "MaxSupportedInGroup": 2,
@@ -519,6 +429,32 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Metrics
             "target": "/redfish/v1/PowerEquipment/PowerShelves/1/Metrics/PowerDistributionMetrics.ResetMetrics"
         }
     }
+}
+```
+
+## Get/set power shelf LED
+
+The `PowerDistribution` resource contains an `LocationIndicatorActive` property, which represents the location indicator LED that is used by the management controller to identify the shelf.
+For the full schema definition, see the `PowerDistribution` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
+
+```
+GET /redfish/v1/Chassis/PowerShelf/PowerSubsystem/PowerSupplies/1
+
+{
+    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1",
+    "@odata.type": "#PowerDistribution.v1_3_2.PowerDistribution",
+    "Id": "1",
+    "Name": "Power Shelf 1",
+    "LocationIndicatorActive": false,
+    ...
+}
+```
+
+```
+PATCH /redfish/v1/PowerEquipment/PowerShelves/1
+
+{
+    "LocationIndicatorActive": true
 }
 ```
 

@@ -95,7 +95,10 @@
                         }
                     }
                 },
-                "LocationIndicatorActive": {},
+                "LocationIndicatorActive": {
+                    "ReadRequirement": "Mandatory",
+                    "WriteRequirement": "Mandatory"
+                },
                 "Manufacturer": {},
                 "Metrics": {},
                 "Model": {},
@@ -143,10 +146,6 @@
                 "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem"
             ],
             "PropertyRequirements": {
-                "FanRedundancy": {
-                    "ReadRequirement": "IfImplemented"
-                },
-                "Fans": {},
                 "Status": {
                     "PropertyRequirements": {
                         "Health": {},
@@ -166,33 +165,6 @@
                     "PropertyRequirements": {
                         "Ambient": {},
                         "Internal": {}
-                    }
-                }
-            }
-        },
-        "Fan": {
-            "URIs": [
-                "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem/Fans/{FanId}"
-            ],
-            "PropertyRequirements": {
-                "Location": {
-                    "PropertyRequirements": {
-                        "PartLocation": {
-                            "PropertyRequirements": {
-                                "LocationOrdinalValue": {},
-                                "LocationType": {},
-                                "Orientation": {},
-                                "Reference": {},
-                                "ServiceLabel": {}
-                            }
-                        }
-                    }
-                },
-                "SpeedPercent": {},
-                "Status": {
-                    "PropertyRequirements": {
-                        "Health": {},
-                        "State": {}
                     }
                 }
             }
@@ -223,6 +195,10 @@
                         "Chassis": {},
                         "ManagedBy": {}
                     }
+                },
+                "LocationIndicatorActive": {
+                    "ReadRequirement": "Mandatory",
+                    "WriteRequirement": "Mandatory"
                 },
                 "Mains": {},
                 "MainsRedundancy": {
