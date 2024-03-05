@@ -621,4 +621,4 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1
 
 | Revision | Date       | Description |
 | :---     | :---       | :---        |
-| 0.9.0    | 2023-08-18 | Initial draft |
+| 1.0.0    | 2024-03-05 | Initial release. |

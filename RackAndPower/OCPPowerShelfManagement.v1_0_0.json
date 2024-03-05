@@ -1,7 +1,7 @@
 {
     "SchemaDefinition": "RedfishInteroperabilityProfile.v1_5_0",
     "ProfileName": "OCP Power Shelf Management",
-    "ProfileVersion": "0.9.0",
+    "ProfileVersion": "1.0.0",
     "Purpose": "Specifies the OCP management requirements for the Redfish interface on OCP power shelves.",
     "OwningEntity": "Open Compute Project",
     "ContactInfo": "michael.raineri@dell.com",
