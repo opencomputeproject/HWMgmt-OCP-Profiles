@@ -25,7 +25,7 @@ Relevant Chassis data:
     "Version": "1.03b",
     "Manufacturer": "Contoso",
     "Model": "ZAP4000",
-	"SKU": "925159-331",
+    "SKU": "925159-331",
     "SerialNumber": "29347ZT536",
     "PartNumber": "AA-23"
 ```
@@ -53,7 +53,7 @@ For products with multiple Chassis instances, the sustainability requirements ar
     "EnergykWh": {
         "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/Energy",
         "Reading": 3638,
-		"LifetimeReading": 6491
+        "LifetimeReading": 6491
     },
     "@odata.id": "/redfish/v1/Chassis/1U/EnvironmentMetrics"
 }
