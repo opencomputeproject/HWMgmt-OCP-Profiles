@@ -31,87 +31,105 @@
 			}
 		},
 		"Chassis": {
-			"PropertyRequirements": {
-				"AssetTag": {
-					"ReadRequirement": "Recommended",
-					"WriteRequirement": "Recommended"
-				},
-				"ChassisType": {},
-				"IndicatorLED": {
-					"ReadRequirement": "Recommended",
-					"WriteRequirement": "Recommended",
-					"ReplacedByProperty": "LocationIndicatorActive"
-				},
-				"LocationIndicatorActive": {
-					"ReadRequirement": "Recommended",
-					"WriteRequirement": "Recommended",
-					"ReplacesProperty": "IndicatorLED"
-				},
-				"Manufacturer": {},
-				"Model": {},
-				"SerialNumber": {},
-				"SKU": {
-					"ReadRequirement": "Recommended"
-				},
-				"PartNumber": {
-					"ReadRequirement": "Recommended"
-				},
-				"PowerState": {},
-				"Status": {
-					"PropertyRequirements": {
-						"State": {},
-						"Health": {}
-					}
-				},
-				"Thermal": {
-					"ReadRequirement": "Recommended",
-					"ReplacedByProperty": "ThermalSubsystem"
-				},
-				"ThermalSubsystem": {
-					"ReadRequirement": "Recommended",
-					"ReplacesProperty": "Thermal"
-				},
-				"Power": {
-					"ReadRequirement": "Recommended",
-					"ReplacedByProperty": "PowerSubsystem"
-				},
-				"PowerSubsystem": {
-					"ReadRequirement": "Recommended",
-					"ReplacesProperty": "Power"
-				},
-				"EnvironmentMetrics": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "If the PowerSubsystem resource is present, this resource must be implemented.",
-						"CompareProperty": "PowerSubsystem",
-						"Comparison": "Present",
-						"ReadRequirement": "Mandatory"
-					}]
-				},
-				"Sensors": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "In the PowerSubsystem, the Sensors resource must be implemented.",
-						"CompareProperty": "PowerSubsystem",
-						"Comparison": "Present",
-						"ReadRequirement": "Mandatory"
-					}]
-				},
-				"Controls": {
-					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
-						"Purpose": "In the PowerSubsystem, the Controls resource must be implemented.",
-						"CompareProperty": "PowerSubsystem",
-						"Comparison": "Present",
-						"ReadRequirement": "Mandatory"
-					}]
-				},
-				"Links": {
-					"PropertyRequirements": {
-						"ManagedBy": {}
+			"UseCases": [{
+				"UseCaseTitle": "The primary Chassis requirements.",
+				"UseCaseKeyProperty": "ChassisType",
+				"UseCaseComparison": "Equal",
+				"UseCaseKeyValues": ["Drawer", "RackMount", "Sled"],
+				"PropertyRequirements": {
+					"AssetTag": {
+						"ReadRequirement": "Recommended",
+						"WriteRequirement": "Recommended"
+					},
+					"ChassisType": {},
+					"IndicatorLED": {
+						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory",
+						"ReplacedByProperty": "LocationIndicatorActive"
+					},
+					"LocationIndicatorActive": {
+						"Purpose": "Either IndicatorLED or LocationIndicatorActive must be implemented.  In 2020.3, IndicatorLED was deprecated for LocationIndicatorActive.",
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory",
+						"ReplacesProperty": "IndicatorLED"
+					},
+					"Manufacturer": {
+						"ReadRequirement": "Recommended"
+					},
+					"Model": {},
+					"SerialNumber": {},
+					"SKU": {
+						"ReadRequirement": "Recommended"
+					},
+					"PartNumber": {
+						"ReadRequirement": "Recommended"
+					},
+					"PowerState": {},
+					"Status": {
+						"PropertyRequirements": {
+							"State": {},
+							"Health": {}
+						}
+					},
+					"Thermal": {
+						"Purpose": "Either the Thermal or ThermalSubsystem resource must be implemented.  In 2020.4, Thermal resource was deprecated for ThermalSubsystem.",
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory",
+						"ReplacedByProperty": "ThermalSubsystem"
+					},
+					"ThermalSubsystem": {
+						"Purpose": "Either the Thermal or ThermalSubsystem resource must be implemented.  In 2020.4, Thermal resource was deprecated for ThermalSubsystem.",
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory",
+						"ReplacesProperty": "Thermal"
+					},
+					"Power": {
+						"Purpose": "Either the Power or PowerSubsystem resource must be implemented.  In 2020.4, Power resource was deprecated for PowerSubsystem.",
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory",
+						"ReplacedByProperty": "PowerSubsystem"
+					},
+					"PowerSubsystem": {
+						"Purpose": "Either the Power or PowerSubsystem resource must be implemented.  In 2020.4, Power resource was deprecated for PowerSubsystem.",
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory",
+						"ReplacesProperty": "Power"
+					},
+					"EnvironmentMetrics": {
+						"ReadRequirement": "Recommended",
+						"ConditionalRequirements": [{
+							"Purpose": "If the PowerSubsystem resource is present, this resource must be implemented.",
+							"CompareProperty": "PowerSubsystem",
+							"CompareType": "Present",
+							"ReadRequirement": "Mandatory"
+						}]
+					},
+					"Sensors": {
+						"ReadRequirement": "Recommended",
+						"ConditionalRequirements": [{
+							"Purpose": "In the PowerSubsystem, the Sensors resource must be implemented.",
+							"CompareProperty": "PowerSubsystem",
+							"CompareType": "Present",
+							"ReadRequirement": "Mandatory"
+						}]
+					},
+					"Controls": {
+						"ReadRequirement": "Recommended",
+						"ConditionalRequirements": [{
+							"Purpose": "In the PowerSubsystem, the Controls resource must be implemented.",
+							"CompareProperty": "PowerSubsystem",
+							"CompareType": "Present",
+							"ReadRequirement": "Mandatory"
+						}]
+					},
+					"Links": {
+						"PropertyRequirements": {
+							"ManagedBy": {}
+						}
 					}
 				}
-			}
+			}]
 		},
 		"ChassisCollection": {
 			"PropertyRequirements": {
@@ -122,12 +140,18 @@
 		},
 		"EnvironmentMetrics": {
 			"Purpose": "Equivalent Power.PowerControl.PowerConsumedWatts and Power.PowerControl.PowerLimit.",
+			"ReadRequirement": "IfImplemented",
 			"PropertyRequirements": {
-				"Members": {
-					"PowerWatts": {},
-					"PowerLimitWatts": {
-						"ReadRequirement": "Mandatory",
-						"WriteRequirement": "Mandatory"
+				"PowerWatts": {
+					"ReadRequirement": "Recommended"
+				},
+				"PowerLimitWatts": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"SetPoint": {
+							"ReadRequirement": "Mandatory",
+							"WriteRequirement": "Mandatory"
+						}
 					}
 				}
 			}
@@ -179,7 +203,7 @@
 					"ConditionalRequirements": [{
 						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
 						"ReadRequirement": "Mandatory",
-						"WriteRequirement": "Mandatory"						
+						"WriteRequirement": "Mandatory"
 					}]
 				},
 				"IPv4Addresses": {
@@ -238,34 +262,40 @@
 			}
 		},
 		"Manager": {
-			"PropertyRequirements": {
+			"UseCases": [{
+				"UseCaseTitle": "The Manager providing Redfish service.",
+				"UseCaseKeyProperty": "ManagerType",
+				"UseCaseComparison": "Equal",
+				"UseCaseKeyValues": ["BMC", "RackManager", "EnclosureManager"],
+				"PropertyRequirements": {
 				"ManagerType": {},
-				"UUID": {},
-				"Status": {},
-				"FirmwareVersion": {},
-				"NetworkProtocol": {},
-				"EthernetInterfaces": {},
-				"LogServices": {},
-				"Links": {
-					"PropertyRequirements": {
-						"ManagerForServers": {
-							"ReadRequirement": "IfImplemented"
-						},
-						"ManagerForChassis": {
-							"ReadRequirement": "IfImplemented"
+					"UUID": {},
+					"Status": {},
+					"FirmwareVersion": {},
+					"NetworkProtocol": {},
+					"EthernetInterfaces": {},
+					"LogServices": {},
+					"Links": {
+						"PropertyRequirements": {
+							"ManagerForServers": {
+								"ReadRequirement": "IfImplemented"
+							},
+							"ManagerForChassis": {
+								"ReadRequirement": "IfImplemented"
+							}
+						}
+					}
+				},
+				"ActionRequirements": {
+					"Reset": {
+						"Parameters": {
+							"ResetType": {
+								"MinSupportValues": ["ForceRestart"]
+							}
 						}
 					}
 				}
-			},
-			"ActionRequirements": {
-				"Reset": {
-					"Parameters": {
-						"ResetType": {
-							"MinSupportValues": ["ForceRestart"]
-						}
-					}
-				}
-			}
+			}]
 		},
 		"ManagerNetworkProtocol": {
 			"PropertyRequirements": {
@@ -275,29 +305,29 @@
 				"HTTP": {
 					"ReadRequirement": "IfImplemented",
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"HTTPS": {
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"SSH": {
 					"ReadRequirement": "Recommended",
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {}
 					}
 				},
 				"SSDP": {
 					"ReadRequirement": "Recommended",
 					"PropertyRequirements": {
-						"ProtocolEnable": {},
+						"ProtocolEnabled": {},
 						"Port": {},
-						"NotifyMulticstIntervalSeconds": {},
+						"NotifyMulticastIntervalSeconds": {},
 						"NotifyIPv6Scope": {},
 						"NotifyTTL": {}
 					}
@@ -305,6 +335,7 @@
 			}
 		},
 		"Power": {
+			"ReadRequirement": "Recommended",
 			"PropertyRequirements": {
 				"PowerControl": {
 					"PropertyRequirements": {
@@ -336,6 +367,7 @@
 		"SessionService": {},
 		"Thermal": {
 			"MinVersion": "1.1.0",
+			"ReadRequirement": "Recommended",
 			"PropertyRequirements": {
 				"Fans": {
 					"ReadRequirement": "IfImplemented",
@@ -384,13 +416,15 @@
 				}
 			}
 		},
-
-
 		"ThermalSubsystem": {
 			"MinVersion": "1.0.0",
 			"PropertyRequirements": {
-				"ThermalMetics": {},
-				"Fans": {},
+				"ThermalMetrics": {
+					"ReadRequirement": "Recommended"
+				},
+				"Fans": {
+					"ReadRequirement": "Recommended"
+				},
 				"FanRedundancy": {
 					"ReadRequirement": "IfImplemented",
 					"PropertyRequirements": {
@@ -405,10 +439,12 @@
 				}
 			}
 		},
-		"ThermalMetric": {
+		"ThermalMetrics": {
+			"ReadRequirement": "IfImplemented",
 			"Purpose": "Equivalent of Thermal.Temperatures",
 			"PropertyRequirements": {
 				"TemperatureSummaryCelsius": {
+					"ReadRequirement": "Recommended",
  					"PropertyRequirements": {
 						"Exhaust": {
 							"ReadRequirement": "Recommended"
