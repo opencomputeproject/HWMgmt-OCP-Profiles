@@ -1,7 +1,7 @@
 {
 	"description": "OCP Sustainability Redfish Requirements",
 	"format": "markdown",
-	"import_from": ["../../redfish/json-schema"],
+	"import_from": ["../../Redfish-Publications/json-schema"],
 	"outfile": "OCP-Sustainability-Profile.md",
 	"uri_mapping": {
 		"redfish.dmtf.org/schemas/v1": "../../Redfish-Publications/json-schema"
