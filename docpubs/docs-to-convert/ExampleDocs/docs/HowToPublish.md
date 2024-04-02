@@ -8,23 +8,31 @@ This folder contains the files that should be added to a clone of the DocPublica
 
 # Clone the DocPublication repository
 
-Clone the DMTF DocPublication repository. This repository contains a docs-to-convert/ExampleDocs/doc/HowToPort.md.  This document which describes the files needed to be add or modified to publish for another organization.
+Clone the DMTF DocPublication repository.
 
-# Copy the files
+The repository contains the build scripts. For OCP, use
 
-This folder contains the files described in the HowToPort document.
+- tools/pandoc-wrapper-ocp.sh
+- tools/product-docs-ocp.sh
 
-The following files in this folder should be copied into their corresponding directories
+The repository also contains the HowToPort document (docs-to-convert/ExampleDocs/doc/HowToPort.md).  This document which describes how the *-ocp.sh files are modified from the original *.sh files.
+
+# Copy the files from the Profiles repository
+
+Copy the following files from the ./docpubs folder into the corresponding directories in the above clone.
 
 - css/ocp.css
 - images/ocp-logo.jpg
 - templates/ocp-html.template
-- tools/pandoc-wrapper.sh
-- tools/product-docs.sh
+
+There is this example Markdown document and its config file.
+
+- docs-to-convert/ExampleDocs/docs/HowToPublish.md
+- docs-to-convert/ExampleDocs/cfg/HowToPublish.dsp.cfg
 
 # Publish
 
-1. Execute the command
+1. Execute the command from the modified clone's root
 
 	```
 	./tools/produce-docs.sh
@@ -32,9 +40,13 @@ The following files in this folder should be copied into their corresponding dir
 
 2. The resultant HTML and PDF documents can be found in the ./build folder
 
+- build/ExampleDocs/DSPOCP_1.0.0.html
+- build/ExampleDocs/DSPOCP_1.0.0.pdf
+
 # OCP Files
 
 The repository contains a css, a template and an image file.
-The css and template files in the repository were created by quickly modifying the DMTF versions.
-Hence, they do not reflect official OCP versions.
-It is expected the official versions will be delivered by OCP staff when this tool is deployed within OCP.
+The ocp.css file was created by renaming the dmtf.css file.
+The template file was created by modifying the DMTF version.
+Hence, the resultant PDF and HTML files do not adhere to the OCP document format.
+It is expected that the official versions of the ocp.css and ocp-html.template files will be created by the OCP staff when this tool is deployed within OCP.
