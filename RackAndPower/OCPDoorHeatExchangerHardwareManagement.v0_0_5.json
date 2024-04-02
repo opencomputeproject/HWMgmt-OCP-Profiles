@@ -214,7 +214,7 @@
     "LogService": {
       "MinVersion": "1.1.0"
     },
-    "LogServicesCollection": {
+    "LogServiceCollection": {
       "PropertyRequirements": {
         "Members": {
           "MinCount": 1
@@ -288,13 +288,13 @@
       "PropertyRequirements": {
         "Status": {},
         "Temperatures": {
+          "MinCount": 2,
           "PropertyRequirements": {
             "DeltaPhysicalContext": {},
             "LowerThresholdCritical": {},
             "LowerThresholdFatal": {},
             "LowerThresholdNonCritical": {},
             "MaxReadingRangeTemp": {},
-            "MinCount": 2,
             "MinReadingRangeTemp": {},
             "Name": {
               "Comparison": "AnyOf",

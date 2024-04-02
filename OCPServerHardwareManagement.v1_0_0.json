@@ -21,7 +21,7 @@
 				},
 				"Thermal": {
 					"ReadRequirement": "Recommended",
-          "ConditionalRequirement": [
+          "ConditionalRequirements": [
             {
               "Purpose": "Required if ChassisType are specific values",
               "ReadRequirement": "Mandatory",
@@ -33,7 +33,7 @@
         },
 				"Power": {
 					"ReadRequirement": "Recommended",
-          "ConditionalRequirement": [
+          "ConditionalRequirements": [
             {
               "Purpose": "Required if ChassisType are specific values",
               "ReadRequirement": "Mandatory",
