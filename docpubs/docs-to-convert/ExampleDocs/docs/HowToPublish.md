@@ -8,7 +8,7 @@ This folder contains the files that should be added to a clone of the DocPublica
 
 # Clone the DocPublication repository
 
-Clone the DMTF DocPublication repository.
+Clone the [DMTF DocPublication](https://github.com/DMTF/DocPublication) repository.  **Note**: the DocPublication repository accessible to DMTF members and [DMTF Allianc)e Partners](https://www.dmtf.org/about/registers)
 
 The repository contains the build scripts. For OCP, use
 
