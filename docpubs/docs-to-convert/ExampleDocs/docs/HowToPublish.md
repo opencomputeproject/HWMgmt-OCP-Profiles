@@ -35,7 +35,7 @@ There is this example Markdown document and its config file.
 1. Execute the command from the modified clone's root
 
 	```
-	./tools/produce-docs.sh
+	./tools/produce-docs-ocp.sh
 	```
 
 2. The resultant HTML and PDF documents can be found in the ./build folder

@@ -118,7 +118,8 @@ content: "Version 1.0.0";
 <li><a href="#overview" id="toc-overview"><span class="toc-section-number">1</span> Overview</a></li>
 <li><a href="#clone-the-docpublication-repository" id="toc-clone-the-docpublication-repository"><span class="toc-section-number">2</span> Clone the DocPublication
 repository</a></li>
-<li><a href="#copy-the-files" id="toc-copy-the-files"><span class="toc-section-number">3</span> Copy the files</a></li>
+<li><a href="#copy-the-files-from-the-profiles-repository" id="toc-copy-the-files-from-the-profiles-repository"><span class="toc-section-number">3</span> Copy the files from the Profiles
+repository</a></li>
 <li><a href="#publish" id="toc-publish"><span class="toc-section-number">4</span> Publish</a></li>
 <li><a href="#ocp-files" id="toc-ocp-files"><span class="toc-section-number">5</span> OCP Files</a></li>
 </ul>
@@ -136,35 +137,49 @@ DocPublication repository so to enable the publishing of publish OCP
 Markdown documents.</p>
 <h1 data-number="2" id="clone-the-docpublication-repository"><span class="header-section-number">2</span> Clone the DocPublication
 repository</h1>
-<p>Clone the DMTF DocPublication repository. This repository contains a
-docs-to-convert/ExampleDocs/doc/HowToPort.md. This document which
-describes the files needed to be add or modified to publish for another
-organization.</p>
-<h1 data-number="3" id="copy-the-files"><span class="header-section-number">3</span> Copy the files</h1>
-<p>This folder contains the files described in the HowToPort
-document.</p>
-<p>The following files in this folder should be copied into their
-corresponding directories</p>
+<p>Clone the DMTF DocPublication repository.</p>
+<p>The repository contains the build scripts. For OCP, use</p>
+<ul>
+<li>tools/pandoc-wrapper-ocp.sh</li>
+<li>tools/product-docs-ocp.sh</li>
+</ul>
+<p>The repository also contains the HowToPort document
+(docs-to-convert/ExampleDocs/doc/HowToPort.md). This document which
+describes how the *-ocp.sh files are modified from the original *.sh
+files.</p>
+<h1 data-number="3" id="copy-the-files-from-the-profiles-repository"><span class="header-section-number">3</span> Copy the files from the Profiles
+repository</h1>
+<p>Copy the following files from the ./docpubs folder into the
+corresponding directories in the above clone.</p>
 <ul>
 <li>css/ocp.css</li>
 <li>images/ocp-logo.jpg</li>
 <li>templates/ocp-html.template</li>
-<li>tools/pandoc-wrapper.sh</li>
-<li>tools/product-docs.sh</li>
+</ul>
+<p>There is this example Markdown document and its config file.</p>
+<ul>
+<li>docs-to-convert/ExampleDocs/docs/HowToPublish.md</li>
+<li>docs-to-convert/ExampleDocs/cfg/HowToPublish.dsp.cfg</li>
 </ul>
 <h1 data-number="4" id="publish"><span class="header-section-number">4</span> Publish</h1>
 <ol type="1">
-<li><p>Execute the command</p>
-<pre><code>./tools/produce-docs.sh</code></pre></li>
+<li><p>Execute the command from the modified clone&#39;s root</p>
+<pre><code>./tools/produce-docs-ocp.sh</code></pre></li>
 <li><p>The resultant HTML and PDF documents can be found in the ./build
 folder</p></li>
 </ol>
+<ul>
+<li>build/ExampleDocs/DSPOCP_1.0.0.html</li>
+<li>build/ExampleDocs/DSPOCP_1.0.0.pdf</li>
+</ul>
 <h1 data-number="5" id="ocp-files"><span class="header-section-number">5</span> OCP Files</h1>
-<p>The repository contains a css, a template and an image file. The css
-and template files in the repository were created by quickly modifying
-the DMTF versions. Hence, they do not reflect official OCP versions. It
-is expected the official versions will be delivered by OCP staff when
-this tool is deployed within OCP.</p>
+<p>The repository contains a css, a template and an image file. The
+ocp.css file was created by renaming the dmtf.css file. The template
+file was created by modifying the DMTF version. Hence, the resultant PDF
+and HTML files do not adhere to the OCP document format. It is expected
+that the official versions of the ocp.css and ocp-html.template files
+will be created by the OCP staff when this tool is deployed within
+OCP.</p>
 </article>
 </body>
 </html>
