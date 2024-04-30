@@ -37,7 +37,7 @@
                     }
                 },
                 "ThermalSubsystem": {
-                    "ReadRequirement": "Recommended"
+                    "ReadRequirement": "IfImplemented"
                 },
                 "UUID": {},
                 "Version": {}
@@ -60,7 +60,7 @@
             }
         },
         "ThermalSubsystem": {
-            "ReadRequirement": "Recommended",
+            "ReadRequirement": "IfImplemented",
             "URIs": [
                 "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem"
             ],
@@ -78,12 +78,12 @@
                     }
                 },
                 "ThermalMetrics": {
-                    "ReadRequirement": "Recommended"
+                    "ReadRequirement": "IfImplemented"
                 }
             }
         },
         "ThermalMetrics": {
-            "ReadRequirement": "Recommended",
+            "ReadRequirement": "IfImplemented",
             "URIs": [
                 "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem/ThermalMetrics"
             ],
