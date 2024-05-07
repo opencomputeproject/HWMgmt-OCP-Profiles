@@ -24,7 +24,9 @@
                 "ActiveDirecotory": {
                     "ReadRequirement": "Recommended",
                     "PropertyRequirements": {
-                        "ServiceEnabled": {}
+                        "ServiceEnabled": {},
+                        "ServiceAddresses": {},
+                        "RemoteRoleMapping": {}
                     }
                 },
                 "Roles": {},
@@ -43,7 +45,8 @@
                     "ReadRequirement": "Recommended",
                     "PropertyRequirements": {
                         "OAuth2Service": {},
-                        "ServiceEnabled": {}
+                        "ServiceEnabled": {},
+                        "ServiceAddresses": {}
                     }
                 },
                 "OutboundConnections": {
@@ -65,7 +68,10 @@
                 "CertificateLocations": {}
             },
             "ActionRequirements": {
-                "GenerateCSR": {},
+                "GenerateCSR": {
+                    "ReadRequirement": "Mandatory",
+                    "ActionInfo": "Mandatory"
+                },
                 "ReplaceCertificate": {}
             }
         },
@@ -112,7 +118,12 @@
                     "ReadRequirement": "Supported"
                 },
                 "NameServers": {},
-                "IPv4Addresses": {},
+                "IPv4Addresses": {
+                    "Address": {},
+                    "AddressOrigin": {},
+                    "Gateway": {},
+                    "SubnetMask": {}
+                },
                 "IPv4StaticAddresses": {
                     "ReadRequirement": "Recommended"
                 },
@@ -148,32 +159,21 @@
                 "EventFormatType": {},
                 "SubscriptionType": {},
                 "ExcludeMessageIds": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
+                    "ReadRequirement": "Recommended"
                 },
                 "ExcludeRegistryPrefixes": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
+                    "ReadRequirement": "Recommended"
                 },
                 "HttpHeaders": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
+                    "ReadRequirement": "Recommended"
                 },
                 "IncludeOriginOfCondition": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
+                    "ReadRequirement": "Recommended"
                 },
-                "RegistryPrefixes": {
-                    "ReadRequirement": "Mandatory",
-                    "WriteRequirement": "IfImplemented"
-                },
-                "ResourceTypes": {
-                    "ReadRequirement": "Mandatory",
-                    "WriteRequirement": "IfImplemented"
-                },
+                "RegistryPrefixes": {},
+                "ResourceTypes": {},
                 "SubordinateResources": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
+                    "ReadRequirement": "Recommended"
                 }
             },
             "ActionRequirements": {
@@ -187,14 +187,8 @@
         },
         "EventService": {
             "PropertyRequirements": {
-                "ExcludeMessageId": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
-                },
-                "ExcludeRegistryPrefix": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
-                },
+                "ExcludeMessageId": {},
+                "ExcludeRegistryPrefix": {},
                 "IncludeOriginOfConditionSupported": {},
                 "RegistryPrefixes": {},
                 "ResourceTypes": {},
@@ -241,6 +235,12 @@
                     }
                 }
             }
+        },
+        "LicenseCollection": {
+            "ReadRequirement": "Recommended",
+            "CreateResource": true,
+            "DeleteResource": true,
+            "UpdateResource": true
         },
         "LicenseService": {
             "ReadRequirement": "Recommended",
@@ -296,6 +296,14 @@
         },
         "Manager": {
             "PropertyRequirements": {
+                "DateTime": {
+                    "ReadRequirement": "Mandatory",
+                    "WriteRequirement": "Recommended"
+                },
+                "DateTimeOffset": {
+                    "ReadRequirement": "Mandatory",
+                    "WriteRequirement": "Recommended"
+                },
                 "ManagerType": {},
                 "UUID": {},
                 "Status": {
@@ -351,6 +359,7 @@
                 "HostName": {},
                 "FQDN": {},
                 "HTTP": {
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "ProtocolEnabled": {},
                         "Port": {}
