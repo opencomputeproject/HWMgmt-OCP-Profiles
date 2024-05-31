@@ -2,7 +2,7 @@
     "SchemaDefinition": "RedfishInteroperabilityProfile.v1_6_0",
     "ProfileName": "OCP Sustainability",
     "ProfileVersion": "0.2.0",
-    "Purpose": "Describes Redfish requirements for providing data related to sustainability efforts.  This includes power and energy (use phase) measurements, location data, and device identification.",
+    "Purpose": "Describes Redfish requirements for providing data related to sustainability efforts.  This includes power and energy (use phase) measurements, location data, and device identification.  This profile is intended to apply to any product or device not directly involved with the power distribution infrastructure.  Power distribution products report power and energy using equivalent Redfish resources and properties, which are located in a separate portion of the data model.  Therefore, sustainability reporting requirements for those products are covered by their product-specific profiles.",
     "OwningEntity": "OCP",
     "ContactInfo": "jeff.autor@ocproject.com",
     "Protocol": {
@@ -10,29 +10,83 @@
     },
     "Resources": {
         "EnvironmentMetrics": {
-            "ReadRequirement": "Supported",
-            "URIs": [
-                "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics"
-            ],
-            "PropertyRequirements": {
-                "PowerWatts": {
+            "UseCases": [
+                {
+                    "UseCaseTitle": "Chassis",
+                    "UseCaseType": "Normal",
                     "ReadRequirement": "Supported",
-                    "Purpose": "Notate the sampling rate, etc.",
+                    "Purpose": "Power and energy values must be provided for at least one Chassis instance.  These values must reflect the total power and energy consumption for the product.  Additional instances allow for device or subsystem-level consumption reporting.",
+                    "URIs": [
+                        "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics"
+                    ],
                     "PropertyRequirements": {
-                        "Reading": {}
+                        "PowerWatts": {
+                            "ReadRequirement": "Supported",
+                            "Purpose": "Notate the sampling rate, etc.",
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
+                        },
+                        "EnergykWh": {
+                            "ReadRequirement": "Supported",
+                            "Purpose": "Notate the sampling rate, accuracy, etc.",
+                            "PropertyRequirements": {
+                                "Reading": {},
+                                "LifetimeReading": {
+                                    "ReadRequirement": "Recommended"
+                                }
+                            }
+                        }
                     }
                 },
-                "EnergykWh": {
-                    "ReadRequirement": "Supported",
-                    "Purpose": "Notate the sampling rate, accuracy, etc.",
+                {
+                    "UseCaseTitle": "Processor and Memory",
+                    "UseCaseType": "Normal",
+                    "ReadRequirement": "Recommended",
+                    "Purpose": "It is recommended for products with Processor or Memory resources to provide power and energy consumption values for each device.",
+                    "URIs": [
+                        "/redfish/v1/Systems/{ComputerSystemId}/Processors/{ProcessorId}/EnvironmentMetrics",
+                        "/redfish/v1/Systems/{ComputerSystemId}/Memory/{MemoryId}/EnvironmentMetrics"						
+                    ],
                     "PropertyRequirements": {
-                        "Reading": {},
-                        "LifetimeReading": {
-                            "ReadRequirement": "Recommended"
+                        "PowerWatts": {
+                            "ReadRequirement": "Recommended",
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
+                        },
+                        "EnergykWh": {
+                            "ReadRequirement": "Recommended",
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
+                        }
+                    }
+                },
+                {
+                    "UseCaseTitle": "Thermal Subsystem",
+                    "UseCaseType": "Normal",
+                    "ReadRequirement": "Recommended",
+                    "Purpose": "It is recommended for products with fans or other active thermal management components to provide power and energy consumption values for the entire thermal subsystem.  These values are used to calculate energy efficiency.",
+                    "URIs": [
+                        "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem/EnvironmentMetrics"						
+                    ],
+                    "PropertyRequirements": {
+                        "PowerWatts": {
+                            "ReadRequirement": "Recommended",
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
+                        },
+                        "EnergykWh": {
+                            "ReadRequirement": "Recommended",
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
                         }
                     }
                 }
-            }
+            ]
         },
         "Chassis": {
             "UseCases": [
@@ -132,7 +186,34 @@
             "Reading": {},
             "ReadingTime": {},
             "ReadingType": {},
-            "SensingInterval": {}
+            "ReadingAccuracy": {
+                "ReadRequirement": "Conditional",
+                "Purpose": "For power or energy sensors",
+                "ConditionalRequirements": [
+                    {
+                        "CompareProperty": "ReadingType",
+                        "CompareValues": [
+                            "Power", "EnergykWh"
+                        ],
+                        "CompareType": "Equal",
+                        "ReadRequirement": "Recommended"
+                    }
+                ]
+            },
+            "SensingInterval": {
+                "ReadRequirement": "Conditional",
+                "Purpose": "For power or energy sensors",
+                "ConditionalRequirements": [
+                    {
+                        "CompareProperty": "ReadingType",
+                        "CompareValues": [
+                            "Power", "EnergykWh"
+                        ],
+                        "CompareType": "Equal",
+                        "ReadRequirement": "Recommended"
+                    }
+                ]
+            }
         }
     }
 }

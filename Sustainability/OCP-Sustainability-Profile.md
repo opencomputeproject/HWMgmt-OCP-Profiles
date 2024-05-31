@@ -23,7 +23,11 @@
 
    - [Chassis 1.24.0 (Product-level)](#chassis-1.24.0-%28product-level%29)
 
-   - [EnvironmentMetrics 1.3.0](#environmentmetrics-1.3.0)
+   - [EnvironmentMetrics 1.3.0 (Chassis)](#environmentmetrics-1.3.0-%28chassis%29)
+
+   - [EnvironmentMetrics 1.3.0 (Processor and Memory)](#environmentmetrics-1.3.0-%28processor-and-memory%29)
+
+   - [EnvironmentMetrics 1.3.0 (Thermal Subsystem)](#environmentmetrics-1.3.0-%28thermal-subsystem%29)
 
 - [Redfish documentation generator](#redfish-documentation-generator)
 
@@ -32,7 +36,7 @@
 
 # <a name="overview"></a>Overview
 
-This document contains the Redfish interface requirements for reporting Sustainability data
+This document contains the Redfish interface requirements for reporting Sustainability data. It is intended to apply to any product or device not directly involved with the power distribution infrastructure.  Power distribution products report power and energy using equivalent Redfish resources and properties, which are located in a separate portion of the data model.  Therefore, sustainability reporting requirements for those products are covered by their product-specific profiles.
 
 Profile source: OCP-PDU-Profile.json
 
@@ -42,6 +46,8 @@ Direct feedback to: jeff.autor@hpe.com
 # <a name="sustainability-use-cases"></a>Sustainability Use Cases
 
 The purpose of this profile is to ensure that common desired software use cases can be achieved using the standard API and data model contents provided by the device.  These common use cases are described below, and utilize the Redfish resources shown in the Profile Reference Guide section of this document.  Portions of the JSON payload responses are shown as examples, and are the result of HTTP GET operations performed on the supported URIs shown in the reference sections. 
+
+The scope of this profile includes reporting requirements, and does not include requirements for controlling power or energy consumption.  Items such as adjustable power limits, energy conservation modes, or other settings are out of scope.
 
 ## <a name="basic-product-identification"></a>Basic product identification
 
@@ -170,25 +176,7 @@ This UseCase may be found at the following URIs:
 | :--- | :--- | :--- | :--------------------- |
 | **ChassisType** | string<br>(enum) | *Mandatory (Read-only)* | The type of physical form factor of the chassis. *For the possible property values, see ChassisType in Property details.* |
 | **EnvironmentMetrics** *(v1.15+)* { | object | *Supported (Read-only)* | The link to the environment metrics for this chassis. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AbsoluteHumidity** *(v1.2+)* {} | object | *Mandatory (Read)* | Absolute humidity (g/cu m). See the *Sensor.v1_8_0* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DewPointCelsius** *(v1.1+)* {} | object | *Mandatory (Read)* | The dew point temperature (C). See the *Sensor.v1_8_0* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnergyJoules** *(v1.2+)* {} | object | *Mandatory (Read)* | Energy consumption (J). See the *Sensor.v1_8_0* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnergykWh** {} | object | *Mandatory (Read)* | Energy consumption (kWh). See the *Sensor.v1_8_0* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FanSpeedsPercent** [ { } ] | array (object) | *Mandatory (Read)* | Fan speeds (percent). See the *Sensor.v1_8_0* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FanSpeedsPercent@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HumidityPercent** {} | object | *Mandatory (Read)* | Humidity (percent). See the *Sensor.v1_8_0* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLimitWatts** *(v1.1+)* {} | object | *Mandatory (Read)* | Power limit (W). See the *Control.v1_4_0* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLoadPercent** *(v1.1+)* {} | object | *Mandatory (Read)* | The power load (percent) for this device. See the *Sensor.v1_8_0* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerWatts** {} | object | *Mandatory (Read)* | Power consumption (W). See the *Sensor.v1_8_0* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TemperatureCelsius** {} | object | *Mandatory (Read)* | Temperature (Celsius). See the *Sensor.v1_8_0* schema for details on this property. |
 | } |   |   |
 | **Location** *(v1.2+)* { | object | *Supported (Read)* | The location of the chassis. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalAddress** *(v1.17+)* { | object | *Recommended (Read)* | The physical address for a resource. |
@@ -237,7 +225,7 @@ The type of physical form factor of the chassis.
 
 ```json
 {
-    "@odata.type": "#Chassis.v1_25_0.Chassis",
+    "@odata.type": "#Chassis.v1_25_1.Chassis",
     "Id": "1U",
     "Name": "Computer System Chassis",
     "ChassisType": "RackMount",
@@ -361,7 +349,7 @@ The type of physical form factor of the chassis.
 
 ```json
 {
-    "@odata.type": "#Chassis.v1_25_0.Chassis",
+    "@odata.type": "#Chassis.v1_25_1.Chassis",
     "Id": "1U",
     "Name": "Computer System Chassis",
     "ChassisType": "RackMount",
@@ -425,12 +413,15 @@ The type of physical form factor of the chassis.
 
 
 
-## <a name="environmentmetrics-1.3.0"></a>EnvironmentMetrics 1.3.0
+## <a name="environmentmetrics-1.3.0-%28chassis%29"></a>EnvironmentMetrics 1.3.0 (Chassis)
 
-|     |     |     |     |     |
-| :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
-| **Release** | 2022.2 | 2021.4 | 2021.2 | 2020.4 |
+### Description
+
+This section describes a UseCase of EnvironmentMetrics.
+
+Purpose:  Power and energy values must be provided for at least one Chassis instance.  These values must reflect the total power and energy consumption for the product.  Additional instances allow for device or subsystem-level consumption reporting.
+
+This UseCase is must exist at the following URIs: 
 
 ### URIs
 
@@ -453,7 +444,127 @@ The type of physical form factor of the chassis.
 
 ```json
 {
-    "@odata.type": "#EnvironmentMetrics.v1_3_1.EnvironmentMetrics",
+    "@odata.type": "#EnvironmentMetrics.v1_3_2.EnvironmentMetrics",
+    "Name": "Processor Environment Metrics",
+    "TemperatureCelsius": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/CPU1Temp",
+        "Reading": 44
+    },
+    "PowerWatts": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/CPU1Power",
+        "Reading": 12.87
+    },
+    "FanSpeedsPercent": [
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/CPUFan1",
+            "DeviceName": "CPU #1 Fan Speed",
+            "Reading": 80
+        }
+    ],
+    "@odata.id": "/redfish/v1/Systems/437XR1138R2/Processors/1/EnvironmentMetrics"
+}
+```
+
+
+
+## <a name="environmentmetrics-1.3.0-%28processor-and-memory%29"></a>EnvironmentMetrics 1.3.0 (Processor and Memory)
+
+### Description
+
+This section describes a UseCase of EnvironmentMetrics.
+
+A service is recommended to implement this UseCase. (Recommended)
+
+Purpose:  It is recommended for products with Processor or Memory resources to provide power and energy consumption values for each device.
+
+This UseCase is must exist at the following URIs: 
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;Memory/&#8203;*{MemoryId}*/&#8203;EnvironmentMetrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;Processors/&#8203;*{ProcessorId}*/&#8203;EnvironmentMetrics<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **EnergykWh** { | object | *Recommended (Read)* | Energy consumption (kWh). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| } |   |   |
+| **PowerWatts** { | object | *Recommended (Read)* | Power consumption (W). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| } |   |   |
+### Example response
+
+
+```json
+{
+    "@odata.type": "#EnvironmentMetrics.v1_3_2.EnvironmentMetrics",
+    "Name": "Processor Environment Metrics",
+    "TemperatureCelsius": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/CPU1Temp",
+        "Reading": 44
+    },
+    "PowerWatts": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/CPU1Power",
+        "Reading": 12.87
+    },
+    "FanSpeedsPercent": [
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/CPUFan1",
+            "DeviceName": "CPU #1 Fan Speed",
+            "Reading": 80
+        }
+    ],
+    "@odata.id": "/redfish/v1/Systems/437XR1138R2/Processors/1/EnvironmentMetrics"
+}
+```
+
+
+
+## <a name="environmentmetrics-1.3.0-%28thermal-subsystem%29"></a>EnvironmentMetrics 1.3.0 (Thermal Subsystem)
+
+### Description
+
+This section describes a UseCase of EnvironmentMetrics.
+
+A service is recommended to implement this UseCase. (Recommended)
+
+Purpose:  It is recommended for products with fans or other active thermal management components to provide power and energy consumption values for the entire thermal subsystem.  These values are used to calculate energy efficiency.
+
+This UseCase is must exist at the following URIs: 
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;ThermalSubsystem/&#8203;EnvironmentMetrics<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **EnergykWh** {} | object | *Recommended (Read)* | Energy consumption (kWh). |
+| **PowerWatts** {} | object | *Recommended (Read)* | Power consumption (W). |
+
+### Property details
+
+#### SensorEnergykWhExcerpt
+
+|     |     |     |     |
+| :--- | :--- | :--- | :---------------------------------------- |
+| **Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+#### SensorPowerExcerpt
+
+|     |     |     |     |
+| :--- | :--- | :--- | :---------------------------------------- |
+| **Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+### Example response
+
+
+```json
+{
+    "@odata.type": "#EnvironmentMetrics.v1_3_2.EnvironmentMetrics",
     "Name": "Processor Environment Metrics",
     "TemperatureCelsius": {
         "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/CPU1Temp",

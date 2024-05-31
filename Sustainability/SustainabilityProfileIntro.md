@@ -4,7 +4,7 @@
 
 # Overview
 
-This document contains the Redfish interface requirements for reporting Sustainability data
+This document contains the Redfish interface requirements for reporting Sustainability data. It is intended to apply to any product or device not directly involved with the power distribution infrastructure.  Power distribution products report power and energy using equivalent Redfish resources and properties, which are located in a separate portion of the data model.  Therefore, sustainability reporting requirements for those products are covered by their product-specific profiles.
 
 Profile source: OCP-PDU-Profile.json
 
@@ -14,6 +14,8 @@ Direct feedback to: jeff.autor@hpe.com
 # Sustainability Use Cases
 
 The purpose of this profile is to ensure that common desired software use cases can be achieved using the standard API and data model contents provided by the device.  These common use cases are described below, and utilize the Redfish resources shown in the Profile Reference Guide section of this document.  Portions of the JSON payload responses are shown as examples, and are the result of HTTP GET operations performed on the supported URIs shown in the reference sections. 
+
+The scope of this profile includes reporting requirements, and does not include requirements for controlling power or energy consumption.  Items such as adjustable power limits, energy conservation modes, or other settings are out of scope.
 
 ## Basic product identification
 
