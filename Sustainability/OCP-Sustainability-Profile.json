@@ -46,7 +46,7 @@
                     "Purpose": "It is recommended for products with Processor or Memory resources to provide power and energy consumption values for each device.",
                     "URIs": [
                         "/redfish/v1/Systems/{ComputerSystemId}/Processors/{ProcessorId}/EnvironmentMetrics",
-                        "/redfish/v1/Systems/{ComputerSystemId}/Memory/{MemoryId}/EnvironmentMetrics"						
+                        "/redfish/v1/Systems/{ComputerSystemId}/Memory/{MemoryId}/EnvironmentMetrics"
                     ],
                     "PropertyRequirements": {
                         "PowerWatts": {
@@ -69,7 +69,7 @@
                     "ReadRequirement": "Recommended",
                     "Purpose": "It is recommended for products with fans or other active thermal management components to provide power and energy consumption values for the entire thermal subsystem.  These values are used to calculate energy efficiency.",
                     "URIs": [
-                        "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem/EnvironmentMetrics"						
+                        "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem/EnvironmentMetrics"
                     ],
                     "PropertyRequirements": {
                         "PowerWatts": {
@@ -137,26 +137,23 @@
                     ],
                     "UseCaseComparison": "AnyOf",
                     "PropertyRequirements": {
-                        "ReadRequirement": "Mandatory",
-                        "PropertyRequirements": {
-                            "Manufacturer": {},
-                            "Model": {},
-                            "EnvironmentMetrics": {},
-                            "Location": {
-                                "ReadRequirement": "Mandatory",
-                                "PropertyRequirements": {
-                                    "PhysicalAddress": {
-                                        "ReadRequirement": "Recommended",
-                                        "PropertyRequirements": {
-                                            "ISOCountryCode": {
-                                                "ReadRequirement": "Recommended"
-                                            },
-                                            "ISOSubdivisionCode": {
-                                                "ReadRequirement": "Recommended"
-                                            },
-                                            "PostalCode": {
-                                                "ReadRequirement": "Recommended"
-                                            }
+                        "Manufacturer": {},
+                        "Model": {},
+                        "EnvironmentMetrics": {},
+                        "Location": {
+                            "ReadRequirement": "Mandatory",
+                            "PropertyRequirements": {
+                                "PhysicalAddress": {
+                                    "ReadRequirement": "Recommended",
+                                    "PropertyRequirements": {
+                                        "ISOCountryCode": {
+                                            "ReadRequirement": "Recommended"
+                                        },
+                                        "ISOSubdivisionCode": {
+                                            "ReadRequirement": "Recommended"
+                                        },
+                                        "PostalCode": {
+                                            "ReadRequirement": "Recommended"
                                         }
                                     }
                                 }
@@ -193,7 +190,8 @@
                     {
                         "CompareProperty": "ReadingType",
                         "CompareValues": [
-                            "Power", "EnergykWh"
+                            "Power",
+                            "EnergykWh"
                         ],
                         "CompareType": "Equal",
                         "ReadRequirement": "Recommended"
@@ -207,7 +205,8 @@
                     {
                         "CompareProperty": "ReadingType",
                         "CompareValues": [
-                            "Power", "EnergykWh"
+                            "Power",
+                            "EnergykWh"
                         ],
                         "CompareType": "Equal",
                         "ReadRequirement": "Recommended"

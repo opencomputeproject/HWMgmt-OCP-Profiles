@@ -311,6 +311,18 @@ This UseCase may be found at the following URIs:
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
 | **ChassisType** | string<br>(enum) | *Mandatory (Read-only)* | The type of physical form factor of the chassis. *For the possible property values, see ChassisType in Property details.* |
+| **EnvironmentMetrics** *(v1.15+)* { | object | *Mandatory (Read-only)* | The link to the environment metrics for this chassis. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| } |   |   |
+| **Location** *(v1.2+)* { | object | *Mandatory (Read)* | The location of the chassis. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalAddress** *(v1.17+)* { | object | *Recommended (Read)* | The physical address for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ISOCountryCode** *(v1.17+)* | string | *Recommended (Read)* | The ISO 3166-1 country code. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ISOSubdivisionCode** *(v1.17+)* | string | *Recommended (Read)* | ISO 3166-2 subdivision code . |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PostalCode** *(v1.17+)* | string | *Recommended (Read)* | The postal code. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| } |   |   |
+| **Manufacturer** | string | *Mandatory (Read-only)* | The manufacturer of this chassis. |
+| **Model** | string | *Mandatory (Read-only)* | The model number of the chassis. |
 
 ### Property details
 
