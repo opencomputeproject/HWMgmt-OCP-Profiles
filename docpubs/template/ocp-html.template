@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+$for(author-meta)$
+  <meta name="author" content="$author-meta$" />
+$endfor$
+$if(date-meta)$
+  <meta name="dcterms.date" content="$date-meta$" />
+$endif$
+$if(keywords)$
+  <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
+$endif$
+  <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+$if(default-style)$
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+$if(quotes)$
+      q { quotes: "“" "”" "‘" "’"; }
+$endif$
+  </style>
+$endif$
+$if(highlighting-css)$
+  <style>
+$highlighting-css$
+  </style>
+$endif$
+$for(css)$
+  <link rel="stylesheet" href="$css$" />
+$endfor$
+	<style>
+    .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        margin: 0 auto;
+        padding: 45px;
+    }
+	#bottom {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
+
+    @media (max-width: 767px) {
+        .markdown-body {
+          padding: 1px;
+					font-size: 12px;
+        }
+
+				.markdown-body table td,
+				.markdown-body table th {
+  				border: 1px solid #dfe2e5;
+  				padding-left: 2px;
+					padding-right: 2px;
+					page-break-inside : avoid;
+					font-size: 10px;
+				}
+
+				.markdown-body ul {
+  				padding-left: 0;
+					margin-left: 2em;
+				}
+
+				.markdown-body table th {
+					background-color : #DCDCDC;
+				}
+
+				p {
+					widows : 2;
+				}
+
+		}
+
+		@page {
+  		@bottom-center {
+$if(doc-status-wip)$
+    		content: "Work in Progress";
+$else$
+
+	$if(doc-status-published)$
+    		content: "Published";
+	$else$
+    		content: "Draft";
+	$endif$
+$endif$
+
+  		}
+		}
+
+		@page :right {
+  		@top-left {
+    		content: "DSP$DSP$";
+  		}
+
+  		@top-right {
+    		content: "$title$";
+  		}
+
+  		@bottom-left {
+    		content: "Version $version$";
+  		}
+
+  		@bottom-right {
+    		content: counter(page);
+  		}
+		}
+
+		@page :left {
+  		@top-left {
+    		content: "$title$";
+  		}
+
+  		@top-right {
+    		content: "DSP$DSP$";
+  		}
+
+  		@bottom-left {
+    		content: counter(page);
+  		}
+
+  		@bottom-right {
+    		content: "Version $version$";
+  		}
+		}
+
+	</style>
+$if(math)$
+  $math$
+$endif$
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+$for(header-includes)$
+  $header-includes$
+$endfor$
+</head>
+
+<body>
+$for(include-before)$
+$include-before$
+$endfor$
+<div align=center>
+<img src="$logo_file$" alt="$logo_alt_text$">
+
+$if(title)$
+<header id="title-block-header">
+<h1 class="title">$title$</h1> 
+
+$if(subtitle)$
+<p class="subtitle">$subtitle$</p>
+$endif$
+
+$for(author)$
+<p class="author">$author$</p>
+$endfor$
+<strong>
+	<p>Version: $version$</p>
+</strong>
+</header>
+</div>
+<div id="bottom">
+<strong>
+	<p>Date: $date$</p>
+<!--	<p>Supersedes: $supersedes-version$</p>
+<p>Document Type: $doc-class$</p> -->
+	<p>Document Status: $doc-status$</p>
+	<p>Document Language: $doc-lang$</span></p>
+</strong>
+</div>
+$endif$
+$if(copyright-year)$
+  <div class="copyright">
+    Copyright Notice</br>
+    Copyright &copy; $copyright-year$ OCP. All rights reserved.
+  </div>
+$endif$
+<p>NOTWITHSTANDING THE ENCLOSED LICENSES, THIS SPECIFICATION IS PROVIDED BY OCP "AS IS" AND OCP EXPRESSLY DISCLAIMS ANY WARRANTIES (EXPRESS, IMPLIED, OR OTHERWISE), INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, FITNESS FOR A PARTICULAR PURPOSE, OR TITLE, RELATED TO THE SPECIFICATION. NOTICE IS HEREBY GIVEN, THAT OTHER RIGHTS NOT GRANTED AS SET FORTH ABOVE, INCLUDING WITHOUT LIMITATION, RIGHTS OF THIRD PARTIES WHO DID NOT EXECUTE THE ABOVE LICENSES, MAY BE IMPLICATED BY THE IMPLEMENTATION OF OR COMPLIANCE WITH THIS SPECIFICATION.</p>
+<p>OCP IS NOT RESPONSIBLE FOR IDENTIFYING RIGHTS FOR WHICH A LICENSE MAY BE REQUIRED IN ORDER TO IMPLEMENT THIS SPECIFICATION.  THE ENTIRE RISK AS TO IMPLEMENTING OR OTHERWISE USING THE SPECIFICATION IS ASSUMED BY YOU.</p>
+<p>IN NO EVENT WILL OCP BE LIABLE TO YOU FOR ANY MONETARY DAMAGES WITH RESPECT TO ANY CLAIMS RELATED TO, OR ARISING OUT OF YOUR USE OF THIS SPECIFICATION, INCLUDING BUT NOT LIMITED TO ANY LIABILITY FOR LOST PROFITS OR ANY CONSEQUENTIAL, INCIDENTAL, INDIRECT, SPECIAL OR PUNITIVE DAMAGES OF ANY CHARACTER FROM ANY CAUSES OF ACTION OF ANY KIND WITH RESPECT TO THIS SPECIFICATION, WHETHER BASED ON BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, AND EVEN IF OCP HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+$if(toc)$
+<p id="toc-header">CONTENTS</p>
+<nav class="toc">
+$table-of-contents$
+</nav>
+$endif$
+<article class="markdown-body">
+$body$
+</article>
+$for(include-after)$
+$include-after$
+$endfor$
+</body>
+</html>
