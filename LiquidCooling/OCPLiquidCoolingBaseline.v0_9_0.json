@@ -46,7 +46,7 @@
         "EnvironmentMetrics": {
             "URIs": [
                 "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics",
-                "/redfish/v1/ThermalEquipment/{CoolingUnitType}/{CoolingUnitId}/EnvironmentMetrics"
+                "/redfish/v1/ThermalEquipment/{CoolingUnitTypeId}/{CoolingUnitId}/EnvironmentMetrics"
             ],
             "PropertyRequirements": {
                 "EnergykWh": {},
@@ -141,7 +141,7 @@
         },
         "CoolingUnit": {
             "URIs": [
-                "/redfish/v1/ThermalEquipment/{CoolingUnitType}/{CoolingUnitId}"
+                "/redfish/v1/ThermalEquipment/{CoolingUnitTypeId}/{CoolingUnitId}"
             ],
             "PropertyRequirements": {
                 "Coolant": {
@@ -179,7 +179,7 @@
         },
         "LeakDetection": {
             "URIs": [
-                "/redfish/v1/ThermalEquipment/{CoolingUnitType}/{CoolingUnitId}/LeakDetection"
+                "/redfish/v1/ThermalEquipment/{CoolingUnitTypeId}/{CoolingUnitId}/LeakDetection"
             ],
             "PropertyRequirements": {
                 "LeakDetectorGroups": {
@@ -202,7 +202,7 @@
         },
         "LeakDetector": {
             "URIs": [
-                "/redfish/v1/ThermalEquipment/{CoolingUnitType}/{CoolingUnitId}/LeakDetection/LeakDetectors/{LeakDetectorId}"
+                "/redfish/v1/ThermalEquipment/{CoolingUnitTypeId}/{CoolingUnitId}/LeakDetection/LeakDetectors/{LeakDetectorId}"
             ],
             "PropertyRequirements": {
                 "DetectorState": {},
