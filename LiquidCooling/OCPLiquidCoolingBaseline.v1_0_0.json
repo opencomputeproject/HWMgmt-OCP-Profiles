@@ -1,13 +1,13 @@
 {
     "SchemaDefinition": "RedfishInteroperabilityProfile.v1_7_0",
     "ProfileName": "OCP Liquid Cooling Baseline",
-    "ProfileVersion": "0.9.0",
+    "ProfileVersion": "1.0.0",
     "Purpose": "Specifies the baseline OCP management requirements for the Redfish interface on OCP liquid cooling units.",
     "OwningEntity": "Open Compute Project",
     "ContactInfo": "michael.raineri@dell.com",
     "RequiredProfiles": {
-        "OCPBaselineHardwareManagement": {
-            "MinVersion": "1.0.1"
+        "OCPBaselineRedfishService": {
+            "MinVersion": "1.0.0"
         }
     },
     "Resources": {

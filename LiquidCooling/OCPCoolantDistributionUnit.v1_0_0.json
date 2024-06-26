@@ -1,13 +1,13 @@
 {
     "SchemaDefinition": "RedfishInteroperabilityProfile.v1_7_0",
-    "ProfileName": "OCP Coolant Distribution Unit Management",
-    "ProfileVersion": "0.9.0",
+    "ProfileName": "OCP Coolant Distribution Unit",
+    "ProfileVersion": "1.0.0",
     "Purpose": "Specifies the OCP management requirements for the Redfish interface on OCP coolant distribution units.",
     "OwningEntity": "Open Compute Project",
     "ContactInfo": "michael.raineri@dell.com",
     "RequiredProfiles": {
         "OCPLiquidCoolingBaseline": {
-            "MinVersion": "0.9.0"
+            "MinVersion": "1.0.0"
         }
     },
     "Resources": {

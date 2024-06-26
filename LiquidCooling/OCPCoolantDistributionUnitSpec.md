@@ -15,13 +15,13 @@ The Redfish Interop Validator is an open-source conformance test that reads the 
 
 The Redfish Interop Validator is located at https://github.com/DMTF/Redfish-Interop-Validator.
 
-The Coolant Distribution Unit v1.0.0 profile extends from the Liquid Cooling Baseline v1.0.0 profile.
+The OCP Coolant Distribution Unit v1.0.0 profile extends from the OCP Liquid Cooling Baseline v1.0.0 profile.
 This extension is specified directly in the profile.
-This means that the switch profile specifies conformance to the baseline profile in addition to any requirements specified in the Coolant Distribution Unit profile.
+This means that the specification requires conformance to the OCP Liquid Cooling Baseline profile in addition to any requirements specified in the OCP Coolant Distribution Unit profile.
 
 ```
 "RequiredProfiles": {
-    "OCPLiquidCoolingBaseline.v0_9_0": {
+    "OCPLiquidCoolingBaseline": {
         "MinVersion": "1.0.0"
     }
 },
@@ -29,23 +29,11 @@ This means that the switch profile specifies conformance to the baseline profile
 
 # Capabilities
 
-The following use cases are enabled by conformance to this Coolant Distribution Unit profile.
-The Coolant Distribution Unit profile is extended from the Liquid Cooling Baseline profile.
-The following table lists the capabilities provide the baseline profile requirements.
-These capabilities are described in the "Usage Guide and Requirements for the OCP Liquid Cooling Baseline Profile v1.0.1" document.
+The following use cases are enabled by conformance to this OCP Coolant Distribution Unit profile.
+The OCP Coolant Distribution Unit profile is extended from the OCP Liquid Cooling Baseline profile.
+For capabilities specified in the the OCP Liquid Cooling Baseline profile, see the "OCP Liquid Cooling Baseline Specification".
 
-| Use Case       | Management Task            | Requirement |
-| :---           | :---------                 | :---        |
-| Inventory      | Get chassis info           | Mandatory |
-|                | Get cooling unit info      | Mandatory |
-| Temperature    | Get temperatures           | If implemented, mandatory |
-|                | Get fan info               | If implemented, mandatory |
-|                | Get fan redundancy info    | If implemented, mandatory |
-| Power          | Get power usage            | Mandatory |
-| Leak Detection | Get leak detection summary | Mandatory |
-|                | Get leak detector info     | Mandatory |
-
-The following table lists the capabilities prescribed in the Coolant Distribution Unit profile.
+The following table lists the capabilities prescribed in the OCP Coolant Distribution Unit profile.
 
 | Use Case         | Management Task                                               | Requirement |
 | :---             | :---------                                                    | :---        |
@@ -333,7 +321,7 @@ GET /redfish/v1/ThermalEquipment/CDUs/1/SecondaryCoolantConnectors/1
 
 # References
 
-\[1\] Usage Guide and Requirements for the OCP Liquid Cooling Baseline Profile v1.0.0
+\[1\] OCP Liquid Cooling Baseline Profile v1.0.0
 
 \[2\] "Redfish Specification" - [*https://www.dmtf.org/dsp/DSP0266*](https://www.dmtf.org/dsp/DSP0266)
 
