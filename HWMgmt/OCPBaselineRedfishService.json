@@ -1,7 +1,7 @@
 {
     "SchemaDefinition": "RedfishInteroperabilityProfile.v1_6_0",
-    "ProfileName": "OCP Baseline Redfish Service",
-    "ProfileVersion": "0.6.0",
+    "ProfileName": "OCP Redfish Service",
+    "ProfileVersion": "0.7.0",
     "Purpose": "Describes OCP requirements for any Redfish Service instance.  This profile covers only the purely software/firmware service portions of the Redfish schema.  Any device or product (software or firmware-based) implementing the Redfish Specification should meet these basic functionality requirements - regardless of the underlying hardware or system it is supporting.  This profile is intended to be included as a Required Profile by other OCP profiles to serve as a base for Redfish Service functionality.",
     "OwningEntity": "OCP",
     "ContactInfo": "jeff.autor@ocproject.com",
@@ -57,7 +57,7 @@
         },
         "Certificate": {
             "ReadRequirement": "Mandatory",
-            "URIs": "/redfish/v1/Managers/{ManagerId}/NetworkProtocol/HTTPS/Certificates/{CertificateId}",
+            "URIs": [ "/redfish/v1/Managers/{ManagerId}/NetworkProtocol/HTTPS/Certificates/{CertificateId}"],
             "PropertyRequirements": {
                 "CertificateString": {}
             }
@@ -119,13 +119,40 @@
                 },
                 "NameServers": {},
                 "IPv4Addresses": {
-                    "Address": {},
-                    "AddressOrigin": {},
-                    "Gateway": {},
-                    "SubnetMask": {}
+                    "PropertyRequirements": {
+                        "Address": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "AddressOrigin": {
+                            "ReadRequirement": "Mandatory"
+                        },
+                        "Gateway": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "SubnetMask": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    }
                 },
                 "IPv4StaticAddresses": {
-                    "ReadRequirement": "Recommended"
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "Address": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "Gateway": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "SubnetMask": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    }
                 },
                 "IPv6AddressPolicyTable": {
                     "ReadRequirement": "Recommended"
@@ -151,6 +178,7 @@
             }
         },
         "EventDestination": {
+            "ReadRequirement": "IfPopulated",
             "PropertyRequirements": {
                 "Context": {},
                 "Destination": {},
@@ -159,21 +187,32 @@
                 "EventFormatType": {},
                 "SubscriptionType": {},
                 "ExcludeMessageIds": {
-                    "ReadRequirement": "Recommended"
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Mandatory"
                 },
                 "ExcludeRegistryPrefixes": {
-                    "ReadRequirement": "Recommended"
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Mandatory"
                 },
                 "HttpHeaders": {
-                    "ReadRequirement": "Recommended"
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Mandatory"
                 },
                 "IncludeOriginOfCondition": {
-                    "ReadRequirement": "Recommended"
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Mandatory"
                 },
-                "RegistryPrefixes": {},
-                "ResourceTypes": {},
+                "RegistryPrefixes": {
+                    "ReadRequirement": "Mandatory",
+                    "WriteRequirement": "Mandatory"
+                },
+                "ResourceTypes": {
+                    "ReadRequirement": "Mandatory",
+                    "WriteRequirement": "Mandatory"
+                },
                 "SubordinateResources": {
-                    "ReadRequirement": "Recommended"
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Mandatory"
                 }
             },
             "ActionRequirements": {
@@ -187,8 +226,14 @@
         },
         "EventService": {
             "PropertyRequirements": {
-                "ExcludeMessageId": {},
-                "ExcludeRegistryPrefix": {},
+                "ExcludeMessageId": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Mandatory"
+                },
+                "ExcludeRegistryPrefix": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Mandatory"
+                },
                 "IncludeOriginOfConditionSupported": {},
                 "RegistryPrefixes": {},
                 "ResourceTypes": {},
@@ -250,7 +295,7 @@
             },
             "ActionRequirements": {
                 "Install": {
-                    "ReadRequirement": "Recommended",
+                    "ReadRequirement": "Mandatory",
                     "Purpose": "Encourage common toolchain usage for mass operations.  While individual licenses will be highly dependent on vendor definitions, the process to install those licenses should be vendor-independent.",
                     "Parameters": {
                         "LicenseFileURI": {}
@@ -348,8 +393,12 @@
                     }
                 },
                 "Password": {},
-                "PasswordChangeRequired": {},
-                "PasswordExpiration": {},
+                "PasswordChangeRequired": {
+                    "ReadRequirement": "Recommended"
+                },
+                "PasswordExpiration": {
+                    "ReadRequirement": "Recommended"
+                },
                 "RoleId": {},
                 "UserName": {}
             }
@@ -391,7 +440,10 @@
                 "SSDP": {
                     "ReadRequirement": "Recommended",
                     "PropertyRequirements": {
-                        "ProtocolEnabled": {},
+                        "ProtocolEnabled": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        },
                         "Port": {},
                         "NotifyMulticastIntervalSeconds": {},
                         "NotifyIPv6Scope": {},
@@ -399,6 +451,12 @@
                     }
                 }
             }
+        },
+        "OutboundConnectionCollection": {
+            "ReadRequirement": "Recommended",
+            "CreateResource": true,
+            "UpdateResource": true,
+            "DeleteResource": true
         },
         "OutboundConnection": {
             "ReadRequirement": "Recommended",
@@ -420,6 +478,12 @@
                 "Status": {},
                 "WebSocketPingIntervalMinutes": {}
             }
+        },
+        "RegisteredClientCollection": {
+            "ReadRequirement": "Recommended",
+            "CreateResource": true,
+            "UpdateResource": true,
+            "DeleteResource": true
         },
         "RegisteredClient": {
             "ReadRequirement": "Recommended",
