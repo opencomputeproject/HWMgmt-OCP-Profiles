@@ -162,56 +162,78 @@
                     }
                 }
             ]
-        }
-    },
-    "Sensor": {
-        "PropertyRequirements": {
-            "LifetimeReading": {
-                "ReadRequirement": "Conditional",
-                "Purpose": "For energy sensors",
-                "ConditionalRequirements": [
-                    {
-                        "CompareProperty": "ReadingType",
-                        "CompareValues": [
-                            "EnergykWh"
-                        ],
-                        "CompareType": "Equal",
-                        "ReadRequirement": "Mandatory"
+        },
+        "PowerSupplyMetrics": {
+            "ReadRequirement": "Recommended",
+            "Purpose": "For energy efficiency metrics, the losses from AC-DC or DC-DC power conversion losses need to be reported.  This data is available by calculating the difference between input and output power for power supplies and VRM (DC converter) devices.",
+            "PropertyRequirements": {
+                "InputPowerWatts": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "Reading": {
+                            "ReadRequirement": "Recommended"
+                        }
                     }
-                ]
-            },
-            "Reading": {},
-            "ReadingTime": {},
-            "ReadingType": {},
-            "ReadingAccuracy": {
-                "ReadRequirement": "Conditional",
-                "Purpose": "For power or energy sensors",
-                "ConditionalRequirements": [
-                    {
-                        "CompareProperty": "ReadingType",
-                        "CompareValues": [
-                            "Power",
-                            "EnergykWh"
-                        ],
-                        "CompareType": "Equal",
-                        "ReadRequirement": "Recommended"
+                },
+                "OutputPowerWatts": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "Reading": {
+                            "ReadRequirement": "Recommended"
+                        }
                     }
-                ]
-            },
-            "SensingInterval": {
-                "ReadRequirement": "Conditional",
-                "Purpose": "For power or energy sensors",
-                "ConditionalRequirements": [
-                    {
-                        "CompareProperty": "ReadingType",
-                        "CompareValues": [
-                            "Power",
-                            "EnergykWh"
-                        ],
-                        "CompareType": "Equal",
-                        "ReadRequirement": "Recommended"
-                    }
-                ]
+                }
+            }
+        },
+        "Sensor": {
+            "PropertyRequirements": {
+                "LifetimeReading": {
+                    "ReadRequirement": "Conditional",
+                    "Purpose": "For energy sensors",
+                    "ConditionalRequirements": [
+                        {
+                            "CompareProperty": "ReadingType",
+                            "CompareValues": [
+                                "EnergykWh"
+                            ],
+                            "CompareType": "Equal",
+                            "ReadRequirement": "Mandatory"
+                        }
+                    ]
+                },
+                "Reading": {},
+                "ReadingTime": {},
+                "ReadingType": {},
+                "ReadingAccuracy": {
+                    "ReadRequirement": "Conditional",
+                    "Purpose": "For power or energy sensors",
+                    "ConditionalRequirements": [
+                        {
+                            "CompareProperty": "ReadingType",
+                            "CompareValues": [
+                                "Power",
+                                "EnergykWh"
+                            ],
+                            "CompareType": "Equal",
+                            "ReadRequirement": "Recommended"
+                        }
+                    ]
+                },
+                "SensingInterval": {
+                    "ReadRequirement": "Conditional",
+                    "Purpose": "For power or energy sensors",
+                    "ConditionalRequirements": [
+                        {
+                            "CompareProperty": "ReadingType",
+                            "CompareValues": [
+                                "Power",
+                                "EnergykWh"
+                            ],
+                            "CompareType": "Equal",
+                            "ReadRequirement": "Recommended"
+                        }
+                    ]
+                }
             }
         }
     }

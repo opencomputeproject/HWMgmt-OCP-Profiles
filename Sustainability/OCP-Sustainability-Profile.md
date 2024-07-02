@@ -29,6 +29,10 @@
 
    - [EnvironmentMetrics 1.3.0 (Thermal Subsystem)](#environmentmetrics-1.3.0-%28thermal-subsystem%29)
 
+   - [PowerSupplyMetrics 1.1.0](#powersupplymetrics-1.1.0)
+
+   - [Sensor 1.8.0](#sensor-1.8.0)
+
 - [Redfish documentation generator](#redfish-documentation-generator)
 
 - [ANNEX A (informative) Change log](#annex-a-%28informative%29-change-log)
@@ -444,11 +448,11 @@ This UseCase is must exist at the following URIs:
 
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
-| **EnergykWh** { | object | *Supported (Read)* | Energy consumption (kWh). **Notate the sampling rate, accuracy, etc.** |
+| **EnergykWh** { | object<br>(excerpt) | *Supported (Read)* | Energy consumption (kWh). **Notate the sampling rate, accuracy, etc.** This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LifetimeReading** *(v1.1+)* | number | *Recommended (Read-only)* | The total accumulation value for this sensor. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
 | } |   |   |
-| **PowerWatts** { | object | *Supported (Read)* | Power consumption (W). **Notate the sampling rate, etc.** |
+| **PowerWatts** { | object<br>(excerpt) | *Supported (Read)* | Power consumption (W). **Notate the sampling rate, etc.** This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
 | } |   |   |
 ### Example response
@@ -501,10 +505,10 @@ This UseCase is must exist at the following URIs:
 
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
-| **EnergykWh** { | object | *Recommended (Read)* | Energy consumption (kWh). |
+| **EnergykWh** { | object<br>(excerpt) | *Recommended (Read)* | Energy consumption (kWh). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
 | } |   |   |
-| **PowerWatts** { | object | *Recommended (Read)* | Power consumption (W). |
+| **PowerWatts** { | object<br>(excerpt) | *Recommended (Read)* | Power consumption (W). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
 | } |   |   |
 ### Example response
@@ -556,8 +560,8 @@ This UseCase is must exist at the following URIs:
 
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
-| **EnergykWh** {} | object | *Recommended (Read)* | Energy consumption (kWh). |
-| **PowerWatts** {} | object | *Recommended (Read)* | Power consumption (W). |
+| **EnergykWh** {} | object<br>(excerpt) | *Recommended (Read)* | Energy consumption (kWh). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| **PowerWatts** {} | object<br>(excerpt) | *Recommended (Read)* | Power consumption (W). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 
 ### Property details
 
@@ -594,6 +598,252 @@ This UseCase is must exist at the following URIs:
         }
     ],
     "@odata.id": "/redfish/v1/Systems/437XR1138R2/Processors/1/EnvironmentMetrics"
+}
+```
+
+
+
+## <a name="powersupplymetrics-1.1.0"></a>PowerSupplyMetrics 1.1.0
+
+|     |     |     |
+| :--- | :--- | :--- |
+| **Version** | *v1.1* | *v1.0* |
+| **Release** | 2023.1 | 2020.4 |
+
+### Description
+
+For energy efficiency metrics, the losses from AC-DC or DC-DC power conversion losses need to be reported.  This data is available by calculating the difference between input and output power for power supplies and VRM (DC converter) devices.
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;PowerSubsystem/&#8203;PowerSupplies/&#8203;*{PowerSupplyId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;PowerEquipment/&#8203;PowerShelves/&#8203;*{PowerDistributionId}*/&#8203;PowerSupplies/&#8203;*{PowerSupplyId}*/&#8203;Metrics<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **InputPowerWatts** { | object<br>(excerpt) | *Recommended (Read)* | The input power (W) for this power supply. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Recommended (Read-only)* | The sensor value. |
+| } |   |   |
+| **OutputPowerWatts** { | object<br>(excerpt) | *Recommended (Read)* | The total power output (W) for this power supply. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Recommended (Read-only)* | The sensor value. |
+| } |   |   |
+### Example response
+
+
+```json
+{
+    "@odata.type": "#PowerSupplyMetrics.v1_1_2.PowerSupplyMetrics",
+    "Id": "Metrics",
+    "Name": "Metrics for Power Supply 1",
+    "Status": {
+        "State": "Enabled",
+        "Health": "Warning"
+    },
+    "InputVoltage": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1InputVoltage",
+        "Reading": 230.2
+    },
+    "InputCurrentAmps": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1InputCurrent",
+        "Reading": 5.19
+    },
+    "InputPowerWatts": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1InputPower",
+        "Reading": 937.4
+    },
+    "RailVoltage": [
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1_3VOutput",
+            "Reading": 3.31
+        },
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1_5VOutput",
+            "Reading": 5.03
+        },
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1_12VOutput",
+            "Reading": 12.06
+        }
+    ],
+    "RailCurrentAmps": [
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1_3VCurrent",
+            "Reading": 9.84
+        },
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1_5VCurrent",
+            "Reading": 1.25
+        },
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1_12Current",
+            "Reading": 2.58
+        }
+    ],
+    "OutputPowerWatts": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1OutputPower",
+        "Reading": 937.4
+    },
+    "RailPowerWatts": [
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1_3VPower",
+            "Reading": 79.84
+        },
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1_5VPower",
+            "Reading": 26.25
+        },
+        {
+            "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1_12VPower",
+            "Reading": 91.58
+        }
+    ],
+    "EnergykWh": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1Energy",
+        "Reading": 325675
+    },
+    "FrequencyHz": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1InputFrequency",
+        "Reading": 60
+    },
+    "TemperatureCelsius": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1Temp",
+        "Reading": 43.9
+    },
+    "FanSpeedPercent": {
+        "DataSourceUri": "/redfish/v1/Chassis/1U/Sensors/PS1Fan",
+        "Reading": 68,
+        "SpeedRPM": 3290
+    },
+    "Actions": {
+        "#PowerSupplyMetrics.ResetMetrics": {
+            "target": "/redfish/v1/Chassis/1U/PowerSubsystem/PowerSupplies/Bay1/Metrics/PowerSupplyMetrics.ResetMetrics"
+        }
+    },
+    "@odata.id": "/redfish/v1/Chassis/1U/PowerSubsystem/PowerSupplies/Bay1/Metrics"
+}
+```
+
+
+
+## <a name="sensor-1.8.0"></a>Sensor 1.8.0
+
+|     |     |     |     |     |     |     |     |     |     |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Version** | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
+| **Release** | 2023.2 | 2023.1 | 2022.2 | 2021.4 | 2021.2 | 2021.1 | 2020.4 | 2019.4 | 2018.3 |
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;Sensors/&#8203;*{SensorId}*<br>
+/&#8203;redfish/&#8203;v1/&#8203;PowerEquipment/&#8203;FloorPDUs/&#8203;*{PowerDistributionId}*/&#8203;Sensors/&#8203;*{SensorId}* (deprecated)<br>
+/&#8203;redfish/&#8203;v1/&#8203;PowerEquipment/&#8203;PowerShelves/&#8203;*{PowerDistributionId}*/&#8203;Sensors/&#8203;*{SensorId}* (deprecated)<br>
+/&#8203;redfish/&#8203;v1/&#8203;PowerEquipment/&#8203;RackPDUs/&#8203;*{PowerDistributionId}*/&#8203;Sensors/&#8203;*{SensorId}* (deprecated)<br>
+/&#8203;redfish/&#8203;v1/&#8203;PowerEquipment/&#8203;Switchgear/&#8203;*{PowerDistributionId}*/&#8203;Sensors/&#8203;*{SensorId}* (deprecated)<br>
+/&#8203;redfish/&#8203;v1/&#8203;PowerEquipment/&#8203;TransferSwitches/&#8203;*{PowerDistributionId}*/&#8203;Sensors/&#8203;*{SensorId}* (deprecated)<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **LifetimeReading** *(v1.1+)* | number | *Conditional Requirements (Read-only)* | The total accumulation value for this sensor. **For energy sensors** |
+| **Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| **ReadingAccuracy** *(v1.8+)* | number | *Conditional Requirements (Read-only)* | Accuracy (+/-) of the reading. **For power or energy sensors** |
+| **ReadingTime** *(v1.1+)* | string<br>(date-time) | *Mandatory (Read-only)* | The date and time that the reading was acquired from the sensor. |
+| **ReadingType** | string<br>(enum) | *Mandatory (Read-only)* | The type of sensor. *For the possible property values, see ReadingType in Property details.* |
+| **SensingInterval** *(v1.1+)* | string<br>(duration) | *Conditional Requirements (Read-only)* | The time interval between readings of the sensor. **For power or energy sensors** |
+
+### Conditional Requirements
+
+#### LifetimeReading
+
+|     |     |     |
+| :--- | :--- | :--- |
+| "ReadingType" is Equal to "EnergykWh" | Mandatory (Read) |                      |
+#### ReadingAccuracy
+
+|     |     |     |
+| :--- | :--- | :--- |
+| "ReadingType" is Equal to "Power", "EnergykWh" | Recommended (Read) |                      |
+#### SensingInterval
+
+|     |     |     |
+| :--- | :--- | :--- |
+| "ReadingType" is Equal to "Power", "EnergykWh" | Recommended (Read) |                      |
+
+### Property details
+
+#### ReadingType
+
+The type of sensor.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| AbsoluteHumidity *(v1.5+)* | Absolute humidity (g/cu m). |  |
+| AirFlow *(deprecated v1.7)* | Air flow (cu ft/min). *Deprecated in v1.7 and later. This value has been deprecated in favor of `AirFlowCMM` for consistent use of SI units.* |  |
+| AirFlowCMM *(v1.7+)* | Air flow (m^3/min). |  |
+| Altitude | Altitude (m). |  |
+| Barometric | Barometric pressure (mm). |  |
+| ChargeAh *(v1.4+)* | Charge (Ah). |  |
+| Current | Current (A). |  |
+| EnergyJoules | Energy (J). |  |
+| EnergykWh | Energy (kWh). |  |
+| EnergyWh *(v1.4+)* | Energy (Wh). |  |
+| Frequency | Frequency (Hz). |  |
+| Heat *(v1.7+)* | Heat (kW). |  |
+| Humidity | Relative humidity (percent). |  |
+| LiquidFlow *(deprecated v1.7)* | Liquid flow (L/s). *Deprecated in v1.7 and later. This value has been deprecated in favor of `LiquidFlowLPM` for consistency of units typically expected or reported by Sensor and Control resources.* |  |
+| LiquidFlowLPM *(v1.7+)* | Liquid flow (L/min). |  |
+| LiquidLevel | Liquid level (cm). |  |
+| Percent *(v1.1+)* | Percent (%). |  |
+| Power | Power (W). |  |
+| Pressure *(deprecated v1.7)* | Pressure (Pa). *Deprecated in v1.7 and later. This value has been deprecated in favor of `PressurePa` or `PressurekPa` for consistency of units between Sensor and Control resources.* |  |
+| PressurekPa *(v1.5+)* | Pressure (kPa). |  |
+| PressurePa *(v1.7+)* | Pressure (Pa). |  |
+| Rotational | Rotational (RPM). |  |
+| Temperature | Temperature (C). |  |
+| Voltage | Voltage (VAC or VDC). |  |
+
+### Example response
+
+
+```json
+{
+    "@odata.type": "#Sensor.v1_10_0.Sensor",
+    "Id": "CabinetTemp",
+    "Name": "Rack Temperature",
+    "ReadingType": "Temperature",
+    "ReadingTime": "2019-12-25T04:14:33+06:00",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "Reading": 31.6,
+    "ReadingUnits": "C",
+    "ReadingRangeMin": 0,
+    "ReadingRangeMax": 70,
+    "Accuracy": 0.25,
+    "Precision": 1,
+    "SensingInterval": "PT3S",
+    "PhysicalContext": "Chassis",
+    "Thresholds": {
+        "UpperCritical": {
+            "Reading": 40,
+            "Activation": "Increasing"
+        },
+        "UpperCaution": {
+            "Reading": 35,
+            "Activation": "Increasing"
+        },
+        "LowerCaution": {
+            "Reading": 10,
+            "Activation": "Increasing"
+        }
+    },
+    "@odata.id": "/redfish/v1/Chassis/1/Sensors/CabinetTemp"
 }
 ```
 
