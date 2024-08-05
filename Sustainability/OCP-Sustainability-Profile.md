@@ -19,19 +19,19 @@
 
    - [Using the reference guide](#using-the-reference-guide)
 
-   - [Chassis 1.24.0 (General)](#chassis-1.24.0-%28general%29)
+   - [Chassis 1.25.1 (General)](#chassis-1.25.1-%28general%29)
 
-   - [Chassis 1.24.0 (Product-level)](#chassis-1.24.0-%28product-level%29)
+   - [Chassis 1.25.1 (Product-level)](#chassis-1.25.1-%28product-level%29)
 
-   - [EnvironmentMetrics 1.3.0 (Chassis)](#environmentmetrics-1.3.0-%28chassis%29)
+   - [EnvironmentMetrics 1.3.2 (Chassis)](#environmentmetrics-1.3.2-%28chassis%29)
 
-   - [EnvironmentMetrics 1.3.0 (Processor and Memory)](#environmentmetrics-1.3.0-%28processor-and-memory%29)
+   - [EnvironmentMetrics 1.3.2 (Processor and Memory)](#environmentmetrics-1.3.2-%28processor-and-memory%29)
 
-   - [EnvironmentMetrics 1.3.0 (Thermal Subsystem)](#environmentmetrics-1.3.0-%28thermal-subsystem%29)
+   - [EnvironmentMetrics 1.3.2 (Thermal Subsystem)](#environmentmetrics-1.3.2-%28thermal-subsystem%29)
 
-   - [PowerSupplyMetrics 1.1.0](#powersupplymetrics-1.1.0)
+   - [PowerSupplyMetrics 1.1.2](#powersupplymetrics-1.1.2)
 
-   - [Sensor 1.8.0](#sensor-1.8.0)
+   - [Sensor 1.10.0](#sensor-1.10.0)
 
 - [Redfish documentation generator](#redfish-documentation-generator)
 
@@ -159,7 +159,7 @@ The property-level details include:
 | Description | <p>The normative description of the property, as copied directly from the schema <code>LongDescription</code> definition.</p> |
 
 
-## <a name="chassis-1.24.0-%28general%29"></a>Chassis 1.24.0 (General)
+## <a name="chassis-1.25.1-%28general%29"></a>Chassis 1.25.1 (General)
 
 ### Description
 
@@ -180,12 +180,69 @@ This UseCase may be found at the following URIs:
 | :--- | :--- | :--- | :--------------------- |
 | **ChassisType** | string<br>(enum) | *Mandatory (Read-only)* | The type of physical form factor of the chassis. *For the possible property values, see ChassisType in Property details.* |
 | **EnvironmentMetrics** *(v1.15+)* { | object | *Supported (Read-only)* | The link to the environment metrics for this chassis. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AbsoluteHumidity** *(v1.2+)* { | object<br>(excerpt) | *Mandatory (Read)* | Absolute humidity (g/m^3). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DewPointCelsius** *(v1.1+)* { | object<br>(excerpt) | *Mandatory (Read)* | The dew point temperature (C). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnergyJoules** *(v1.2+)* { | object<br>(excerpt) | *Mandatory (Read)* | Energy consumption (J). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnergykWh** { | object<br>(excerpt) | *Mandatory (Read)* | Energy consumption (kWh). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ApparentkVAh** *(v1.5+)* | number<br>(kV.A.h) | *Mandatory (Read-only)* | Apparent energy (kVAh). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LifetimeReading** *(v1.1+)* | number | *Mandatory (Read-only)* | The total accumulation value for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReactivekVARh** *(v1.5+)* | number<br>(kV.A.h) | *Mandatory (Read-only)* | Reactive energy (kVARh). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SensorResetTime** | string<br>(date-time) | *Mandatory (Read-only)* | The date and time when the time-based properties were last reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FanSpeedsPercent** [ { | array<br>(excerpt) | *Mandatory (Read)* | Fan speeds (percent). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeviceName** *(v1.2+)* | string | *Mandatory (Read-only)* | The name of the device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalContext** | string<br>(enum) | *Mandatory (Read-only)* | The area or device to which this sensor measurement applies. *For the possible property values, see PhysicalContext in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalSubContext** | string<br>(enum) | *Mandatory (Read-only)* | The usage or location within a device to which this sensor measurement applies. *For the possible property values, see PhysicalSubContext in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SpeedRPM** *(v1.2+)* | number<br>({rev}/min) | *Mandatory (Read-only)* | The rotational speed. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FanSpeedsPercent@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HumidityPercent** { | object<br>(excerpt) | *Mandatory (Read)* | Humidity (percent). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLimitWatts** *(v1.1+)* {} | object | *Mandatory (Read)* | Power limit (W). See the *Control.v1_5_1* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLoadPercent** *(v1.1+)* { | object<br>(excerpt) | *Mandatory (Read)* | The power load (percent) for this device. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerWatts** { | object<br>(excerpt) | *Mandatory (Read)* | Power consumption (W). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ApparentVA** | number<br>(V.A) | *Mandatory (Read-only)* | The product of voltage and current for an AC circuit, in volt-ampere units. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhaseAngleDegrees** *(v1.5+)* | number | *Mandatory (Read-only)* | The phase angle (degrees) between the current and voltage waveforms. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerFactor** | number | *Mandatory (Read-only)* | The power factor for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReactiveVAR** | number<br>(V.A) | *Mandatory (Read-only)* | The square root of the difference term of squared apparent VA and squared power (Reading) for a circuit, in VAR units. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TemperatureCelsius** { | object<br>(excerpt) | *Mandatory (Read)* | Temperature (Celsius). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | } |   |   |
 | **Location** *(v1.2+)* { | object | *Supported (Read)* | The location of the chassis. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalAddress** *(v1.17+)* { | object | *Recommended (Read)* | The physical address for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ISOCountryCode** *(v1.17+)* | string | *Recommended (Read)* | The ISO 3166-1 country code. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ISOSubdivisionCode** *(v1.17+)* | string | *Recommended (Read)* | ISO 3166-2 subdivision code . |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ISOSubdivisionCode** *(v1.17+)* | string | *Recommended (Read)* | ISO 3166-2 subdivision code. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PostalCode** *(v1.17+)* | string | *Recommended (Read)* | The postal code. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | } |   |   |
@@ -213,6 +270,7 @@ The type of physical form factor of the chassis.
 | Module | A small, typically removable, chassis or card that contains devices for a particular subsystem or function. |  |
 | Other | A chassis that does not fit any of these definitions. |  |
 | Pod | A collection of equipment racks in a large, likely transportable, container. |  |
+| PowerStrip *(v1.25+)* | A power strip, typically placed in the zero-U space of a rack. |  |
 | Rack | An equipment rack, typically a 19-inch wide freestanding unit. |  |
 | RackGroup *(v1.4+)* | A group of racks that form a single entity or share infrastructure. |  |
 | RackMount | A single-system chassis designed specifically for mounting in an equipment rack. |  |
@@ -223,6 +281,73 @@ The type of physical form factor of the chassis.
 | StandAlone | A single, free-standing system, commonly called a tower or desktop chassis. |  |
 | StorageEnclosure *(v1.6+)* | A chassis that encloses storage. |  |
 | Zone | A logical division or portion of a physical chassis that contains multiple devices or systems that cannot be physically separated. |  |
+
+#### PhysicalContext
+
+The area or device to which this sensor measurement applies.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Accelerator | An accelerator. |  |
+| ACInput | An AC input. |  |
+| ACMaintenanceBypassInput | An AC maintenance bypass input. |  |
+| ACOutput | An AC output. |  |
+| ACStaticBypassInput | An AC static bypass input. |  |
+| ACUtilityInput | An AC utility input. |  |
+| ASIC | An ASIC device, such as a networking chip or chipset component. |  |
+| Back | The back of the chassis. |  |
+| Backplane | A backplane within the chassis. |  |
+| Battery | A battery. |  |
+| Board | A circuit board. |  |
+| Chassis | The entire chassis. |  |
+| ComputeBay | Within a compute bay. |  |
+| CoolingSubsystem | The entire cooling, or air and liquid, subsystem. |  |
+| CPU | A processor (CPU). |  |
+| CPUSubsystem | The entire processor (CPU) subsystem. |  |
+| DCBus | A DC bus. |  |
+| Exhaust | The air exhaust point or points or region of the chassis. |  |
+| ExpansionBay | Within an expansion bay. |  |
+| Fan | A fan. |  |
+| Filter | A filter. |  |
+| FPGA | An FPGA. |  |
+| Front | The front of the chassis. |  |
+| GPU | A graphics processor (GPU). |  |
+| GPUSubsystem | The entire graphics processor (GPU) subsystem. |  |
+| Intake | The air intake point or points or region of the chassis. |  |
+| LiquidInlet | The liquid inlet point of the chassis. |  |
+| LiquidOutlet | The liquid outlet point of the chassis. |  |
+| Lower | The lower portion of the chassis. |  |
+| Manager | A management controller, such as a BMC (baseboard management controller). |  |
+| Memory | A memory device. |  |
+| MemorySubsystem | The entire memory subsystem. |  |
+| Motor | A motor. |  |
+| NetworkBay | Within a networking bay. |  |
+| NetworkingDevice | A networking device. |  |
+| PowerSubsystem | The entire power subsystem. |  |
+| PowerSupply | A power supply. |  |
+| PowerSupplyBay | Within a power supply bay. |  |
+| Pump | A pump. |  |
+| Rectifier | A rectifier device. |  |
+| Reservoir | A reservoir. |  |
+| Room | The room. |  |
+| StorageBay | Within a storage bay. |  |
+| StorageDevice | A storage device. |  |
+| Switch | A switch device. |  |
+| SystemBoard | The system board (PCB). |  |
+| Transceiver | A transceiver. |  |
+| Transformer | A transformer. |  |
+| TrustedModule | A trusted module. |  |
+| Upper | The upper portion of the chassis. |  |
+| VoltageRegulator | A voltage regulator device. |  |
+
+#### PhysicalSubContext
+
+The usage or location within a device to which this sensor measurement applies.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Input | The input. |  |
+| Output | The output. |  |
 
 ### Example response
 
@@ -293,7 +418,7 @@ The type of physical form factor of the chassis.
 
 
 
-## <a name="chassis-1.24.0-%28product-level%29"></a>Chassis 1.24.0 (Product-level)
+## <a name="chassis-1.25.1-%28product-level%29"></a>Chassis 1.25.1 (Product-level)
 
 ### Description
 
@@ -316,12 +441,73 @@ This UseCase may be found at the following URIs:
 | :--- | :--- | :--- | :--------------------- |
 | **ChassisType** | string<br>(enum) | *Mandatory (Read-only)* | The type of physical form factor of the chassis. *For the possible property values, see ChassisType in Property details.* |
 | **EnvironmentMetrics** *(v1.15+)* { | object | *Mandatory (Read-only)* | The link to the environment metrics for this chassis. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AbsoluteHumidity** *(v1.2+)* { | object<br>(excerpt) | *Mandatory (Read)* | Absolute humidity (g/m^3). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Actions** { | object | *Mandatory (Read)* | The available actions for this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#EnvironmentMetrics.ResetMetrics** {} | object | *Mandatory (Read)* | This action resets the summary metrics related to this equipment. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#EnvironmentMetrics.ResetToDefaults** *(v1.3+)* {} | object | *Mandatory (Read)* | The action resets the values of writable properties to factory defaults. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DewPointCelsius** *(v1.1+)* { | object<br>(excerpt) | *Mandatory (Read)* | The dew point temperature (C). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnergyJoules** *(v1.2+)* { | object<br>(excerpt) | *Mandatory (Read)* | Energy consumption (J). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnergykWh** { | object<br>(excerpt) | *Mandatory (Read)* | Energy consumption (kWh). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ApparentkVAh** *(v1.5+)* | number<br>(kV.A.h) | *Mandatory (Read-only)* | Apparent energy (kVAh). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LifetimeReading** *(v1.1+)* | number | *Mandatory (Read-only)* | The total accumulation value for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReactivekVARh** *(v1.5+)* | number<br>(kV.A.h) | *Mandatory (Read-only)* | Reactive energy (kVARh). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SensorResetTime** | string<br>(date-time) | *Mandatory (Read-only)* | The date and time when the time-based properties were last reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FanSpeedsPercent** [ { | array<br>(excerpt) | *Mandatory (Read)* | Fan speeds (percent). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeviceName** *(v1.2+)* | string | *Mandatory (Read-only)* | The name of the device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalContext** | string<br>(enum) | *Mandatory (Read-only)* | The area or device to which this sensor measurement applies. *For the possible property values, see PhysicalContext in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalSubContext** | string<br>(enum) | *Mandatory (Read-only)* | The usage or location within a device to which this sensor measurement applies. *For the possible property values, see PhysicalSubContext in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SpeedRPM** *(v1.2+)* | number<br>({rev}/min) | *Mandatory (Read-only)* | The rotational speed. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FanSpeedsPercent@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HumidityPercent** { | object<br>(excerpt) | *Mandatory (Read)* | Humidity (percent). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLimitWatts** *(v1.1+)* {} | object | *Mandatory (Read)* | Power limit (W). See the *Control.v1_5_1* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLoadPercent** *(v1.1+)* { | object<br>(excerpt) | *Mandatory (Read)* | The power load (percent) for this device. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerWatts** { | object<br>(excerpt) | *Mandatory (Read)* | Power consumption (W). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ApparentVA** | number<br>(V.A) | *Mandatory (Read-only)* | The product of voltage and current for an AC circuit, in volt-ampere units. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhaseAngleDegrees** *(v1.5+)* | number | *Mandatory (Read-only)* | The phase angle (degrees) between the current and voltage waveforms. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerFactor** | number | *Mandatory (Read-only)* | The power factor for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReactiveVAR** | number<br>(V.A) | *Mandatory (Read-only)* | The square root of the difference term of squared apparent VA and squared power (Reading) for a circuit, in VAR units. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TemperatureCelsius** { | object<br>(excerpt) | *Mandatory (Read)* | Temperature (Celsius). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | } |   |   |
 | **Location** *(v1.2+)* { | object | *Mandatory (Read)* | The location of the chassis. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalAddress** *(v1.17+)* { | object | *Recommended (Read)* | The physical address for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ISOCountryCode** *(v1.17+)* | string | *Recommended (Read)* | The ISO 3166-1 country code. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ISOSubdivisionCode** *(v1.17+)* | string | *Recommended (Read)* | ISO 3166-2 subdivision code . |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ISOSubdivisionCode** *(v1.17+)* | string | *Recommended (Read)* | ISO 3166-2 subdivision code. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PostalCode** *(v1.17+)* | string | *Recommended (Read)* | The postal code. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | } |   |   |
@@ -349,6 +535,7 @@ The type of physical form factor of the chassis.
 | Module | A small, typically removable, chassis or card that contains devices for a particular subsystem or function. |  |
 | Other | A chassis that does not fit any of these definitions. |  |
 | Pod | A collection of equipment racks in a large, likely transportable, container. |  |
+| PowerStrip *(v1.25+)* | A power strip, typically placed in the zero-U space of a rack. |  |
 | Rack | An equipment rack, typically a 19-inch wide freestanding unit. |  |
 | RackGroup *(v1.4+)* | A group of racks that form a single entity or share infrastructure. |  |
 | RackMount | A single-system chassis designed specifically for mounting in an equipment rack. |  |
@@ -359,6 +546,73 @@ The type of physical form factor of the chassis.
 | StandAlone | A single, free-standing system, commonly called a tower or desktop chassis. |  |
 | StorageEnclosure *(v1.6+)* | A chassis that encloses storage. |  |
 | Zone | A logical division or portion of a physical chassis that contains multiple devices or systems that cannot be physically separated. |  |
+
+#### PhysicalContext
+
+The area or device to which this sensor measurement applies.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Accelerator | An accelerator. |  |
+| ACInput | An AC input. |  |
+| ACMaintenanceBypassInput | An AC maintenance bypass input. |  |
+| ACOutput | An AC output. |  |
+| ACStaticBypassInput | An AC static bypass input. |  |
+| ACUtilityInput | An AC utility input. |  |
+| ASIC | An ASIC device, such as a networking chip or chipset component. |  |
+| Back | The back of the chassis. |  |
+| Backplane | A backplane within the chassis. |  |
+| Battery | A battery. |  |
+| Board | A circuit board. |  |
+| Chassis | The entire chassis. |  |
+| ComputeBay | Within a compute bay. |  |
+| CoolingSubsystem | The entire cooling, or air and liquid, subsystem. |  |
+| CPU | A processor (CPU). |  |
+| CPUSubsystem | The entire processor (CPU) subsystem. |  |
+| DCBus | A DC bus. |  |
+| Exhaust | The air exhaust point or points or region of the chassis. |  |
+| ExpansionBay | Within an expansion bay. |  |
+| Fan | A fan. |  |
+| Filter | A filter. |  |
+| FPGA | An FPGA. |  |
+| Front | The front of the chassis. |  |
+| GPU | A graphics processor (GPU). |  |
+| GPUSubsystem | The entire graphics processor (GPU) subsystem. |  |
+| Intake | The air intake point or points or region of the chassis. |  |
+| LiquidInlet | The liquid inlet point of the chassis. |  |
+| LiquidOutlet | The liquid outlet point of the chassis. |  |
+| Lower | The lower portion of the chassis. |  |
+| Manager | A management controller, such as a BMC (baseboard management controller). |  |
+| Memory | A memory device. |  |
+| MemorySubsystem | The entire memory subsystem. |  |
+| Motor | A motor. |  |
+| NetworkBay | Within a networking bay. |  |
+| NetworkingDevice | A networking device. |  |
+| PowerSubsystem | The entire power subsystem. |  |
+| PowerSupply | A power supply. |  |
+| PowerSupplyBay | Within a power supply bay. |  |
+| Pump | A pump. |  |
+| Rectifier | A rectifier device. |  |
+| Reservoir | A reservoir. |  |
+| Room | The room. |  |
+| StorageBay | Within a storage bay. |  |
+| StorageDevice | A storage device. |  |
+| Switch | A switch device. |  |
+| SystemBoard | The system board (PCB). |  |
+| Transceiver | A transceiver. |  |
+| Transformer | A transformer. |  |
+| TrustedModule | A trusted module. |  |
+| Upper | The upper portion of the chassis. |  |
+| VoltageRegulator | A voltage regulator device. |  |
+
+#### PhysicalSubContext
+
+The usage or location within a device to which this sensor measurement applies.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Input | The input. |  |
+| Output | The output. |  |
 
 ### Example response
 
@@ -429,7 +683,7 @@ The type of physical form factor of the chassis.
 
 
 
-## <a name="environmentmetrics-1.3.0-%28chassis%29"></a>EnvironmentMetrics 1.3.0 (Chassis)
+## <a name="environmentmetrics-1.3.2-%28chassis%29"></a>EnvironmentMetrics 1.3.2 (Chassis)
 
 ### Description
 
@@ -483,7 +737,7 @@ This UseCase is must exist at the following URIs:
 
 
 
-## <a name="environmentmetrics-1.3.0-%28processor-and-memory%29"></a>EnvironmentMetrics 1.3.0 (Processor and Memory)
+## <a name="environmentmetrics-1.3.2-%28processor-and-memory%29"></a>EnvironmentMetrics 1.3.2 (Processor and Memory)
 
 ### Description
 
@@ -539,7 +793,7 @@ This UseCase is must exist at the following URIs:
 
 
 
-## <a name="environmentmetrics-1.3.0-%28thermal-subsystem%29"></a>EnvironmentMetrics 1.3.0 (Thermal Subsystem)
+## <a name="environmentmetrics-1.3.2-%28thermal-subsystem%29"></a>EnvironmentMetrics 1.3.2 (Thermal Subsystem)
 
 ### Description
 
@@ -603,7 +857,7 @@ This UseCase is must exist at the following URIs:
 
 
 
-## <a name="powersupplymetrics-1.1.0"></a>PowerSupplyMetrics 1.1.0
+## <a name="powersupplymetrics-1.1.2"></a>PowerSupplyMetrics 1.1.2
 
 |     |     |     |
 | :--- | :--- | :--- |
@@ -728,12 +982,12 @@ For energy efficiency metrics, the losses from AC-DC or DC-DC power conversion l
 
 
 
-## <a name="sensor-1.8.0"></a>Sensor 1.8.0
+## <a name="sensor-1.10.0"></a>Sensor 1.10.0
 
-|     |     |     |     |     |     |     |     |     |     |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
-| **Release** | 2023.2 | 2023.1 | 2022.2 | 2021.4 | 2021.2 | 2021.1 | 2020.4 | 2019.4 | 2018.3 |
+|     |     |     |     |     |     |     |     |     |     |     |     |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Version** | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
+| **Release** | 2024.2 | 2024.1 | 2023.2 | 2023.1 | 2022.2 | 2021.4 | 2021.2 | 2021.1 | 2020.4 | 2019.4 | 2018.3 |
 
 ### URIs
 
@@ -782,7 +1036,7 @@ The type of sensor.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
-| AbsoluteHumidity *(v1.5+)* | Absolute humidity (g/cu m). |  |
+| AbsoluteHumidity *(v1.5+)* | Absolute humidity (g/m^3). |  |
 | AirFlow *(deprecated v1.7)* | Air flow (cu ft/min). *Deprecated in v1.7 and later. This value has been deprecated in favor of `AirFlowCMM` for consistent use of SI units.* |  |
 | AirFlowCMM *(v1.7+)* | Air flow (m^3/min). |  |
 | Altitude | Altitude (m). |  |
@@ -795,12 +1049,12 @@ The type of sensor.
 | Frequency | Frequency (Hz). |  |
 | Heat *(v1.7+)* | Heat (kW). |  |
 | Humidity | Relative humidity (percent). |  |
-| LiquidFlow *(deprecated v1.7)* | Liquid flow (L/s). *Deprecated in v1.7 and later. This value has been deprecated in favor of `LiquidFlowLPM` for consistency of units typically expected or reported by Sensor and Control resources.* |  |
+| LiquidFlow *(deprecated v1.7)* | Liquid flow (L/s). *Deprecated in v1.7 and later. This value has been deprecated in favor of `LiquidFlowLPM` for consistency of units typically expected or reported by `Sensor` and `Control` resources.* |  |
 | LiquidFlowLPM *(v1.7+)* | Liquid flow (L/min). |  |
 | LiquidLevel | Liquid level (cm). |  |
 | Percent *(v1.1+)* | Percent (%). |  |
 | Power | Power (W). |  |
-| Pressure *(deprecated v1.7)* | Pressure (Pa). *Deprecated in v1.7 and later. This value has been deprecated in favor of `PressurePa` or `PressurekPa` for consistency of units between Sensor and Control resources.* |  |
+| Pressure *(deprecated v1.7)* | Pressure (Pa). *Deprecated in v1.7 and later. This value has been deprecated in favor of `PressurePa` or `PressurekPa` for consistency of units between `Sensor` and `Control` resources.* |  |
 | PressurekPa *(v1.5+)* | Pressure (kPa). |  |
 | PressurePa *(v1.7+)* | Pressure (Pa). |  |
 | Rotational | Rotational (RPM). |  |
@@ -812,7 +1066,7 @@ The type of sensor.
 
 ```json
 {
-    "@odata.type": "#Sensor.v1_10_0.Sensor",
+    "@odata.type": "#Sensor.v1_9_0.Sensor",
     "Id": "CabinetTemp",
     "Name": "Rack Temperature",
     "ReadingType": "Temperature",
@@ -854,6 +1108,10 @@ The type of sensor.
 # <a name="redfish-documentation-generator"></a>Redfish documentation generator
 
 This document was created using the Redfish Documentation Generator utility, which uses the contents of the Redfish schema files (in JSON schema format) to automatically generate the bulk of the text.  The source code for the utility is available for download at DMTF's GitHub repository located at [https://www.github.com/DMTF/Redfish-Tools](https://www.github.com/DMTF/Redfish-Tools "https://www.github.com/DMTF/Redfish-Tools").
+
+For this document, a Markdown file (SustainabilityProfileIntro.md) provides the text for the introduction and use cases sections, and a second file (SustainabilityProfilePostscript.md) provides the text for this section and the change log.  These files are fed to the documentation generator, which merges those files with the generated Reference Guide text to produce the final document.  This process is controlled with a configuration file (sustain-config.json) for the documentation generator.
+
+Edits or additions to this document must be made in the source documents listed above, as any changes to this final output file will be lost whenever the document is re-generated.
 
 # <a name="annex-a-%28informative%29-change-log"></a>ANNEX A (informative) Change log
 
