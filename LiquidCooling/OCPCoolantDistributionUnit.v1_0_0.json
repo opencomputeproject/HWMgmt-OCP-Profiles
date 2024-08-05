@@ -36,7 +36,9 @@
                 "FilterRedundancy": {
                     "ReadRequirement": "IfImplemented"
                 },
-                "Filters": {},
+                "Filters": {
+                    "ReadRequirement": "IfImplemented"
+                },
                 "PrimaryCoolantConnectors": {},
                 "PumpRedundancy": {
                     "ReadRequirement": "IfImplemented"
@@ -55,6 +57,7 @@
             }
         },
         "Filter": {
+            "ReadRequirement": "IfImplemented",
             "URIs": [
                 "/redfish/v1/ThermalEquipment/CDUs/{CoolingUnitId}/Filters/{FilterId}"
             ],

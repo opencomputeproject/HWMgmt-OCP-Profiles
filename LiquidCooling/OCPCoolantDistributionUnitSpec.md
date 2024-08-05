@@ -38,7 +38,7 @@ The following table lists the capabilities prescribed in the OCP Coolant Distrib
 | Use Case         | Management Task                                               | Requirement |
 | :---             | :---------                                                    | :---        |
 | Inventory        | [Get CDU info](#get-cdu-info)                                 | Mandatory |
-| Component Status | [Get filter info](#get-filter-info)                           | Mandatory |
+| Component Status | [Get filter info](#get-filter-info)                           | If implemented, mandatory |
 |                  | [Get pump info](#get-pump-info)                               | Mandatory |
 |                  | [Get reservoir info](#get-reservoir-info)                     | If implemented, mandatory |
 |                  | [Get primary connector info](#get-primary-connector-info)     | Mandatory |
