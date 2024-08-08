@@ -29,59 +29,59 @@
 
    - [Using the reference guide](#using-the-reference-guide)
 
-   - [AccountService 1.14.0](#accountservice-1.14.0)
+   - [AccountService 1.15.1](#accountservice-1.15.1)
 
-   - [Certificate 1.8.0](#certificate-1.8.0)
+   - [Certificate 1.8.3](#certificate-1.8.3)
 
-   - [CertificateService 1.0.4](#certificateservice-1.0.4)
+   - [CertificateService 1.0.5](#certificateservice-1.0.5)
 
-   - [EthernetInterface 1.11.0](#ethernetinterface-1.11.0)
+   - [EthernetInterface 1.12.2](#ethernetinterface-1.12.2)
 
-   - [EventDestination 1.13.2](#eventdestination-1.13.2)
+   - [EventDestination 1.14.1](#eventdestination-1.14.1)
 
-   - [EventService 1.10.0](#eventservice-1.10.0)
+   - [EventService 1.10.2](#eventservice-1.10.2)
 
-   - [License 1.1.1](#license-1.1.1)
+   - [License 1.1.3](#license-1.1.3)
 
    - [LicenseCollection](#licensecollection)
 
-   - [LicenseService 1.1.0](#licenseservice-1.1.0)
+   - [LicenseService 1.1.2](#licenseservice-1.1.2)
 
-   - [LogEntry 1.15.1](#logentry-1.15.1)
+   - [LogEntry 1.16.2](#logentry-1.16.2)
 
-   - [LogService 1.5.1](#logservice-1.5.1)
+   - [LogService 1.7.0](#logservice-1.7.0)
 
-   - [Manager 1.18.0](#manager-1.18.0)
+   - [Manager 1.19.1](#manager-1.19.1)
 
-   - [ManagerAccount 1.11.0](#manageraccount-1.11.0)
+   - [ManagerAccount 1.12.1](#manageraccount-1.12.1)
 
-   - [ManagerNetworkProtocol 1.9.1](#managernetworkprotocol-1.9.1)
+   - [ManagerNetworkProtocol 1.10.1](#managernetworkprotocol-1.10.1)
 
-   - [OutboundConnection 1.0.0](#outboundconnection-1.0.0)
+   - [OutboundConnection 1.0.2](#outboundconnection-1.0.2)
 
    - [OutboundConnectionCollection](#outboundconnectioncollection)
 
-   - [RegisteredClient 1.1.0](#registeredclient-1.1.0)
+   - [RegisteredClient 1.1.2](#registeredclient-1.1.2)
 
    - [RegisteredClientCollection](#registeredclientcollection)
 
-   - [Role 1.3.1](#role-1.3.1)
+   - [Role 1.3.2](#role-1.3.2)
 
-   - [ServiceConditions 1.0.0](#serviceconditions-1.0.0)
+   - [ServiceConditions 1.0.1](#serviceconditions-1.0.1)
 
-   - [ServiceRoot 1.16.0](#serviceroot-1.16.0)
+   - [ServiceRoot 1.17.0](#serviceroot-1.17.0)
 
-   - [Session 1.7.0](#session-1.7.0)
+   - [Session 1.7.2](#session-1.7.2)
 
-   - [SessionService 1.1.8](#sessionservice-1.1.8)
+   - [SessionService 1.1.9](#sessionservice-1.1.9)
 
-   - [SoftwareInventory 1.10.0](#softwareinventory-1.10.0)
+   - [SoftwareInventory 1.10.2](#softwareinventory-1.10.2)
 
-   - [Task 1.7.2](#task-1.7.2)
+   - [Task 1.7.4](#task-1.7.4)
 
-   - [TaskService 1.2.0](#taskservice-1.2.0)
+   - [TaskService 1.2.1](#taskservice-1.2.1)
 
-   - [UpdateService 1.12.0](#updateservice-1.12.0)
+   - [UpdateService 1.14.0](#updateservice-1.14.0)
 
 - [Redfish documentation generator](#redfish-documentation-generator)
 
@@ -165,12 +165,12 @@ The property-level details include:
 | Description | <p>The normative description of the property, as copied directly from the schema <code>LongDescription</code> definition.</p> |
 
 
-## <a name="accountservice-1.14.0"></a>AccountService 1.14.0
+## <a name="accountservice-1.15.1"></a>AccountService 1.15.1
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *...* |
-| **Release** | 2023.2 | 2023.1 | 2022.3 | 2022.1 | 2021.2 | 2021.1 | 2020.4 | 2019.4 | 2019.2 | 2019.1 | 2018.3 | ... |
+| **Version** | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *...* |
+| **Release** | 2023.3 | 2023.2 | 2023.1 | 2022.3 | 2022.1 | 2021.2 | 2021.1 | 2020.4 | 2019.4 | 2019.2 | 2019.1 | ... |
 
 ### URIs
 
@@ -192,7 +192,7 @@ The property-level details include:
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupNameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP group name entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupsAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the groups for a user on the LDAP user entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SSHKeyAttribute** *(v1.11+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP user's SSH public key entry. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UsernameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP user name entry. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UsernameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP username entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRoleMapping** *(v1.3+)* [ { | array | *Mandatory (Read)* | The mapping rules to convert the external account providers account information to the local Redfish role. |
@@ -210,9 +210,9 @@ The property-level details include:
 | **OAuth2** *(v1.10+)* { | object | *Recommended (Read)* | The first OAuth 2.0 external account provider that this account service supports. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuth2Service** *(v1.10+)* { | object | *Mandatory (Read)* | The additional information needed to parse an OAuth 2.0 service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Audience** *(v1.10+)* [ ] | array (string) | *Mandatory (Read-only)* | The allowable audience strings of the Redfish service. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Issuer** *(v1.10+)* | string | *Mandatory (Read)* | The issuer string of the OAuth 2.0 service.  Clients should configure this property if Mode contains `Offline`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Issuer** *(v1.10+)* | string | *Mandatory (Read)* | The issuer string of the OAuth 2.0 service.  Clients should configure this property if `Mode` contains `Offline`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Mode** *(v1.10+)* | string<br>(enum) | *Mandatory (Read)* | The mode of operation for token validation. *For the possible property values, see Mode in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuthServiceSigningKeys** *(v1.10+)* | string | *Mandatory (Read)* | The Base64-encoded signing keys of the issuer of the OAuth 2.0 service.  Clients should configure this property if Mode contains `Offline`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuthServiceSigningKeys** *(v1.10+)* | string | *Mandatory (Read)* | The Base64-encoded signing keys of the issuer of the OAuth 2.0 service.  Clients should configure this property if `Mode` contains `Offline`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.13+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceAddresses** *(v1.3+)* [ ] | array (string, null) | *Mandatory (Read)* | The addresses of the user account providers to which this external account provider links.  The format of this field depends on the type of external account provider. |
@@ -250,7 +250,7 @@ The mode of operation for token validation.
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
 | Discovery | OAuth 2.0 service information for token validation is downloaded by the service. |  |
-| Offline | OAuth 2.0 service information for token validation is configured by a client.  Clients should configure the Issuer and OAuthServiceSigningKeys properties for this mode. |  |
+| Offline | OAuth 2.0 service information for token validation is configured by a client.  Clients should configure the `Issuer` and `OAuthServiceSigningKeys` properties for this mode. |  |
 
 #### SupportedAccountTypes
 
@@ -258,11 +258,11 @@ The account types supported by the service.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
-| HostConsole | Allow access to the host's console, which could be connected through Telnet, SSH, or other protocol. |  |
+| HostConsole | Allow access to the host's console, which could be connected through Telnet, SSH, or another protocol. |  |
 | IPMI | Allow access to the Intelligent Platform Management Interface service. |  |
 | KVMIP | Allow access to a Keyboard-Video-Mouse over IP session. |  |
-| ManagerConsole | Allow access to the manager's console, which could be connected through Telnet, SSH, SM CLP, or other protocol. |  |
-| OEM | OEM account type.  See the OEMAccountTypes property. |  |
+| ManagerConsole | Allow access to the manager's console, which could be connected through Telnet, SSH, SM CLP, or another protocol. |  |
+| OEM | OEM account type.  See the `OEMAccountTypes` property. |  |
 | Redfish | Allow access to the Redfish service. |  |
 | SNMP | Allow access to SNMP services. |  |
 | VirtualMedia | Allow access to control virtual media. |  |
@@ -376,7 +376,7 @@ The account types supported by the service.
 
 
 
-## <a name="certificate-1.8.0"></a>Certificate 1.8.0
+## <a name="certificate-1.8.3"></a>Certificate 1.8.3
 
 |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -398,7 +398,7 @@ The account types supported by the service.
 
 ```json
 {
-    "@odata.type": "#Certificate.v1_8_3.Certificate",
+    "@odata.type": "#Certificate.v1_8_2.Certificate",
     "Id": "1",
     "Name": "HTTPS Certificate",
     "CertificateString": "-----BEGIN CERTIFICATE-----\nMIIFsTCC [*truncated*] GXG5zljlu\n-----END CERTIFICATE-----",
@@ -435,7 +435,7 @@ The account types supported by the service.
 
 
 
-## <a name="certificateservice-1.0.4"></a>CertificateService 1.0.4
+## <a name="certificateservice-1.0.5"></a>CertificateService 1.0.5
 
 |     |     |
 | :--- | :--- |
@@ -489,8 +489,8 @@ This action makes a certificate signing request.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Email** | string | *Mandatory (Read)* | The email address of the contact within the organization making the request. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GivenName** | string | *Mandatory (Read)* | The given name of the user making the request. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Initials** | string | *Mandatory (Read)* | The initials of the user making the request. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KeyBitLength** | integer | *Mandatory (Read)* | The length of the key, in bits, if needed based on the KeyPairAlgorithm parameter value. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KeyCurveId** | string | *Mandatory (Read)* | The curve ID to use with the key, if needed based on the KeyPairAlgorithm parameter value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KeyBitLength** | integer | *Mandatory (Read)* | The length of the key, in bits, if needed based on the `KeyPairAlgorithm` parameter value. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KeyCurveId** | string | *Mandatory (Read)* | The curve ID to use with the key, if needed based on the `KeyPairAlgorithm` parameter value. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KeyPairAlgorithm** | string | *Mandatory (Read)* | The type of key-pair for use with signing algorithms. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KeyUsage** [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The usage of the key contained in the certificate. *For the possible property values, see KeyUsage in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Organization** | string | *Mandatory (Read)* | The name of the organization making the request. |
@@ -653,12 +653,12 @@ The usage of the key contained in the certificate.
 
 
 
-## <a name="ethernetinterface-1.11.0"></a>EthernetInterface 1.11.0
+## <a name="ethernetinterface-1.12.2"></a>EthernetInterface 1.12.2
 
-|     |     |     |     |     |     |     |     |     |     |     |     |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
-| **Release** | 2023.2 | 2023.1 | 2022.2 | 2021.2 | 2020.1 | 2019.1 | 2017.3 | 2017.1 | 2016.3 | 2016.2 | 1.0 |
+|     |     |     |     |     |     |     |     |     |     |     |     |     |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Version** | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *...* |
+| **Release** | 2023.3 | 2023.2 | 2023.1 | 2022.2 | 2021.2 | 2020.1 | 2019.1 | 2017.3 | 2017.1 | 2016.3 | 2016.2 | ... |
 
 ### URIs
 
@@ -684,7 +684,7 @@ The usage of the key contained in the certificate.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Gateway** | string | *Mandatory (Read/Write)* | The IPv4 gateway for this address. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubnetMask** | string | *Mandatory (Read/Write)* | The IPv4 subnet mask. |
 | } ] |   |   |
-| **IPv4StaticAddresses** *(v1.4+)* [ { | array | *Recommended (Read)* | The IPv4 static addresses assigned to this interface.  See IPv4Addresses for the addresses in use by this interface. |
+| **IPv4StaticAddresses** *(v1.4+)* [ { | array | *Recommended (Read)* | The IPv4 static addresses assigned to this interface.  See `IPv4Addresses` for the addresses in use by this interface. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read/Write)* | The IPv4 address. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Gateway** | string | *Mandatory (Read/Write)* | The IPv4 gateway for this address. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubnetMask** | string | *Mandatory (Read/Write)* | The IPv4 subnet mask. |
@@ -700,7 +700,7 @@ The usage of the key contained in the certificate.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Precedence** | integer | *Mandatory (Read)* | The IPv6 precedence, as defined in RFC6724, section 2.1. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Prefix** | string | *Mandatory (Read)* | The IPv6 address prefix, as defined in RFC6724, section 2.1. |
 | } ] |   |   |
-| **IPv6StaticAddresses** [ { | array | *Recommended (Read)* | The IPv6 static addresses assigned to this interface.  See IPv6Addresses for the addresses in use by this interface. |
+| **IPv6StaticAddresses** [ { | array | *Recommended (Read)* | The IPv6 static addresses assigned to this interface.  See `IPv6Addresses` for the addresses in use by this interface. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read)* | A valid IPv6 address. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrefixLength** | integer | *Mandatory (Read)* | The prefix length, in bits, of this IPv6 address. |
@@ -717,7 +717,7 @@ The usage of the key contained in the certificate.
 | **StaticNameServers** *(v1.4+)* [ ] | array (string, null) | *Recommended (Read)* | The statically-defined set of DNS server IPv4 and IPv6 addresses. |
 | **Status** { | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Health** | string<br>(enum) | *Mandatory (Read-only)* | The health state of this resource in the absence of its dependent resources. *For the possible property values, see Health in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**State** | string<br>(enum) | *Mandatory (Read-only)* | The known state of the resource, such as, enabled. *For the possible property values, see State in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**State** | string<br>(enum) | *Mandatory (Read-only)* | The state of the resource. *For the possible property values, see State in Property details.* |
 | } |   |   |
 
 ### Property details
@@ -790,16 +790,17 @@ Determines the DHCPv6 operating mode for this interface.
 
 #### State
 
-The known state of the resource, such as, enabled.
+The state of the resource.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
 | Absent | This function or device is not currently present or detected.  This resource represents a capability or an available location where a device can be installed. |  |
 | Deferring *(v1.2+)* | The element does not process any commands but queues new requests. |  |
+| Degraded *(v1.19+)* | The function or resource is degraded. |  |
 | Disabled | This function or resource is disabled. |  |
 | Enabled | This function or resource is enabled. |  |
-| InTest | This function or resource is undergoing testing, or is in the process of capturing information for debugging. |  |
-| Qualified *(v1.9+)* | The element quality is within the acceptable range of operation. |  |
+| InTest | This function or resource is undergoing testing or is in the process of capturing information for debugging. |  |
+| Qualified *(v1.9+, deprecated v1.19)* | The element quality is within the acceptable range of operation. *Deprecated in v1.19 and later. This value has been deprecated in favor of StandbySpare.* |  |
 | Quiesced *(v1.2+)* | The element is enabled but only processes a restricted set of commands. |  |
 | StandbyOffline | This function or resource is enabled but awaits an external action to activate it. |  |
 | StandbySpare | This function or resource is part of a redundancy set and awaits a failover or other external action to activate it. |  |
@@ -812,7 +813,7 @@ The known state of the resource, such as, enabled.
 
 ```json
 {
-    "@odata.type": "#EthernetInterface.v1_12_2.EthernetInterface",
+    "@odata.type": "#EthernetInterface.v1_12_1.EthernetInterface",
     "Id": "1",
     "Name": "Ethernet Interface",
     "Description": "Manager NIC 1",
@@ -927,12 +928,12 @@ The known state of the resource, such as, enabled.
 
 
 
-## <a name="eventdestination-1.13.2"></a>EventDestination 1.13.2
+## <a name="eventdestination-1.14.1"></a>EventDestination 1.14.1
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *...* |
-| **Release** | 2022.3 | 2022.1 | 2021.2 | 2020.4 | 2020.3 | 2020.1 | 2019.3 | 2019.2 | 2019.1 | 2018.2 | 2018.1 | ... |
+| **Version** | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *...* |
+| **Release** | 2023.3 | 2022.3 | 2022.1 | 2021.2 | 2020.4 | 2020.3 | 2020.1 | 2019.3 | 2019.2 | 2019.1 | 2018.2 | ... |
 
 ### URIs
 
@@ -944,19 +945,19 @@ The known state of the resource, such as, enabled.
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
 | **Context** | string | *Mandatory (Read)* | A client-supplied string that is stored with the event destination subscription. |
-| **DeliveryRetryPolicy** *(v1.6+)* | string<br>(enum) | *Mandatory (Read)* | The subscription delivery retry policy for events, where the subscription type is RedfishEvent. *For the possible property values, see DeliveryRetryPolicy in Property details.* |
+| **DeliveryRetryPolicy** *(v1.6+)* | string<br>(enum) | *Mandatory (Read)* | The subscription delivery retry policy for events, where the subscription type is `RedfishEvent`. *For the possible property values, see DeliveryRetryPolicy in Property details.* |
 | **Destination** | string<br>(URI) | *Mandatory (Read-only)* | The URI of the destination event receiver. |
-| **EventFormatType** *(v1.4+)* | string<br>(enum) | *Mandatory (Read-only)* | The content types of the message that are sent to the EventDestination. *For the possible property values, see EventFormatType in Property details.* |
-| **ExcludeMessageIds** *(v1.12+)* [ ] | array (string, null) | *Recommended (Read-only)* | The list of MessageIds that are not sent to this event destination. |
-| **ExcludeRegistryPrefixes** *(v1.12+)* [ ] | array (string, null) | *Recommended (Read-only)* | The list of prefixes for the message registries that contain the MessageIds that are not sent to this event destination. |
-| **HttpHeaders** [ { | array | *Recommended (Read),Mandatory (Read/Write)* | An array of settings for HTTP headers, such as authorization information.  This array is null or an empty array in responses.  An empty array is the preferred return value on read operations. |
+| **EventFormatType** *(v1.4+)* | string<br>(enum) | *Mandatory (Read-only)* | The content types of the message that are sent to the `EventDestination`. *For the possible property values, see EventFormatType in Property details.* |
+| **ExcludeMessageIds** *(v1.12+)* [ ] | array (string, null) | *Recommended (Read-only)* | The list of `MessageId` values that are not sent to this event destination. |
+| **ExcludeRegistryPrefixes** *(v1.12+)* [ ] | array (string, null) | *Recommended (Read-only)* | The list of prefixes for the message registries that contain the `MessageId` values that are not sent to this event destination. |
+| **HttpHeaders** [ { | array | *Recommended (Read),Mandatory (Read/Write)* | An array of settings for HTTP headers, such as authorization information.  This array is `null` or an empty array in responses.  An empty array is the preferred return value on read operations. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**(pattern)** | string | *Mandatory (Read)* | Property names follow regular expression pattern "^\[^:\\\\s\]\+$" |
 | } ] |   |   |
-| **IncludeOriginOfCondition** *(v1.8+)* | boolean | *Recommended (Read-only)* | An indication of whether the events subscribed to will also include the entire resource or object referenced the OriginOfCondition property in the event payload. |
+| **IncludeOriginOfCondition** *(v1.8+)* | boolean | *Recommended (Read-only)* | An indication of whether the events subscribed to will also include the entire resource or object referenced by the `OriginOfCondition` property in the event payload. |
 | **Protocol** | string<br>(enum) | *Mandatory (Read-only)* | The protocol type of the event connection. *For the possible property values, see Protocol in Property details.* |
-| **RegistryPrefixes** *(v1.4+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of prefixes for the message registries that contain the MessageIds that are sent to this event destination. |
-| **ResourceTypes** *(v1.4+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of resource type values (schema names) that correspond to the OriginOfCondition.  The version and full namespace should not be specified. |
-| **SubordinateResources** *(v1.4+)* | boolean | *Recommended (Read-only)* | An indication of whether the subscription is for events in the OriginResources array and its subordinate resources.  If `true` and the OriginResources array is specified, the subscription is for events in the OriginResources array and its subordinate resources.  Note that resources associated through the Links section are not considered subordinate.  If `false` and the OriginResources array is specified, the subscription is for events in the OriginResources array only.  If the OriginResources array is not present, this property has no relevance. |
+| **RegistryPrefixes** *(v1.4+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of prefixes for the message registries that contain the `MessageId` values that are sent to this event destination. |
+| **ResourceTypes** *(v1.4+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of resource type values (schema names) that correspond to the `OriginOfCondition`.  The version and full namespace should not be specified. |
+| **SubordinateResources** *(v1.4+)* | boolean | *Recommended (Read-only)* | An indication of whether the subscription is for events in the `OriginResources` array and its subordinate resources.  If `true` and the `OriginResources` array is specified, the subscription is for events in the `OriginResources` array and its subordinate resources.  Note that resources associated through the Links section are not considered subordinate.  If `false` and the `OriginResources` array is specified, the subscription is for events in the `OriginResources` array only.  If the `OriginResources` array is not present, this property has no relevance. |
 | **SubscriptionType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read-only)* | The subscription type for events. *For the possible property values, see SubscriptionType in Property details.* |
 
 ### Actions
@@ -1019,7 +1020,7 @@ This action takes no parameters.
 
 #### DeliveryRetryPolicy
 
-The subscription delivery retry policy for events, where the subscription type is RedfishEvent.
+The subscription delivery retry policy for events, where the subscription type is `RedfishEvent`.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
@@ -1030,7 +1031,7 @@ The subscription delivery retry policy for events, where the subscription type i
 
 #### EventFormatType
 
-The content types of the message that are sent to the EventDestination.
+The content types of the message that are sent to the `EventDestination`.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
@@ -1051,9 +1052,9 @@ The protocol type of the event connection.
 | SNMPv2c *(v1.7+)* | The destination follows the SNMPv2c protocol for event notifications. |  |
 | SNMPv3 *(v1.7+)* | The destination follows the SNMPv3 protocol for event notifications. |  |
 | SyslogRELP *(v1.9+)* | The destination follows syslog RELP for event notifications. |  |
-| SyslogTCP *(v1.9+)* | The destination follows syslog TCP-based for event notifications. |  |
-| SyslogTLS *(v1.9+)* | The destination follows syslog TLS-based for event notifications. |  |
-| SyslogUDP *(v1.9+)* | The destination follows syslog UDP-based for event notifications. |  |
+| SyslogTCP *(v1.9+)* | The destination follows syslog TCP-based transport for event notifications. |  |
+| SyslogTLS *(v1.9+)* | The destination follows syslog TLS-based transport for event notifications. |  |
+| SyslogUDP *(v1.9+)* | The destination follows syslog UDP-based transport for event notifications. |  |
 
 #### SubscriptionType
 
@@ -1062,11 +1063,11 @@ The subscription type for events.
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
 | OEM *(v1.9+)* | The subscription is an OEM subscription. |  |
-| RedfishEvent | The subscription follows the Redfish Specification for event notifications.  To send an event notification, a service sends an HTTP POST to the subscriber's destination URI. |  |
+| RedfishEvent | The subscription follows the Redfish Specification for event notifications.  To send an event notification, a service sends an HTTP `POST` to the subscriber's destination URI. |  |
 | SNMPInform *(v1.7+)* | The subscription follows versions 2 and 3 of SNMP Inform for event notifications. |  |
 | SNMPTrap *(v1.7+)* | The subscription follows the various versions of SNMP Traps for event notifications. |  |
 | SSE | The subscription follows the HTML5 server-sent event definition for event notifications. |  |
-| Syslog *(v1.9+)* | The subscription sends Syslog messages for event notifications. |  |
+| Syslog *(v1.9+)* | The subscription sends syslog messages for event notifications. |  |
 
 ### Example response
 
@@ -1099,7 +1100,7 @@ The subscription type for events.
 
 
 
-## <a name="eventservice-1.10.0"></a>EventService 1.10.0
+## <a name="eventservice-1.10.2"></a>EventService 1.10.2
 
 |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -1115,14 +1116,14 @@ The subscription type for events.
 
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
-| **ExcludeMessageId** *(v1.8+)* | boolean | *Recommended (Read-only)* | An indication of whether the service supports filtering by the ExcludeMessageIds property. |
-| **ExcludeRegistryPrefix** *(v1.8+)* | boolean | *Recommended (Read-only)* | An indication of whether the service supports filtering by the ExcludeRegistryPrefixes property. |
+| **ExcludeMessageId** *(v1.8+)* | boolean | *Recommended (Read-only)* | An indication of whether the service supports filtering by the `ExcludeMessageIds` property. |
+| **ExcludeRegistryPrefix** *(v1.8+)* | boolean | *Recommended (Read-only)* | An indication of whether the service supports filtering by the `ExcludeRegistryPrefixes` property. |
 | **IncludeOriginOfConditionSupported** *(v1.6+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports including the resource payload of the origin of condition in the event payload. |
-| **RegistryPrefixes** *(v1.2+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of the prefixes of the message registries that can be used for the RegistryPrefixes or ExcludeRegistryPrefixes properties on a subscription.  If this property is absent or contains an empty array, the service does not support RegistryPrefix-based subscriptions. |
-| **ResourceTypes** *(v1.2+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of @odata.type values, or schema names, that can be specified in the ResourceTypes array in a subscription.  If this property is absent or contains an empty array, the service does not support resource type-based subscriptions. |
+| **RegistryPrefixes** *(v1.2+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of the prefixes of the message registries that can be used for the `RegistryPrefixes` or `ExcludeRegistryPrefixes` properties on a subscription.  If this property is absent or contains an empty array, the service does not support registry prefix-based subscriptions. |
+| **ResourceTypes** *(v1.2+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of `@odata.type` values, or schema names, that can be specified in the `ResourceTypes` array in a subscription.  If this property is absent or contains an empty array, the service does not support resource type-based subscriptions. |
 | **ServerSentEventUri** *(v1.1+)* | string<br>(URI) | *If Implemented (Read-only)* | The link to a URI for receiving Server-Sent Event representations for the events that this service generates. |
 | **ServiceEnabled** | boolean | *Mandatory (Read)* | An indication of whether this service is enabled.  If `false`, events are no longer published, new SSE connections cannot be established, and existing SSE connections are terminated. |
-| **SubordinateResourcesSupported** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the SubordinateResources property on both event subscriptions and generated events. |
+| **SubordinateResourcesSupported** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the `SubordinateResources` property on both event subscriptions and generated events. |
 | **Subscriptions** { | object | *Mandatory (Read-only)* | The link to a collection of event destinations. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | } |   |   |
@@ -1152,12 +1153,12 @@ This action generates a test event.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventGroupId** *(v1.3+)* | integer | *Mandatory (Read)* | The group identifier for the event. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventId** | string | *Mandatory (Read)* | The ID for the event to add. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventTimestamp** | string<br>(date-time) | *Mandatory (Read)* | The date and time for the event to add. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventType** *(deprecated v1.3)* | string<br>(enum) | *Mandatory (Read)* | The type for the event to add. *For the possible property values, see EventType in Property details.* *Deprecated in v1.3 and later. This parameter has been deprecated.  Starting with Redfish Specification v1.6 (Event v1.3), subscriptions are based on the RegistryPrefix and ResourceType properties and not on the EventType property.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventType** *(deprecated v1.3)* | string<br>(enum) | *Mandatory (Read)* | The type for the event to add. *For the possible property values, see EventType in Property details.* *Deprecated in v1.3 and later. This parameter has been deprecated.  Starting with Redfish Specification v1.6 (Event v1.3), subscriptions are based on the `RegistryPrefix` and `ResourceType` properties and not on the `EventType` property.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Message** | string | *Mandatory (Read)* | The human-readable message for the event to add. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MessageArgs** [ ] | array (string) | *Mandatory (Read)* | An array of message arguments for the event to add. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MessageId** | string | *Mandatory (Read)* | The MessageId for the event to add. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MessageId** | string | *Mandatory (Read)* | The `MessageId` for the event to add. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MessageSeverity** *(v1.10+)* | string<br>(enum) | *Mandatory (Read)* | The severity for the event to add. *For the possible property values, see MessageSeverity in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OriginOfCondition** | string<br>(URI) | *Mandatory (Read)* | The URL in the OriginOfCondition property of the event to add.  It is not a reference object. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OriginOfCondition** | string<br>(URI) | *Mandatory (Read)* | The URL in the `OriginOfCondition` property of the event to add.  It is not a reference object. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Severity** | string | *Mandatory (Read)* | The severity for the event to add. |
 
 **Request Example**
@@ -1210,7 +1211,7 @@ The type for the event to add.
 | :--- | :------ | :--- |
 | Alert | A condition requires attention. |  |
 | MetricReport | The telemetry service is sending a metric report. |  |
-| Other | Because EventType is deprecated as of Redfish Specification v1.6, the event is based on a registry or resource but not an EventType. |  |
+| Other | Because `EventType` is deprecated as of Redfish Specification v1.6, the event is based on a registry or resource but not an `EventType`. |  |
 | ResourceAdded | A resource has been added. |  |
 | ResourceRemoved | A resource has been removed. |  |
 | ResourceUpdated | A resource has been updated. |  |
@@ -1275,7 +1276,7 @@ The severity for the event to add.
 
 
 
-## <a name="license-1.1.1"></a>License 1.1.1
+## <a name="license-1.1.3"></a>License 1.1.3
 
 |     |     |     |
 | :--- | :--- | :--- |
@@ -1302,7 +1303,7 @@ The severity for the event to add.
 | **Removable** | boolean | *Mandatory (Read-only)* | An indication of whether the license is removable. |
 | **SKU** | string | *Recommended (Read-only)* | The SKU for this license. |
 | **Status** { | object | *Mandatory (Read)* | The status of the license. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**State** | string<br>(enum) | *Recommended (Read-only)* | The known state of the resource, such as, enabled. *For the possible property values, see State in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**State** | string<br>(enum) | *Recommended (Read-only)* | The state of the resource. *For the possible property values, see State in Property details.* |
 | } |   |   |
 
 ### Property details
@@ -1338,16 +1339,17 @@ The type of the license.
 
 #### State
 
-The known state of the resource, such as, enabled.
+The state of the resource.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
 | Absent | This function or device is not currently present or detected.  This resource represents a capability or an available location where a device can be installed. |  |
 | Deferring *(v1.2+)* | The element does not process any commands but queues new requests. |  |
+| Degraded *(v1.19+)* | The function or resource is degraded. |  |
 | Disabled | This function or resource is disabled. |  |
 | Enabled | This function or resource is enabled. |  |
-| InTest | This function or resource is undergoing testing, or is in the process of capturing information for debugging. |  |
-| Qualified *(v1.9+)* | The element quality is within the acceptable range of operation. |  |
+| InTest | This function or resource is undergoing testing or is in the process of capturing information for debugging. |  |
+| Qualified *(v1.9+, deprecated v1.19)* | The element quality is within the acceptable range of operation. *Deprecated in v1.19 and later. This value has been deprecated in favor of StandbySpare.* |  |
 | Quiesced *(v1.2+)* | The element is enabled but only processes a restricted set of commands. |  |
 | StandbyOffline | This function or resource is enabled but awaits an external action to activate it. |  |
 | StandbySpare | This function or resource is part of a redundancy set and awaits a failover or other external action to activate it. |  |
@@ -1417,7 +1419,7 @@ The known state of the resource, such as, enabled.
 | } ] |   |   |
 | **Members@odata.nextLink** | string<br>(URI) | *Mandatory (Read-only)* | The URI to the resource containing the next set of partial members. |
 
-## <a name="licenseservice-1.1.0"></a>LicenseService 1.1.0
+## <a name="licenseservice-1.1.2"></a>LicenseService 1.1.2
 
 |     |     |     |
 | :--- | :--- | :--- |
@@ -1466,13 +1468,13 @@ This action installs one or more licenses from a remote file.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AuthorizedDevices** *(v1.1+)* [ { | array | *Mandatory (Read)* | An array of links to the devices to be authorized by the license. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LicenseFileURI** | string | *Mandatory (Read)* | The URI of the license file to install. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** | string | *Mandatory (Read)* | The password to access the URI specified by the LicenseFileURI parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LicenseFileURI** | string<br>(URI) | *Mandatory (Read)* | The URI of the license file to install. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** | string | *Mandatory (Read)* | The password to access the URI specified by the `LicenseFileURI` parameter. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TargetServices** *(v1.1+)* [ { | array | *Mandatory (Read)* | An array of links to the managers where the license will be installed. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a Manager resource. See the Links section and the *Manager* schema for details. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TransferProtocol** | string<br>(enum) | *Mandatory (Read)* | The network protocol that the license service uses to retrieve the license file located at the URI provided in LicenseFileURI.  This parameter is ignored if the URI provided in LicenseFileURI contains a scheme. *For the possible property values, see TransferProtocol in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** | string | *Mandatory (Read)* | The user name to access the URI specified by the LicenseFileURI parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TransferProtocol** | string<br>(enum) | *Mandatory (Read)* | The network protocol that the license service uses to retrieve the license file located at the URI provided in `LicenseFileURI`.  This parameter is ignored if the URI provided in `LicenseFileURI` contains a scheme. *For the possible property values, see TransferProtocol in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** | string | *Mandatory (Read)* | The username to access the URI specified by the `LicenseFileURI` parameter. |
 
 **Request Example**
 
@@ -1490,7 +1492,7 @@ This action installs one or more licenses from a remote file.
 
 #### TransferProtocol
 
-The network protocol that the license service uses to retrieve the license file located at the URI provided in LicenseFileURI.  This parameter is ignored if the URI provided in LicenseFileURI contains a scheme.
+The network protocol that the license service uses to retrieve the license file located at the URI provided in `LicenseFileURI`.  This parameter is ignored if the URI provided in `LicenseFileURI` contains a scheme.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
@@ -1501,7 +1503,7 @@ The network protocol that the license service uses to retrieve the license file 
 | NFS | Network File System (NFS). |  |
 | OEM | A manufacturer-defined protocol. |  |
 | SCP | Secure Copy Protocol (SCP). |  |
-| SFTP | Secure File Transfer Protocol (SFTP). |  |
+| SFTP | SSH File Transfer Protocol (SFTP). |  |
 | TFTP | Trivial File Transfer Protocol (TFTP). |  |
 
 ### Example response
@@ -1528,12 +1530,12 @@ The network protocol that the license service uses to retrieve the license file 
 
 
 
-## <a name="logentry-1.15.1"></a>LogEntry 1.15.1
+## <a name="logentry-1.16.2"></a>LogEntry 1.16.2
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *...* |
-| **Release** | 2023.1 | 2022.3 | 2022.2 | 2022.1 | 2021.4 | 2021.3 | 2021.1 | 2020.4 | 2020.3 | 2020.1 | 2019.3 | ... |
+| **Version** | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *...* |
+| **Release** | 2023.3 | 2023.1 | 2022.3 | 2022.2 | 2022.1 | 2021.4 | 2021.3 | 2021.1 | 2020.4 | 2020.3 | 2020.1 | ... |
 
 ### URIs
 
@@ -1555,7 +1557,7 @@ The network protocol that the license service uses to retrieve the license file 
 | **EntryType** | string<br>(enum) | *Mandatory (Read-only)* | The type of log entry. *For the possible property values, see EntryType in Property details.* |
 | **EventGroupId** *(v1.4+)* | integer | *Recommended (Read-only)* | An identifier that correlates events with the same cause. |
 | **Message** | string | *Recommended (Read-only)* | The message of the log entry.  This property decodes from the entry type.  If the entry type is `Event`, this property contains a message.  If the entry type is `SEL`, this property contains an SEL-specific message.  If the entry type is `CXL`, this property contains a CXL event record.  Otherwise, this property contains an OEM-specific log entry.  In most cases, this property contains the actual log entry. |
-| **MessageId** | string | *Mandatory (Read-only)* | The MessageId, event data, or OEM-specific information.  This property decodes from the entry type.  If the entry type is `Event`, this property contains a Redfish Specification-defined MessageId.  If the entry type is `SEL`, this property contains the Event Data.  Otherwise, this property contains OEM-specific information. |
+| **MessageId** | string | *Mandatory (Read-only)* | The `MessageId`, event data, or OEM-specific information.  This property decodes from the entry type.  If the entry type is `Event`, this property contains a Redfish Specification-defined `MessageId`.  If the entry type is `SEL`, this property contains the Event Data.  Otherwise, this property contains OEM-specific information. |
 | **Severity** | string<br>(enum) | *Mandatory (Read-only)* | The severity of the log entry. *For the possible property values, see Severity in Property details.* |
 
 ### Property details
@@ -1586,7 +1588,7 @@ The severity of the log entry.
 
 ```json
 {
-    "@odata.type": "#LogEntry.v1_16_2.LogEntry",
+    "@odata.type": "#LogEntry.v1_16_1.LogEntry",
     "Id": "1",
     "Name": "Log Entry 1",
     "EntryType": "Event",
@@ -1609,12 +1611,12 @@ The severity of the log entry.
 
 
 
-## <a name="logservice-1.5.1"></a>LogService 1.5.1
+## <a name="logservice-1.7.0"></a>LogService 1.7.0
 
-|     |     |     |     |     |     |     |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
-| **Release** | 2023.2 | 2022.3 | 2021.2 | 2020.3 | 2017.3 | 1.0 |
+|     |     |     |     |     |     |     |     |     |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Version** | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
+| **Release** | 2024.1 | 2023.3 | 2023.2 | 2022.3 | 2021.2 | 2020.3 | 2017.3 | 1.0 |
 
 ### URIs
 
@@ -1633,7 +1635,7 @@ The severity of the log entry.
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
 | **DateTime** | string<br>(date-time) | *Mandatory (Read)* | The current date and time with UTC offset of the log service. |
-| **DateTimeLocalOffset** | string | *Mandatory (Read)* | The time offset from UTC that the DateTime property is in `+HH:MM` format. |
+| **DateTimeLocalOffset** | string | *Mandatory (Read)* | The time offset from UTC that the `DateTime` property is in `+HH:MM` format. |
 | **Entries** { | object | *Mandatory (Read-only)* | The link to the log entry collection. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | } |   |   |
@@ -1735,12 +1737,12 @@ The purposes of the log.
 
 
 
-## <a name="manager-1.18.0"></a>Manager 1.18.0
+## <a name="manager-1.19.1"></a>Manager 1.19.1
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.18* | *v1.17* | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *...* |
-| **Release** | 2023.1 | 2022.3 | 2022.2 | 2022.1 | 2021.4 | 2021.2 | 2021.1 | 2020.4 | 2020.3 | 2020.2 | 2020.1 | ... |
+| **Version** | *v1.19* | *v1.18* | *v1.17* | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *...* |
+| **Release** | 2023.3 | 2023.1 | 2022.3 | 2022.2 | 2022.1 | 2021.4 | 2021.2 | 2021.1 | 2020.4 | 2020.3 | 2020.2 | ... |
 
 ### URIs
 
@@ -1776,6 +1778,14 @@ The purposes of the log.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProtocolEnabled** | boolean | *Mandatory (Read)* | An indication of whether the protocol is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FQDN** | string | *Mandatory (Read-only)* | The fully qualified domain name for the manager obtained by DNS including the host name and top-level domain name. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FTP** *(v1.10+)* { | object | *Mandatory (Read)* | The settings for this manager's FTP protocol support. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Port** | integer | *Mandatory (Read)* | The protocol port. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProtocolEnabled** | boolean | *Mandatory (Read)* | An indication of whether the protocol is enabled. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FTPS** *(v1.10+)* { | object | *Mandatory (Read)* | The settings for this manager's FTP over SSL (FTPS) protocol support that apply to all system instances controlled by this manager. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Port** | integer | *Mandatory (Read)* | The protocol port. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProtocolEnabled** | boolean | *Mandatory (Read)* | An indication of whether the protocol is enabled. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HostName** | string | *Mandatory (Read-only)* | The DNS host name of this manager, without any domain information. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HTTP** { | object | *Mandatory (Read)* | The settings for this manager's HTTP protocol support. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Port** | integer | *Mandatory (Read)* | The protocol port. |
@@ -1809,7 +1819,7 @@ The purposes of the log.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Enabled** *(v1.8+)* | boolean | *Mandatory (Read)* | Indicates if the manager uses the proxy server. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ExcludeAddresses** *(v1.8+)* [ ] | array (string, null) | *Mandatory (Read)* | Addresses that do not require the proxy server to access. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.8+)* | string | *Mandatory (Read)* | The password for the proxy.  The value is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.8+)* | boolean | *Mandatory (Read-only)* | Indicates if the Password property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.8+)* | boolean | *Mandatory (Read-only)* | Indicates if the `Password` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProxyAutoConfigURI** *(v1.8+)* | string<br>(URI) | *Mandatory (Read)* | The URI used to access a proxy auto-configuration (PAC) file. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProxyServerURI** *(v1.8+)* | string<br>(URI) | *Mandatory (Read)* | The URI of the proxy server, including the scheme and any non-default port value. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.8+)* | string | *Mandatory (Read)* | The username for the proxy. |
@@ -1822,13 +1832,20 @@ The purposes of the log.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Port** | integer | *Mandatory (Read)* | The protocol port. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProtocolEnabled** | boolean | *Mandatory (Read)* | An indication of whether the protocol is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SFTP** *(v1.10+)* { | object | *Mandatory (Read)* | The settings for this manager's Secure Shell File Transfer Protocol (SFTP) support. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Port** | integer | *Mandatory (Read)* | The protocol port. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProtocolEnabled** | boolean | *Mandatory (Read)* | An indication of whether the protocol is enabled. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SNMP** { | object | *Mandatory (Read)* | The settings for this manager's SNMP support. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AuthenticationProtocol** *(v1.5+)* | string<br>(enum) | *Mandatory (Read)* | The authentication protocol used for SNMP access to this manager. *For the possible property values, see AuthenticationProtocol in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CommunityAccessMode** *(v1.5+)* | string<br>(enum) | *Mandatory (Read)* | The access level of the SNMP community. *For the possible property values, see CommunityAccessMode in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CommunityAccessMode** *(v1.5+, deprecated v1.10)* | string<br>(enum) | *Mandatory (Read)* | The access level of the SNMP community. *For the possible property values, see CommunityAccessMode in Property details.* *Deprecated in v1.10 and later. This property has been deprecated in favor of `AccessMode` inside `CommunityStrings`.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CommunityStrings** *(v1.5+)* [ { | array | *Mandatory (Read)* | The SNMP community strings. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccessMode** *(v1.5+)* | string<br>(enum) | *Mandatory (Read)* | The access level of the SNMP community. *For the possible property values, see AccessMode in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CommunityString** *(v1.5+)* | string | *Mandatory (Read)* | The SNMP community string. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv4AddressRangeLower** *(v1.10+)* | string | *Mandatory (Read)* | The lowest IPv4 address in the range allowed to access the service. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv4AddressRangeUpper** *(v1.10+)* | string | *Mandatory (Read)* | The highest IPv4 address in the range allowed to access the service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** *(v1.5+)* | string | *Mandatory (Read)* | The name of the SNMP community. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RestrictCommunityToIPv4AddressRange** *(v1.10+)* | boolean | *Mandatory (Read-only)* | Indicates if this community is restricted to accessing the service from a range of IPv4 addresses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnableSNMPv1** *(v1.5+)* | boolean | *Mandatory (Read)* | Indicates if access via SNMPv1 is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnableSNMPv2c** *(v1.5+)* | boolean | *Mandatory (Read)* | Indicates if access via SNMPv2c is enabled. |
@@ -1836,12 +1853,13 @@ The purposes of the log.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionProtocol** *(v1.5+)* | string<br>(enum) | *Mandatory (Read)* | The encryption protocol used for SNMPv3 access to this manager. *For the possible property values, see EncryptionProtocol in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EngineId** *(v1.5+)* { | object | *Mandatory (Read)* | The engine ID. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ArchitectureId** *(v1.6+)* | string | *Mandatory (Read)* | The architecture identifier. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnterpriseSpecificMethod** *(v1.5+)* | string | *Mandatory (Read)* | The enterprise specific method. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnterpriseSpecificMethod** *(v1.5+)* | string | *Mandatory (Read)* | The enterprise-specific method. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrivateEnterpriseId** *(v1.5+)* | string | *Mandatory (Read-only)* | The private enterprise ID. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HideCommunityStrings** *(v1.5+)* | boolean | *Mandatory (Read)* | Indicates if the community strings should be hidden. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Port** | integer | *Mandatory (Read)* | The protocol port. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProtocolEnabled** | boolean | *Mandatory (Read)* | An indication of whether the protocol is enabled. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TrapPort** *(v1.10+)* | integer | *Mandatory (Read)* | The SNMP trap port. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SSDP** { | object | *Mandatory (Read)* | The settings for this manager's SSDP support. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NotifyIPv6Scope** | string<br>(enum) | *Mandatory (Read)* | The IPv6 scope for multicast NOTIFY messages for SSDP. *For the possible property values, see NotifyIPv6Scope in Property details.* |
@@ -1854,7 +1872,7 @@ The purposes of the log.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Port** | integer | *Mandatory (Read)* | The protocol port. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProtocolEnabled** | boolean | *Mandatory (Read)* | An indication of whether the protocol is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Status** {} | object | *Mandatory (Read)* | The status and health of the Resource and its subordinate or dependent Resources. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Status** {} | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. See the *Resource* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Telnet** { | object | *Mandatory (Read)* | The settings for this manager's Telnet protocol support. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Port** | integer | *Mandatory (Read)* | The protocol port. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProtocolEnabled** | boolean | *Mandatory (Read)* | An indication of whether the protocol is enabled. |
@@ -1866,7 +1884,7 @@ The purposes of the log.
 | } |   |   |
 | **Status** { | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Health** | string<br>(enum) | *Mandatory (Read-only)* | The health state of this resource in the absence of its dependent resources. *For the possible property values, see Health in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**State** | string<br>(enum) | *Mandatory (Read-only)* | The known state of the resource, such as, enabled. *For the possible property values, see State in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**State** | string<br>(enum) | *Mandatory (Read-only)* | The state of the resource. *For the possible property values, see State in Property details.* |
 | } |   |   |
 | **UUID** | string<br>(uuid) | *Mandatory (Read-only)* | The UUID for this manager. |
 
@@ -1948,6 +1966,8 @@ The encryption protocol used for SNMPv3 access to this manager.
 | Account | Encryption is determined by account settings. |  |
 | CBC_DES | CBC-DES encryption. |  |
 | CFB128_AES128 | CFB128-AES-128 encryption. |  |
+| CFB128_AES192 *(v1.10+)* | CFB128-AES-192 encryption. |  |
+| CFB128_AES256 *(v1.10+)* | CFB128-AES-256 encryption. |  |
 | None | No encryption. |  |
 
 #### Health
@@ -1971,11 +1991,11 @@ The type of manager that this resource represents.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
-| AuxiliaryController | A controller that provides management functions for a particular subsystem or group of devices. |  |
-| BMC | A controller that provides management functions for a single computer system. |  |
-| EnclosureManager | A controller that provides management functions for a chassis or group of devices or systems. |  |
+| AuxiliaryController | A controller that provides management functions for a particular subsystem or group of devices as part of a larger system. |  |
+| BMC | A controller that provides management functions for one or more computer systems.  Commonly known as a BMC (baseboard management controller).  Examples of this include a BMC dedicated to one system or a multi-host manager providing BMC capabilities to multiple systems. |  |
+| EnclosureManager | A controller that provides management functions for a chassis, group of devices, or group of systems with their own BMCs (baseboard management controllers).  An example of this is a manager that aggregates and orchestrates management functions across multiple BMCs in an enclosure. |  |
 | ManagementController | A controller that primarily monitors or manages the operation of a device or system. |  |
-| RackManager | A controller that provides management functions for a whole or part of a rack. |  |
+| RackManager | A controller that provides management functions for a whole or part of a rack.  An example of this is a manager that aggregates and orchestrates management functions across multiple managers, such as enclosure managers and BMCs (baseboard management controllers), in a rack. |  |
 | Service *(v1.4+)* | A software-based service that provides management functions. |  |
 
 #### NotifyIPv6Scope
@@ -1996,8 +2016,8 @@ The type of reset.
 | :--- | :------ | :--- |
 | ForceOff | Turn off the unit immediately (non-graceful shutdown). |  |
 | ForceOn | Turn on the unit immediately. |  |
-| ForceRestart | Shut down immediately and non-gracefully and restart the system. | Mandatory |
-| GracefulRestart | Shut down gracefully and restart the system. |  |
+| ForceRestart | Shut down immediately and non-gracefully and restart the unit. | Mandatory |
+| GracefulRestart | Shut down gracefully and restart the unit. |  |
 | GracefulShutdown | Shut down gracefully and power off. |  |
 | Nmi | Generate a diagnostic interrupt, which is usually an NMI on x86 systems, to stop normal operations, complete diagnostic actions, and, typically, halt the system. |  |
 | On | Turn on the unit. |  |
@@ -2009,16 +2029,17 @@ The type of reset.
 
 #### State
 
-The known state of the resource, such as, enabled.
+The state of the resource.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
 | Absent | This function or device is not currently present or detected.  This resource represents a capability or an available location where a device can be installed. |  |
 | Deferring *(v1.2+)* | The element does not process any commands but queues new requests. |  |
+| Degraded *(v1.19+)* | The function or resource is degraded. |  |
 | Disabled | This function or resource is disabled. |  |
 | Enabled | This function or resource is enabled. |  |
-| InTest | This function or resource is undergoing testing, or is in the process of capturing information for debugging. |  |
-| Qualified *(v1.9+)* | The element quality is within the acceptable range of operation. |  |
+| InTest | This function or resource is undergoing testing or is in the process of capturing information for debugging. |  |
+| Qualified *(v1.9+, deprecated v1.19)* | The element quality is within the acceptable range of operation. *Deprecated in v1.19 and later. This value has been deprecated in favor of StandbySpare.* |  |
 | Quiesced *(v1.2+)* | The element is enabled but only processes a restricted set of commands. |  |
 | StandbyOffline | This function or resource is enabled but awaits an external action to activate it. |  |
 | StandbySpare | This function or resource is part of a redundancy set and awaits a failover or other external action to activate it. |  |
@@ -2110,12 +2131,12 @@ The known state of the resource, such as, enabled.
 
 
 
-## <a name="manageraccount-1.11.0"></a>ManagerAccount 1.11.0
+## <a name="manageraccount-1.12.1"></a>ManagerAccount 1.12.1
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *...* |
-| **Release** | 2023.2 | 2022.3 | 2022.1 | 2021.1 | 2020.4 | 2020.1 | 2019.4 | 2019.3 | 2019.1 | 2018.3 | 2017.1 | ... |
+| **Version** | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *...* |
+| **Release** | 2023.3 | 2023.2 | 2022.3 | 2022.1 | 2021.1 | 2020.4 | 2020.1 | 2019.4 | 2019.3 | 2019.1 | 2018.3 | ... |
 
 ### URIs
 
@@ -2148,11 +2169,11 @@ The known state of the resource, such as, enabled.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RoleId** *(v1.2+)* | string | *Mandatory (Read-only)* | The name of the role. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | } |   |   |
-| **Password** | string | *Mandatory (Read)* | The password.  Use this property with a PATCH or PUT to write the password for the account.  This property is `null` in responses. |
+| **Password** | string | *Mandatory (Read)* | The password.  Use this property with a `PATCH` or `PUT` to write the password for the account.  This property is `null` in responses. |
 | **PasswordChangeRequired** *(v1.3+)* | boolean | *Recommended (Read)* | An indication of whether the service requires that the password for this account be changed before further access to the account is allowed. |
 | **PasswordExpiration** *(v1.6+)* | string<br>(date-time) | *Recommended (Read)* | Indicates the date and time when this account password expires.  If `null`, the account password never expires. |
 | **RoleId** | string | *Mandatory (Read)* | The role for this account. |
-| **UserName** | string | *Mandatory (Read)* | The user name for the account. |
+| **UserName** | string | *Mandatory (Read)* | The username for the account. |
 
 ### Property details
 
@@ -2162,11 +2183,11 @@ The list of services in the manager that the account is allowed to access.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
-| HostConsole | Allow access to the host's console, which could be connected through Telnet, SSH, or other protocol. |  |
+| HostConsole | Allow access to the host's console, which could be connected through Telnet, SSH, or another protocol. |  |
 | IPMI | Allow access to the Intelligent Platform Management Interface service. |  |
 | KVMIP | Allow access to a Keyboard-Video-Mouse over IP session. |  |
-| ManagerConsole | Allow access to the manager's console, which could be connected through Telnet, SSH, SM CLP, or other protocol. |  |
-| OEM | OEM account type.  See the OEMAccountTypes property. |  |
+| ManagerConsole | Allow access to the manager's console, which could be connected through Telnet, SSH, SM CLP, or another protocol. |  |
+| OEM | OEM account type.  See the `OEMAccountTypes` property. |  |
 | Redfish | Allow access to the Redfish service. |  |
 | SNMP | Allow access to SNMP services. |  |
 | VirtualMedia | Allow access to control virtual media. |  |
@@ -2224,12 +2245,12 @@ The Redfish privileges for this role.
 
 
 
-## <a name="managernetworkprotocol-1.9.1"></a>ManagerNetworkProtocol 1.9.1
+## <a name="managernetworkprotocol-1.10.1"></a>ManagerNetworkProtocol 1.10.1
 
-|     |     |     |     |     |     |     |     |     |     |     |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
-| **Release** | 2022.2 | 2021.2 | 2020.4 | 2020.1 | 2019.3 | 2018.3 | 2018.2 | 2017.1 | 2016.3 | 1.0 |
+|     |     |     |     |     |     |     |     |     |     |     |     |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Version** | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
+| **Release** | 2023.3 | 2022.2 | 2021.2 | 2020.4 | 2020.1 | 2019.3 | 2018.3 | 2018.2 | 2017.1 | 2016.3 | 1.0 |
 
 ### URIs
 
@@ -2343,7 +2364,7 @@ The IPv6 scope for multicast NOTIFY messages for SSDP.
 
 
 
-## <a name="outboundconnection-1.0.0"></a>OutboundConnection 1.0.0
+## <a name="outboundconnection-1.0.2"></a>OutboundConnection 1.0.2
 
 |     |     |
 | :--- | :--- |
@@ -2360,10 +2381,10 @@ The IPv6 scope for multicast NOTIFY messages for SSDP.
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
 | **Authentication** | string<br>(enum) | *Mandatory (Read-only)* | The authentication mechanism for the WebSocket connection. *For the possible property values, see Authentication in Property details.* |
-| **Certificates** { | object | *Mandatory (Read-only)* | The link to a collection of server certificates for the remote client referenced by the EndpointURI property. |
+| **Certificates** { | object | *Mandatory (Read-only)* | The link to a collection of server certificates for the remote client referenced by the `EndpointURI` property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | } |   |   |
-| **ClientCertificates** { | object | *Mandatory (Read-only)* | The link to a collection of client identity certificates provided to the remote client referenced by the EndpointURI property. |
+| **ClientCertificates** { | object | *Mandatory (Read-only)* | The link to a collection of client identity certificates provided to the remote client referenced by the `EndpointURI` property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | } |   |   |
 | **ConnectionEnabled** | boolean | *Mandatory (Read)* | Indicates if the outbound connection is enabled. |
@@ -2412,6 +2433,7 @@ The IPv6 scope for multicast NOTIFY messages for SSDP.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Resolution** *(v1.14+)* | string | *Mandatory (Read-only)* | Suggestions on how to resolve the condition. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ResolutionSteps** *(v1.18+)* [ { } ] | array (object) | *Mandatory (Read)* | The list of recommended steps to resolve the condition. See the *v1_0_1.v1_0_1* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Severity** | string<br>(enum) | *Mandatory (Read-only)* | The severity of the condition. *For the possible property values, see Severity in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Timestamp** | string<br>(date-time) | *Mandatory (Read-only)* | The time the condition occurred. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
@@ -2420,7 +2442,7 @@ The IPv6 scope for multicast NOTIFY messages for SSDP.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** { | object | *Mandatory (Read)* | The OEM extension property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**(pattern)** {} | object | *Mandatory (Read)* | Property names follow regular expression pattern "^\[A\-Za\-z0\-9\_\]\+$" |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**State** | string<br>(enum) | *Mandatory (Read-only)* | The known state of the resource, such as, enabled. *For the possible property values, see State in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**State** | string<br>(enum) | *Mandatory (Read-only)* | The state of the resource. *For the possible property values, see State in Property details.* |
 | } |   |   |
 | **WebSocketPingIntervalMinutes** | integer | *Mandatory (Read)* | Interval for sending the WebSocket ping opcode in minutes.  The value `0` indicates the ping opcode is not sent. |
 
@@ -2463,11 +2485,11 @@ The active session type.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
-| HostConsole | The host's console, which could be connected through Telnet, SSH, or other protocol. |  |
+| HostConsole | The host's console, which could be connected through Telnet, SSH, or another protocol. |  |
 | IPMI | Intelligent Platform Management Interface. |  |
 | KVMIP | A Keyboard-Video-Mouse over IP session. |  |
-| ManagerConsole | The manager's console, which could be connected through Telnet, SSH, SM CLP, or other protocol. |  |
-| OEM | OEM type.  For OEM session types, see the OemSessionType property. |  |
+| ManagerConsole | The manager's console, which could be connected through Telnet, SSH, SM CLP, or another protocol. |  |
+| OEM | OEM type.  For OEM session types, see the `OemSessionType` property. |  |
 | OutboundConnection *(v1.7+)* | A Redfish Specification-defined outbound connection.  See the 'Outbound connections' clause of the Redfish Specification. |  |
 | Redfish | A Redfish session. |  |
 | VirtualMedia | Virtual media. |  |
@@ -2485,16 +2507,17 @@ The severity of the condition.
 
 #### State
 
-The known state of the resource, such as, enabled.
+The state of the resource.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
 | Absent | This function or device is not currently present or detected.  This resource represents a capability or an available location where a device can be installed. |  |
 | Deferring *(v1.2+)* | The element does not process any commands but queues new requests. |  |
+| Degraded *(v1.19+)* | The function or resource is degraded. |  |
 | Disabled | This function or resource is disabled. |  |
 | Enabled | This function or resource is enabled. |  |
-| InTest | This function or resource is undergoing testing, or is in the process of capturing information for debugging. |  |
-| Qualified *(v1.9+)* | The element quality is within the acceptable range of operation. |  |
+| InTest | This function or resource is undergoing testing or is in the process of capturing information for debugging. |  |
+| Qualified *(v1.9+, deprecated v1.19)* | The element quality is within the acceptable range of operation. *Deprecated in v1.19 and later. This value has been deprecated in favor of StandbySpare.* |  |
 | Quiesced *(v1.2+)* | The element is enabled but only processes a restricted set of commands. |  |
 | StandbyOffline | This function or resource is enabled but awaits an external action to activate it. |  |
 | StandbySpare | This function or resource is part of a redundancy set and awaits a failover or other external action to activate it. |  |
@@ -2555,7 +2578,7 @@ The known state of the resource, such as, enabled.
 | } ] |   |   |
 | **Members@odata.nextLink** | string<br>(URI) | *Mandatory (Read-only)* | The URI to the resource containing the next set of partial members. |
 
-## <a name="registeredclient-1.1.0"></a>RegisteredClient 1.1.0
+## <a name="registeredclient-1.1.2"></a>RegisteredClient 1.1.2
 
 |     |     |     |
 | :--- | :--- | :--- |
@@ -2572,7 +2595,7 @@ The known state of the resource, such as, enabled.
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
 | **ClientType** | string<br>(enum) | *Mandatory (Read)* | The type of registered client. *For the possible property values, see ClientType in Property details.* |
-| **ClientURI** | string | *Mandatory (Read)* | The URI of the registered client. |
+| **ClientURI** | string<br>(URI) | *Mandatory (Read)* | The URI of the registered client. |
 | **Context** *(v1.1+)* | string | *Mandatory (Read)* | A client-supplied data for providing context for its own use. |
 | **CreatedDate** | string<br>(date-time) | *Mandatory (Read-only)* | The date and time when the client entry was created. |
 | **ManagedResources** [ { | array | *Mandatory (Read)* | An array of resources that the registered client monitors or configures. |
@@ -2590,7 +2613,7 @@ The type of registered client.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
-| Configure | The registered client performs update, create, and delete operations on the resources listed in the ManagedResources property as well as read operations on the service. |  |
+| Configure | The registered client performs update, create, and delete operations on the resources listed in the `ManagedResources` property as well as read operations on the service. |  |
 | Monitor | The registered client only performs read operations on this service. |  |
 
 ### Example response
@@ -2640,7 +2663,7 @@ The type of registered client.
 | } ] |   |   |
 | **Members@odata.nextLink** | string<br>(URI) | *Mandatory (Read-only)* | The URI to the resource containing the next set of partial members. |
 
-## <a name="role-1.3.1"></a>Role 1.3.1
+## <a name="role-1.3.2"></a>Role 1.3.2
 
 |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- |
@@ -2708,7 +2731,7 @@ The Redfish privileges for this role.
 
 
 
-## <a name="serviceconditions-1.0.0"></a>ServiceConditions 1.0.0
+## <a name="serviceconditions-1.0.1"></a>ServiceConditions 1.0.1
 
 |     |     |
 | :--- | :--- |
@@ -2735,6 +2758,7 @@ The Redfish privileges for this role.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Resolution** *(v1.14+)* | string | *Mandatory (Read-only)* | Suggestions on how to resolve the condition. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ResolutionSteps** *(v1.18+)* [ { } ] | array (object) | *Mandatory (Read)* | The list of recommended steps to resolve the condition. See the *v1_0_1.v1_0_1* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Severity** | string<br>(enum) | *Mandatory (Read-only)* | The severity of the condition. *For the possible property values, see Severity in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Timestamp** | string<br>(date-time) | *Mandatory (Read-only)* | The time the condition occurred. |
 | } ] |   |   |
@@ -2801,12 +2825,12 @@ The severity of the condition.
 
 
 
-## <a name="serviceroot-1.16.0"></a>ServiceRoot 1.16.0
+## <a name="serviceroot-1.17.0"></a>ServiceRoot 1.17.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *...* |
-| **Release** | 2023.1 | 2022.3 | 2022.1 | 2021.4 | 2021.3 | 2021.2 | 2021.1 | 2020.3 | 2020.2 | 2020.1 | 2019.4 | ... |
+| **Version** | *v1.17* | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *...* |
+| **Release** | 2024.1 | 2023.1 | 2022.3 | 2022.1 | 2021.4 | 2021.3 | 2021.2 | 2021.1 | 2020.3 | 2020.2 | 2020.1 | ... |
 
 ### URIs
 
@@ -2823,23 +2847,23 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountLockoutCounterResetAfter** | integer<br>(seconds) | *Mandatory (Read)* | The period of time, in seconds, between the last failed login attempt and the reset of the lockout threshold counter.  This value must be less than or equal to the AccountLockoutDuration value.  A reset sets the counter to `0`. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountLockoutCounterResetEnabled** *(v1.5+)* | boolean | *Mandatory (Read)* | An indication of whether the threshold counter is reset after AccountLockoutCounterResetAfter expires.  If `true`, it is reset.  If `false`, only a successful login resets the threshold counter and if the user reaches the AccountLockoutThreshold limit, the account will be locked out indefinitely and only an administrator-issued reset clears the threshold counter.  If this property is absent, the default is `true`. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountLockoutDuration** | integer<br>(seconds) | *Mandatory (Read)* | The period of time, in seconds, that an account is locked after the number of failed login attempts reaches the account lockout threshold, within the period between the last failed login attempt and the reset of the lockout threshold counter.  If this value is `0`, no lockout will occur.  If the AccountLockoutCounterResetEnabled value is `false`, this property is ignored. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountLockoutCounterResetAfter** | integer<br>(seconds) | *Mandatory (Read)* | The period of time, in seconds, between the last failed login attempt and the reset of the lockout threshold counter.  This value must be less than or equal to the `AccountLockoutDuration` value.  A reset sets the counter to `0`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountLockoutCounterResetEnabled** *(v1.5+)* | boolean | *Mandatory (Read)* | An indication of whether the threshold counter is reset after `AccountLockoutCounterResetAfter` expires.  If `true`, it is reset.  If `false`, only a successful login resets the threshold counter and if the user reaches the `AccountLockoutThreshold` limit, the account will be locked out indefinitely and only an administrator-issued reset clears the threshold counter.  If this property is absent, the default is `true`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountLockoutDuration** | integer<br>(seconds) | *Mandatory (Read)* | The period of time, in seconds, that an account is locked after the number of failed login attempts reaches the account lockout threshold, within the period between the last failed login attempt and the reset of the lockout threshold counter.  If this value is `0`, no lockout will occur.  If the `AccountLockoutCounterResetEnabled` value is `false`, this property is ignored. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountLockoutThreshold** | integer | *Mandatory (Read)* | The number of allowed failed login attempts before a user account is locked for a specified duration.  If `0`, the account is never locked. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Accounts** {} | object | *Mandatory (Read-only)* | The collection of manager accounts. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Actions** *(v1.2+)* {} | object | *Mandatory (Read)* | The available actions for this resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ActiveDirectory** *(v1.3+)* { | object | *Mandatory (Read)* | The first Active Directory external account provider that this account service supports. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountProviderType** *(v1.3+, deprecated v1.5)* | string<br>(enum) | *Mandatory (Read-only)* | The type of external account provider to which this service connects. *For the possible property values, see AccountProviderType in Property details.* *Deprecated in v1.5 and later. This property is deprecated because the account provider type is known when used in the LDAP and ActiveDirectory objects.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountProviderType** *(v1.3+, deprecated v1.5)* | string<br>(enum) | *Mandatory (Read-only)* | The type of external account provider to which this service connects. *For the possible property values, see AccountProviderType in Property details.* *Deprecated in v1.5 and later. This property is deprecated because the account provider type is known when used in the `LDAP` and `ActiveDirectory` objects.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Authentication** *(v1.3+)* { | object | *Mandatory (Read)* | The authentication information for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AuthenticationType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read)* | The type of authentication used to connect to the external account provider. *For the possible property values, see AuthenticationType in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKey** *(v1.8+)* | string | *Mandatory (Read)* | Specifies the encryption key. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKeySet** *(v1.8+)* | boolean | *Mandatory (Read-only)* | Indicates if the EncryptionKey property is set. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KerberosKeytab** *(v1.3+)* | string | *Mandatory (Read)* | The Base64-encoded version of the Kerberos keytab for this service.  A PATCH or PUT operation writes the keytab.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKeySet** *(v1.8+)* | boolean | *Mandatory (Read-only)* | Indicates if the `EncryptionKey` property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KerberosKeytab** *(v1.3+)* | string | *Mandatory (Read)* | The Base64-encoded version of the Kerberos keytab for this service.  A `PATCH` or `PUT` operation writes the keytab.  This property is `null` in responses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.3+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.3+)* | string | *Mandatory (Read)* | The password for this service.  A PATCH or PUT request writes the password.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Token** *(v1.3+)* | string | *Mandatory (Read)* | The token for this service.  A PATCH or PUT operation writes the token.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.3+)* | string | *Mandatory (Read)* | The user name for the service. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.3+)* | string | *Mandatory (Read)* | The password for this service.  A `PATCH` or `PUT` request writes the password.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Token** *(v1.3+)* | string | *Mandatory (Read)* | The token for this service.  A `PATCH` or `PUT` operation writes the token.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.3+)* | string | *Mandatory (Read)* | The username for the service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Certificates** *(v1.4+)* {} | object | *Mandatory (Read-only)* | The link to a collection of certificates that the external account provider uses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LDAPService** *(v1.3+)* { | object | *Mandatory (Read)* | The additional mapping information needed to parse a generic LDAP service. |
@@ -2850,17 +2874,17 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupNameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP group name entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupsAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the groups for a user on the LDAP user entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SSHKeyAttribute** *(v1.11+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP user's SSH public key entry. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UsernameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP user name entry. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UsernameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP username entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuth2Service** *(v1.10+)* { | object | *Mandatory (Read)* | The additional information needed to parse an OAuth 2.0 service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Audience** *(v1.10+)* [ ] | array (string) | *Mandatory (Read-only)* | The allowable audience strings of the Redfish service. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Issuer** *(v1.10+)* | string | *Mandatory (Read)* | The issuer string of the OAuth 2.0 service.  Clients should configure this property if Mode contains `Offline`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Issuer** *(v1.10+)* | string | *Mandatory (Read)* | The issuer string of the OAuth 2.0 service.  Clients should configure this property if `Mode` contains `Offline`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Mode** *(v1.10+)* | string<br>(enum) | *Mandatory (Read)* | The mode of operation for token validation. *For the possible property values, see Mode in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuthServiceSigningKeys** *(v1.10+)* | string | *Mandatory (Read)* | The Base64-encoded signing keys of the issuer of the OAuth 2.0 service.  Clients should configure this property if Mode contains `Offline`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuthServiceSigningKeys** *(v1.10+)* | string | *Mandatory (Read)* | The Base64-encoded signing keys of the issuer of the OAuth 2.0 service.  Clients should configure this property if `Mode` contains `Offline`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.13+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the Password property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the `Password` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Priority** *(v1.8+)* | integer | *Mandatory (Read)* | The authentication priority for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRoleMapping** *(v1.3+)* [ { | array | *Mandatory (Read)* | The mapping rules to convert the external account providers account information to the local Redfish role. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalRole** *(v1.3+)* | string | *Mandatory (Read)* | The name of the local Redfish role to which to map the remote user or group. |
@@ -2871,7 +2895,7 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteGroup** *(v1.3+)* | string | *Mandatory (Read)* | The name of the remote group, or the remote role in the case of a Redfish service, that maps to the local Redfish role to which this entity links. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteUser** *(v1.3+)* | string | *Mandatory (Read)* | The name of the remote user that maps to the local Redfish role to which this entity links. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Retries** *(v1.13+)* | integer | *Mandatory (Read)* | The number of times to retry connecting to an address in the ServiceAddresses property before attempting the next address in the array. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Retries** *(v1.13+)* | integer | *Mandatory (Read)* | The number of times to retry connecting to an address in the `ServiceAddresses` property before attempting the next address in the array. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceAddresses** *(v1.3+)* [ ] | array (string, null) | *Mandatory (Read)* | The addresses of the user account providers to which this external account provider links.  The format of this field depends on the type of external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEnabled** *(v1.3+)* | boolean | *Mandatory (Read)* | An indication of whether this service is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TACACSplusService** *(v1.8+)* { | object | *Mandatory (Read)* | The additional information needed to parse a TACACS+ services. |
@@ -2885,18 +2909,19 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AdditionalExternalAccountProviders** *(v1.3+)* {} | object | *Mandatory (Read-only)* | The additional external account providers that this account service uses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AuthFailureLoggingThreshold** | integer | *Mandatory (Read)* | The number of authorization failures per account that are allowed before the failed attempt is logged to the manager log. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HTTPBasicAuth** *(v1.15+)* | string<br>(enum) | *Mandatory (Read)* | Indicates if HTTP Basic authentication is enabled for this service. *For the possible property values, see HTTPBasicAuth in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LDAP** *(v1.3+)* { | object | *Mandatory (Read)* | The first LDAP external account provider that this account service supports. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountProviderType** *(v1.3+, deprecated v1.5)* | string<br>(enum) | *Mandatory (Read-only)* | The type of external account provider to which this service connects. *For the possible property values, see AccountProviderType in Property details.* *Deprecated in v1.5 and later. This property is deprecated because the account provider type is known when used in the LDAP and ActiveDirectory objects.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountProviderType** *(v1.3+, deprecated v1.5)* | string<br>(enum) | *Mandatory (Read-only)* | The type of external account provider to which this service connects. *For the possible property values, see AccountProviderType in Property details.* *Deprecated in v1.5 and later. This property is deprecated because the account provider type is known when used in the `LDAP` and `ActiveDirectory` objects.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Authentication** *(v1.3+)* { | object | *Mandatory (Read)* | The authentication information for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AuthenticationType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read)* | The type of authentication used to connect to the external account provider. *For the possible property values, see AuthenticationType in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKey** *(v1.8+)* | string | *Mandatory (Read)* | Specifies the encryption key. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKeySet** *(v1.8+)* | boolean | *Mandatory (Read-only)* | Indicates if the EncryptionKey property is set. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KerberosKeytab** *(v1.3+)* | string | *Mandatory (Read)* | The Base64-encoded version of the Kerberos keytab for this service.  A PATCH or PUT operation writes the keytab.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKeySet** *(v1.8+)* | boolean | *Mandatory (Read-only)* | Indicates if the `EncryptionKey` property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KerberosKeytab** *(v1.3+)* | string | *Mandatory (Read)* | The Base64-encoded version of the Kerberos keytab for this service.  A `PATCH` or `PUT` operation writes the keytab.  This property is `null` in responses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.3+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.3+)* | string | *Mandatory (Read)* | The password for this service.  A PATCH or PUT request writes the password.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Token** *(v1.3+)* | string | *Mandatory (Read)* | The token for this service.  A PATCH or PUT operation writes the token.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.3+)* | string | *Mandatory (Read)* | The user name for the service. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.3+)* | string | *Mandatory (Read)* | The password for this service.  A `PATCH` or `PUT` request writes the password.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Token** *(v1.3+)* | string | *Mandatory (Read)* | The token for this service.  A `PATCH` or `PUT` operation writes the token.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.3+)* | string | *Mandatory (Read)* | The username for the service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Certificates** *(v1.4+)* {} | object | *Mandatory (Read-only)* | The link to a collection of certificates that the external account provider uses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LDAPService** *(v1.3+)* { | object | *Mandatory (Read)* | The additional mapping information needed to parse a generic LDAP service. |
@@ -2907,17 +2932,17 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupNameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP group name entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupsAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the groups for a user on the LDAP user entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SSHKeyAttribute** *(v1.11+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP user's SSH public key entry. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UsernameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP user name entry. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UsernameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP username entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuth2Service** *(v1.10+)* { | object | *Mandatory (Read)* | The additional information needed to parse an OAuth 2.0 service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Audience** *(v1.10+)* [ ] | array (string) | *Mandatory (Read-only)* | The allowable audience strings of the Redfish service. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Issuer** *(v1.10+)* | string | *Mandatory (Read)* | The issuer string of the OAuth 2.0 service.  Clients should configure this property if Mode contains `Offline`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Issuer** *(v1.10+)* | string | *Mandatory (Read)* | The issuer string of the OAuth 2.0 service.  Clients should configure this property if `Mode` contains `Offline`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Mode** *(v1.10+)* | string<br>(enum) | *Mandatory (Read)* | The mode of operation for token validation. *For the possible property values, see Mode in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuthServiceSigningKeys** *(v1.10+)* | string | *Mandatory (Read)* | The Base64-encoded signing keys of the issuer of the OAuth 2.0 service.  Clients should configure this property if Mode contains `Offline`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuthServiceSigningKeys** *(v1.10+)* | string | *Mandatory (Read)* | The Base64-encoded signing keys of the issuer of the OAuth 2.0 service.  Clients should configure this property if `Mode` contains `Offline`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.13+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the Password property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the `Password` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Priority** *(v1.8+)* | integer | *Mandatory (Read)* | The authentication priority for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRoleMapping** *(v1.3+)* [ { | array | *Mandatory (Read)* | The mapping rules to convert the external account providers account information to the local Redfish role. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalRole** *(v1.3+)* | string | *Mandatory (Read)* | The name of the local Redfish role to which to map the remote user or group. |
@@ -2928,7 +2953,7 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteGroup** *(v1.3+)* | string | *Mandatory (Read)* | The name of the remote group, or the remote role in the case of a Redfish service, that maps to the local Redfish role to which this entity links. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteUser** *(v1.3+)* | string | *Mandatory (Read)* | The name of the remote user that maps to the local Redfish role to which this entity links. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Retries** *(v1.13+)* | integer | *Mandatory (Read)* | The number of times to retry connecting to an address in the ServiceAddresses property before attempting the next address in the array. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Retries** *(v1.13+)* | integer | *Mandatory (Read)* | The number of times to retry connecting to an address in the `ServiceAddresses` property before attempting the next address in the array. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceAddresses** *(v1.3+)* [ ] | array (string, null) | *Mandatory (Read)* | The addresses of the user account providers to which this external account provider links.  The format of this field depends on the type of external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEnabled** *(v1.3+)* | boolean | *Mandatory (Read)* | An indication of whether this service is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TACACSplusService** *(v1.8+)* { | object | *Mandatory (Read)* | The additional information needed to parse a TACACS+ services. |
@@ -2952,37 +2977,37 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GoogleAuthenticator** *(v1.12+)* { | object | *Mandatory (Read)* | The settings related to Google Authenticator multi-factor authentication. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Enabled** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether multi-factor authentication with Google Authenticator is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecretKey** *(v1.12+)* | string | *Mandatory (Read)* | The secret key to use when communicating with the Google Authenticator server.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecretKeySet** *(v1.12+)* | boolean | *Mandatory (Read-only)* | Indicates if the SecretKey property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecretKeySet** *(v1.12+)* | boolean | *Mandatory (Read-only)* | Indicates if the `SecretKey` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MicrosoftAuthenticator** *(v1.12+)* { | object | *Mandatory (Read)* | The settings related to Microsoft Authenticator multi-factor authentication. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Enabled** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether multi-factor authentication with Microsoft Authenticator is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecretKey** *(v1.12+)* | string | *Mandatory (Read)* | The secret key to use when communicating with the Microsoft Authenticator server.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecretKeySet** *(v1.12+)* | boolean | *Mandatory (Read-only)* | Indicates if the SecretKey property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecretKeySet** *(v1.12+)* | boolean | *Mandatory (Read-only)* | Indicates if the `SecretKey` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OneTimePasscode** *(v1.14+)* { | object | *Mandatory (Read)* | The settings related to one-time passcode (OTP) multi-factor authentication. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Enabled** *(v1.14+)* | boolean | *Mandatory (Read)* | An indication of whether multi-factor authentication using a one-time passcode is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecurID** *(v1.12+)* { | object | *Mandatory (Read)* | The settings related to RSA SecurID multi-factor authentication. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Certificates** *(v1.12+)* {} | object | *Mandatory (Read-only)* | The link to a collection of server certificates for the RSA SecurID server referenced by the ServerURI property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Certificates** *(v1.12+)* {} | object | *Mandatory (Read-only)* | The link to a collection of server certificates for the RSA SecurID server referenced by the `ServerURI` property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ClientId** *(v1.12+)* | string | *Mandatory (Read)* | The client ID to use when communicating with the RSA SecurID server. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ClientSecret** *(v1.12+)* | string | *Mandatory (Read)* | The client secret to use when communicating with the RSA SecurID server.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ClientSecretSet** *(v1.12+)* | boolean | *Mandatory (Read-only)* | Indicates if the ClientSecret property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ClientSecretSet** *(v1.12+)* | boolean | *Mandatory (Read-only)* | Indicates if the `ClientSecret` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Enabled** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether multi-factor authentication with RSA SecurID is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServerURI** *(v1.12+)* | string<br>(URI) | *Mandatory (Read)* | The URI of the RSA SecurID server. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuth2** *(v1.10+)* { | object | *Mandatory (Read)* | The first OAuth 2.0 external account provider that this account service supports. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountProviderType** *(v1.3+, deprecated v1.5)* | string<br>(enum) | *Mandatory (Read-only)* | The type of external account provider to which this service connects. *For the possible property values, see AccountProviderType in Property details.* *Deprecated in v1.5 and later. This property is deprecated because the account provider type is known when used in the LDAP and ActiveDirectory objects.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountProviderType** *(v1.3+, deprecated v1.5)* | string<br>(enum) | *Mandatory (Read-only)* | The type of external account provider to which this service connects. *For the possible property values, see AccountProviderType in Property details.* *Deprecated in v1.5 and later. This property is deprecated because the account provider type is known when used in the `LDAP` and `ActiveDirectory` objects.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Authentication** *(v1.3+)* { | object | *Mandatory (Read)* | The authentication information for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AuthenticationType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read)* | The type of authentication used to connect to the external account provider. *For the possible property values, see AuthenticationType in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKey** *(v1.8+)* | string | *Mandatory (Read)* | Specifies the encryption key. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKeySet** *(v1.8+)* | boolean | *Mandatory (Read-only)* | Indicates if the EncryptionKey property is set. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KerberosKeytab** *(v1.3+)* | string | *Mandatory (Read)* | The Base64-encoded version of the Kerberos keytab for this service.  A PATCH or PUT operation writes the keytab.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKeySet** *(v1.8+)* | boolean | *Mandatory (Read-only)* | Indicates if the `EncryptionKey` property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KerberosKeytab** *(v1.3+)* | string | *Mandatory (Read)* | The Base64-encoded version of the Kerberos keytab for this service.  A `PATCH` or `PUT` operation writes the keytab.  This property is `null` in responses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.3+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.3+)* | string | *Mandatory (Read)* | The password for this service.  A PATCH or PUT request writes the password.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Token** *(v1.3+)* | string | *Mandatory (Read)* | The token for this service.  A PATCH or PUT operation writes the token.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.3+)* | string | *Mandatory (Read)* | The user name for the service. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.3+)* | string | *Mandatory (Read)* | The password for this service.  A `PATCH` or `PUT` request writes the password.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Token** *(v1.3+)* | string | *Mandatory (Read)* | The token for this service.  A `PATCH` or `PUT` operation writes the token.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.3+)* | string | *Mandatory (Read)* | The username for the service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Certificates** *(v1.4+)* {} | object | *Mandatory (Read-only)* | The link to a collection of certificates that the external account provider uses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LDAPService** *(v1.3+)* { | object | *Mandatory (Read)* | The additional mapping information needed to parse a generic LDAP service. |
@@ -2993,17 +3018,17 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupNameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP group name entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupsAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the groups for a user on the LDAP user entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SSHKeyAttribute** *(v1.11+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP user's SSH public key entry. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UsernameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP user name entry. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UsernameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP username entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuth2Service** *(v1.10+)* { | object | *Mandatory (Read)* | The additional information needed to parse an OAuth 2.0 service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Audience** *(v1.10+)* [ ] | array (string) | *Mandatory (Read-only)* | The allowable audience strings of the Redfish service. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Issuer** *(v1.10+)* | string | *Mandatory (Read)* | The issuer string of the OAuth 2.0 service.  Clients should configure this property if Mode contains `Offline`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Issuer** *(v1.10+)* | string | *Mandatory (Read)* | The issuer string of the OAuth 2.0 service.  Clients should configure this property if `Mode` contains `Offline`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Mode** *(v1.10+)* | string<br>(enum) | *Mandatory (Read)* | The mode of operation for token validation. *For the possible property values, see Mode in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuthServiceSigningKeys** *(v1.10+)* | string | *Mandatory (Read)* | The Base64-encoded signing keys of the issuer of the OAuth 2.0 service.  Clients should configure this property if Mode contains `Offline`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuthServiceSigningKeys** *(v1.10+)* | string | *Mandatory (Read)* | The Base64-encoded signing keys of the issuer of the OAuth 2.0 service.  Clients should configure this property if `Mode` contains `Offline`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.13+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the Password property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the `Password` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Priority** *(v1.8+)* | integer | *Mandatory (Read)* | The authentication priority for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRoleMapping** *(v1.3+)* [ { | array | *Mandatory (Read)* | The mapping rules to convert the external account providers account information to the local Redfish role. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalRole** *(v1.3+)* | string | *Mandatory (Read)* | The name of the local Redfish role to which to map the remote user or group. |
@@ -3014,7 +3039,7 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteGroup** *(v1.3+)* | string | *Mandatory (Read)* | The name of the remote group, or the remote role in the case of a Redfish service, that maps to the local Redfish role to which this entity links. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteUser** *(v1.3+)* | string | *Mandatory (Read)* | The name of the remote user that maps to the local Redfish role to which this entity links. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Retries** *(v1.13+)* | integer | *Mandatory (Read)* | The number of times to retry connecting to an address in the ServiceAddresses property before attempting the next address in the array. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Retries** *(v1.13+)* | integer | *Mandatory (Read)* | The number of times to retry connecting to an address in the `ServiceAddresses` property before attempting the next address in the array. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceAddresses** *(v1.3+)* [ ] | array (string, null) | *Mandatory (Read)* | The addresses of the user account providers to which this external account provider links.  The format of this field depends on the type of external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEnabled** *(v1.3+)* | boolean | *Mandatory (Read)* | An indication of whether this service is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TACACSplusService** *(v1.8+)* { | object | *Mandatory (Read)* | The additional information needed to parse a TACACS+ services. |
@@ -3031,7 +3056,7 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordExpirationDays** *(v1.9+)* | integer | *Mandatory (Read)* | The number of days before account passwords in this account service will expire. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrivilegeMap** *(v1.1+)* {} | object | *Mandatory (Read-only)* | The link to the mapping of the privileges required to complete a requested operation on a URI associated with this service. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RequireChangePasswordAction** *(v1.14+)* | boolean | *Mandatory (Read)* | An indication of whether clients are required to invoke the ChangePassword action to modify account passwords. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RequireChangePasswordAction** *(v1.14+)* | boolean | *Mandatory (Read)* | An indication of whether clients are required to invoke the `ChangePassword` action to modify account passwords. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RestrictedOemPrivileges** *(v1.8+)* [ ] | array (string) | *Mandatory (Read-only)* | The set of restricted OEM privileges. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RestrictedPrivileges** *(v1.8+)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The set of restricted Redfish privileges. *For the possible property values, see RestrictedPrivileges in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Roles** {} | object | *Mandatory (Read-only)* | The collection of Redfish roles. |
@@ -3040,16 +3065,16 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SupportedAccountTypes** *(v1.8+)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The account types supported by the service. *For the possible property values, see SupportedAccountTypes in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SupportedOEMAccountTypes** *(v1.8+)* [ ] | array (string) | *Mandatory (Read-only)* | The OEM account types supported by the service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TACACSplus** *(v1.8+)* { | object | *Mandatory (Read)* | The first TACACS+ external account provider that this account service supports. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountProviderType** *(v1.3+, deprecated v1.5)* | string<br>(enum) | *Mandatory (Read-only)* | The type of external account provider to which this service connects. *For the possible property values, see AccountProviderType in Property details.* *Deprecated in v1.5 and later. This property is deprecated because the account provider type is known when used in the LDAP and ActiveDirectory objects.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccountProviderType** *(v1.3+, deprecated v1.5)* | string<br>(enum) | *Mandatory (Read-only)* | The type of external account provider to which this service connects. *For the possible property values, see AccountProviderType in Property details.* *Deprecated in v1.5 and later. This property is deprecated because the account provider type is known when used in the `LDAP` and `ActiveDirectory` objects.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Authentication** *(v1.3+)* { | object | *Mandatory (Read)* | The authentication information for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AuthenticationType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read)* | The type of authentication used to connect to the external account provider. *For the possible property values, see AuthenticationType in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKey** *(v1.8+)* | string | *Mandatory (Read)* | Specifies the encryption key. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKeySet** *(v1.8+)* | boolean | *Mandatory (Read-only)* | Indicates if the EncryptionKey property is set. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KerberosKeytab** *(v1.3+)* | string | *Mandatory (Read)* | The Base64-encoded version of the Kerberos keytab for this service.  A PATCH or PUT operation writes the keytab.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EncryptionKeySet** *(v1.8+)* | boolean | *Mandatory (Read-only)* | Indicates if the `EncryptionKey` property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**KerberosKeytab** *(v1.3+)* | string | *Mandatory (Read)* | The Base64-encoded version of the Kerberos keytab for this service.  A `PATCH` or `PUT` operation writes the keytab.  This property is `null` in responses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.3+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.3+)* | string | *Mandatory (Read)* | The password for this service.  A PATCH or PUT request writes the password.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Token** *(v1.3+)* | string | *Mandatory (Read)* | The token for this service.  A PATCH or PUT operation writes the token.  This property is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.3+)* | string | *Mandatory (Read)* | The user name for the service. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.3+)* | string | *Mandatory (Read)* | The password for this service.  A `PATCH` or `PUT` request writes the password.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Token** *(v1.3+)* | string | *Mandatory (Read)* | The token for this service.  A `PATCH` or `PUT` operation writes the token.  This property is `null` in responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.3+)* | string | *Mandatory (Read)* | The username for the service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Certificates** *(v1.4+)* {} | object | *Mandatory (Read-only)* | The link to a collection of certificates that the external account provider uses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LDAPService** *(v1.3+)* { | object | *Mandatory (Read)* | The additional mapping information needed to parse a generic LDAP service. |
@@ -3060,17 +3085,17 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupNameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP group name entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupsAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the groups for a user on the LDAP user entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SSHKeyAttribute** *(v1.11+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP user's SSH public key entry. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UsernameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP user name entry. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UsernameAttribute** *(v1.3+)* | string | *Mandatory (Read)* | The attribute name that contains the LDAP username entry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuth2Service** *(v1.10+)* { | object | *Mandatory (Read)* | The additional information needed to parse an OAuth 2.0 service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Audience** *(v1.10+)* [ ] | array (string) | *Mandatory (Read-only)* | The allowable audience strings of the Redfish service. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Issuer** *(v1.10+)* | string | *Mandatory (Read)* | The issuer string of the OAuth 2.0 service.  Clients should configure this property if Mode contains `Offline`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Issuer** *(v1.10+)* | string | *Mandatory (Read)* | The issuer string of the OAuth 2.0 service.  Clients should configure this property if `Mode` contains `Offline`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Mode** *(v1.10+)* | string<br>(enum) | *Mandatory (Read)* | The mode of operation for token validation. *For the possible property values, see Mode in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuthServiceSigningKeys** *(v1.10+)* | string | *Mandatory (Read)* | The Base64-encoded signing keys of the issuer of the OAuth 2.0 service.  Clients should configure this property if Mode contains `Offline`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OAuthServiceSigningKeys** *(v1.10+)* | string | *Mandatory (Read)* | The Base64-encoded signing keys of the issuer of the OAuth 2.0 service.  Clients should configure this property if `Mode` contains `Offline`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.13+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the Password property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the `Password` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Priority** *(v1.8+)* | integer | *Mandatory (Read)* | The authentication priority for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRoleMapping** *(v1.3+)* [ { | array | *Mandatory (Read)* | The mapping rules to convert the external account providers account information to the local Redfish role. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalRole** *(v1.3+)* | string | *Mandatory (Read)* | The name of the local Redfish role to which to map the remote user or group. |
@@ -3081,7 +3106,7 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteGroup** *(v1.3+)* | string | *Mandatory (Read)* | The name of the remote group, or the remote role in the case of a Redfish service, that maps to the local Redfish role to which this entity links. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteUser** *(v1.3+)* | string | *Mandatory (Read)* | The name of the remote user that maps to the local Redfish role to which this entity links. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Retries** *(v1.13+)* | integer | *Mandatory (Read)* | The number of times to retry connecting to an address in the ServiceAddresses property before attempting the next address in the array. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Retries** *(v1.13+)* | integer | *Mandatory (Read)* | The number of times to retry connecting to an address in the `ServiceAddresses` property before attempting the next address in the array. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceAddresses** *(v1.3+)* [ ] | array (string, null) | *Mandatory (Read)* | The addresses of the user account providers to which this external account provider links.  The format of this field depends on the type of external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEnabled** *(v1.3+)* | boolean | *Mandatory (Read)* | An indication of whether this service is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TACACSplusService** *(v1.8+)* { | object | *Mandatory (Read)* | The additional information needed to parse a TACACS+ services. |
@@ -3119,45 +3144,45 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#EventService.SubmitTestEvent** {} | object | *Mandatory (Read)* | This action generates a test event. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#EventService.TestEventSubscription** *(v1.10+)* {} | object | *Mandatory (Read)* | This action generates a test event using the pre-defined test message. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeliveryRetryAttempts** | integer | *Mandatory (Read)* | The number of times that the POST of an event is retried before the subscription terminates.  This retry occurs at the service level, which means that the HTTP POST to the event destination fails with an HTTP `4XX` or `5XX` status code or an HTTP timeout occurs this many times before the event destination subscription terminates. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeliveryRetryAttempts** | integer | *Mandatory (Read)* | The number of times that the `POST` of an event is retried before the subscription terminates.  This retry occurs at the service level, which means that the HTTP `POST` to the event destination fails with an HTTP `4XX` or `5XX` status code or an HTTP timeout occurs this many times before the event destination subscription terminates. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeliveryRetryIntervalSeconds** | integer<br>(seconds) | *Mandatory (Read)* | The interval, in seconds, between retry attempts for sending any event. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventFormatTypes** *(v1.2+)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The content types of the message that this service can send to the event destination. *For the possible property values, see EventFormatTypes in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventTypesForSubscription** *(deprecated v1.3)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The types of events to which a client can subscribe. *For the possible property values, see EventTypesForSubscription in Property details.* *Deprecated in v1.3 and later. This property has been deprecated.  Starting with Redfish Specification v1.6 (Event v1.3), subscriptions are based on the RegistryPrefix and ResourceType properties and not on the EventType property.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ExcludeMessageId** *(v1.8+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the ExcludeMessageIds property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ExcludeRegistryPrefix** *(v1.8+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the ExcludeRegistryPrefixes property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventTypesForSubscription** *(deprecated v1.3)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The types of events to which a client can subscribe. *For the possible property values, see EventTypesForSubscription in Property details.* *Deprecated in v1.3 and later. This property has been deprecated.  Starting with Redfish Specification v1.6 (Event v1.3), subscriptions are based on the `RegistryPrefix` and `ResourceType` properties and not on the `EventType` property.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ExcludeMessageId** *(v1.8+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `ExcludeMessageIds` property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ExcludeRegistryPrefix** *(v1.8+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `ExcludeRegistryPrefixes` property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IncludeOriginOfConditionSupported** *(v1.6+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports including the resource payload of the origin of condition in the event payload. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RegistryPrefixes** *(v1.2+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of the prefixes of the message registries that can be used for the RegistryPrefixes or ExcludeRegistryPrefixes properties on a subscription.  If this property is absent or contains an empty array, the service does not support RegistryPrefix-based subscriptions. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ResourceTypes** *(v1.2+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of @odata.type values, or schema names, that can be specified in the ResourceTypes array in a subscription.  If this property is absent or contains an empty array, the service does not support resource type-based subscriptions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RegistryPrefixes** *(v1.2+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of the prefixes of the message registries that can be used for the `RegistryPrefixes` or `ExcludeRegistryPrefixes` properties on a subscription.  If this property is absent or contains an empty array, the service does not support registry prefix-based subscriptions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ResourceTypes** *(v1.2+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of `@odata.type` values, or schema names, that can be specified in the `ResourceTypes` array in a subscription.  If this property is absent or contains an empty array, the service does not support resource type-based subscriptions. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServerSentEventUri** *(v1.1+)* | string<br>(URI) | *Mandatory (Read-only)* | The link to a URI for receiving Server-Sent Event representations for the events that this service generates. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEnabled** | boolean | *Mandatory (Read)* | An indication of whether this service is enabled.  If `false`, events are no longer published, new SSE connections cannot be established, and existing SSE connections are terminated. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Severities** *(v1.9+)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The list of severities that can be specified in the Severities array in a subscription. *For the possible property values, see Severities in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Severities** *(v1.9+)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The list of severities that can be specified in the `Severities` array in a subscription. *For the possible property values, see Severities in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SMTP** *(v1.5+)* { | object | *Mandatory (Read)* | Settings for SMTP event delivery. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Authentication** *(v1.5+)* | string<br>(enum) | *Mandatory (Read)* | The authentication method for the SMTP server. *For the possible property values, see Authentication in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ConnectionProtocol** *(v1.5+)* | string<br>(enum) | *Mandatory (Read)* | The connection type to the outgoing SMTP server. *For the possible property values, see ConnectionProtocol in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FromAddress** *(v1.5+)* | string | *Mandatory (Read)* | The 'from' email address of the outgoing email. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.5+)* | string | *Mandatory (Read)* | The password for authentication with the SMTP server.  The value is `null` in responses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.9+)* | boolean | *Mandatory (Read-only)* | Indicates if the Password property is set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.9+)* | boolean | *Mandatory (Read-only)* | Indicates if the `Password` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Port** *(v1.5+)* | integer | *Mandatory (Read)* | The destination SMTP port. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServerAddress** *(v1.5+)* | string | *Mandatory (Read)* | The address of the SMTP server. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEnabled** *(v1.5+)* | boolean | *Mandatory (Read)* | An indication if SMTP for event delivery is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.5+)* | string | *Mandatory (Read)* | The username for authentication with the SMTP server. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SSEFilterPropertiesSupported** *(v1.2+)* { | object | *Mandatory (Read)* | The set of properties that are supported in the `$filter` query parameter for the ServerSentEventUri. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventFormatType** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the EventFormatType property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventType** *(v1.2+, deprecated v1.3)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the EventTypes property. *Deprecated in v1.3 and later. This property has been deprecated.  Starting with Redfish Specification v1.6 (Event v1.3), subscriptions are based on the RegistryPrefix and ResourceType properties and not on the EventType property.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MessageId** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the MessageIds property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MetricReportDefinition** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the MetricReportDefinitions property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OriginResource** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the OriginResources property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RegistryPrefix** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the RegistryPrefixes property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ResourceType** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the ResourceTypes property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubordinateResources** *(v1.4+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the SubordinateResources property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SSEFilterPropertiesSupported** *(v1.2+)* { | object | *Mandatory (Read)* | The set of properties that are supported in the `$filter` query parameter for the `ServerSentEventUri`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventFormatType** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `EventFormatType` property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventType** *(v1.2+, deprecated v1.3)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `EventTypes` property. *Deprecated in v1.3 and later. This property has been deprecated.  Starting with Redfish Specification v1.6 (Event v1.3), subscriptions are based on the `RegistryPrefix` and `ResourceType` properties and not on the `EventType` property.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MessageId** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `MessageIds` property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MetricReportDefinition** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `MetricReportDefinitions` property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OriginResource** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `OriginResources` property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RegistryPrefix** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `RegistryPrefixes` property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ResourceType** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `ResourceTypes` property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubordinateResources** *(v1.4+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `SubordinateResources` property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Status** {} | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubordinateResourcesSupported** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the SubordinateResources property on both event subscriptions and generated events. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubordinateResourcesSupported** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the `SubordinateResources` property on both event subscriptions and generated events. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Subscriptions** { | object | *Mandatory (Read-only)* | The link to a collection of event destinations. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
@@ -3187,16 +3212,16 @@ The severity of the condition.
 | **Managers** {} | object | *Mandatory (Read-only)* | The link to a collection of managers. |
 | **Product** *(v1.3+)* | string | *Mandatory (Read-only)* | The product associated with this Redfish service. |
 | **ProtocolFeaturesSupported** *(v1.3+)* { | object | *Mandatory (Read)* | The information about protocol features that the service supports. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ExpandQuery** *(v1.3+)* { | object | *Mandatory (Read)* | The information about the use of $expand in the service. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ExpandAll** *(v1.3+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the asterisk (`*`) option of the $expand query parameter. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Levels** *(v1.3+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the $levels option of the $expand query parameter. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Links** *(v1.3+)* | boolean | *Mandatory (Read-only)* | An indication of whether this service supports the tilde (`~`) option of the $expand query parameter. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxLevels** *(v1.3+)* | integer | *Mandatory (Read-only)* | The maximum $levels option value in the $expand query parameter. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NoLinks** *(v1.3+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the period (`.`) option of the $expand query parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ExpandQuery** *(v1.3+)* { | object | *Mandatory (Read)* | The information about the use of `$expand` in the service. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ExpandAll** *(v1.3+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the asterisk (`*`) option of the `$expand` query parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Levels** *(v1.3+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the `$levels` option of the `$expand` query parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Links** *(v1.3+)* | boolean | *Mandatory (Read-only)* | An indication of whether this service supports the tilde (`~`) option of the `$expand` query parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxLevels** *(v1.3+)* | integer | *Mandatory (Read-only)* | The maximum `$levels` option value in the `$expand` query parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NoLinks** *(v1.3+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the period (`.`) option of the `$expand` query parameter. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FilterQuery** *(v1.3+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the $filter query parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FilterQuery** *(v1.3+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the `$filter` query parameter. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MultipleHTTPRequests** *(v1.14+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports multiple outstanding HTTP requests. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OnlyMemberQuery** *(v1.4+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the only query parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OnlyMemberQuery** *(v1.4+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports the `only` query parameter. |
 | } |   |   |
 | **RedfishVersion** | string | *Mandatory (Read-only)* | The version of the Redfish service. |
 | **RegisteredClients** *(v1.13+)* {} | object | *Recommended (Read-only)* | The link to a collection of registered clients. |
@@ -3236,10 +3261,12 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Actions** { | object | *Mandatory (Read)* | The available actions for this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#UpdateService.GenerateSSHIdentityKeyPair** *(v1.13+)* {} | object | *Mandatory (Read)* | This action generates a new SSH identity key-pair to be used with the `UpdateService` resource.  The generated public key is stored in the `Key` resource referenced by the `PublicIdentitySSHKey` property.  Any existing key-pair is deleted and replaced by the new key-pair. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#UpdateService.RemoveSSHIdentityKeyPair** *(v1.13+)* {} | object | *Mandatory (Read)* | This action removes the SSH identity key-pair used with the `UpdateService` resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#UpdateService.SimpleUpdate** {} | object | *Mandatory (Read)* | This action updates software components. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#UpdateService.StartUpdate** *(v1.7+)* {} | object | *Mandatory (Read)* | This action starts updating all images that have been previously invoked using an OperationApplyTime value of `OnStartUpdateRequest`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#UpdateService.StartUpdate** *(v1.7+)* {} | object | *Mandatory (Read)* | This action starts updating all images that have been previously invoked using an `OperationApplyTime` value of `OnStartUpdateRequest`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ClientCertificates** *(v1.10+)* { | object | *Mandatory (Read-only)* | The link to a collection of client identity certificates provided to the server referenced by the ImageURI property in SimpleUpdate. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ClientCertificates** *(v1.10+)* { | object | *Mandatory (Read-only)* | The link to a collection of client identity certificates provided to the server referenced by the `ImageURI` parameter in `SimpleUpdate`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
@@ -3247,26 +3274,29 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUri** *(v1.1+)* | string<br>(URI) | *Mandatory (Read-only)* | The URI used to perform an HTTP or HTTPS push update to the update service.  The format of the message is vendor-specific. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriOptions** *(v1.4+)* { | object | *Mandatory (Read)* | The options for HttpPushUri-provided software updates. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ForceUpdate** *(v1.11+)* | boolean | *Mandatory (Read)* | An indication of whether the service should bypass update policies when applying the HttpPushUri-provided image. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriApplyTime** *(v1.4+)* { | object | *Mandatory (Read)* | The settings for when to apply HttpPushUri-provided firmware. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ApplyTime** *(v1.4+)* | string<br>(enum) | *Mandatory (Read)* | The time when to apply the HttpPushUri-provided software update. *For the possible property values, see ApplyTime in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriOptions** *(v1.4+)* { | object | *Mandatory (Read)* | The options for `HttpPushUri`-provided software updates. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ForceUpdate** *(v1.11+)* | boolean | *Mandatory (Read)* | An indication of whether the service should bypass update policies when applying the `HttpPushUri`-provided image. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriApplyTime** *(v1.4+)* { | object | *Mandatory (Read)* | The settings for when to apply `HttpPushUri`-provided firmware. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ApplyTime** *(v1.4+)* | string<br>(enum) | *Mandatory (Read)* | The time when to apply the `HttpPushUri`-provided software update. *For the possible property values, see ApplyTime in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaintenanceWindowDurationInSeconds** *(v1.4+)* | integer<br>(seconds) | *Mandatory (Read)* | The expiry time, in seconds, of the maintenance window. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaintenanceWindowStartTime** *(v1.4+)* | string<br>(date-time) | *Mandatory (Read)* | The start time of a maintenance window. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriOptionsBusy** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether a client has reserved the HttpPushUriOptions properties for software updates. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriOptionsBusy** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether a client has reserved the `HttpPushUriOptions` properties for software updates. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriTargets** *(v1.2+)* [ ] | array<br>(URI) (string, null) | *Mandatory (Read)* | An array of URIs that indicate where to apply the update image. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriTargetsBusy** *(v1.2+)* | boolean | *Mandatory (Read)* | An indication of whether any client has reserved the HttpPushUriTargets property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriTargetsBusy** *(v1.2+)* | boolean | *Mandatory (Read)* | An indication of whether any client has reserved the `HttpPushUriTargets` property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxImageSizeBytes** *(v1.5+)* | integer<br>(bytes) | *Mandatory (Read-only)* | The maximum size in bytes of the software update image that this service supports. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MultipartHttpPushUri** *(v1.6+)* | string<br>(URI) | *Mandatory (Read-only)* | The URI used to perform a Redfish Specification-defined Multipart HTTP or HTTPS push update to the update service. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MultipartHttpPushUri** *(v1.6+)* | string<br>(URI) | *Mandatory (Read-only)* | The URI used to perform a Redfish Specification-defined multipart HTTP or HTTPS push update to the update service. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteServerCertificates** *(v1.9+)* { | object | *Mandatory (Read-only)* | The link to a collection of server certificates for the server referenced by the ImageURI property in SimpleUpdate. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PublicIdentitySSHKey** *(v1.13+)* { | object | *Mandatory (Read-only)* | A link to the public key that is used with the `SimpleUpdate` action for the key-based authentication.  The GenerateSSHIdentityKeyPair and RemoveSSHIdentityKeyPair are used to update the key for the `SimpleUpdate` action. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteServerSSHKeys** *(v1.12+)* { | object | *Mandatory (Read-only)* | The link to a collection of keys that can be used to authenticate the server referenced by the ImageURI property in SimpleUpdate. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteServerCertificates** *(v1.9+)* { | object | *Mandatory (Read-only)* | The link to a collection of server certificates for the server referenced by the `ImageURI` parameter in SimpleUpdate. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteServerSSHKeys** *(v1.12+)* { | object | *Mandatory (Read-only)* | The link to a collection of keys that can be used to authenticate the server referenced by the `ImageURI` parameter in `SimpleUpdate`. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEnabled** | boolean | *Mandatory (Read)* | An indication of whether this service is enabled. |
@@ -3274,8 +3304,9 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Status** {} | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VerifyRemoteServerCertificate** *(v1.9+)* | boolean | *Mandatory (Read)* | An indication of whether the service will verify the certificate of the server referenced by the ImageURI property in SimpleUpdate prior to sending the transfer request. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VerifyRemoteServerSSHKey** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether the service will verify the SSH key of the server referenced by the ImageURI property in SimpleUpdate prior to sending the transfer request. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SupportedUpdateImageFormats** *(v1.13+)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The image format types supported by the service. *For the possible property values, see SupportedUpdateImageFormats in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VerifyRemoteServerCertificate** *(v1.9+)* | boolean | *Mandatory (Read)* | An indication of whether the service will verify the certificate of the server referenced by the `ImageURI` parameter in `SimpleUpdate` prior to sending the transfer request. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VerifyRemoteServerSSHKey** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether the service will verify the SSH key of the server referenced by the `ImageURI` parameter in `SimpleUpdate` prior to sending the transfer request. |
 | } |   |   |
 | **Vendor** *(v1.5+)* | string | *Mandatory (Read-only)* | The vendor or manufacturer associated with this Redfish service. |
 
@@ -3296,7 +3327,7 @@ The type of external account provider to which this service connects.
 
 #### ApplyTime
 
-The time when to apply the HttpPushUri-provided software update.
+The time when to apply the `HttpPushUri`-provided software update.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
@@ -3304,7 +3335,8 @@ The time when to apply the HttpPushUri-provided software update.
 | Immediate | Apply immediately. |  |
 | InMaintenanceWindowOnReset | Apply after a reset but within an administrator-specified maintenance window. |  |
 | OnReset | Apply on a reset. |  |
-| OnStartUpdateRequest *(v1.11+)* | Apply when the StartUpdate action of the update service is invoked. |  |
+| OnStartUpdateRequest *(v1.11+)* | Apply when the `StartUpdate` action of the update service is invoked. |  |
+| OnTargetReset *(v1.14+)* | Apply when the target for the software update is reset.  Targets include devices, services, and systems. |  |
 
 #### Authentication
 
@@ -3327,7 +3359,7 @@ The type of authentication used to connect to the external account provider.
 | KerberosKeytab | A Kerberos keytab. |  |
 | OEM | An OEM-specific authentication mechanism. |  |
 | Token | An opaque authentication token. |  |
-| UsernameAndPassword | A user name and password combination. |  |
+| UsernameAndPassword | A username and password combination. |  |
 
 #### BypassTypes
 
@@ -3381,7 +3413,7 @@ The types of events to which a client can subscribe.
 | :--- | :------ | :--- |
 | Alert | A condition requires attention. |  |
 | MetricReport | The telemetry service is sending a metric report. |  |
-| Other | Because EventType is deprecated as of Redfish Specification v1.6, the event is based on a registry or resource but not an EventType. |  |
+| Other | Because `EventType` is deprecated as of Redfish Specification v1.6, the event is based on a registry or resource but not an `EventType`. |  |
 | ResourceAdded | A resource has been added. |  |
 | ResourceRemoved | A resource has been removed. |  |
 | ResourceUpdated | A resource has been updated. |  |
@@ -3396,6 +3428,16 @@ The health roll-up for all resources.
 | Critical | A critical condition requires immediate attention. |  |
 | OK | Normal. |  |
 | Warning | A condition requires attention. |  |
+
+#### HTTPBasicAuth
+
+Indicates if HTTP Basic authentication is enabled for this service.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Disabled | HTTP Basic authentication is disabled. |  |
+| Enabled | HTTP Basic authentication is enabled. |  |
+| Unadvertised | HTTP Basic authentication is enabled, but is not advertised with the `WWW-Authenticate` response header. |  |
 
 #### idRef
 
@@ -3420,7 +3462,7 @@ The mode of operation for token validation.
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
 | Discovery | OAuth 2.0 service information for token validation is downloaded by the service. |  |
-| Offline | OAuth 2.0 service information for token validation is configured by a client.  Clients should configure the Issuer and OAuthServiceSigningKeys properties for this mode. |  |
+| Offline | OAuth 2.0 service information for token validation is configured by a client.  Clients should configure the `Issuer` and `OAuthServiceSigningKeys` properties for this mode. |  |
 
 #### PasswordExchangeProtocols
 
@@ -3454,7 +3496,7 @@ The set of restricted Redfish privileges.
 
 #### Severities
 
-The list of severities that can be specified in the Severities array in a subscription.
+The list of severities that can be specified in the `Severities` array in a subscription.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
@@ -3468,15 +3510,28 @@ The account types supported by the service.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
-| HostConsole | Allow access to the host's console, which could be connected through Telnet, SSH, or other protocol. |  |
+| HostConsole | Allow access to the host's console, which could be connected through Telnet, SSH, or another protocol. |  |
 | IPMI | Allow access to the Intelligent Platform Management Interface service. |  |
 | KVMIP | Allow access to a Keyboard-Video-Mouse over IP session. |  |
-| ManagerConsole | Allow access to the manager's console, which could be connected through Telnet, SSH, SM CLP, or other protocol. |  |
-| OEM | OEM account type.  See the OEMAccountTypes property. |  |
+| ManagerConsole | Allow access to the manager's console, which could be connected through Telnet, SSH, SM CLP, or another protocol. |  |
+| OEM | OEM account type.  See the `OEMAccountTypes` property. |  |
 | Redfish | Allow access to the Redfish service. |  |
 | SNMP | Allow access to SNMP services. |  |
 | VirtualMedia | Allow access to control virtual media. |  |
 | WebUI | Allow access to a web user interface session, such as a graphical interface or another web-based protocol. |  |
+
+#### SupportedUpdateImageFormats
+
+The image format types supported by the service.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| PLDMv1_0 | A PLDM for Firmware Update Specification v1.0 image. |  |
+| PLDMv1_1 | A PLDM for Firmware Update Specification v1.1 image. |  |
+| PLDMv1_2 | A PLDM for Firmware Update Specification v1.2 image. |  |
+| PLDMv1_3 | A PLDM for Firmware Update Specification v1.3 image. |  |
+| UEFICapsule | The image conforms to the capsule format described in the UEFI Specification. |  |
+| VendorDefined | A vendor-defined image. |  |
 
 ### Example response
 
@@ -3544,7 +3599,7 @@ The account types supported by the service.
 
 
 
-## <a name="session-1.7.0"></a>Session 1.7.0
+## <a name="session-1.7.2"></a>Session 1.7.2
 
 |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -3570,10 +3625,10 @@ The account types supported by the service.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Authentication** | string<br>(enum) | *Mandatory (Read-only)* | The authentication mechanism for the WebSocket connection. *For the possible property values, see Authentication in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Certificates** { | object | *Mandatory (Read-only)* | The link to a collection of server certificates for the remote client referenced by the EndpointURI property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Certificates** { | object | *Mandatory (Read-only)* | The link to a collection of server certificates for the remote client referenced by the `EndpointURI` property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ClientCertificates** { | object | *Mandatory (Read-only)* | The link to a collection of client identity certificates provided to the remote client referenced by the EndpointURI property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ClientCertificates** { | object | *Mandatory (Read-only)* | The link to a collection of client identity certificates provided to the remote client referenced by the `EndpointURI` property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ConnectionEnabled** | boolean | *Mandatory (Read)* | Indicates if the outbound connection is enabled. |
@@ -3643,7 +3698,7 @@ The type of retry policy for this outbound connection.
 
 
 
-## <a name="sessionservice-1.1.8"></a>SessionService 1.1.8
+## <a name="sessionservice-1.1.9"></a>SessionService 1.1.9
 
 |     |     |     |
 | :--- | :--- | :--- |
@@ -3687,7 +3742,7 @@ The type of retry policy for this outbound connection.
 
 
 
-## <a name="softwareinventory-1.10.0"></a>SoftwareInventory 1.10.0
+## <a name="softwareinventory-1.10.2"></a>SoftwareInventory 1.10.2
 
 |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -3705,12 +3760,12 @@ The type of retry policy for this outbound connection.
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
 | **Manufacturer** *(v1.2+)* | string | *Mandatory (Read-only)* | The manufacturer or producer of this software. |
-| **RelatedItem** *(v1.1+)* [ { | array | *Supported (Read-only)* | The IDs of the Resources associated with this software inventory item. |
+| **RelatedItem** *(v1.1+)* [ { | array | *Supported (Read-only)* | An array of links to resources or objects that represent devices to which this software inventory applies. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | } ] |   |   |
 | **ReleaseDate** *(v1.2+)* | string<br>(date-time) | *Recommended (Read-only)* | The release date of this software. |
 | **ReleaseType** *(v1.10+)* | string<br>(enum) | *Recommended (Read-only)* | The type of release. *For the possible property values, see ReleaseType in Property details.* |
-| **Updateable** | boolean | *Mandatory (Read-only)* | An indication of whether the Update Service can update this software. |
+| **Updateable** | boolean | *Mandatory (Read-only)* | An indication of whether the update service can update this software. |
 | **Version** | string | *Mandatory (Read-only)* | The version of this software. |
 | **VersionScheme** *(v1.9+)* | string<br>(enum) | *Recommended (Read-only)* | The format of the version. *For the possible property values, see VersionScheme in Property details.* |
 
@@ -3768,7 +3823,7 @@ The format of the version.
 
 
 
-## <a name="task-1.7.2"></a>Task 1.7.2
+## <a name="task-1.7.4"></a>Task 1.7.4
 
 |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -3793,9 +3848,10 @@ The format of the version.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RelatedProperties** [ ] | array (string) | *Mandatory (Read-only)* | A set of properties described by the message. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Resolution** | string | *Mandatory (Read-only)* | Used to provide suggestions on how to resolve the situation that caused the message. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Severity** *(deprecated v1.1)* | string | *Mandatory (Read-only)* | The severity of the message. *Deprecated in v1.1 and later. This property has been deprecated in favor of MessageSeverity, which ties the values to the enumerations defined for the Health property within Status.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ResolutionSteps** *(v1.2+)* [ { } ] | array (object) | *Mandatory (Read)* | The list of recommended steps to resolve the situation that caused the message. See the *v1_0_1.v1_0_1* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Severity** *(deprecated v1.1)* | string | *Mandatory (Read-only)* | The severity of the message. *Deprecated in v1.1 and later. This property has been deprecated in favor of `MessageSeverity`, which ties the values to the enumerations defined for the `Health` property within `Status`.* |
 | } ] |   |   |
-| **TaskMonitor** *(v1.2+)* | string<br>(URI) | *Mandatory (Read-only)* | The URI of the Task Monitor for this task. |
+| **TaskMonitor** *(v1.2+)* | string<br>(URI) | *Mandatory (Read-only)* | The URI of the task monitor for this task. |
 | **TaskState** | string<br>(enum) | *Mandatory (Read-only)* | The state of the task. *For the possible property values, see TaskState in Property details.* |
 | **TaskStatus** | string<br>(enum) | *Mandatory (Read-only)* | The completion status of the task. *For the possible property values, see TaskStatus in Property details.* |
 
@@ -3873,7 +3929,7 @@ The completion status of the task.
 
 
 
-## <a name="taskservice-1.2.0"></a>TaskService 1.2.0
+## <a name="taskservice-1.2.1"></a>TaskService 1.2.1
 
 |     |     |     |     |
 | :--- | :--- | :--- | :--- |
@@ -3918,12 +3974,12 @@ The completion status of the task.
 
 
 
-## <a name="updateservice-1.12.0"></a>UpdateService 1.12.0
+## <a name="updateservice-1.14.0"></a>UpdateService 1.14.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *...* |
-| **Release** | 2023.2 | 2021.4 | 2021.2 | 2021.1 | 2019.4 | 2019.3 | 2019.2 | 2019.1 | 2018.3 | 2018.2 | 2017.1 | ... |
+| **Version** | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *...* |
+| **Release** | 2024.1 | 2023.3 | 2023.2 | 2021.4 | 2021.2 | 2021.1 | 2019.4 | 2019.3 | 2019.2 | 2019.1 | 2018.3 | ... |
 
 ### URIs
 
@@ -3937,7 +3993,7 @@ The completion status of the task.
 | **FirmwareInventory** { | object | *Mandatory (Read-only)* | An inventory of firmware. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | } |   |   |
-| **MultipartHttpPushUri** *(v1.6+)* | string<br>(URI) | *Recommended (Read-only)* | The URI used to perform a Redfish Specification-defined Multipart HTTP or HTTPS push update to the update service. **Desired that all equipment support both standard push and pull update methods.** |
+| **MultipartHttpPushUri** *(v1.6+)* | string<br>(URI) | *Recommended (Read-only)* | The URI used to perform a Redfish Specification-defined multipart HTTP or HTTPS push update to the update service. **Desired that all equipment support both standard push and pull update methods.** |
 
 ### Actions
 
@@ -3962,11 +4018,11 @@ This action updates software components.
 | Parameter Name     | Type     | Attributes   | Notes     |
 | :--- | :--- | :--- | :--------------------- |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ForceUpdate** *(v1.11+)* | boolean | *Mandatory (Read)* | An indication of whether the service should bypass update policies when applying the provided image.  The default is `false`. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ImageURI** | string | *Mandatory (Read)* | The URI of the software image to install. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.4+)* | string | *Mandatory (Read)* | The password to access the URI specified by the ImageURI parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ImageURI** | string<br>(URI) | *Mandatory (Read)* | The URI of the software image to install. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Password** *(v1.4+)* | string | *Mandatory (Read)* | The password to access the URI specified by the `ImageURI` parameter. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Targets** *(v1.2+)* [ ] | array<br>(URI) (string) | *Mandatory (Read)* | An array of URIs that indicate where to apply the update image. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TransferProtocol** | string<br>(enum) | *Recommended (Read)* | The network protocol that the update service uses to retrieve the software image file located at the URI provided in ImageURI.  This parameter is ignored if the URI provided in ImageURI contains a scheme. *For the possible property values, see TransferProtocol in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.4+)* | string | *Mandatory (Read)* | The user name to access the URI specified by the ImageURI parameter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TransferProtocol** | string<br>(enum) | *Recommended (Read)* | The network protocol that the update service uses to retrieve the software image file located at the URI specified by the `ImageURI` parameter.  This parameter is ignored if the URI provided in `ImageURI` contains a scheme. *For the possible property values, see TransferProtocol in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.4+)* | string | *Mandatory (Read)* | The username to access the URI specified by the `ImageURI` parameter. |
 
 **Request Example**
 
@@ -3982,7 +4038,7 @@ This action updates software components.
 
 #### TransferProtocol
 
-The network protocol that the update service uses to retrieve the software image file located at the URI provided in ImageURI.  This parameter is ignored if the URI provided in ImageURI contains a scheme.
+The network protocol that the update service uses to retrieve the software image file located at the URI specified by the `ImageURI` parameter.  This parameter is ignored if the URI provided in `ImageURI` contains a scheme.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
@@ -3994,7 +4050,7 @@ The network protocol that the update service uses to retrieve the software image
 | NSF *(deprecated v1.3)* | Network File System (NFS). *Deprecated in v1.3 and later. This value has been deprecated in favor of NFS.* |  |
 | OEM | A manufacturer-defined protocol. |  |
 | SCP | Secure Copy Protocol (SCP). |  |
-| SFTP *(v1.1+)* | Secure File Transfer Protocol (SFTP). |  |
+| SFTP *(v1.1+)* | SSH File Transfer Protocol (SFTP). |  |
 | TFTP | Trivial File Transfer Protocol (TFTP). |  |
 
 ### Example response
@@ -4020,7 +4076,7 @@ The network protocol that the update service uses to retrieve the software image
     },
     "Actions": {
         "#UpdateService.SimpleUpdate": {
-            "target": "/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate",
+            "target": "/redfish/v1/UpdateService/Actions/SimpleUpdate",
             "@Redfish.ActionInfo": "/redfish/v1/UpdateService/SimpleUpdateActionInfo"
         }
     },
@@ -4035,6 +4091,10 @@ The network protocol that the update service uses to retrieve the software image
 # <a name="redfish-documentation-generator"></a>Redfish documentation generator
 
 This document was created using the Redfish Documentation Generator utility, which uses the contents of the Redfish schema files (in JSON schema format) to automatically generate the bulk of the text.  The source code for the utility is available for download at DMTF's GitHub repository located at [https://www.github.com/DMTF/Redfish-Tools](https://www.github.com/DMTF/Redfish-Tools "https://www.github.com/DMTF/Redfish-Tools").
+
+For this document, a Markdown file (BaselineServiceProfileIntro.md) provides the text for the introduction and use cases sections, and a second file (BaselineServiceProfilePostscript.md) provides the text for this section and the change log.  These files are fed to the documentation generator, which merges those files with the generated Reference Guide text to produce the final document.  This process is controlled with a configuration file (baseline-service-config.json) for the documentation generator.
+
+Edits or additions to this document must be made in the source documents listed above, as any changes to this final output file will be lost whenever the document is re-generated.
 
 # <a name="annex-a-%28informative%29-change-log"></a>ANNEX A (informative) Change log
 

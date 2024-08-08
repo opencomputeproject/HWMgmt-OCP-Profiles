@@ -6,11 +6,11 @@
 	"uri_mapping": {
 		"redfish.dmtf.org/schemas/v1": "../../Redfish-Publications/json-schema"
 	},
-	"payload_dir": "../../redfish/mockups/DSP2046-examples",
+	"payload_dir": "../../Redfish-Publications/mockups/DSP2046-examples",
 	"profile_uri_to_local": {
 		"redfish.dmtf.org/profiles": "../OCP-Profiles"
 	},
-	"profile_doc": "OCPBaselineRedfishService.json",
+	"profile_doc": "OCPBaselineRedfishService.v1_0_0.json",
 	"profile_terse": true,
     "boilerplate_intro": "BaselineServiceProfileIntro.md",
     "boilerplate_postscript": "BaselineServiceProfilePostscript.md",

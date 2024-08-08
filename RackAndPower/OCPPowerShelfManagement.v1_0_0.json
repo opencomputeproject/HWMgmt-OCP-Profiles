@@ -252,15 +252,15 @@
                 "ElectricalContext": {},
                 "ElectricalConsumerNames": {
                     "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
+                    "WriteRequirement": "Mandatory"
                 },
                 "ElectricalSourceManagerURI": {
                     "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
+                    "WriteRequirement": "Mandatory"
                 },
                 "ElectricalSourceName": {
                     "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
+                    "WriteRequirement": "Mandatory"
                 },
                 "FrequencyHz": {},
                 "NominalVoltage": {},
@@ -329,7 +329,7 @@
                 "CurrentAmps": {},
                 "ElectricalConsumerNames": {
                     "ReadRequirement": "Recommended",
-                    "WriteRequirement": "IfImplemented"
+                    "WriteRequirement": "Mandatory"
                 },
                 "ElectricalContext": {},
                 "FrequencyHz": {},
