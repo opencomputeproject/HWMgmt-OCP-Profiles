@@ -1,0 +1,211 @@
+{
+    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_7_0",
+    "ProfileName": "OCP Coolant Distribution Unit",
+    "ProfileVersion": "1.0.0",
+    "Purpose": "Specifies the OCP management requirements for the Redfish interface on OCP coolant distribution units.",
+    "OwningEntity": "Open Compute Project",
+    "ContactInfo": "michael.raineri@dell.com",
+    "RequiredProfiles": {
+        "OCPLiquidCoolingBaseline": {
+            "MinVersion": "1.0.0"
+        }
+    },
+    "Resources": {
+        "ThermalEquipment": {
+            "URIs": [
+                "/redfish/v1/ThermalEquipment"
+            ],
+            "PropertyRequirements": {
+                "CDUs": {}
+            }
+        },
+        "CoolingUnit": {
+            "URIs": [
+                "/redfish/v1/ThermalEquipment/CDUs/{CoolingUnitId}"
+            ],
+            "PropertyRequirements": {
+                "CoolantConnectorRedundancy": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "EquipmentType": {
+                    "Comparison": "Equal",
+                    "Values": [
+                        "CDU"
+                    ]
+                },
+                "FilterRedundancy": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "Filters": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "PrimaryCoolantConnectors": {},
+                "PumpRedundancy": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "Pumps": {},
+                "Reservoirs": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "SecondaryCoolantConnectors": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                }
+            }
+        },
+        "Filter": {
+            "ReadRequirement": "IfImplemented",
+            "URIs": [
+                "/redfish/v1/ThermalEquipment/CDUs/{CoolingUnitId}/Filters/{FilterId}"
+            ],
+            "PropertyRequirements": {
+                "HotPluggable": {},
+                "Location": {
+                    "PropertyRequirements": {
+                        "PartLocation": {
+                            "PropertyRequirements": {
+                                "LocationOrdinalValue": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "LocationType": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Orientation": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Reference": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "ServiceLabel": {}
+                            }
+                        }
+                    }
+                },
+                "RatedServiceHours": {},
+                "Replaceable": {},
+                "ServicedDate": {},
+                "ServiceHours": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                }
+            }
+        },
+        "Pump": {
+            "URIs": [
+                "/redfish/v1/ThermalEquipment/CDUs/{CoolingUnitId}/Pumps/{PumpId}"
+            ],
+            "PropertyRequirements": {
+                "Location": {
+                    "PropertyRequirements": {
+                        "PartLocation": {
+                            "PropertyRequirements": {
+                                "LocationOrdinalValue": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "LocationType": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Orientation": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Reference": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "ServiceLabel": {}
+                            }
+                        }
+                    }
+                },
+                "PumpSpeedPercent": {},
+                "PumpType": {},
+                "ServiceHours": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                }
+            }
+        },
+        "Reservoir": {
+            "ReadRequirement": "IfImplemented",
+            "URIs": [
+                "/redfish/v1/ThermalEquipment/CDUs/{CoolingUnitId}/Reservoirs/{ReservoirId}"
+            ],
+            "PropertyRequirements": {
+                "CapacityLiters": {},
+                "FluidLevelPercent": {
+                    "ReadRequirement": "Recommended"
+                },
+                "FluidLevelStatus": {},
+                "Location": {
+                    "PropertyRequirements": {
+                        "PartLocation": {
+                            "PropertyRequirements": {
+                                "LocationOrdinalValue": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "LocationType": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Orientation": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Reference": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "ServiceLabel": {}
+                            }
+                        }
+                    }
+                },
+                "ReservoirType": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                }
+            }
+        },
+        "CoolantConnector": {
+            "URIs": [
+                "/redfish/v1/ThermalEquipment/CDUs/{CoolingUnitId}/PrimaryCoolantConnectors/{CoolantConnectorId}",
+                "/redfish/v1/ThermalEquipment/CDUs/{CoolingUnitId}/SecondaryCoolantConnectors/{CoolantConnectorId}"
+            ],
+            "PropertyRequirements": {
+                "Coolant": {
+                    "PropertyRequirements": {
+                        "CoolantType": {},
+                        "DensityKgPerCubicMeter": {},
+                        "SpecificHeatkJoulesPerKgK": {}
+                    }
+                },
+                "CoolantConnectorType": {},
+                "FlowLitersPerMinute": {},
+                "RatedFlowLitersPerMinute": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "DeltaPressurekPa": {},
+                "DeltaTemperatureCelsius": {},
+                "SupplyPressurekPa": {},
+                "SupplyTemperatureCelsius": {},
+                "HeatRemovedkW": {},
+                "ReturnPressurekPa": {},
+                "ReturnTemperatureCelsius": {}
+            }
+        }
+    }
+}
