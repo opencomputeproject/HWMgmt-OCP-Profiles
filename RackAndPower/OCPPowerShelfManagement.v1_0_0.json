@@ -21,6 +21,7 @@
                     "WriteRequirement": "Mandatory"
                 },
                 "ChassisType": {},
+                "EnvironmentMetrics": {},
                 "HeightMm": {
                     "ReadRequirement": "Recommended"
                 },
@@ -94,9 +95,47 @@
                         "State": {}
                     }
                 },
+                "ThermalSubsystem": {},
                 "UUID": {},
                 "Version": {
                     "ReadRequirement": "Recommended"
+                }
+            }
+        },
+        "EnvironmentMetrics": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics"
+            ],
+            "PropertyRequirements": {
+                "PowerWatts": {},
+                "TemperatureCelsius": {}
+            }
+        },
+        "ThermalSubsystem": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem"
+            ],
+            "PropertyRequirements": {
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "ThermalMetrics": {}
+            }
+        },
+        "ThermalMetrics": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem/ThermalMetrics"
+            ],
+            "PropertyRequirements": {
+                "TemperatureReadingsCelsius": {},
+                "TemperatureSummaryCelsius": {
+                    "PropertyRequirements": {
+                        "Ambient": {},
+                        "Internal": {}
+                    }
                 }
             }
         },
