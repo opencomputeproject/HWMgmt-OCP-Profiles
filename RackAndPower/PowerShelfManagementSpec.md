@@ -1,11 +1,11 @@
 # Scope
 
-This document references requirements and provide the usage examples for the OCP Power Shelf Management API v1.1.0.
+This document references requirements and provide the usage examples for the OCP Power Shelf Management API v1.0.0.
 
 # Requirements
 
 As a Redfish-based interface, the required Redfish interface model elements are specified in a profile document.
-For the OCP Power Shelf Management API v1.1.0, the profile is located at: <TBD>
+For the OCP Power Shelf Management API v1.0.0, the profile is located at: <TBD>
 
 The Redfish Interop Validator is an open-source conformance test that reads the profile, executes the tests against an implementation, and generates a test report in text or HTML format.
 
@@ -15,7 +15,7 @@ The Redfish Interop Validator is an open-source conformance test that reads the 
 
 The Redfish Interop Validator is located at https://github.com/DMTF/Redfish-Interop-Validator.
 
-The OCP Power Shelf Management v1.1.0 profile extends from the OCP Baseline Redfish Service v1.0.0 profile.
+The OCP Power Shelf Management v1.0.0 profile extends from the OCP Baseline Redfish Service v1.0.0 profile.
 This extension is specified directly in the profile.
 This means that the specification requires conformance to the OCP Baseline Redfish Service profile in addition to any requirements specified in the OCP Power Shelf Management profile.
 
@@ -601,5 +601,4 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1
 
 | Revision | Date       | Description |
 | :---     | :---       | :---        |
-| 1.1.0    | 2024-08-21 | Updated to use the OCP Baseline Redfish Service profile instead of the OCP Baseline Hardware Management profile. |
 | 1.0.0    | 2024-03-05 | Initial release. |
