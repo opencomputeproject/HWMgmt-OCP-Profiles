@@ -127,7 +127,7 @@
                     }
                 },
                 "IPv4StaticAddresses": {
-                    "ReadRequirement": "Recommended",
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Address": {
                             "ReadRequirement": "Mandatory",
@@ -147,7 +147,7 @@
                     "ReadRequirement": "Recommended"
                 },
                 "IPv6StaticAddresses": {
-                    "ReadRequirement": "Recommended",
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Address": {
                             "ReadRequirement": "Mandatory",
