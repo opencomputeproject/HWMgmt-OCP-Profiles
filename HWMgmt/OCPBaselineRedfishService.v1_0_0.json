@@ -445,9 +445,18 @@
                             "WriteRequirement": "Mandatory"
                         },
                         "Port": {},
-                        "NotifyMulticastIntervalSeconds": {},
-                        "NotifyIPv6Scope": {},
-                        "NotifyTTL": {}
+                        "NotifyMulticastIntervalSeconds": {
+                            "ReadRequirement": "IfImplemented",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "NotifyIPv6Scope": {
+                            "ReadRequirement": "IfImplemented",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "NotifyTTL": {
+                            "ReadRequirement": "IfImplemented",
+                            "WriteRequirement": "Mandatory"
+                        }
                     }
                 }
             }
