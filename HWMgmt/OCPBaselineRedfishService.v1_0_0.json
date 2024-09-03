@@ -1,7 +1,7 @@
 {
     "SchemaDefinition": "RedfishInteroperabilityProfile.v1_6_0",
     "ProfileName": "OCP Redfish Service",
-    "ProfileVersion": "0.7.0",
+    "ProfileVersion": "1.0.0",
     "Purpose": "Describes OCP requirements for any Redfish Service instance.  This profile covers only the purely software/firmware service portions of the Redfish schema.  Any device or product (software or firmware-based) implementing the Redfish Specification should meet these basic functionality requirements - regardless of the underlying hardware or system it is supporting.  This profile is intended to be included as a Required Profile by other OCP profiles to serve as a base for Redfish Service functionality.",
     "OwningEntity": "OCP",
     "ContactInfo": "jeff.autor@ocproject.com",
@@ -120,21 +120,10 @@
                 "NameServers": {},
                 "IPv4Addresses": {
                     "PropertyRequirements": {
-                        "Address": {
-                            "ReadRequirement": "Mandatory",
-                            "WriteRequirement": "Mandatory"
-                        },
-                        "AddressOrigin": {
-                            "ReadRequirement": "Mandatory"
-                        },
-                        "Gateway": {
-                            "ReadRequirement": "Mandatory",
-                            "WriteRequirement": "Mandatory"
-                        },
-                        "SubnetMask": {
-                            "ReadRequirement": "Mandatory",
-                            "WriteRequirement": "Mandatory"
-                        }
+                        "Address": {},
+                        "AddressOrigin": {},
+                        "Gateway": {},
+                        "SubnetMask": {}
                     }
                 },
                 "IPv4StaticAddresses": {
@@ -158,10 +147,30 @@
                     "ReadRequirement": "Recommended"
                 },
                 "IPv6StaticAddresses": {
-                    "ReadRequirement": "Recommended"
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "Address": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "PrefixLength": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    }
                 },
                 "IPv6StaticDefaultGateways": {
-                    "ReadRequirement": "Recommended"
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "Address": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "PrefixLength": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    }
                 },
                 "IPv6Addresses": {
                     "ReadRequirement": "IfImplemented",
@@ -187,32 +196,26 @@
                 "EventFormatType": {},
                 "SubscriptionType": {},
                 "ExcludeMessageIds": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "Mandatory"
+                    "ReadRequirement": "Recommended"
                 },
                 "ExcludeRegistryPrefixes": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "Mandatory"
+                    "ReadRequirement": "Recommended"
                 },
                 "HttpHeaders": {
                     "ReadRequirement": "Recommended",
                     "WriteRequirement": "Mandatory"
                 },
                 "IncludeOriginOfCondition": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "Mandatory"
+                    "ReadRequirement": "Recommended"
                 },
                 "RegistryPrefixes": {
-                    "ReadRequirement": "Mandatory",
-                    "WriteRequirement": "Mandatory"
+                    "ReadRequirement": "Recommended"
                 },
                 "ResourceTypes": {
-                    "ReadRequirement": "Mandatory",
-                    "WriteRequirement": "Mandatory"
+                    "ReadRequirement": "Recommended"
                 },
                 "SubordinateResources": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "Mandatory"
+                    "ReadRequirement": "Recommended"
                 }
             },
             "ActionRequirements": {
@@ -226,14 +229,8 @@
         },
         "EventService": {
             "PropertyRequirements": {
-                "ExcludeMessageId": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "Mandatory"
-                },
-                "ExcludeRegistryPrefix": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "Mandatory"
-                },
+                "ExcludeMessageId": {},
+                "ExcludeRegistryPrefix": {},
                 "IncludeOriginOfConditionSupported": {},
                 "RegistryPrefixes": {},
                 "ResourceTypes": {},
@@ -282,7 +279,7 @@
             }
         },
         "LicenseCollection": {
-            "ReadRequirement": "Recommended",
+            "ReadRequirement": "IfImplemented",
             "CreateResource": true,
             "DeleteResource": true,
             "UpdateResource": true
@@ -304,6 +301,7 @@
             }
         },
         "LogEntry": {
+            "URIs": [ "/redfish/v1/Managers/{ManagerId}/LogServices/{LogServiceId}/Entries/{LogEntryId}" ],
             "PropertyRequirements": {
                 "Created": {},
                 "EntryType": {},
@@ -321,9 +319,12 @@
             }
         },
         "LogService": {
+            "URIs": [ "/redfish/v1/Managers/{ManagerId}/LogServices/{LogServiceId}" ],
             "PropertyRequirements": {
                 "DateTime": {},
-                "DateTimeLocalOffset": {},
+                "DateTimeLocalOffset": {
+                    "ReadRequirement": "Recommended"
+                },
                 "Entries": {},
                 "LogEntryType": {},
                 "LogPurposes": {
@@ -424,7 +425,6 @@
                 "NTP": {
                     "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
-                        "NetworkSuppliedServers": {},
                         "NTPServers": {},
                         "Port": {},
                         "ProtocolEnabled": {}
@@ -459,7 +459,7 @@
             "DeleteResource": true
         },
         "OutboundConnection": {
-            "ReadRequirement": "Recommended",
+            "ReadRequirement": "IfPopulated",
             "PropertyRequirements": {
                 "Authentication": {},
                 "Certificates": {},
@@ -486,7 +486,7 @@
             "DeleteResource": true
         },
         "RegisteredClient": {
-            "ReadRequirement": "Recommended",
+            "ReadRequirement": "IfPopulated",
             "PropertyRequirements": {
                 "Context": {},
                 "ClientType": {},
@@ -610,6 +610,7 @@
             }
         },
         "UpdateService": {
+            "ReadRequirement": "Recommended",
             "PropertyRequirements": {
                 "FirmwareInventory": {},
                 "MultipartHttpPushUri": {
