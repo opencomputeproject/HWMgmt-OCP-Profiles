@@ -1,0 +1,611 @@
+{
+    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_0_0",
+    "ProfileName": "ManagedNetworkAdapter",
+    "ProfileVersion": "1.0.0",
+    "Purpose": "This Redfish profile documents the properties necessary to be supported for a network adapter in DMTF compliant servers using the ACD model. Copyright 2024 Hewlett Packard Enterprise Development LP.",
+    "OwningEntity": "OCP",
+    "ContributedBy": "HPE",
+    "ContactInfo": "jeff.hilland@hpe.com",
+    "Protocol": {
+        "MinVersion": "1.6"
+    },
+    "Resources": {
+        "NetworkAdapter": {
+            "ReadRequirement": "Mandatory",
+            "MinVersion": "1.6.0",
+            "@Redfish.Settings": {
+                "PropertyRequirements": {
+                    "SettingsObject": {
+                        "ReadRequirement": "Recommended",
+                        "PropertyRequirements": {
+                            "@odata.id": {
+                                "ReadRequirement": "Recommended"
+                            }
+                        }
+                    }
+                }
+            },
+            "ActionRequirements": {
+                "ResetSettingsToDefault": {
+                    "ReadRequirement": "Mandatory",
+                    "Parameters": {}
+                }
+            },
+            "PropertyRequirements": {
+                "Location": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "PartLocation": {
+                            "ReadRequirement": "Mandatory",
+                            "PropertyRequirements": {
+                                "LocationOrdinalValue": {
+                                    "ReadRequirement": "Mandatory"
+                                },
+                                "LocationType": {
+                                    "ReadRequirement": "Mandatory"
+                                }
+                            }
+                        },
+                        "Placement": {
+                            "ReadRequirement": "Mandatory"
+                        }
+                    }
+                },
+                "Manufacturer": {},
+                "Model": {
+					"ReadRequirement": "Mandatory",
+					"Purpose" : "This shall be the long name for the network adapter that is customer identifiable and not an internal codename or non-customer string."
+				},
+                "Metrics": {},
+                "NetworkDeviceFunctions": {},
+                "PartNumber": {},
+                "Ports": {},
+                "SerialNumber": {},
+                "SKU": {},
+                "Status": {
+                    "ReadRequirement": "Mandatory",
+                    "PropertyRequirements": {
+                        "Health": {
+                            "ReadRequirement": "Mandatory",
+                            "Comparison": "NotEqual",
+                            "Values": [
+                                null
+                            ]
+                        },
+                        "State": {
+                            "ReadRequirement": "Mandatory",
+                            "Comparison": "NotEqual",
+                            "Values": [
+                                null
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Port": {
+            "ReadRequirement": "Mandatory",
+            "MinVersion": "1.6.0",
+            "@Redfish.Settings": {
+                "ReadRequirement": "Mandatory",
+                "PropertyRequirements": {
+                    "SettingsObject": {
+                        "ReadRequirement": "Mandatory",
+                        "PropertyRequirements": {
+                            "@odata.id": {
+                                "ReadRequirement": "Mandatory"
+                            }
+                        }
+                    }
+                }
+            },
+            "PropertyRequirements": {
+                "CurrentSpeedGbps": {},
+                "Ethernet": {
+                    "ReadRequirement": "Mandatory",
+                    "PropertyRequirements": {
+                        "AssociatedMACAddresses": {
+                            "ReadRequirement": "Mandatory",
+                            "MinCount": 1
+                        }
+                    }
+                },
+                "FunctionMaxBandwidth": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "AllocationPercent": {
+                            "ReadRequirement": "Mandatory"
+                        },
+                        "NetworkDeviceFunction": {
+                            "ReadRequirement": "Recommended",
+                            "PropertyRequirements": {
+                                "@odata.id": {
+                                    "ReadRequirement": "Recommended"
+                                }
+                            }
+                        }
+                    }
+                },
+                "FunctionMinBandwidth": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "AllocationPercent": {},
+                        "NetworkDeviceFunction": {
+                            "ReadRequirement": "Recommended",
+                            "PropertyRequirements": {
+                                "@odata.id": {
+                                    "ReadRequirement": "Recommended"
+                                }
+                            }
+                        }
+                    }
+                },
+                "LinkConfiguration": {
+                    "PropertyRequirements": {
+                        "AutoSpeedNegotiationCapable": {},
+                        "AutoSpeedNegotiationEnabled": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "CapableLinkSpeedGbps": {},
+                        "ConfiguredNetworkLinks": {
+                            "ReadRequirement": "Mandatory",
+                            "PropertyRequirements": {
+                                "ConfiguredLinkSpeedGbps": {}
+                            }
+                        }
+                    }
+                },
+                "LinkNetworkTechnology": {},
+                "LinkStatus": {},
+                "LinkState": {},
+                "Metrics": {},
+                "PortId": {},
+                "Enabled": {
+                    "ReadRequirement": "Recommended"
+                },
+                "PortProtocol": {
+                    "ReadRequirement": "Recommended"
+                },
+                "SignalDetected": {
+                    "ReadRequirement": "Recommended"
+                }
+            }
+        },
+        "NetworkDeviceFunction": {
+            "MinVersion": "1.6.0",
+            "ReadRequirement": "Mandatory",
+            "@Redfish.Settings": {
+                "ReadRequirement": "Mandatory",
+                "PropertyRequirements": {
+                    "SettingsObject": {
+                        "ReadRequirement": "Mandatory",
+                        "PropertyRequirements": {
+                            "@odata.id": {
+                                "ReadRequirement": "Mandatory"
+                            }
+                        }
+                    }
+                }
+            },
+            "PropertyRequirements": {
+                "AssignablePhysicalNetworkPorts": {
+                    "ReadRequirement": "Mandatory",
+                    "PropertyRequirements": {
+                        "@odata.id": {
+                            "ReadRequirement": "Mandatory"
+                        }
+                    }
+                },
+                "BootMode": {},
+                "DeviceEnabled": {},
+                "Ethernet": {
+                    "ReadRequirement": "Mandatory",
+                    "PropertyRequirements": {
+                        "MACAddress": {
+                            "ReadRequirement": "Mandatory",
+                            "MinCount": 1
+                        }
+                    }
+                },
+                "Links": {
+                    "ReadRequirement": "Mandatory",
+                    "PropertyRequirements": {
+                        "PhysicalNetworkPortAssignment": {
+                            "ReadRequirement": "Mandatory",
+                            "PropertyRequirements": {
+                                "@odata.id": {
+                                    "ReadRequirement": "Mandatory"
+                                }
+                            }
+                        }
+                    }
+                },
+                "MaxVirtualFunctions": {},
+                "Metrics": {},
+                "NetDevFuncCapabilities": {},
+                "NetDevFuncType": {},
+                "Status": {
+                    "ReadRequirement": "Mandatory",
+                    "PropertyRequirements": {
+                        "Health": {
+                            "ReadRequirement": "Mandatory",
+                            "Comparison": "NotEqual",
+                            "Values": [
+                                null
+                            ]
+                        },
+                        "State": {
+                            "ReadRequirement": "Mandatory",
+                            "Comparison": "NotEqual",
+                            "Values": [
+                                null
+                            ]
+                        }
+                    }
+                },
+                "VirtualFunctionsEnabled": {}
+            }
+        },
+        "PCIeDevice": {
+            "ReadRequirement": "Mandatory",
+            "MinVersion": "1.9.0",
+            "PropertyRequirements": {
+                "Manufacturer": {},
+                "Model": {
+					"ReadRequirement": "Mandatory",
+					"Purpose" : "This shall be the long name for the network adapter that is customer identifiable and not an internal codename or non-customer string."
+				},
+                "SKU": {},
+                "SerialNumber": {},
+                "PartNumber": {},
+                "UUID": {
+                    "ReadRequirement": "Recommended"
+                },
+                "DeviceType": {},
+                "FirmwareVersion": {},
+                "Status": {
+                    "ReadRequirement": "Mandatory",
+                    "PropertyRequirements": {
+                        "Health": {
+                            "ReadRequirement": "Mandatory",
+                            "Comparison": "NotEqual",
+                            "Values": [
+                                null
+                            ]
+                        },
+                        "State": {
+                            "ReadRequirement": "Mandatory",
+                            "Comparison": "NotEqual",
+                            "Values": [
+                                null
+                            ]
+                        }
+                    }
+                },
+                "PCIeFunctions": {},
+                "PCIeInterface": {
+                    "LanesInUse": {},
+                    "MaxLanes": {},
+                    "MaxPCIeType": {},
+                    "PCIeType": {}
+                }
+            }
+        },
+        "PCIeFunction": {
+            "ReadRequirement": "Mandatory",
+            "MinVersion": "1.3.0",
+            "PropertyRequirements": {
+                "FunctionType": {},
+                "DeviceClass": {},
+                "FunctionId": {},
+                "DeviceId": {},
+                "VendorId": {},
+                "ClassCode": {},
+                "RevisionId": {},
+                "SubsystemId": {},
+                "SubsystemVendorId": {},
+                "Status": {
+                    "ReadRequirement": "Mandatory",
+                    "PropertyRequirements": {
+                        "Health": {
+                            "ReadRequirement": "Mandatory",
+                            "Comparison": "NotEqual",
+                            "Values": [
+                                null
+                            ]
+                        },
+                        "State": {
+                            "ReadRequirement": "Mandatory",
+                            "Comparison": "NotEqual",
+                            "Values": [
+                                null
+                            ]
+                        }
+                    }
+                },
+                "Links": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "NetworkDeviceFunctions": {
+                            "ReadRequirement": "Recommended",
+                            "PropertyRequirements": {
+                                "@odata.id": {
+                                    "ReadRequirement": "Recommended"
+                                }
+                            }
+                        },
+                        "PCIeDevice": {
+                            "ReadRequirement": "Recommended",
+                            "PropertyRequirements": {
+                                "@odata.id": {
+                                    "ReadRequirement": "Recommended"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "NetworkAdapterMetrics": {
+            "Repository": "https://redfish.dmtf.org/schemas/",
+            "MinVersion": "1.0.0",
+            "PropertyRequirements": {
+                "CPUCorePercent": {
+                    "ReadRequirement": "Recommended"
+                },
+                "HostBusRXPercent": {
+                    "ReadRequirement": "Recommended"
+                },
+                "HostBusTXPercent": {
+                    "ReadRequirement": "Recommended"
+                },
+                "NCSIRXBytes": {
+                    "ReadRequirement": "Recommended"
+                },
+                "NCSIRXFrames": {
+                    "ReadRequirement": "Recommended"
+                },
+                "NCSITXBytes": {
+                    "ReadRequirement": "Recommended"
+                },
+                "NCSITXFrames": {
+                    "ReadRequirement": "Recommended"
+                },
+                "RXBytes": {},
+                "RXMulticastFrames": {},
+                "RXUnicastFrames": {},
+                "TXBytes": {},
+                "TXMulticastFrames": {},
+                "TXUnicastFrames": {}
+            }
+        },
+        "PortMetrics": {
+            "Repository": "https://redfish.dmtf.org/schemas/",
+            "MinVersion": "1.2.0",
+            "PropertyRequirements": {
+                "Networking": {
+                    "PropertyRequirements": {
+                        "RDMAProtectionErrors": {
+                            "ReadRequirement": "IfImplemented"
+                        },
+                        "RDMAProtocolErrors": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RDMARXBytes": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RDMARXRequests": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RDMATXBytes": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RDMATXReadRequests": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RDMATXRequests": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RDMATXSendRequests": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RDMATXWriteRequests": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXBroadcastFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXDiscards": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXFCSErrors": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXFalseCarrierErrors": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXFrameAlignmentErrors": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXMulticastFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXOversizeFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXPFCFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXPauseXOFFFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXPauseXONFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXUndersizeFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "RXUnicastFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXBroadcastFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXDiscards": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXExcessiveCollisions": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXLateCollisions": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXMulticastFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXMultipleCollisions": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXPFCFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXPauseXOFFFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXPauseXONFrames": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXSingleCollisions": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "TXUnicastFrames": {
+                            "ReadRequirement": "Recommended"
+                        }
+                    }
+                },
+                "RXBytes": {},
+                "RXErrors": {},
+                "TXBytes": {},
+                "TXErrors": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Transceivers": {
+                    "PropertyRequirements": {
+                        "RXInputPowerMilliWatts": {},
+                        "SupplyVoltage": {},
+                        "TXBiasCurrentMilliAmps": {},
+                        "TXOutputPowerMilliWatts": {}
+                    }
+                }
+            }
+        },
+        "NetworkDeviceFunctionMetrics": {
+            "Repository": "https://redfish.dmtf.org/schemas/",
+            "ReadRequirement": "Mandatory",
+            "MinVersion": "1.1.0",
+            "PropertyRequirements": {
+                "Ethernet": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "NumOffloadedIPv4Conns": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "NumOffloadedIPv6Conns": {
+                            "ReadRequirement": "Recommended"
+                        }
+                    }
+                },
+                "RXAvgQueueDepthPercent": {
+                    "ReadRequirement": "Recommended"
+                },
+                "RXBytes": {
+                    "ReadRequirement": "Recommended"
+                },
+                "RXFrames": {
+                    "ReadRequirement": "Recommended"
+                },
+                "RXMulticastFrames": {
+                    "ReadRequirement": "Recommended"
+                },
+                "RXQueuesEmpty": {
+                    "ReadRequirement": "Recommended"
+                },
+                "RXQueuesFull": {
+                    "ReadRequirement": "Recommended"
+                },
+                "RXUnicastFrames": {
+                    "ReadRequirement": "Recommended"
+                },
+                "TXAvgQueueDepthPercent": {
+                    "ReadRequirement": "Recommended"
+                },
+                "TXBytes": {
+                    "ReadRequirement": "Recommended"
+                },
+                "TXFrames": {
+                    "ReadRequirement": "Recommended"
+                },
+                "TXMulticastFrames": {
+                    "ReadRequirement": "Recommended"
+                },
+                "TXQueuesEmpty": {
+                    "ReadRequirement": "Recommended"
+                },
+                "TXQueuesFull": {
+                    "ReadRequirement": "Recommended"
+                },
+                "TXUnicastFrames": {
+                    "ReadRequirement": "Recommended"
+                }
+            }
+        }
+    },
+    "Registries": {
+        "Base": {
+            "Repository": "https://redfish.dmtf.org/registries",
+            "ReadRequirement": "Mandatory",
+            "MinVersion": "1.15.0",
+            "Messages": {
+                "PropertyValueFormatError": {},
+                "PropertyValueError": {},
+                "PropertyNotUpdated": {},
+                "PropertyValueConflict": {},
+                "PropertyValueOutOfRange": {},
+                "PropertyNotWritable": {},
+                "PropertyValueModified": {},
+                "PropertyValueTypeError": {},
+                "ActionNotSupported": {},
+                "ActionParameterNotSupported": {},
+                "ActionParameterValueError": {},
+                "ActionParameterMissing": {},
+                "ActionParameterValueNotInList": {},
+                "ActionParameterValueTypeError": {},
+                "ActionParameterValueFormatError": {},
+                "QueryParameterValueTypeError": {},
+                "QueryParameterValueFormatError": {},
+                "QueryParameterValueError": {},
+                "QueryParameterOutOfRange": {},
+                "QueryNotSupportedOnResource": {},
+                "QueryNotSupportedOnOperation": {},
+                "QueryNotSupported": {},
+                "QueryCombinationInvalid": {},
+                "QueryParameterUnsupported": {}
+            }
+        },
+        "NetworkDevice": {
+            "Repository": "https://redfish.dmtf.org/registries",
+            "ReadRequirement": "Mandatory",
+            "MinVersion": "1.0.2",
+            "Messages": {
+                "ConnectionDropped": {},
+                "ConnectionEstablished": {}
+            }
+        }
+    }
+}

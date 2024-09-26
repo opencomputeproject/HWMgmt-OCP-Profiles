@@ -1,0 +1,24 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#NetworkAdapterCollection.NetworkAdapterCollection",
+    "@odata.etag": "W/\"2B729CB1\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters",
+    "@odata.type": "#NetworkAdapterCollection.NetworkAdapterCollection",
+    "Description": "The collection of network adapter resource instances available in this chassis.",
+    "Name": "NetworkAdapterCollection",
+    "Oem": {
+        "Hpe": {
+            "@odata.context": "/redfish/v1/$metadata#HpeNetworkAdapterStatus.HpeNetworkAdapterStatus",
+            "@odata.type": "#HpeNetworkAdapterStatus.v1_0_0.HpeNetworkAdapterStatus",
+            "MemberContents": "AllDevices"
+        }
+    },
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000"
+        }
+    ],
+    "Members@odata.count": 2
+}

@@ -1,0 +1,29 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#PCIeDevice.PCIeDevice",
+    "@odata.type": "#PCIeDevice.v1_9_0.PCIeDevice",
+    "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000",
+    "@odata.etag": "W/\"70C0367C\"",
+    "Id": "DE07A000",
+    "Name": "PCIe Device",
+    "Manufacturer": "Contoso",
+    "Model": "Contoso 2",
+    "SKU": "Contoso 2 function adapter",
+    "SerialNumber": "LMNOP4279",
+    "PartNumber": "ABCDEFG2",
+    "UUID": "00000000-0000-1000-8000-9cdc71c3bb0a",
+    "DeviceType": "MultiFunction",
+    "FirmwareVersion": "192.168.59.0",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "PCIeFunctions": {
+        "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000/PCIeFunctions"
+    },
+    "PCIeInterface": {
+        "LanesInUse": 8,
+        "MaxLanes": 16,
+        "MaxPCIeType": "Gen4",
+        "PCIeType": "Gen4"
+    }
+}

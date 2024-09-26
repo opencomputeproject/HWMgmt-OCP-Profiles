@@ -1,0 +1,41 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#NetworkDeviceFunction.NetworkDeviceFunction",
+    "@odata.type": "#NetworkDeviceFunction.v1_8_0.NetworkDeviceFunction",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/2",
+    "@odata.etag": "W/\"ABB4BAD8\"",
+    "Id": "2",
+    "Name": "Network Device Function 2",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Metrics": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/2/Metrics"
+    },
+    "NetDevFuncType": "Ethernet",
+    "DeviceEnabled": true,
+    "NetDevFuncCapabilities": [
+        "Ethernet"
+    ],
+    "Ethernet": {
+        "MACAddress": "9c:dc:71:c3:bb:0b",
+        "PermanentMACAddress": "9c:dc:71:c3:bb:0b",
+        "MTUSizeMaximum": 9600
+    },
+    "BootMode": "PXE",
+    "VirtualFunctionsEnabled": true,
+    "MaxVirtualFunctions": 8,
+    "AssignablePhysicalNetworkPorts": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/2"
+        }
+    ],
+    "Links": {
+        "PCIeFunction": {
+            "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000/PCIeFunctions/2"
+        },
+        "PhysicalNetworkPortAssignment": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/2"
+        }
+    }
+}
