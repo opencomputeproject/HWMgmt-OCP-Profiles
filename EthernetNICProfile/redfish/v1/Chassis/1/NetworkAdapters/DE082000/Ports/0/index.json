@@ -1,0 +1,127 @@
+{
+    "@odata.etag": "W/\"F0F853A5\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/0",
+    "@odata.type": "#Port.v1_10_0.Port",
+    "Id": "0",
+    "@Redfish.Settings": {
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/0/Settings"
+        },
+        "@odata.type": "#Settings.v1_3_3.Settings",
+        "SupportedApplyTimes": [
+            "OnReset"
+        ]
+    },
+    "Actions": {
+        "#Port.Reset": {
+            "target": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/0/Actions/Port.Reset",
+            "title": "Reset"
+        }
+    },
+    "CurrentSpeedGbps": 10.0,
+    "Ethernet": {
+        "FlowControlConfiguration": "None",
+        "FlowControlStatus": "None",
+        "AssociatedMACAddresses": [
+            "50:7C:6F:0A:93:EC"
+        ],
+        "EEEEnabled": false,
+        "WakeOnLANEnabled": false,
+        "SupportedEthernetCapabilities": [],
+        "LLDPEnabled": false,
+        "LLDPReceive": {
+            "ChassisId": "",
+            "ChassisIdSubtype": "NotTransmitted",
+            "ManagementAddressIPv4": "",
+            "ManagementAddressIPv6": "",
+            "ManagementAddressMAC": "",
+            "ManagementVlanId": 4095,
+            "PortId": "",
+            "PortIdSubtype": "NotTransmitted",
+            "SystemName": ""
+        },
+        "LLDPTransmit": {
+            "ChassisId": "",
+            "ChassisIdSubtype": "NotTransmitted",
+            "ManagementAddressIPv4": "",
+            "ManagementAddressIPv6": "",
+            "ManagementAddressMAC": "",
+            "ManagementVlanId": 4095,
+            "PortId": "",
+            "PortIdSubtype": "NotTransmitted"
+        }
+    },
+    "InterfaceEnabled": true,
+    "LinkConfiguration": [
+        {
+            "AutoSpeedNegotiationCapable": true,
+            "AutoSpeedNegotiationEnabled": false,
+            "CapableLinkSpeedGbps": [
+                1.0,
+                10.0,
+                25.0
+            ],
+            "ConfiguredNetworkLinks": [
+                {
+                    "ConfiguredLinkSpeedGbps": 1.0
+                },
+                {
+                    "ConfiguredLinkSpeedGbps": 10.0
+                },
+                {
+                    "ConfiguredLinkSpeedGbps": 25.0
+                }
+            ]
+        }
+    ],
+    "LinkNetworkTechnology": "Ethernet",
+    "LinkState": "Enabled",
+    "LinkStatus": "LinkUp",
+    "MaxFrameSize": 9728,
+    "LinkTransitionIndicator": 3,
+    "MaxSpeedGbps": 25.0,
+    "Name": "E810 Port Current Setting",
+    "PortId": "1",
+    "PortType": "BidirectionalPort",
+    "Metrics": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/0/Metrics"
+    },
+    "Status": {
+        "State": "Enabled",
+        "HealthRollup": "OK"
+    },
+    "PortMedium": "Electrical",
+    "FunctionMaxBandwidth": [
+        {
+            "AllocationPercent": 100,
+            "NetworkDeviceFunction": {
+                "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/0"
+            }
+        }
+    ],
+    "FunctionMinBandwidth": [
+        {
+            "AllocationPercent": 100,
+            "NetworkDeviceFunction": {
+                "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/0"
+            }
+        }
+    ],
+    "SFP": {
+        "FiberConnectionType": null,
+        "Manufacturer": "TE Connectivity",
+        "MediumType": "Copper",
+        "PartNumber": "2159287-2",
+        "SerialNumber": "2152400718",
+        "Status": {
+            "Health": null,
+            "State": "Enabled"
+        },
+        "SupportedSFPTypes": [
+            "SFP",
+            "SFPPlus",
+            "SFP28"
+        ],
+        "Type": "SFP"
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "@odata.etag": "W/\"325B6F0B\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/0/Metrics",
+    "@odata.type": "#PortMetrics.v1_5_0.PortMetrics",
+    "Id": "Metrics",
+    "Name": "E810 Port Metrics",
+    "Description": "Usage and health statistics for Ethernet port 0",
+    "Networking": {
+        "RDMARXBytes": 0,
+        "RDMARXRequests": 0,
+        "RDMATXBytes": 0,
+        "RDMATXRequests": 0,
+        "RXBroadcastFrames": 2005,
+        "RXDiscards": 0,
+        "RXFCSErrors": 0,
+        "RXFrames": 8394,
+        "RXMulticastFrames": 6383,
+        "RXOversizeFrames": 0,
+        "RXPFCFrames": 0,
+        "RXPauseXOFFFrames": 0,
+        "RXPauseXONFrames": 0,
+        "RXUndersizeFrames": 0,
+        "RXUnicastFrames": 6,
+        "TXBroadcastFrames": 0,
+        "TXFrames": 3,
+        "TXMulticastFrames": 3,
+        "TXPFCFrames": 0,
+        "TXPauseXOFFFrames": 0,
+        "TXPauseXONFrames": 0,
+        "TXUnicastFrames": 0
+    },
+    "RXBytes": 1380181,
+    "RXErrors": 5,
+    "TXBytes": 262,
+    "Transceivers": [
+        {
+            "RXInputPowerMilliWatts": null,
+            "SupplyVoltage": null,
+            "TXBiasCurrentMilliAmps": null,
+            "TXOutputPowerMilliWatts": null
+        }
+    ]
+}
