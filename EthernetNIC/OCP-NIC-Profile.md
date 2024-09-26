@@ -372,6 +372,7 @@ The state of the resource.
 | **DeviceEnabled** | boolean | *Mandatory (Read)* | An indication of whether the network device function is enabled. |
 | **Ethernet** { | object | *Mandatory (Read)* | The Ethernet capabilities, status, and configuration values for this network device function. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MACAddress** | string | *Mandatory (Read), Minimum 1* | The currently configured MAC address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MTUSize** | integer | *Recommended (Read)* | The hardware maximum transmission unit (MTU) configured for this network device function. |
 | } |   |   |
 | **Links** { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalNetworkPortAssignment** *(v1.5+)* { | object | *Mandatory (Read)* | The physical port to which this network device function is currently assigned. |
@@ -1139,6 +1140,8 @@ This registry defines the messages for networking devices.
 | :--- | :--- |
 | ConnectionDropped | Mandatory |
 | ConnectionEstablished | Mandatory |
+| DegradedConnectionEstablished | Recommended |
+| LinkFlapDetected | Recommended |
 
 
 

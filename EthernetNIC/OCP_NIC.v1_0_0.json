@@ -53,9 +53,9 @@
                 },
                 "Manufacturer": {},
                 "Model": {
-					"ReadRequirement": "Mandatory",
-					"Purpose" : "This shall be the long name for the network adapter that is customer identifiable and not an internal codename or non-customer string."
-				},
+                    "ReadRequirement": "Mandatory",
+                    "Purpose": "This shall be the long name for the network adapter that is customer identifiable and not an internal codename or non-customer string."
+                },
                 "Metrics": {},
                 "NetworkDeviceFunctions": {},
                 "PartNumber": {},
@@ -204,6 +204,9 @@
                         "MACAddress": {
                             "ReadRequirement": "Mandatory",
                             "MinCount": 1
+                        },
+                        "MTUSize": {
+                            "ReadRequirement": "Recommended"
                         }
                     }
                 },
@@ -252,9 +255,9 @@
             "PropertyRequirements": {
                 "Manufacturer": {},
                 "Model": {
-					"ReadRequirement": "Mandatory",
-					"Purpose" : "This shall be the long name for the network adapter that is customer identifiable and not an internal codename or non-customer string."
-				},
+                    "ReadRequirement": "Mandatory",
+                    "Purpose": "This shall be the long name for the network adapter that is customer identifiable and not an internal codename or non-customer string."
+                },
                 "SKU": {},
                 "SerialNumber": {},
                 "PartNumber": {},
@@ -604,7 +607,13 @@
             "MinVersion": "1.0.2",
             "Messages": {
                 "ConnectionDropped": {},
-                "ConnectionEstablished": {}
+                "ConnectionEstablished": {},
+                "DegradedConnectionEstablished": {
+                    "ReadRequirement": "Recommended"
+                },
+                "LinkFlapDetected": {
+                    "ReadRequirement": "Recommended"
+                }
             }
         }
     }
