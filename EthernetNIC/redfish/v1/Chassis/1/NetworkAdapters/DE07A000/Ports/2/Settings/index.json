@@ -1,0 +1,12 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#Port.Port",
+    "@odata.type": "#Port.v1_6_0.Port",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/2/Settings",
+    "@odata.etag": "W/\"9ADF39C1\"",
+    "Id": "2",
+    "Name": "Ethernet Port 2 Current Settings",
+    "Ethernet": {
+        "WakeOnLANEnabled": true,
+        "LLDPEnabled": true
+    }
+}

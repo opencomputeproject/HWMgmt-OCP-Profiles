@@ -1,0 +1,51 @@
+{
+    "@odata.etag": "W/\"1E7E30ED\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/1",
+    "@odata.type": "#NetworkDeviceFunction.v1_9_0.NetworkDeviceFunction",
+    "Id": "1",
+    "@Redfish.Settings": {
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/1/Settings"
+        },
+        "@odata.type": "#Settings.v1_3_3.Settings"
+    },
+    "AssignablePhysicalNetworkPorts": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/1"
+        }
+    ],
+    "AssignablePhysicalNetworkPorts@odata.count": 1,
+    "BootMode": "PXE",
+    "DeviceEnabled": true,
+    "Ethernet": {
+        "MACAddress": "50:7C:6F:0A:93:ED",
+        "MTUSize": 9710,
+        "PermanentMACAddress": "50:7C:6F:0A:93:ED",
+        "MTUSizeMaximum": 9710
+    },
+    "Links": {
+        "PCIeFunction": {
+            "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE082000/PCIeFunctions/1"
+        },
+        "PhysicalNetworkPortAssignment": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/1"
+        }
+    },
+    "MaxVirtualFunctions": 64,
+    "Name": "NetworkDeviceFunction",
+    "NetDevFuncCapabilities": [
+        "Ethernet"
+    ],
+    "NetDevFuncType": "Ethernet",
+    "VirtualFunctionsEnabled": true,
+    "PhysicalNetworkPortAssignment": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/1"
+    },
+    "Metrics": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/1/Metrics"
+    },
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    }
+}

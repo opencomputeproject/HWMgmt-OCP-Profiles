@@ -1,0 +1,128 @@
+{
+    "@odata.type": "#Port.v1_6_0.Port",
+    "Id": "1",
+    "Name": "Ethernet Port 1",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Metrics": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Metrics"
+    },
+    "PortId": "1",
+    "PortProtocol": "Ethernet",
+    "PortType": "BidirectionalPort",
+    "Enabled": true,
+    "Ethernet": {
+        "SupportedEthernetCapabilities": [
+            "WakeOnLAN"
+        ],
+        "AssociatedMACAddresses": [
+            "9c:dc:71:c3:bb:0a",
+            "9c:dc:71:c3:bb:0e",
+            "9c:dc:71:c3:bb:12",
+            "9c:dc:71:c3:bb:16"
+        ],
+        "FlowControlConfiguration": "None",
+        "FlowControlStatus": "None",
+        "WakeOnLANEnabled": true,
+        "LLDPEnabled": true,
+        "LLDPReceive": {
+            "ChassisId": "2c:23:3a:48:2f:5d",
+            "ChassisIdSubtype": "MacAddr",
+            "ManagementAddressIPv4": "",
+            "ManagementAddressIPv6": "",
+            "ManagementAddressMAC": "2c:23:3a:48:2f:ae",
+            "ManagementVlanId": 4095,
+            "PortId": "54:65:6E:2D:47:69:67:61:62:69:74:45:74:68:65:72:6E:65:74:31:2F:32:2F:39",
+            "PortIdSubtype": "IfName"
+        },
+        "LLDPTransmit": {
+            "ChassisId": "9c:dc:71:c3:bb:16",
+            "ChassisIdSubtype": "MacAddr",
+            "ManagementAddressIPv4": "",
+            "ManagementAddressIPv6": "",
+            "ManagementAddressMAC": "9c:dc:71:c3:bb:16",
+            "ManagementVlanId": 4095,
+            "PortId": "9C:DC:71:C3:BB:16",
+            "PortIdSubtype": "MacAddr"
+        }
+    },
+    "LinkConfiguration": [
+        {
+            "AutoSpeedNegotiationCapable": true,
+            "AutoSpeedNegotiationEnabled": true,
+            "CapableLinkSpeedGbps": [
+                25.0,
+                10.0
+            ],
+            "ConfiguredNetworkLinks": [
+                {
+                    "ConfiguredLinkSpeedGbps": 25.0,
+                    "ConfiguredWidth": 1
+                },
+                {
+                    "ConfiguredLinkSpeedGbps": 10.0,
+                    "ConfiguredWidth": 1
+                }
+            ]
+        }
+    ],
+    "LinkNetworkTechnology": "Ethernet",
+    "MaxFrameSize": 9622,
+    "MaxSpeedGbps": 25.0,
+    "Width": 1,
+    "InterfaceEnabled": true,
+    "SignalDetected": true,
+    "PortMedium": "Optical",
+    "LinkState": "Enabled",
+    "LinkStatus": "LinkUp",
+    "LinkTransitionIndicator": 1,
+    "CurrentSpeedGbps": 10.0,
+    "ActiveWidth": 1,
+    "SFP": {
+        "SupportedSFPTypes": [
+            "SFP",
+            "SFPPlus",
+            "SFP28"
+        ],
+        "Status": {
+            "Health": "OK",
+            "State": "Enabled"
+        },
+        "Manufacturer": "Mellanox",
+        "PartNumber": "844483-B21",
+        "SerialNumber": "THY1020240",
+        "MediumType": "FiberOptic",
+        "FiberConnectionType": "SingleMode",
+        "Type": "SFP28"
+    },
+    "Actions": {
+        "#Port.Reset": {
+            "target": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Actions/Port.Reset",
+            "ResetType@Redfish.AllowableValues": [
+                "ForceRestart",
+                "ForceOn",
+                "ForceOff"
+            ],
+            "@Redfish.OperationApplyTimeSupport": {
+                "@odata.type": "#Settings.v1_3_3.OperationApplyTimeSupport",
+                "SupportedValues": [
+                    "Immediate"
+                ]
+            }
+        }
+    },
+	"@odata.context": "/redfish/v1/$metadata#Port.Port",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1",
+    "@odata.etag": "W/\"B40342B6\"",
+    "@Redfish.Settings": {
+        "@odata.type": "#Settings.v1_3_3.Settings",
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Settings"
+        },
+        "SupportedApplyTimes": [
+            "OnReset"
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "@odata.etag": "W/\"B948772B\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/1/Metrics",
+    "@odata.type": "#NetworkDeviceFunctionMetrics.v1_1_1.NetworkDeviceFunctionMetrics",
+    "Description": "Usage and health statistics for Device Function 1",
+    "Id": "Metrics",
+    "Name": "Network Device Function Metrics",
+    "RXBytes": 0,
+    "RXFrames": 0,
+    "RXMulticastFrames": 0,
+    "RXUnicastFrames": 0,
+    "TXBytes": 0,
+    "TXFrames": 0,
+    "TXMulticastFrames": 0,
+    "TXUnicastFrames": 0
+}
