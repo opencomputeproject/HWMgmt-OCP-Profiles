@@ -21,19 +21,25 @@
 
    - [Using the reference guide](#using-the-reference-guide)
 
-   - [NetworkAdapter v1.6.0 (current release: v1.11.0)](#networkadapter-v1.6.0-%28current-release%3A-v1.11.0%29)
+   - [NetworkAdapter 1.11.0](#networkadapter-1.11.0)
 
-   - [NetworkDeviceFunction v1.6.0 (current release: v1.9.2)](#networkdevicefunction-v1.6.0-%28current-release%3A-v1.9.2%29)
+   - [NetworkAdapterMetrics 1.1.0](#networkadaptermetrics-1.1.0)
 
-   - [PCIeDevice v1.9.0 (current release: v1.15.0)](#pciedevice-v1.9.0-%28current-release%3A-v1.15.0%29)
+   - [NetworkDeviceFunction 1.9.2](#networkdevicefunction-1.9.2)
 
-   - [PCIeFunction v1.3.0 (current release: v1.6.0)](#pciefunction-v1.3.0-%28current-release%3A-v1.6.0%29)
+   - [NetworkDeviceFunctionMetrics 1.2.0](#networkdevicefunctionmetrics-1.2.0)
 
-   - [Port v1.6.0 (current release: v1.13.0)](#port-v1.6.0-%28current-release%3A-v1.13.0%29)
+   - [PCIeDevice 1.15.0](#pciedevice-1.15.0)
 
-   - [Base Registry v1.15.0+ (current release: v1.19.0)](#base-registry-v1.15.0%2B-%28current-release%3A-v1.19.0%29)
+   - [PCIeFunction 1.6.0](#pciefunction-1.6.0)
 
-   - [NetworkDevice Registry v1.0.2+ (current release: v1.1.0)](#networkdevice-registry-v1.0.2%2B-%28current-release%3A-v1.1.0%29)
+   - [Port 1.13.0](#port-1.13.0)
+
+   - [PortMetrics 1.6.1](#portmetrics-1.6.1)
+
+   - [Base Registry v1.0.0+ (current release: v1.19.0)](#base-registry-v1.0.0%2B-%28current-release%3A-v1.19.0%29)
+
+   - [NetworkDevice Registry v1.0.0+ (current release: v1.1.0)](#networkdevice-registry-v1.0.0%2B-%28current-release%3A-v1.1.0%29)
 
 - [Redfish documentation generator](#redfish-documentation-generator)
 
@@ -130,7 +136,7 @@ The property-level details include:
 | Description | <p>The normative description of the property, as copied directly from the schema <code>LongDescription</code> definition.</p> |
 
 
-## <a name="networkadapter-v1.6.0-%28current-release%3A-v1.11.0%29"></a>NetworkAdapter v1.6.0 (current release: v1.11.0)
+## <a name="networkadapter-1.11.0"></a>NetworkAdapter 1.11.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -160,11 +166,40 @@ The property-level details include:
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | } |   |   |
 | **Manufacturer** | string | *Mandatory (Read-only)* | The manufacturer or OEM of this network adapter. |
-| **Metrics** *(v1.7+)* {} | object | *Mandatory (Read-only)* | The link to the metrics associated with this adapter. |
+| **Metrics** *(v1.7+)* { | object | *Mandatory (Read-only)* | The link to the metrics associated with this adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Actions** { | object | *Mandatory (Read)* | The available actions for this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#NetworkAdapterMetrics.ResetMetrics** *(v1.1+)* {} | object | *Mandatory (Read)* | This action resets the summary metrics related to this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CPUCorePercent** | number<br>(%) | *Mandatory (Read-only)* | The device CPU core utilization as a percentage. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HostBusRXPercent** | number<br>(%) | *Mandatory (Read-only)* | The host bus, such as PCIe, RX utilization as a percentage. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HostBusTXPercent** | number<br>(%) | *Mandatory (Read-only)* | The host bus, such as PCIe, TX utilization as a percentage. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NCSIRXBytes** | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of NC-SI bytes received since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NCSIRXFrames** | integer | *Mandatory (Read-only)* | The total number of NC-SI frames received since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NCSITXBytes** | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of NC-SI bytes sent since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NCSITXFrames** | integer | *Mandatory (Read-only)* | The total number of NC-SI frames sent since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXBytes** | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes received since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXMulticastFrames** | integer | *Mandatory (Read-only)* | The total number of good multicast frames received since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXUnicastFrames** | integer | *Mandatory (Read-only)* | The total number of good unicast frames received since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBytes** | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes transmitted since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXMulticastFrames** | integer | *Mandatory (Read-only)* | The total number of good multicast frames transmitted since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXUnicastFrames** | integer | *Mandatory (Read-only)* | The total number of good unicast frames transmitted since reset. |
+| } |   |   |
 | **Model** | string | *Mandatory (Read-only)* | The model string for this network adapter. **This shall be the long name for the network adapter that is customer identifiable and not an internal codename or non-customer string.** |
-| **NetworkDeviceFunctions** {} | object | *Mandatory (Read-only)* | The link to the collection of network device functions associated with this network adapter. |
+| **NetworkDeviceFunctions** { | object | *Mandatory (Read-only)* | The link to the collection of network device functions associated with this network adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| } |   |   |
 | **PartNumber** | string | *Mandatory (Read-only)* | Part number for this network adapter. |
-| **Ports** *(v1.5+)* {} | object | *Mandatory (Read-only)* | The link to the collection of ports associated with this network adapter. |
+| **Ports** *(v1.5+)* { | object | *Mandatory (Read-only)* | The link to the collection of ports associated with this network adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| } |   |   |
 | **SerialNumber** | string | *Mandatory (Read-only)* | The serial number for this network adapter. |
 | **SKU** | string | *Mandatory (Read-only)* | The manufacturer SKU for this network adapter. |
 | **Status** { | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. |
@@ -208,11 +243,6 @@ The health state of this resource in the absence of its dependent resources.
 | OK | Normal. |  |
 | Warning | A condition requires attention. |  |
 
-#### idRef
-
-|     |     |     |     |
-| :--- | :--- | :--- | :---------------------------------------- |
-| **@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 #### LocationType
 
 The type of location of the part.
@@ -349,7 +379,37 @@ The state of the resource.
 
 
 
-## <a name="networkdevicefunction-v1.6.0-%28current-release%3A-v1.9.2%29"></a>NetworkDeviceFunction v1.6.0 (current release: v1.9.2)
+## <a name="networkadaptermetrics-1.1.0"></a>NetworkAdapterMetrics 1.1.0
+
+|     |     |     |
+| :--- | :--- | :--- |
+| **Version** | *v1.1* | *v1.0* |
+| **Release** | 2024.1 | 2021.1 |
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;NetworkAdapters/&#8203;*{NetworkAdapterId}*/&#8203;Metrics<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **CPUCorePercent** | number<br>(%) | *Recommended (Read-only)* | The device CPU core utilization as a percentage. |
+| **HostBusRXPercent** | number<br>(%) | *Recommended (Read-only)* | The host bus, such as PCIe, RX utilization as a percentage. |
+| **HostBusTXPercent** | number<br>(%) | *Recommended (Read-only)* | The host bus, such as PCIe, TX utilization as a percentage. |
+| **NCSIRXBytes** | integer<br>(bytes) | *Recommended (Read-only)* | The total number of NC-SI bytes received since reset. |
+| **NCSIRXFrames** | integer | *Recommended (Read-only)* | The total number of NC-SI frames received since reset. |
+| **NCSITXBytes** | integer<br>(bytes) | *Recommended (Read-only)* | The total number of NC-SI bytes sent since reset. |
+| **NCSITXFrames** | integer | *Recommended (Read-only)* | The total number of NC-SI frames sent since reset. |
+| **RXBytes** | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes received since reset. |
+| **RXMulticastFrames** | integer | *Mandatory (Read-only)* | The total number of good multicast frames received since reset. |
+| **RXUnicastFrames** | integer | *Mandatory (Read-only)* | The total number of good unicast frames received since reset. |
+| **TXBytes** | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes transmitted since reset. |
+| **TXMulticastFrames** | integer | *Mandatory (Read-only)* | The total number of good multicast frames transmitted since reset. |
+| **TXUnicastFrames** | integer | *Mandatory (Read-only)* | The total number of good unicast frames transmitted since reset. |
+
+## <a name="networkdevicefunction-1.9.2"></a>NetworkDeviceFunction 1.9.2
 
 |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -380,7 +440,54 @@ The state of the resource.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | } |   |   |
 | **MaxVirtualFunctions** | integer | *Mandatory (Read-only)* | The number of virtual functions that are available for this network device function. |
-| **Metrics** *(v1.6+)* {} | object | *Mandatory (Read-only)* | The link to the metrics associated with this network function. |
+| **Metrics** *(v1.6+)* { | object | *Mandatory (Read-only)* | The link to the metrics associated with this network function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Actions** { | object | *Mandatory (Read)* | The available actions for this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#NetworkDeviceFunctionMetrics.ResetMetrics** *(v1.2+)* {} | object | *Mandatory (Read)* | This action resets the summary metrics related to this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Ethernet** { | object | *Mandatory (Read)* | The network function metrics specific to Ethernet adapters. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NumOffloadedIPv4Conns** | integer | *Mandatory (Read-only)* | The total number of offloaded TCP/IPv4 connections. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NumOffloadedIPv6Conns** | integer | *Mandatory (Read-only)* | The total number of offloaded TCP/IPv6 connections. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FibreChannel** *(v1.1+)* { | object | *Mandatory (Read)* | The network function metrics specific to Fibre Channel adapters. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PortLoginAccepts** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of port login (PLOGI) accept (ACC) responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PortLoginRejects** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of port login (PLOGI) reject (RJT) responses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PortLoginRequests** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of port login (PLOGI) requests transmitted. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXCongestionFPINs** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Congestion Fabric Performance Impact Notifications (FPINs) received. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXDeliveryFPINs** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Delivery Fabric Performance Impact Notifications (FPINs) received. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXExchanges** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Fibre Channel exchanges received. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXLinkIntegrityFPINs** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Link Integrity Fabric Performance Impact Notifications (FPINs) received. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXPeerCongestionFPINs** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Peer Congestion Fabric Performance Impact Notifications (FPINs) received. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXSequences** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Fibre Channel sequences received. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXCongestionFPINs** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Congestion Fabric Performance Impact Notifications (FPINs) sent. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXDeliveryFPINs** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Delivery Fabric Performance Impact Notifications (FPINs) sent. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXExchanges** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Fibre Channel exchanges transmitted. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXLinkIntegrityFPINs** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Link Integrity Fabric Performance Impact Notifications (FPINs) sent. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXPeerCongestionFPINs** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Peer Congestion Fabric Performance Impact Notifications (FPINs) sent. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXSequences** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of Fibre Channel sequences transmitted. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXAvgQueueDepthPercent** | number<br>(%) | *Mandatory (Read-only)* | The average RX queue depth as the percentage. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXBytes** | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes received on a network function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXFrames** | integer | *Mandatory (Read-only)* | The total number of frames received on a network function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXMulticastFrames** | integer | *Mandatory (Read-only)* | The total number of good multicast frames received on a network function since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXQueuesEmpty** | boolean | *Mandatory (Read-only)* | Whether nothing is in a network function's RX queues to DMA. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXQueuesFull** | integer | *Mandatory (Read-only)* | The number of RX queues that are full. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXUnicastFrames** | integer | *Mandatory (Read-only)* | The total number of good unicast frames received on a network function since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXAvgQueueDepthPercent** | number<br>(%) | *Mandatory (Read-only)* | The average TX queue depth as the percentage. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBytes** | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes sent on a network function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXFrames** | integer | *Mandatory (Read-only)* | The total number of frames sent on a network function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXMulticastFrames** | integer | *Mandatory (Read-only)* | The total number of good multicast frames transmitted on a network function since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXQueuesEmpty** | boolean | *Mandatory (Read-only)* | Whether all TX queues for a network function are empty. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXQueuesFull** | integer | *Mandatory (Read-only)* | The number of TX queues that are full. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXUnicastFrames** | integer | *Mandatory (Read-only)* | The total number of good unicast frames transmitted on a network function since reset. |
+| } |   |   |
 | **NetDevFuncCapabilities** [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | An array of capabilities for this network device function. *For the possible property values, see NetDevFuncCapabilities in Property details.* |
 | **NetDevFuncType** | string<br>(enum) | *Mandatory (Read)* | The configured capability of this network device function. *For the possible property values, see NetDevFuncType in Property details.* |
 | **Status** { | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. |
@@ -414,11 +521,6 @@ The health state of this resource in the absence of its dependent resources.
 | OK | Normal. |  |
 | Warning | A condition requires attention. |  |
 
-#### idRef
-
-|     |     |     |     |
-| :--- | :--- | :--- | :---------------------------------------- |
-| **@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 #### NetDevFuncCapabilities
 
 An array of capabilities for this network device function.
@@ -514,7 +616,65 @@ The state of the resource.
 
 
 
-## <a name="pciedevice-v1.9.0-%28current-release%3A-v1.15.0%29"></a>PCIeDevice v1.9.0 (current release: v1.15.0)
+## <a name="networkdevicefunctionmetrics-1.2.0"></a>NetworkDeviceFunctionMetrics 1.2.0
+
+|     |     |     |     |
+| :--- | :--- | :--- | :--- |
+| **Version** | *v1.2* | *v1.1* | *v1.0* |
+| **Release** | 2024.1 | 2021.2 | 2021.1 |
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;NetworkAdapters/&#8203;*{NetworkAdapterId}*/&#8203;NetworkDeviceFunctions/&#8203;*{NetworkDeviceFunctionId}*/&#8203;Metrics<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **Ethernet** { | object | *Recommended (Read)* | The network function metrics specific to Ethernet adapters. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NumOffloadedIPv4Conns** | integer | *Recommended (Read-only)* | The total number of offloaded TCP/IPv4 connections. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NumOffloadedIPv6Conns** | integer | *Recommended (Read-only)* | The total number of offloaded TCP/IPv6 connections. |
+| } |   |   |
+| **RXAvgQueueDepthPercent** | number<br>(%) | *Recommended (Read-only)* | The average RX queue depth as the percentage. |
+| **RXBytes** | integer<br>(bytes) | *Recommended (Read-only)* | The total number of bytes received on a network function. |
+| **RXFrames** | integer | *Recommended (Read-only)* | The total number of frames received on a network function. |
+| **RXMulticastFrames** | integer | *Recommended (Read-only)* | The total number of good multicast frames received on a network function since reset. |
+| **RXQueuesEmpty** | boolean | *Recommended (Read-only)* | Whether nothing is in a network function's RX queues to DMA. |
+| **RXQueuesFull** | integer | *Recommended (Read-only)* | The number of RX queues that are full. |
+| **RXUnicastFrames** | integer | *Recommended (Read-only)* | The total number of good unicast frames received on a network function since reset. |
+| **TXAvgQueueDepthPercent** | number<br>(%) | *Recommended (Read-only)* | The average TX queue depth as the percentage. |
+| **TXBytes** | integer<br>(bytes) | *Recommended (Read-only)* | The total number of bytes sent on a network function. |
+| **TXFrames** | integer | *Recommended (Read-only)* | The total number of frames sent on a network function. |
+| **TXMulticastFrames** | integer | *Recommended (Read-only)* | The total number of good multicast frames transmitted on a network function since reset. |
+| **TXQueuesEmpty** | boolean | *Recommended (Read-only)* | Whether all TX queues for a network function are empty. |
+| **TXQueuesFull** | integer | *Recommended (Read-only)* | The number of TX queues that are full. |
+| **TXUnicastFrames** | integer | *Recommended (Read-only)* | The total number of good unicast frames transmitted on a network function since reset. |
+### Example response
+
+
+```json
+{
+    "@odata.type": "#NetworkDeviceFunctionMetrics.v1_1_0.NetworkDeviceFunctionMetrics",
+    "Id": "Metrics",
+    "Name": "Network Device Function 1 Metrics",
+    "RXBytes": 286683,
+    "RXFrames": 1867,
+    "RXUnicastFrames": 0,
+    "RXMulticastFrames": 1,
+    "TXBytes": 0,
+    "TXFrames": 0,
+    "TXUnicastFrames": 0,
+    "TXMulticastFrames": 0,
+    "@odata.context": "/redfish/v1/$metadata#NetworkDeviceFunctionMetrics.NetworkDeviceFunctionMetrics",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1/Metrics",
+    "@odata.etag": "W/\"7BD1348E\""	
+}
+```
+
+
+
+## <a name="pciedevice-1.15.0"></a>PCIeDevice 1.15.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -659,7 +819,7 @@ The state of the resource.
 
 
 
-## <a name="pciefunction-v1.3.0-%28current-release%3A-v1.6.0%29"></a>PCIeFunction v1.3.0 (current release: v1.6.0)
+## <a name="pciefunction-1.6.0"></a>PCIeFunction 1.6.0
 
 |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -809,7 +969,7 @@ The state of the resource.
 
 
 
-## <a name="port-v1.6.0-%28current-release%3A-v1.13.0%29"></a>Port v1.6.0 (current release: v1.13.0)
+## <a name="port-1.13.0"></a>Port 1.13.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -868,7 +1028,115 @@ The state of the resource.
 | **LinkState** *(v1.2+)* | string<br>(enum) | *Mandatory (Read)* | The desired link state for this interface. *For the possible property values, see LinkState in Property details.* |
 | **LinkStatus** *(v1.2+)* | string<br>(enum) | *Mandatory (Read-only)* | The link status for this interface. *For the possible property values, see LinkStatus in Property details.* |
 | **Metrics** *(v1.2+)* { | object | *Mandatory (Read-only)* | The link to the metrics associated with this port. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Actions** { | object | *Mandatory (Read)* | The available actions for this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#PortMetrics.ResetMetrics** *(v1.6+)* {} | object | *Mandatory (Read)* | This action resets the summary metrics related to this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CXL** *(v1.4+)* { | object | *Mandatory (Read)* | The port metrics specific to CXL ports. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BackpressureAveragePercentage** *(v1.4+)* | integer<br>(%) | *Mandatory (Read-only)* | The average congestion of the port as a percentage. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FibreChannel** *(v1.2+)* { | object | *Mandatory (Read)* | The Fibre Channel-specific port metrics for network ports. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CorrectableFECErrors** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of correctable forward error correction (FEC) errors. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**InvalidCRCs** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of invalid cyclic redundancy checks (CRCs). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**InvalidTXWords** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of invalid transmission words. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LinkFailures** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of link failures. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LossesOfSignal** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of losses of signal. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LossesOfSync** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of losses of sync. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXBBCreditZero** *(v1.2+)* | integer | *Mandatory (Read-only)* | The number of times the receive buffer-to-buffer credit count transitioned to zero. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXExchanges** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of Fibre Channel exchanges received. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXSequences** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of Fibre Channel sequences received. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBBCredits** *(v1.2+)* | integer | *Mandatory (Read-only)* | The number of transmit buffer-to-buffer credits the port is configured to use. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBBCreditZero** *(v1.2+)* | integer | *Mandatory (Read-only)* | The number of times the transmit buffer-to-buffer credit count transitioned to zero. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBBCreditZeroDurationMilliseconds** *(v1.2+)* | integer<br>(ms) | *Mandatory (Read-only)* | The total amount of time the port has been blocked from transmitting due to lack of buffer credits. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXExchanges** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of Fibre Channel exchanges transmitted. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXSequences** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of Fibre Channel sequences transmitted. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UncorrectableFECErrors** *(v1.2+)* | integer | *Mandatory (Read-only)* | The total number of uncorrectable forward error correction (FEC) errors. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GenZ** { | object | *Mandatory (Read)* | The port metrics specific to Gen-Z ports. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AccessKeyViolations** | integer | *Mandatory (Read-only)* | The total number of Access Key Violations detected. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EndToEndCRCErrors** | integer | *Mandatory (Read-only)* | The total number of ECRC transient errors detected. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LinkNTE** | integer | *Mandatory (Read-only)* | The total number of link-local non-transient errors detected. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LLRRecovery** | integer | *Mandatory (Read-only)* | The total number of times Link-Level Reliability (LLR) recovery has been initiated. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MarkedECN** | integer | *Mandatory (Read-only)* | The number of packets with the Congestion ECN bit set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NonCRCTransientErrors** | integer | *Mandatory (Read-only)* | The total number transient errors detected that are unrelated to CRC validation. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PacketCRCErrors** | integer | *Mandatory (Read-only)* | The total number of PCRC transient errors detected. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PacketDeadlineDiscards** | integer | *Mandatory (Read-only)* | The number of packets discarded due to the Congestion Deadline subfield reaching zero. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReceivedECN** | integer | *Mandatory (Read-only)* | The number of packets received on this interface with the Congestion ECN bit set. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXStompedECRC** | integer | *Mandatory (Read-only)* | The total number of packets received with a stomped ECRC field. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXStompedECRC** | integer | *Mandatory (Read-only)* | The total number of packets that this interface stomped the ECRC field. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Networking** *(v1.1+)* { | object | *Mandatory (Read)* | The port metrics for network ports, including Ethernet, Fibre Channel, and InfiniBand, that are not specific to one of these protocols. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMAProtectionErrors** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of RDMA protection errors. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMAProtocolErrors** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of RDMA protocol errors. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMARXBytes** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of RDMA bytes received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMARXRequests** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of RDMA requests received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMATXBytes** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of RDMA bytes transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMATXReadRequests** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of RDMA read requests transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMATXRequests** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of RDMA requests transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMATXSendRequests** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of RDMA send requests transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMATXWriteRequests** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of RDMA write requests transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXBroadcastFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of valid broadcast frames received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXDiscards** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of frames discarded in a port's receive path since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXFalseCarrierErrors** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of false carrier errors received from phy on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXFCSErrors** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of frames received with frame check sequence (FCS) errors on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXFrameAlignmentErrors** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of frames received with alignment errors on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of frames received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXMulticastFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of valid multicast frames received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXOversizeFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of frames that exceed the maximum frame size. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXPauseXOFFFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of flow control frames from the network to pause transmission. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXPauseXONFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of flow control frames from the network to resume transmission. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXPFCFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of priority flow control (PFC) frames received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXUndersizeFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of frames that are smaller than the minimum frame size of 64 bytes. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXUnicastFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of valid unicast frames received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBroadcastFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of good broadcast frames transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXDiscards** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of frames discarded in a port's transmit path since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXExcessiveCollisions** *(v1.1+)* | integer | *Mandatory (Read-only)* | The number of times a single transmitted frame encountered more than 15 collisions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of frames transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXLateCollisions** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of collisions that occurred after one slot time as defined by IEEE 802.3. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXMulticastFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of good multicast frames transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXMultipleCollisions** *(v1.1+)* | integer | *Mandatory (Read-only)* | The times that a transmitted frame encountered 2-15 collisions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXPauseXOFFFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of XOFF frames transmitted to the network. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXPauseXONFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of XON frames transmitted to the network. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXPFCFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of priority flow control (PFC) frames sent on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXSingleCollisions** *(v1.1+)* | integer | *Mandatory (Read-only)* | The times that a successfully transmitted frame encountered a single collision. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXUnicastFrames** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of good unicast frames transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeErrors** *(v1.3+)* { | object | *Mandatory (Read)* | The PCIe errors associated with this port. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BadDLLPCount** *(v1.15+)* | integer | *Mandatory (Read-only)* | The total number of Bad DLLPs issued on the PCIe link by the receiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BadTLPCount** *(v1.15+)* | integer | *Mandatory (Read-only)* | The total number of Bad TLPs issued on the PCIe link by the receiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CorrectableErrorCount** *(v1.8+)* | integer | *Mandatory (Read-only)* | The total number of PCIe correctable errors for this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FatalErrorCount** *(v1.8+)* | integer | *Mandatory (Read-only)* | The total number of PCIe fatal errors for this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**L0ToRecoveryCount** *(v1.8+)* | integer | *Mandatory (Read-only)* | The total number of times the PCIe link states transitioned from L0 to the recovery state for this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NAKReceivedCount** *(v1.8+)* | integer | *Mandatory (Read-only)* | The total number of NAKs issued on the PCIe link by the receiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NAKSentCount** *(v1.8+)* | integer | *Mandatory (Read-only)* | The total number of NAKs issued on the PCIe link by this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NonFatalErrorCount** *(v1.8+)* | integer | *Mandatory (Read-only)* | The total number of PCIe non-fatal errors for this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReplayCount** *(v1.8+)* | integer | *Mandatory (Read-only)* | The total number of PCIe replays issued by this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReplayRolloverCount** *(v1.8+)* | integer | *Mandatory (Read-only)* | The total number of PCIe replay rollovers issued by this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UnsupportedRequestCount** *(v1.13+)* | integer | *Mandatory (Read-only)* | The total number of PCIe unsupported requests received by this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXBytes** *(v1.1+)* | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXErrors** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of received errors on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SAS** *(v1.1+)* [ { | array | *Mandatory (Read)* | The physical (phy) metrics for Serial Attached SCSI (SAS).  Each member represents a single phy. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**InvalidDwordCount** *(v1.1+)* | integer | *Mandatory (Read-only)* | The number of invalid dwords that have been received by the phy outside of phy reset sequences. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LossOfDwordSynchronizationCount** *(v1.1+)* | integer | *Mandatory (Read-only)* | The number of times the phy has restarted the link reset sequence because it lost dword synchronization. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhyResetProblemCount** *(v1.5+)* | integer | *Mandatory (Read-only)* | The number of times a phy reset problem has occurred. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RunningDisparityErrorCount** *(v1.1+)* | integer | *Mandatory (Read-only)* | The number of dwords containing running disparity errors that have been received by the phy outside of phy reset sequences. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Transceivers** *(v1.1+)* [ { | array | *Mandatory (Read)* | The metrics for the transceivers in this port.  Each member represents a single transceiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXInputPowerMilliWatts** *(v1.1+)* | number<br>(milliwatts) | *Mandatory (Read-only)* | The RX input power value of a small form-factor pluggable (SFP) transceiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SupplyVoltage** *(v1.1+)* | number<br>(volts) | *Mandatory (Read-only)* | The supply voltage of a small form-factor pluggable (SFP) transceiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBiasCurrentMilliAmps** *(v1.1+)* | number<br>(mA) | *Mandatory (Read-only)* | The TX bias current value of a small form-factor pluggable (SFP) transceiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXOutputPowerMilliWatts** *(v1.1+)* | number<br>(milliwatts) | *Mandatory (Read-only)* | The TX output power value of a small form-factor pluggable (SFP) transceiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBytes** *(v1.1+)* | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXErrors** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of transmission errors on a port since reset. |
 | } |   |   |
 | **PortId** *(deprecated v1.12)* | string | *Mandatory (Read-only)* | The label of this port on the physical package for this port. *Deprecated in v1.12 and later. This property has been deprecated in favor of `Location` and `ServiceLabel`.* |
 | **PortProtocol** | string<br>(enum) | *Recommended (Read-only)* | The protocol being sent over this port. *For the possible property values, see PortProtocol in Property details.* |
@@ -1092,7 +1360,134 @@ The protocol being sent over this port.
 ```
 
 
-## <a name="base-registry-v1.15.0%2B-%28current-release%3A-v1.19.0%29"></a>Base Registry v1.15.0+ (current release: v1.19.0)
+
+## <a name="portmetrics-1.6.1"></a>PortMetrics 1.6.1
+
+|     |     |     |     |     |     |     |     |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Version** | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
+| **Release** | 2024.1 | 2023.2 | 2022.3 | 2022.1 | 2021.2 | 2021.1 | 2019.4 |
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;FabricAdapters/&#8203;*{FabricAdapterId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;MediaControllers/&#8203;*{MediaControllerId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;NetworkAdapters/&#8203;*{NetworkAdapterId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Fabrics/&#8203;*{FabricId}*/&#8203;Switches/&#8203;*{SwitchId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Managers/&#8203;*{ManagerId}*/&#8203;DedicatedNetworkPorts/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Managers/&#8203;*{ManagerId}*/&#8203;USBPorts/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Storage/&#8203;*{StorageId}*/&#8203;Controllers/&#8203;*{StorageControllerId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Storage/&#8203;*{StorageId}*/&#8203;StorageControllers/&#8203;*{StorageControllerId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;FabricAdapters/&#8203;*{FabricAdapterId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;GraphicsControllers/&#8203;*{ControllerId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;Processors/&#8203;*{ProcessorId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;Storage/&#8203;*{StorageId}*/&#8203;Controllers/&#8203;*{StorageControllerId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;Storage/&#8203;*{StorageId}*/&#8203;StorageControllers/&#8203;*{StorageControllerId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;USBControllers/&#8203;*{ControllerId}*/&#8203;Ports/&#8203;*{PortId}*/&#8203;Metrics<br>
+\* Note: Some URIs omitted for brevity, refer to schema for the complete list.<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **Networking** *(v1.1+)* { | object | *Mandatory (Read)* | The port metrics for network ports, including Ethernet, Fibre Channel, and InfiniBand, that are not specific to one of these protocols. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMAProtectionErrors** *(v1.1+)* | integer | *If Implemented (Read-only)* | The total number of RDMA protection errors. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMAProtocolErrors** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of RDMA protocol errors. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMARXBytes** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of RDMA bytes received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMARXRequests** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of RDMA requests received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMATXBytes** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of RDMA bytes transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMATXReadRequests** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of RDMA read requests transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMATXRequests** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of RDMA requests transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMATXSendRequests** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of RDMA send requests transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RDMATXWriteRequests** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of RDMA write requests transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXBroadcastFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of valid broadcast frames received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXDiscards** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of frames discarded in a port's receive path since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXFalseCarrierErrors** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of false carrier errors received from phy on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXFCSErrors** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of frames received with frame check sequence (FCS) errors on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXFrameAlignmentErrors** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of frames received with alignment errors on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of frames received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXMulticastFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of valid multicast frames received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXOversizeFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of frames that exceed the maximum frame size. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXPauseXOFFFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of flow control frames from the network to pause transmission. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXPauseXONFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of flow control frames from the network to resume transmission. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXPFCFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of priority flow control (PFC) frames received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXUndersizeFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of frames that are smaller than the minimum frame size of 64 bytes. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXUnicastFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of valid unicast frames received on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBroadcastFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of good broadcast frames transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXDiscards** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of frames discarded in a port's transmit path since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXExcessiveCollisions** *(v1.1+)* | integer | *Recommended (Read-only)* | The number of times a single transmitted frame encountered more than 15 collisions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of frames transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXLateCollisions** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of collisions that occurred after one slot time as defined by IEEE 802.3. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXMulticastFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of good multicast frames transmitted on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXMultipleCollisions** *(v1.1+)* | integer | *Recommended (Read-only)* | The times that a transmitted frame encountered 2-15 collisions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXPauseXOFFFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of XOFF frames transmitted to the network. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXPauseXONFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of XON frames transmitted to the network. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXPFCFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of priority flow control (PFC) frames sent on a port since reset. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXSingleCollisions** *(v1.1+)* | integer | *Recommended (Read-only)* | The times that a successfully transmitted frame encountered a single collision. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXUnicastFrames** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of good unicast frames transmitted on a port since reset. |
+| } |   |   |
+| **RXBytes** *(v1.1+)* | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes received on a port since reset. |
+| **RXErrors** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of received errors on a port since reset. |
+| **Transceivers** *(v1.1+)* [ { | array | *Mandatory (Read)* | The metrics for the transceivers in this port.  Each member represents a single transceiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RXInputPowerMilliWatts** *(v1.1+)* | number<br>(milliwatts) | *Mandatory (Read-only)* | The RX input power value of a small form-factor pluggable (SFP) transceiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SupplyVoltage** *(v1.1+)* | number<br>(volts) | *Mandatory (Read-only)* | The supply voltage of a small form-factor pluggable (SFP) transceiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBiasCurrentMilliAmps** *(v1.1+)* | number<br>(mA) | *Mandatory (Read-only)* | The TX bias current value of a small form-factor pluggable (SFP) transceiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXOutputPowerMilliWatts** *(v1.1+)* | number<br>(milliwatts) | *Mandatory (Read-only)* | The TX output power value of a small form-factor pluggable (SFP) transceiver. |
+| } ] |   |   |
+| **TXBytes** *(v1.1+)* | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes transmitted on a port since reset. |
+| **TXErrors** *(v1.1+)* | integer | *Recommended (Read-only)* | The total number of transmission errors on a port since reset. |
+### Example response
+
+
+```json
+{
+    "@odata.type": "#PortMetrics.v1_2_0.PortMetrics",
+    "Id": "Metrics",
+    "Name": "Ethernet Port 1 Metrics",
+    "Networking": {
+        "RXFrames": 8519,
+        "RXUnicastFrames": 9,
+        "RXMulticastFrames": 6467,
+        "RXBroadcastFrames": 2043,
+        "RXPFCFrames": 0,
+        "RXDiscards": 0,
+        "RXFalseCarrierErrors": 0,
+        "RXFCSErrors": 0,
+        "RXFrameAlignmentErrors": 0,
+        "RXOversizeFrames": 0,
+        "RXUndersizeFrames": 0,
+        "TXFrames": 69,
+        "TXUnicastFrames": 0,
+        "TXMulticastFrames": 69,
+        "TXBroadcastFrames": 0,
+        "TXPFCFrames": 0,
+        "TXDiscards": 0,
+        "TXExcessiveCollisions": 0,
+        "TXLateCollisions": 0,
+        "TXMultipleCollisions": 0,
+        "TXSingleCollisions": 0
+    },
+    "RXBytes": 1401596,
+    "RXErrors": 169,
+    "TXBytes": 12179,
+    "TXErrors": 0,
+    "Transceivers": [
+        {
+            "RXInputPowerMilliWatts": 6985.0,
+            "SupplyVoltage": 52096.0,
+            "TXBiasCurrentMilliAmps": 3375.0,
+            "TXOutputPowerMilliWatts": 7108.0
+        }
+    ],
+    "@odata.context": "/redfish/v1/$metadata#PortMetrics.PortMetrics",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Metrics",
+    "@odata.etag": "W/\"4E6105EA\""	
+}
+```
+
+
+## <a name="base-registry-v1.0.0%2B-%28current-release%3A-v1.19.0%29"></a>Base Registry v1.0.0+ (current release: v1.19.0)
 
 Requirement: Mandatory
 
@@ -1128,7 +1523,7 @@ This registry defines the base messages for Redfish.
 | QueryParameterValueTypeError | Mandatory |
 
 
-## <a name="networkdevice-registry-v1.0.2%2B-%28current-release%3A-v1.1.0%29"></a>NetworkDevice Registry v1.0.2+ (current release: v1.1.0)
+## <a name="networkdevice-registry-v1.0.0%2B-%28current-release%3A-v1.1.0%29"></a>NetworkDevice Registry v1.0.0+ (current release: v1.1.0)
 
 Requirement: Mandatory
 
