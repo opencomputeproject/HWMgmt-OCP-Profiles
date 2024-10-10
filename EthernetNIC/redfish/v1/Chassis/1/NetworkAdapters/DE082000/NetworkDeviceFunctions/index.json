@@ -1,0 +1,15 @@
+{
+    "@odata.etag": "W/\"4A0202E5\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions",
+    "@odata.type": "#NetworkDeviceFunctionCollection.NetworkDeviceFunctionCollection",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/0"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/1"
+        }
+    ],
+    "Members@odata.count": 4,
+    "Name": "NetworkDeviceFunctionCollection"
+}

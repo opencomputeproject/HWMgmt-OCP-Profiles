@@ -1,0 +1,17 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#PCIeDeviceCollection.PCIeDeviceCollection",
+    "@odata.etag": "W/\"D5EC731D\"",
+    "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices",
+    "@odata.type": "#PCIeDeviceCollection.PCIeDeviceCollection",
+    "Description": " PCIeDevice view",
+    "Name": "PCIeDevice",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE082000"
+        }
+    ],
+    "Members@odata.count": 6
+}

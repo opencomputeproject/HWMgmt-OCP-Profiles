@@ -1,0 +1,16 @@
+{
+    "@odata.etag": "W/\"E0812B7B\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Metrics",
+    "@odata.type": "#NetworkAdapterMetrics.v1_0_1.NetworkAdapterMetrics",
+    "Id": "E810 Network Adapter Metrics",
+    "Description": "Usage and health statistics for Ethernet Adapter DE082000",
+    "NCSIRXFrames": 1395,
+    "NCSITXFrames": 1395,
+    "Name": "E810 Network Adapter Metrics",
+    "RXBytes": 1387420,
+    "RXMulticastFrames": 6419,
+    "RXUnicastFrames": 6,
+    "TXBytes": 262,
+    "TXMulticastFrames": 3,
+    "TXUnicastFrames": 0
+}

@@ -1,0 +1,43 @@
+{
+    "@odata.etag": "W/\"D2443FAB\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/1/Metrics",
+    "@odata.type": "#PortMetrics.v1_5_0.PortMetrics",
+    "Id": "Metrics",
+    "Name": "E810 Port Metrics",
+    "Description": "Usage and health statistics for Ethernet port 1",
+    "Networking": {
+        "RDMARXBytes": 0,
+        "RDMARXRequests": 0,
+        "RDMATXBytes": 0,
+        "RDMATXRequests": 0,
+        "RXBroadcastFrames": 0,
+        "RXDiscards": 0,
+        "RXFCSErrors": 0,
+        "RXFrames": 0,
+        "RXMulticastFrames": 0,
+        "RXOversizeFrames": 0,
+        "RXPFCFrames": 0,
+        "RXPauseXOFFFrames": 0,
+        "RXPauseXONFrames": 0,
+        "RXUndersizeFrames": 0,
+        "RXUnicastFrames": 0,
+        "TXBroadcastFrames": 0,
+        "TXFrames": 0,
+        "TXMulticastFrames": 0,
+        "TXPFCFrames": 0,
+        "TXPauseXOFFFrames": 0,
+        "TXPauseXONFrames": 0,
+        "TXUnicastFrames": 0
+    },
+    "RXBytes": 0,
+    "RXErrors": 0,
+    "TXBytes": 0,
+    "Transceivers": [
+        {
+            "RXInputPowerMilliWatts": null,
+            "SupplyVoltage": null,
+            "TXBiasCurrentMilliAmps": null,
+            "TXOutputPowerMilliWatts": null
+        }
+    ]
+}

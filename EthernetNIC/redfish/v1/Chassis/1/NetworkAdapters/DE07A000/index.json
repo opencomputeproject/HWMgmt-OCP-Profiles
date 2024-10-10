@@ -1,0 +1,86 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#NetworkAdapter.NetworkAdapter",
+    "@odata.type": "#NetworkAdapter.v1_9_0.NetworkAdapter",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000",
+    "@odata.etag": "W/\"4DFAAF27\"",
+    "@Redfish.Settings": {
+        "@odata.type": "#Settings.v1_3_3.Settings",
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Settings"
+        },
+        "SupportedApplyTimes": [
+            "OnReset"
+        ]
+    },
+    "Id": "DE07A000",
+    "Name": "Network Adapter",
+    "Manufacturer": "Contoso",
+    "Model": "Contoso 2",
+    "SKU": "Contoso 2 function adapter",
+    "SerialNumber": "LMNOP4279",
+    "PartNumber": "ABCDEFG2",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Ports": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports"
+    },
+    "NetworkDeviceFunctions": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions"
+    },
+    "Metrics": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Metrics"
+    },
+    "Controllers": [
+        {
+            "FirmwarePackageVersion": "229.1.123.0",
+            "Links": {
+                "PCIeDevices": [
+                    {
+                        "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000"
+                    }
+                ]
+            },
+            "ControllerCapabilities": {
+                "NetworkPortCount": 4,
+                "NetworkDeviceFunctionCount": 16,
+                "DataCenterBridging": {
+                    "Capable": true
+                },
+                "NPAR": {
+                    "NparCapable": true,
+                    "NparEnabled": true
+                },
+                "VirtualizationOffload": {
+                    "SRIOV": {
+                        "SRIOVVEPACapable": true
+                    },
+                    "VirtualFunction": {
+                        "DeviceMaxCount": 256,
+                        "MinAssignmentGroupSize": 8,
+                        "NetworkPortMaxCount": 256
+                    }
+                }
+            },
+            "PCIeInterface": {
+                "LanesInUse": 8,
+                "MaxLanes": 16,
+                "MaxPCIeType": "Gen4",
+                "PCIeType": "Gen4"
+            }
+        }
+    ],
+    "LLDPEnabled": true,
+    "Actions": {
+        "#NetworkAdapter.ResetSettingsToDefault": {
+            "target": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Actions/NetworkAdapter.ResetSettingsToDefault",
+            "@Redfish.OperationApplyTimeSupport": {
+                "@odata.type": "#Settings.v1_3_3.OperationApplyTimeSupport",
+                "SupportedValues": [
+                    "OnReset"
+                ]
+            }
+        }
+    }
+}

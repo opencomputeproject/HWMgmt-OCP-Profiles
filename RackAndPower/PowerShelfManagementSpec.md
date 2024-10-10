@@ -5,7 +5,7 @@ This document references requirements and provide the usage examples for the OCP
 # Requirements
 
 As a Redfish-based interface, the required Redfish interface model elements are specified in a profile document.
-For the Power Shelf Management API v1.0.0, the profile is located at: <TBD>
+For the OCP Power Shelf Management API v1.0.0, the profile is located at: <TBD>
 
 The Redfish Interop Validator is an open-source conformance test that reads the profile, executes the tests against an implementation, and generates a test report in text or HTML format.
 
@@ -15,45 +15,25 @@ The Redfish Interop Validator is an open-source conformance test that reads the 
 
 The Redfish Interop Validator is located at https://github.com/DMTF/Redfish-Interop-Validator.
 
-The Power Shelf Management v1.0.0 profile extends from the Baseline Hardware Management v1.0.1 profile.
+The OCP Power Shelf Management v1.0.0 profile extends from the OCP Baseline Redfish Service v1.0.0 profile.
 This extension is specified directly in the profile.
-This means that the switch profile specifies conformance to the baseline profile in addition to any requirements specified in the Power Shelf Management profile.
+This means that the specification requires conformance to the OCP Baseline Redfish Service profile in addition to any requirements specified in the OCP Power Shelf Management profile.
 
 ```
 "RequiredProfiles": {
-    "OCPBaselineHardwareManagement": {
-        "MinVersion": "1.0.1"
+    "OCPBaselineRedfishService": {
+        "MinVersion": "1.0.0"
     }
 },
 ```
 
 # Capabilities
 
-The following use cases are enabled by conformance to this Power Shelf Management profile.
-The Power Shelf Management profile is extended from the Baseline Hardware Management profile.
-The following table lists the capabilities provide the baseline profile requirements.
-These capabilities are described in the "Usage Guide and Requirements for the OCP Baseline Hardware Management Profile v1.0.1" document.
+The following use cases are enabled by conformance to this OCP Power Shelf Management profile.
+The OCP Power Shelf Management profile is extended from the OCP Baseline Redfish Service profile.
+For capabilities specified in the the OCP Baseline Redfish Service profile, see the "OCP Baseline Redfish Service Specification".
 
-| Use Case              | Management Task          | Requirement |
-| :---                  | :---------               | :---        |
-| Account Management    | Get accounts             | Mandatory |
-| Session Management    | Get sessions             | Mandatory |
-| Hardware Inventory    | Get FRU info             | Mandatory |
-|                       | Get and set asset tag    | Recommended |
-| Hardware Location     | Get and set location LED | Recommended |
-| Status                | Get chassis status       | Mandatory |
-| Power                 | Get power state          | Mandatory |
-|                       | Get power usage          | Recommended |
-|                       | Get power limit          | Recommended |
-| Temperature           | Get the temperature      | If implemented, mandatory |
-| Log                   | Get log entry            | Mandatory |
-|                       | Clear the log            | Recommended |
-| Management Controller | Get firmware version     | Mandatory |
-|                       | Get controller status    | Mandatory |
-|                       | Get network info         | Mandatory |
-|                       | Reset controller         | Mandatory |
-
-The following table lists the capabilities prescribed in the Power Shelf Management profile.
+The following table lists the capabilities prescribed in the OCP Power Shelf Management profile.
 
 | Use Case             | Management Task                                             | Requirement |
 | :---                 | :---------                                                  | :---        |
@@ -609,7 +589,7 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1
 
 # References
 
-\[1\] Usage Guide and Requirements for the OCP Baseline Hardware Management Profile v1.0.1
+\[1\] OCP Baseline Redfish Service Profile v1.0.0
 
 \[2\] "Redfish Specification" - [*https://www.dmtf.org/dsp/DSP0266*](https://www.dmtf.org/dsp/DSP0266)
 
