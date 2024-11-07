@@ -242,7 +242,8 @@
 					}
 				},
 				"StaticNameServers": {
-					"ReadRequirement": "Recommended"
+					"ReadRequirement": "Mandatory",
+					"WriteRequirement": "Mandatory"
 				}
 			}
 		},
