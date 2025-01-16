@@ -152,10 +152,6 @@
                         "Address": {
                             "ReadRequirement": "Mandatory",
                             "WriteRequirement": "Mandatory"
-                        },
-                        "PrefixLength": {
-                            "ReadRequirement": "Mandatory",
-                            "WriteRequirement": "Mandatory"
                         }
                     }
                 },
@@ -163,10 +159,6 @@
                     "ReadRequirement": "Recommended",
                     "PropertyRequirements": {
                         "Address": {
-                            "ReadRequirement": "Mandatory",
-                            "WriteRequirement": "Mandatory"
-                        },
-                        "PrefixLength": {
                             "ReadRequirement": "Mandatory",
                             "WriteRequirement": "Mandatory"
                         }
