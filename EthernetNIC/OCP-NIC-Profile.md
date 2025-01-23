@@ -1,43 +1,63 @@
 
 
+# <a name="%2A%2Aocp-ethernet-network-interface-card-profile%2A%2A-%23"></a>**OCP Ethernet Network Interface Card Profile** #
 
-# <a name="contents"></a>Contents
+***Version 1.0.0***
+(Not approved yet)
 
-- [Contents](#contents)
+# <a name="table-of-contents"></a>Table of Contents
 
-- [Overview](#overview)
+- [**OCP Ethernet Network Interface Card Profile** #](#%2A%2Aocp-ethernet-network-interface-card-profile%2A%2A-%23)
 
-- [NIC Use Cases](#nic-use-cases)
+- [Table of Contents](#table-of-contents)
 
-   - [Basic product identification](#basic-product-identification)
+- [Overview & Scope](#overview-%26-scope)
 
-   - [Functional Configuration](#functional-configuration)
+- [NIC Management Use Cases](#nic-management-use-cases)
 
-   - [Telemetry](#telemetry)
+   - [Redfish Model for NICs](#redfish-model-for-nics)
 
-   - [Product location data](#product-location-data)
+   - [Retrieving Network Adapter Information](#retrieving-network-adapter-information)
 
-- [NIC Profile Reference Guide](#nic-profile-reference-guide)
+   - [Retriving NetworkDeviceFunction and Port information ](#retriving-networkdevicefunction-and-port-information-)
+
+   - [Retrieving PCIe Information](#retrieving-pcie-information)
+
+   - [Retrieving System NIC information](#retrieving-system-nic-information)
+
+   - [Retrieving Metrics](#retrieving-metrics)
+
+- [Appendix A: NIC Profile Reference Guide](#appendix-a%3A-nic-profile-reference-guide)
 
    - [Using the reference guide](#using-the-reference-guide)
 
+   - [EthernetInterface v1.1.0 (current release: v1.12.3)](#ethernetinterface-v1.1.0-%28current-release%3A-v1.12.3%29)
+
+   - [EthernetInterfaceCollection](#ethernetinterfacecollection)
+
    - [NetworkAdapter 1.11.0](#networkadapter-1.11.0)
+
+   - [NetworkAdapterCollection](#networkadaptercollection)
 
    - [NetworkAdapterMetrics 1.1.0](#networkadaptermetrics-1.1.0)
 
-   - [NetworkDeviceFunction 1.9.2](#networkdevicefunction-1.9.2)
+   - [NetworkDeviceFunction 1.9.2 (EthernetNIC)](#networkdevicefunction-1.9.2-%28ethernetnic%29)
+
+   - [NetworkDeviceFunctionCollection](#networkdevicefunctioncollection)
 
    - [NetworkDeviceFunctionMetrics 1.2.0](#networkdevicefunctionmetrics-1.2.0)
 
-   - [PCIeDevice 1.15.0](#pciedevice-1.15.0)
+   - [PCIeDevice 1.17.0](#pciedevice-1.17.0)
+
+   - [PCIeDeviceCollection](#pciedevicecollection)
 
    - [PCIeFunction 1.6.0](#pciefunction-1.6.0)
 
-   - [Port 1.13.0](#port-1.13.0)
+   - [Port 1.15.0](#port-1.15.0)
 
-   - [PortMetrics 1.6.1](#portmetrics-1.6.1)
+   - [PortMetrics 1.7.0](#portmetrics-1.7.0)
 
-   - [Base Registry v1.0.0+ (current release: v1.19.0)](#base-registry-v1.0.0%2B-%28current-release%3A-v1.19.0%29)
+   - [Base Registry v1.0.0+ (current release: v1.20.0)](#base-registry-v1.0.0%2B-%28current-release%3A-v1.20.0%29)
 
    - [NetworkDevice Registry v1.0.0+ (current release: v1.1.0)](#networkdevice-registry-v1.0.0%2B-%28current-release%3A-v1.1.0%29)
 
@@ -46,69 +66,453 @@
 - [ANNEX A (informative) Change log](#annex-a-%28informative%29-change-log)
 
 
-# <a name="overview"></a>Overview
+# <a name="overview-%26-scope"></a>Overview & Scope
 
-This document contains the Redfish interface requirements for reporting Network Interface Card (NIC) data. It is intended to apply to any product or device providing Ethernet capabilities & information into the platform and Redfish service. NIC products report power and energy using equivalent Redfish resources and properties, which are located in a separate portion of the data model.  Configuration data.
+This document contains the Redfish interface requirements for reporting Network Interface Card (NIC) managability information. NICs report inventory, configuration, metrics and other data using equivalent Redfish resources and properties as specified in this document.
 
-Profile source: NIC-Profile.json
+Profile source: OCP-NIC.v1_0_0.json
 
 Direct feedback to: jeff.hilland@hpe.com
 
+# <a name="nic-management-use-cases"></a>NIC Management Use Cases
 
-# <a name="nic-use-cases"></a>NIC Use Cases
+The purpose of this profile is to ensure that common desired software use cases can be achieved using the standard API and data model contents provided by the device.  These common use cases are described below, and utilize the Redfish resources shown in the Profile Reference Guide section of this document.  Portions of the JSON payload responses are shown as examples, and are the result of HTTP GET operations performed on the supported URIs shown in the reference sections. 
 
-The purpose of this profile is to ensure that industry NICs are interoperable with the desired common software use cases can be achieved using the standard API and data model contents provided by the device.  These common use cases are described below, and utilize the Redfish resources shown in the Profile Reference Guide section of this document.  Portions of the JSON payload responses are shown as examples, and are the result of HTTP GET operations performed on the supported URIs shown in the reference sections. 
+## <a name="redfish-model-for-nics"></a>Redfish Model for NICs
+Some aspects of the Redfish model should be comprehend before the interaction with the Redfish model shown below is understood.
 
-The scope of this profile includes configuration and reporting requirements, eventing (through the mention of registries).  Items that are more fabric related, such as fibre channel or InfiniBand properties, are out of scope.
+Redfish models a managed node in terms of its physical & logical aspects:
 
-## <a name="basic-product-identification"></a>Basic product identification
+- The physical aspect is modeled via the Chassis resource. This includes NetworkAdapter, NetworkDeviceFunction, Ports, PCIeDevice and PCIeFunction.  Some of these resources have subordinate metrics resources as well.
+- The logical aspect is modeled via the ComputerSystem.  This is done using EthernetInterface and represents the System view, or logical or OS view, of the NIC. 
+ 
+The relationship between the above resources are specified by the Links property.
 
-The ability to discover the basic product identification, including the name of the vendor/manufacturer, model, SKU or other identifiers, is required for cconfiguration and support use cases.  In the Redfish model, this information can appear in both the physical [NetworkAdapter](#NetworkAdapter) portion of the model, and also in the functional views.  For this reason, the NIC profile places requirements on the Chassis side of the model, as it is common among all types of products.  
+- On the Chassis resource, there are links to the resources that together describe the NIC.  This includes NetworkAdapter, NetworkDeviceFunction, Ports, PCIeDevice and PCIeFunction.
+- On the ComputerSystem resource, there are links to the NetworkDeviceFunction that describes the NIC.
 
-Relevant NetworkAdapter data:
-```json
-    "Manufacturer": "Contoso",
-    "Model": "ZAP4000",
-    "SKU": "925159-331",
-    "SerialNumber": "29347ZT536",
-    "PartNumber": "AA-23"
+The following diagram helps to show the relationships between these Redfish resources:
+<div style="text-align: center;"><img src="Figures/NIC-Profile-Figure2.svg" alt="Figure 1" title="Figure 1" width="100%">
+
+*Figure 1: Redfish NIC Hierarchy*</div>
+
+## <a name="retrieving-network-adapter-information"></a>Retrieving Network Adapter Information
+
+Many NICs are multi-function devices.  It is important to discover the state of the physical card, the number of Ports and their information, how many functions are on the card and PCIe information for the card and the functions.  This is begun by finding the NetworkAdapter under the Chassis.
 ```
-
-
-## <a name="functional-configuration"></a>Functional Configuration
-
-Product-level parameter & configuration reporting is a basic requirement of any monitored device.  This is accomplished with the population of required properties in the [NetworkAdapter](#NetworkAdapter) resource as it indicates the associated [NetworkDeviceFunctions](#NetworkDeviceFunctions), the associated [Ports](#Ports), Settings objects to show future state of the device & both [PCIeDevice](#PCIeDevice)s & [PCIeFunction](#PCIeFunction)s.  
-
-## <a name="telemetry"></a>Telemetry
-
-Product-level performance reporting is a basic requirement of any NIC.  This is accomplished with the population of required properties in the [NetworkAdapterMetrics](#NetworkAdapterMetrics),[PortMetrics](#PortMetrics), and [NetworkDeviceFunctionMetrics](#NetworkDeviceFunctionMetrics) resource.  
-
-## <a name="product-location-data"></a>Product location data
-
-The ability to locate the product or device's location in the chassis is needed for support and field servicing.  The more granular the location data, the more options become available to increase the accuracy of both support from a replacement location but also cabling diagnosis.  
-
-The reporting of physical address and location data was recently improved in the Redfish data model, so implementation of these relatively new properties will likely lag the first release of this profile.  For this reason, these items are mostly marked as "Recommended", but all of these requirements can be expected to become "Mandatory" requirements in future profile versions.  
-
-Example Location and PhysicalAddress portions of a Chassis instance:
+	GET /redfish/v1/Chassis/1/NetworkAdapter/DE07A000
+```
 
 ```json
 {
-    "Location": {
-        "PartLocation": {
-            "LocationOrdinalValue": "7",
-            "LocationType": "Slot"
-        },
-        "Placement": {
-            "Row": "North",
-            "Rack": "WEB43",
-            "RackOffsetUnits": "EIA_310",
-            "RackOffset": 12
+    "@odata.type": "#NetworkAdapter.v1_9_0.NetworkAdapter",
+    "Id": "DE07A000",
+    "Name": "Network Adapter",
+    "Manufacturer": "Contoso",
+    "Model": "Contoso 2",
+    "SKU": "Contoso 2 function adapter",
+    "SerialNumber": "LMNOP4279",
+    "PartNumber": "ABCDEFG2",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Ports": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports"
+    },
+    "NetworkDeviceFunctions": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions"
+    },
+    "Metrics": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Metrics"
+    },
+    "Controllers": [
+        {
+            "FirmwarePackageVersion": "229.1.123.0",
+            "Links": {
+                "PCIeDevices": [
+                    {
+                        "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000"
+                    }
+                ]
+            },
+            "ControllerCapabilities": {
+                "NetworkPortCount": 4,
+                "NetworkDeviceFunctionCount": 16,
+                "DataCenterBridging": {
+                    "Capable": true
+                },
+                "NPAR": {
+                    "NparCapable": true,
+                    "NparEnabled": true
+                },
+                "VirtualizationOffload": {
+                    "SRIOV": {
+                        "SRIOVVEPACapable": true
+                    },
+                    "VirtualFunction": {
+                        "DeviceMaxCount": 256,
+                        "MinAssignmentGroupSize": 8,
+                        "NetworkPortMaxCount": 256
+                    }
+                }
+            },
+            "PCIeInterface": {
+                "LanesInUse": 8,
+                "MaxLanes": 16,
+                "MaxPCIeType": "Gen4",
+                "PCIeType": "Gen4"
+            }
         }
+    ],
+    "LLDPEnabled": true,
+    "Actions": {
+        "#NetworkAdapter.ResetSettingsToDefault": {
+            "target": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Actions/NetworkAdapter.ResetSettingsToDefault",
+            "@Redfish.OperationApplyTimeSupport": {
+                "@odata.type": "#Settings.v1_3_3.OperationApplyTimeSupport",
+                "SupportedValues": [
+                    "OnReset"
+                ]
+            }
+        }
+    },
+    "@odata.context": "/redfish/v1/$metadata#NetworkAdapter.NetworkAdapter", 
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000",
+    "@odata.etag": "W/\"4DFAAF27\"",
+    "@Redfish.Settings": {
+        "@odata.type": "#Settings.v1_3_3.Settings",
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Settings"
+        },
+        "SupportedApplyTimes": [
+            "OnReset"
+        ]
+    }	
+}
+```
+
+
+## <a name="retriving-networkdevicefunction-and-port-information-"></a>Retriving NetworkDeviceFunction and Port information 
+
+Also found in the Network Adapter are the NetworkDeviceFunctions and the Ports, so retrieving those are needed.  First we will get the NetworkDeviceFunction.  Note that the NetDevFuncType must equal Ethernet for this profile to apply.
+
+```
+	GET /redfish/v1/Chassis/1/NetworkAdapter/DE07A000/NetworkDeviceFunctions/1
+```
+
+```json
+{
+    "@odata.type": "#NetworkDeviceFunction.v1_8_0.NetworkDeviceFunction",
+    "Id": "1",
+    "Name": "Network Device Function 1",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Metrics": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1/Metrics"
+    },
+    "NetDevFuncType": "Ethernet",
+    "DeviceEnabled": true,
+    "NetDevFuncCapabilities": [
+        "Ethernet"
+    ],
+    "Ethernet": {
+        "MACAddress": "9c:dc:71:c3:bb:0a",
+        "PermanentMACAddress": "9c:dc:71:c3:bb:0a",
+        "MTUSizeMaximum": 9600
+    },
+    "BootMode": "PXE",
+    "VirtualFunctionsEnabled": true,
+    "MaxVirtualFunctions": 8,
+    "AssignablePhysicalNetworkPorts": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1"
+        }
+    ],
+    "Links": {
+        "PCIeFunction": {
+            "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000/PCIeFunctions/1"
+        },
+        "PhysicalNetworkPortAssignment": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1"
+        },
+        "EthernetInterfaces": [
+            {
+                "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/5"
+            }
+        ]		
+    },
+    "@odata.context": "/redfish/v1/$metadata#NetworkDeviceFunction.NetworkDeviceFunction",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1",
+    "@odata.etag": "W/\"80212509\""	
+}
+```
+
+This is an example of retrieving a Port object
+```
+	GET /redfish/v1/Chassis/1/NetworkAdapter/DE07A000/Ports/1
+```
+
+```json
+{
+    "@odata.type": "#Port.v1_6_0.Port",
+    "Id": "1",
+    "Name": "Ethernet Port 1",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Metrics": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Metrics"
+    },
+    "PortId": "1",
+    "PortProtocol": "Ethernet",
+    "PortType": "BidirectionalPort",
+    "Enabled": true,
+    "Ethernet": {
+        "SupportedEthernetCapabilities": [
+            "WakeOnLAN"
+        ],
+        "AssociatedMACAddresses": [
+            "9c:dc:71:c3:bb:0a",
+            "9c:dc:71:c3:bb:0e",
+            "9c:dc:71:c3:bb:12",
+            "9c:dc:71:c3:bb:16"
+        ],
+        "FlowControlConfiguration": "None",
+        "FlowControlStatus": "None",
+        "WakeOnLANEnabled": true,
+        "LLDPEnabled": true,
+        "LLDPReceive": {
+            "ChassisId": "2c:23:3a:48:2f:5d",
+            "ChassisIdSubtype": "MacAddr",
+            "ManagementAddressIPv4": "",
+            "ManagementAddressIPv6": "",
+            "ManagementAddressMAC": "2c:23:3a:48:2f:ae",
+            "ManagementVlanId": 4095,
+            "PortId": "54:65:6E:2D:47:69:67:61:62:69:74:45:74:68:65:72:6E:65:74:31:2F:32:2F:39",
+            "PortIdSubtype": "IfName"
+        },
+        "LLDPTransmit": {
+            "ChassisId": "9c:dc:71:c3:bb:16",
+            "ChassisIdSubtype": "MacAddr",
+            "ManagementAddressIPv4": "",
+            "ManagementAddressIPv6": "",
+            "ManagementAddressMAC": "9c:dc:71:c3:bb:16",
+            "ManagementVlanId": 4095,
+            "PortId": "9C:DC:71:C3:BB:16",
+            "PortIdSubtype": "MacAddr"
+        }
+    },
+    "LinkConfiguration": [
+        {
+            "AutoSpeedNegotiationCapable": true,
+            "AutoSpeedNegotiationEnabled": true,
+            "CapableLinkSpeedGbps": [
+                25.0,
+                10.0
+            ],
+            "ConfiguredNetworkLinks": [
+                {
+                    "ConfiguredLinkSpeedGbps": 25.0,
+                    "ConfiguredWidth": 1
+                },
+                {
+                    "ConfiguredLinkSpeedGbps": 10.0,
+                    "ConfiguredWidth": 1
+                }
+            ]
+        }
+    ],
+    "LinkNetworkTechnology": "Ethernet",
+    "MaxFrameSize": 9622,
+    "MaxSpeedGbps": 25.0,
+    "Width": 1,
+    "InterfaceEnabled": true,
+    "SignalDetected": true,
+    "PortMedium": "Optical",
+    "LinkState": "Enabled",
+    "LinkStatus": "LinkUp",
+    "LinkTransitionIndicator": 1,
+    "CurrentSpeedGbps": 10.0,
+    "ActiveWidth": 1,
+    "SFP": {
+        "SupportedSFPTypes": [
+            "SFP",
+            "SFPPlus",
+            "SFP28"
+        ],
+        "Status": {
+            "Health": "OK",
+            "State": "Enabled"
+        },
+        "Manufacturer": "Mellanox",
+        "PartNumber": "844483-B21",
+        "SerialNumber": "THY1020240",
+        "MediumType": "FiberOptic",
+        "FiberConnectionType": "SingleMode",
+        "Type": "SFP28"
+    },
+    "Actions": {
+        "#Port.Reset": {
+            "target": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Actions/Port.Reset",
+            "ResetType@Redfish.AllowableValues": [
+                "ForceRestart",
+                "ForceOn",
+                "ForceOff"
+            ],
+            "@Redfish.OperationApplyTimeSupport": {
+                "@odata.type": "#Settings.v1_3_3.OperationApplyTimeSupport",
+                "SupportedValues": [
+                    "Immediate"
+                ]
+            }
+        }
+    },
+	"@odata.context": "/redfish/v1/$metadata#Port.Port",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1",
+    "@odata.etag": "W/\"B40342B6\"",
+    "@Redfish.Settings": {
+        "@odata.type": "#Settings.v1_3_3.Settings",
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Settings"
+        },
+        "SupportedApplyTimes": [
+            "OnReset"
+        ]
     }
 }
 ```
 
-# <a name="nic-profile-reference-guide"></a>NIC Profile Reference Guide
+## <a name="retrieving-pcie-information"></a>Retrieving PCIe Information
+
+The Network Adapter is analgous to a PCIe Device, so this next retrieval gets the PCIeDevice information for the link we found in the Network Adapter.
+
+```
+	GET /redfish/v1/Chassis/1/PCIeDevices/DE07A000
+```
+
+```json
+{
+    "@odata.type": "#PCIeDevice.v1_9_0.PCIeDevice",
+    "Id": "DE07A000",
+    "Name": "PCIe Device",
+    "Manufacturer": "Contoso",
+    "Model": "Contoso 2",
+    "SKU": "Contoso 2 function adapter",
+    "SerialNumber": "LMNOP4279",
+    "PartNumber": "ABCDEFG2",
+    "UUID": "00000000-0000-1000-8000-9cdc71c3bb0a",
+    "DeviceType": "MultiFunction",
+    "FirmwareVersion": "192.168.59.0",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "PCIeFunctions": {
+        "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000/PCIeFunctions"
+    },
+    "PCIeInterface": {
+        "LanesInUse": 8,
+        "MaxLanes": 16,
+        "MaxPCIeType": "Gen4",
+        "PCIeType": "Gen4"
+    },
+    "@odata.context": "/redfish/v1/$metadata#PCIeDevice.PCIeDevice",
+    "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000",
+    "@odata.etag": "W/\"70C0367C\""
+}
+```
+
+The PCIeFunction information is linked to the PCIeDevice as well as the NetworkDeviceFunction so we must retrieve that information.
+
+```
+	GET /redfish/v1/Chassis/1/PCIeDevices/DE07A000/PCIeFunctions/1
+```
+
+```json
+{
+    "@odata.type": "#PCIeFunction.v1_3_0.PCIeFunction",
+    "Id": "1",
+    "Name": "PCIe Function 1",
+    "FunctionType": "Physical",
+    "DeviceClass": "NetworkController",
+    "FunctionId": 1,
+    "DeviceId": "0x1801",
+    "VendorId": "0x14e4",
+    "ClassCode": "0x020000",
+    "RevisionId": "0x11",
+    "SubsystemId": "0x1598",
+    "SubsystemVendorId": "0x14e4",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Links": {
+        "NetworkDeviceFunctions": [
+            {
+                "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1"
+            }
+        ],
+        "PCIeDevice": {
+            "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000"
+        }
+    },
+    "@odata.context": "/redfish/v1/$metadata#PCIeFunction.PCIeFunction",
+    "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000/PCIeFunctions/1",
+    "@odata.etag": "W/\"2D186009\""	
+}
+```
+
+## <a name="retrieving-system-nic-information"></a>Retrieving System NIC information
+
+EthernetInterface is the System's view of the NIC and will have constructs of what is traditionally the software stack, such as IPv4/IPv6 addresses. 
+
+```
+	GET /redfish/v1/Systems/1/EthernetInterfaces/5
+```
+
+```json
+{
+    "@odata.type": "#EthernetInterface.v1_4_1.EthernetInterface",
+    "Id": "5",
+    "FullDuplex": false,
+    "IPv4Addresses": [],
+    "IPv4StaticAddresses": [],
+    "IPv6AddressPolicyTable": [],
+    "IPv6Addresses": [],
+    "IPv6StaticAddresses": [],
+    "IPv6StaticDefaultGateways": [],
+    "InterfaceEnabled": null,
+    "LinkStatus": "LinkUp",
+    "MACAddress": "9c:dc:71:c3:bb:0a",
+    "Name": "",
+    "NameServers": [],
+    "SpeedMbps": null,
+    "StaticNameServers": [],
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Links": {
+        "NetworkDeviceFunctions": [
+            {
+                "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1"
+            }
+        ]
+    },
+    "UefiDevicePath": "PciRoot(0x3)/Pci(0x1,0x1)/Pci(0x0,0x0)",
+    "@odata.context": "/redfish/v1/$metadata#EthernetInterface.EthernetInterface",
+    "@odata.etag": "W/\"C4D4ADE7\"",
+    "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/5"	
+}
+```
+
+## <a name="retrieving-metrics"></a>Retrieving Metrics
+
+# <a name="appendix-a%3A-nic-profile-reference-guide"></a>Appendix A: NIC Profile Reference Guide
 
 To produce this guide, DMTF's [Redfish Documentation Generator](#redfish-documentation-generator) merges DMTF's Redfish Schema bundle (DSP8010) contents with supplemental text.
 
@@ -136,12 +540,438 @@ The property-level details include:
 | Description | <p>The normative description of the property, as copied directly from the schema <code>LongDescription</code> definition.</p> |
 
 
+## <a name="ethernetinterface-v1.1.0-%28current-release%3A-v1.12.3%29"></a>EthernetInterface v1.1.0 (current release: v1.12.3)
+
+|     |     |     |     |     |     |     |     |     |     |     |     |     |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Version** | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *...* |
+| **Release** | 2023.3 | 2023.2 | 2023.1 | 2022.2 | 2021.2 | 2020.1 | 2019.1 | 2017.3 | 2017.1 | 2016.3 | 2016.2 | ... |
+
+
+**Conditional Requirements:**
+
+|     |     |     |
+| :--- | :--- | :--- |
+| Resource instance is subordinate to "EthernetInterfaceCollection" | Mandatory (Read) |                      |
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{SystemId}*/&#8203;EthernetInterfaces/&#8203;*{EthernetInterfaceId}*<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **DHCPv4** *(v1.4+)* { | object | *Recommended (Read/Write)* | DHCPv4 configuration for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DHCPEnabled** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether DHCP v4 is enabled on this Ethernet interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FallbackAddress** *(v1.5+)* | string<br>(enum) | *Mandatory (Read)* | DHCPv4 fallback address method for this interface. *For the possible property values, see FallbackAddress in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseDNSServers** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether this interface uses DHCP v4-supplied DNS servers. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseDomainName** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether this interface uses a DHCP v4-supplied domain name. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseGateway** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether this interface uses a DHCP v4-supplied gateway. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseNTPServers** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the interface uses DHCP v4-supplied NTP servers. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseStaticRoutes** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the interface uses DHCP v4-supplied static routes. |
+| } |   |   |
+| **DHCPv6** *(v1.4+)* { | object | *Recommended (Read/Write)* | DHCPv6 configuration for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OperatingMode** *(v1.4+)* | string<br>(enum) | *Mandatory (Read)* | Determines the DHCPv6 operating mode for this interface. *For the possible property values, see OperatingMode in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseDNSServers** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the interface uses DHCP v6-supplied DNS servers. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseDomainName** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether this interface uses a DHCP v6-supplied domain name. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseNTPServers** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the interface uses DHCP v6-supplied NTP servers. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseRapidCommit** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the interface uses DHCP v6 rapid commit mode for stateful mode address assignments.  Do not enable this option in networks where more than one DHCP v6 server is configured to provide address assignments. |
+| } |   |   |
+| **FQDN** | string | *Recommended (Read)* | The complete, fully qualified domain name that DNS obtains for this interface. |
+| **HostName** | string | *Recommended (Read)* | The DNS host name, without any domain information. |
+| **InterfaceEnabled** | boolean | *Mandatory (Read)* | An indication of whether this interface is enabled. |
+| **IPv4Addresses** [ { | array | *Recommended (Read)* | The IPv4 addresses currently in use by this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read)* | The IPv4 address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AddressOrigin** | string<br>(enum) | *Mandatory (Read-only)* | This indicates how the address was determined. *For the possible property values, see AddressOrigin in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Gateway** | string | *Mandatory (Read)* | The IPv4 gateway for this address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubnetMask** | string | *Mandatory (Read)* | The IPv4 subnet mask. |
+| } ] |   |   |
+| **IPv4StaticAddresses** *(v1.4+)* [ { | array | *Recommended (Read)* | The IPv4 static addresses assigned to this interface.  See `IPv4Addresses` for the addresses in use by this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read)* | The IPv4 address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AddressOrigin** | string<br>(enum) | *Mandatory (Read-only)* | This indicates how the address was determined. *For the possible property values, see AddressOrigin in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Gateway** | string | *Mandatory (Read)* | The IPv4 gateway for this address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubnetMask** | string | *Mandatory (Read)* | The IPv4 subnet mask. |
+| } ] |   |   |
+| **IPv6Addresses** [ { | array | *If Implemented (Read)* | The IPv6 addresses currently in use by this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read)* | The IPv6 address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AddressOrigin** | string<br>(enum) | *Mandatory (Read-only)* | This indicates how the address was determined. *For the possible property values, see AddressOrigin in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AddressState** | string<br>(enum) | *Mandatory (Read-only)* | The current RFC4862-defined state of this address. *For the possible property values, see AddressState in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrefixLength** | integer | *Mandatory (Read-only)* | The IPv6 address prefix Length. |
+| } ] |   |   |
+| **IPv6AddressPolicyTable** [ { | array | *Recommended (Read)* | An array that represents the RFC6724-defined address selection policy table. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Label** | integer | *Mandatory (Read)* | The IPv6 label, as defined in RFC6724, section 2.1. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Precedence** | integer | *Mandatory (Read)* | The IPv6 precedence, as defined in RFC6724, section 2.1. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Prefix** | string | *Mandatory (Read)* | The IPv6 address prefix, as defined in RFC6724, section 2.1. |
+| } ] |   |   |
+| **IPv6StaticAddresses** [ { | array | *Recommended (Read)* | The IPv6 static addresses assigned to this interface.  See `IPv6Addresses` for the addresses in use by this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read)* | A valid IPv6 address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrefixLength** | integer | *Mandatory (Read)* | The prefix length, in bits, of this IPv6 address. |
+| } ] |   |   |
+| **IPv6StaticDefaultGateways** *(v1.4+)* [ { | array | *Recommended (Read)* | The IPv6 static default gateways for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** *(v1.1+)* | string | *Mandatory (Read)* | A valid IPv6 address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.1+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrefixLength** *(v1.1+)* | integer | *Mandatory (Read)* | The IPv6 network prefix length, in bits, for this address. |
+| } ] |   |   |
+| **Links** *(v1.1+)* { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkDeviceFunctions** *(v1.7+)* [ { | array | *Mandatory (Read-only)* | The link to the network device functions that constitute this Ethernet interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| } |   |   |
+| **LinkStatus** *(v1.1+)* | string<br>(enum) | *Mandatory (Read-only)* | The link status of this interface, or port. *For the possible property values, see LinkStatus in Property details.* |
+| **MACAddress** | string | *Mandatory (Read)* | The currently configured MAC address of the interface, or logical port. |
+| **NameServers** [ ] | array (string) | *Recommended (Read-only)* | The DNS servers in use on this interface. |
+| **SpeedMbps** | integer<br>(Mbit/s) | *Mandatory (Read)* | The current speed, in Mbit/s, of this interface. |
+| **StaticNameServers** *(v1.4+)* [ ] | array (string, null) | *Recommended (Read)* | The statically-defined set of DNS server IPv4 and IPv6 addresses. |
+| **Status** { | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Health** | string<br>(enum) | *Mandatory (Read-only)* | The health state of this resource in the absence of its dependent resources. *For the possible property values, see Health in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**State** | string<br>(enum) | *Mandatory (Read-only)* | The state of the resource. *For the possible property values, see State in Property details.* |
+| } |   |   |
+
+### Property details
+
+#### AddressOrigin
+
+##### In IPv4Addresses, IPv4StaticAddresses:
+
+This indicates how the address was determined.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| BOOTP | A BOOTP service-provided address. |  |
+| DHCP | A DHCPv4 service-provided address. |  |
+| IPv4LinkLocal | The address is valid for only this network segment, or link. |  |
+| Static | A user-configured static address. |  |
+
+##### In IPv6Addresses:
+
+This indicates how the address was determined.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| DHCPv6 | A DHCPv6 service-provided address. |  |
+| LinkLocal | The address is valid for only this network segment, or link. |  |
+| SLAAC | A stateless autoconfiguration (SLAAC) service-provided address. |  |
+| Static | A static user-configured address. |  |
+
+#### AddressState
+
+The current RFC4862-defined state of this address.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Deprecated | This address is currently within its valid lifetime but is now outside its RFC4862-defined preferred lifetime. |  |
+| Failed | This address has failed Duplicate Address Detection (DAD) testing, as defined in RFC4862, section 5.4, and is not currently in use. |  |
+| Preferred | This address is currently within both its RFC4862-defined valid and preferred lifetimes. |  |
+| Tentative | This address is currently undergoing Duplicate Address Detection (DAD) testing, as defined in RFC4862, section 5.4. |  |
+
+#### FallbackAddress
+
+DHCPv4 fallback address method for this interface.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| AutoConfig | Fall back to an autoconfigured address. |  |
+| None | Continue attempting DHCP without a fallback address. |  |
+| Static | Fall back to a static address specified by `IPv4StaticAddresses`. |  |
+
+#### Health
+
+The health state of this resource in the absence of its dependent resources.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Critical | A critical condition requires immediate attention. |  |
+| OK | Normal. |  |
+| Warning | A condition requires attention. |  |
+
+#### LinkStatus
+
+The link status of this interface, or port.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| LinkDown | No link is detected on this interface, but the interface is connected. |  |
+| LinkUp | The link is available for communication on this interface. |  |
+| NoLink | No link or connection is detected on this interface. |  |
+
+#### OperatingMode
+
+Determines the DHCPv6 operating mode for this interface.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Disabled | DHCPv6 is disabled. |  |
+| Enabled *(v1.8+)* | DHCPv6 is enabled. |  |
+| Stateful *(deprecated v1.8)* | DHCPv6 stateful mode. *Deprecated in v1.8 and later. This property has been deprecated in favor of `Enabled`.  The control between 'stateful' and 'stateless' is managed by the DHCP server and not the client.* |  |
+| Stateless *(deprecated v1.8)* | DHCPv6 stateless mode. *Deprecated in v1.8 and later. This property has been deprecated in favor of `Enabled`.  The control between 'stateful' and 'stateless' is managed by the DHCP server and not the client.* |  |
+
+#### State
+
+The state of the resource.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Absent | This function or device is not currently present or detected.  This resource represents a capability or an available location where a device can be installed. |  |
+| Deferring *(v1.2+)* | The element does not process any commands but queues new requests. |  |
+| Degraded *(v1.19+)* | The function or resource is degraded. |  |
+| Disabled | This function or resource is disabled. |  |
+| Enabled | This function or resource is enabled. |  |
+| InTest | This function or resource is undergoing testing or is in the process of capturing information for debugging. |  |
+| Qualified *(v1.9+, deprecated v1.19)* | The element quality is within the acceptable range of operation. *Deprecated in v1.19 and later. This value has been deprecated in favor of StandbySpare.* |  |
+| Quiesced *(v1.2+)* | The element is enabled but only processes a restricted set of commands. |  |
+| StandbyOffline | This function or resource is enabled but awaits an external action to activate it. |  |
+| StandbySpare | This function or resource is part of a redundancy set and awaits a failover or other external action to activate it. |  |
+| Starting | This function or resource is starting. |  |
+| UnavailableOffline *(v1.1+)* | This function or resource is present but cannot be used. |  |
+| Updating *(v1.2+)* | The element is updating and might be unavailable or degraded. |  |
+
+### Example response
+
+
+```json
+{
+    "@odata.type": "#EthernetInterface.v1_4_1.EthernetInterface",
+    "Id": "5",
+    "FullDuplex": false,
+    "IPv4Addresses": [],
+    "IPv4StaticAddresses": [],
+    "IPv6AddressPolicyTable": [],
+    "IPv6Addresses": [],
+    "IPv6StaticAddresses": [],
+    "IPv6StaticDefaultGateways": [],
+    "InterfaceEnabled": null,
+    "LinkStatus": "LinkUp",
+    "MACAddress": "9c:dc:71:c3:bb:0a",
+    "Name": "",
+    "NameServers": [],
+    "SpeedMbps": null,
+    "StaticNameServers": [],
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Links": {
+        "NetworkDeviceFunctions": [
+            {
+                "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1"
+            }
+        ]
+    },
+    "UefiDevicePath": "PciRoot(0x3)/Pci(0x1,0x1)/Pci(0x0,0x0)",
+    "@odata.context": "/redfish/v1/$metadata#EthernetInterface.EthernetInterface",
+    "@odata.etag": "W/\"C4D4ADE7\"",
+    "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/5"	
+}
+```
+
+
+
+## <a name="ethernetinterfacecollection"></a>EthernetInterfaceCollection
+
+
+**Conditional Requirements:**
+
+|     |     |     |
+| :--- | :--- | :--- |
+| Resource instance is subordinate to "ComputerSystem" | Mandatory (Read) |                      |
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;NetworkAdapters/&#8203;*{NetworkAdapterId}*/&#8203;NetworkDeviceFunctions/&#8203;*{NetworkDeviceFunctionId}*/&#8203;EthernetInterfaces<br>
+/&#8203;redfish/&#8203;v1/&#8203;Managers/&#8203;*{ManagerId}*/&#8203;EthernetInterfaces<br>
+/&#8203;redfish/&#8203;v1/&#8203;Managers/&#8203;*{ManagerId}*/&#8203;HostInterfaces/&#8203;*{HostInterfaceId}*/&#8203;HostEthernetInterfaces<br>
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;EthernetInterfaces<br>
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;OperatingSystem/&#8203;Containers/&#8203;EthernetInterfaces<br>
+\* Note: Some URIs omitted for brevity, refer to schema for the complete list.<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **Members** [ { | array | *Mandatory (Read-only), Minimum 1* | The members of this collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AutoNeg** | boolean | *Mandatory (Read)* | An indication of whether the speed and duplex are automatically negotiated and configured on this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DHCPv4** *(v1.4+)* { | object | *Mandatory (Read)* | DHCPv4 configuration for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DHCPEnabled** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether DHCP v4 is enabled on this Ethernet interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FallbackAddress** *(v1.5+)* | string<br>(enum) | *Mandatory (Read)* | DHCPv4 fallback address method for this interface. *For the possible property values, see FallbackAddress in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseDNSServers** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether this interface uses DHCP v4-supplied DNS servers. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseDomainName** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether this interface uses a DHCP v4-supplied domain name. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseGateway** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether this interface uses a DHCP v4-supplied gateway. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseNTPServers** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the interface uses DHCP v4-supplied NTP servers. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseStaticRoutes** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the interface uses DHCP v4-supplied static routes. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DHCPv6** *(v1.4+)* { | object | *Mandatory (Read)* | DHCPv6 configuration for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OperatingMode** *(v1.4+)* | string<br>(enum) | *Mandatory (Read)* | Determines the DHCPv6 operating mode for this interface. *For the possible property values, see OperatingMode in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseDNSServers** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the interface uses DHCP v6-supplied DNS servers. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseDomainName** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether this interface uses a DHCP v6-supplied domain name. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseNTPServers** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the interface uses DHCP v6-supplied NTP servers. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UseRapidCommit** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the interface uses DHCP v6 rapid commit mode for stateful mode address assignments.  Do not enable this option in networks where more than one DHCP v6 server is configured to provide address assignments. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EthernetInterfaceType** *(v1.6+)* | string<br>(enum) | *Mandatory (Read-only)* | The type of interface. *For the possible property values, see EthernetInterfaceType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FQDN** | string | *Mandatory (Read)* | The complete, fully qualified domain name that DNS obtains for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FullDuplex** | boolean | *Mandatory (Read)* | An indication of whether full-duplex mode is enabled on the Ethernet connection for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HostName** | string | *Mandatory (Read)* | The DNS host name, without any domain information. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**InterfaceEnabled** | boolean | *Mandatory (Read)* | An indication of whether this interface is enabled. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv4Addresses** [ { } ] | array (object) | *Mandatory (Read)* | The IPv4 addresses currently in use by this interface. See the *IPAddresses* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv4StaticAddresses** *(v1.4+)* [ { } ] | array (object) | *Mandatory (Read)* | The IPv4 static addresses assigned to this interface.  See `IPv4Addresses` for the addresses in use by this interface. See the *IPAddresses* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv6Addresses** [ { } ] | array (object) | *Mandatory (Read)* | The IPv6 addresses currently in use by this interface. See the *IPAddresses* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv6AddressPolicyTable** [ { | array | *Mandatory (Read)* | An array that represents the RFC6724-defined address selection policy table. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Label** | integer | *Mandatory (Read)* | The IPv6 label, as defined in RFC6724, section 2.1. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Precedence** | integer | *Mandatory (Read)* | The IPv6 precedence, as defined in RFC6724, section 2.1. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Prefix** | string | *Mandatory (Read)* | The IPv6 address prefix, as defined in RFC6724, section 2.1. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv6DefaultGateway** | string | *Mandatory (Read-only)* | The IPv6 default gateway address in use on this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv6Enabled** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether IPv6 is enabled on this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv6StaticAddresses** [ { } ] | array (object) | *Mandatory (Read)* | The IPv6 static addresses assigned to this interface.  See `IPv6Addresses` for the addresses in use by this interface. See the *IPAddresses* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv6StaticDefaultGateways** *(v1.4+)* [ { } ] | array (object) | *Mandatory (Read)* | The IPv6 static default gateways for this interface. See the *v1_1_5.v1_1_5* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Links** *(v1.1+)* { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AffiliatedInterfaces** *(v1.10+)* [ { | array | *Mandatory (Read-only)* | The links to the Ethernet interfaces that are affiliated with this interface, such as a VLAN or a team that uses this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to another EthernetInterface resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AffiliatedInterfaces@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Chassis** *(v1.3+)* { | object | *Mandatory (Read-only)* | The link to the chassis that contains this Ethernet interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Endpoints** *(v1.1+)* [ { | array | *Mandatory (Read-only)* | An array of links to the endpoints that connect to this Ethernet interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Endpoints@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HostInterface** *(v1.2+)* { | object | *Mandatory (Read-only)* | The link to a Host Interface that is associated with this Ethernet interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkDeviceFunction** *(v1.6+, deprecated v1.7)* { | object | *Mandatory (Read-only)* | The link to the parent network device function and is only used when representing one of the VLANs on that network device function, such as is done in Unix. See the *NetworkDeviceFunction* schema for details on this property. *Deprecated in v1.7 and later. This property has been deprecated in favor of `NetworkDeviceFunctions` as each `EthernetInterface` could represent more than one `NetworkDeviceFunction`.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a NetworkDeviceFunction resource. See the Links section and the *NetworkDeviceFunction* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkDeviceFunctions** *(v1.7+)* [ { | array | *Mandatory (Read-only)* | The link to the network device functions that constitute this Ethernet interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a NetworkDeviceFunction resource. See the Links section and the *NetworkDeviceFunction* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkDeviceFunctions@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Ports** *(v1.9+)* [ { | array | *Mandatory (Read-only)* | The links to the ports providing this Ethernet interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a Port resource. See the Links section and the *Port* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Ports@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RelatedInterfaces** *(v1.9+)* [ { | array | *Mandatory (Read)* | The links to the Ethernet interfaces that constitute this Ethernet interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read)* | Link to another EthernetInterface resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RelatedInterfaces@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LinkStatus** *(v1.1+)* | string<br>(enum) | *Mandatory (Read-only)* | The link status of this interface, or port. *For the possible property values, see LinkStatus in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MACAddress** | string | *Mandatory (Read)* | The currently configured MAC address of the interface, or logical port. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxIPv6StaticAddresses** | integer | *Mandatory (Read-only)* | The maximum number of static IPv6 addresses that can be configured on this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MTUSize** | integer | *Mandatory (Read)* | The currently configured maximum transmission unit (MTU), in bytes, on this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NameServers** [ ] | array (string) | *Mandatory (Read-only)* | The DNS servers in use on this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PermanentMACAddress** | string | *Mandatory (Read-only)* | The permanent MAC address assigned to this interface, or port. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RoutingScope** *(v1.11+)* | string<br>(enum) | *Mandatory (Read-only)* | The routing scope for this interface. *For the possible property values, see RoutingScope in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SpeedMbps** | integer<br>(Mbit/s) | *Mandatory (Read)* | The current speed, in Mbit/s, of this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**StatelessAddressAutoConfig** *(v1.4+)* { | object | *Mandatory (Read)* | Stateless address autoconfiguration (SLAAC) parameters for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv4AutoConfigEnabled** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether IPv4 stateless address autoconfiguration (SLAAC) is enabled for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPv6AutoConfigEnabled** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether IPv6 stateless address autoconfiguration (SLAAC) is enabled for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**StaticNameServers** *(v1.4+)* [ ] | array (string, null) | *Mandatory (Read)* | The statically-defined set of DNS server IPv4 and IPv6 addresses. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Status** {} | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TeamMode** *(v1.9+)* | string<br>(enum) | *Mandatory (Read)* | The team mode for this interface. *For the possible property values, see TeamMode in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UefiDevicePath** | string | *Mandatory (Read-only)* | The UEFI device path for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VLAN** {} | object | *Mandatory (Read)* | If this network interface supports more than one VLAN, this property is absent.  VLAN collections appear in the `Links` property of this resource. See the *VLanNetworkInterface.v1_3_1* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VLANs** *(deprecated v1.7)* { | object | *Mandatory (Read-only)* | The link to a collection of VLANs, which applies only if the interface supports more than one VLAN.  If this property applies, the `VLANEnabled` and `VLANId` properties do not apply. *Deprecated in v1.7 and later. This property has been deprecated in favor of newer methods indicating multiple VLANs.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| } ] |   |   |
+
+### Property details
+
+#### EthernetInterfaceType
+
+The type of interface.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Physical | A physical Ethernet interface. |  |
+| Virtual | A virtual Ethernet interface. |  |
+
+#### FallbackAddress
+
+DHCPv4 fallback address method for this interface.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| AutoConfig | Fall back to an autoconfigured address. |  |
+| None | Continue attempting DHCP without a fallback address. |  |
+| Static | Fall back to a static address specified by `IPv4StaticAddresses`. |  |
+
+#### LinkStatus
+
+The link status of this interface, or port.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| LinkDown | No link is detected on this interface, but the interface is connected. |  |
+| LinkUp | The link is available for communication on this interface. |  |
+| NoLink | No link or connection is detected on this interface. |  |
+
+#### OperatingMode
+
+Determines the DHCPv6 operating mode for this interface.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Disabled | DHCPv6 is disabled. |  |
+| Enabled *(v1.8+)* | DHCPv6 is enabled. |  |
+| Stateful *(deprecated v1.8)* | DHCPv6 stateful mode. *Deprecated in v1.8 and later. This property has been deprecated in favor of `Enabled`.  The control between 'stateful' and 'stateless' is managed by the DHCP server and not the client.* |  |
+| Stateless *(deprecated v1.8)* | DHCPv6 stateless mode. *Deprecated in v1.8 and later. This property has been deprecated in favor of `Enabled`.  The control between 'stateful' and 'stateless' is managed by the DHCP server and not the client.* |  |
+
+#### RoutingScope
+
+The routing scope for this interface.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| External | Externally accessible. |  |
+| HostOnly | Only accessible to a dedicated interface on the host. |  |
+| Internal | Only accessible to internal networking on the host, such as when virtual machines or containers are allowed to communicate with each other on the same host system as well as a dedicated interface on the hosting system. |  |
+| Limited | Accessible through IP translation provided by the hosting system. |  |
+
+#### TeamMode
+
+The team mode for this interface.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| ActiveBackup | One interface in the team is active and the others are kept in standby until a failure occurs. |  |
+| AdaptiveLoadBalancing | Packets are transmitted and received based upon the current load of each interface in the team. |  |
+| AdaptiveTransmitLoadBalancing | Packets are transmitted based upon the current load of each interface in the team. |  |
+| Broadcast | Packets are transmitted on all interfaces in the team. |  |
+| IEEE802_3ad | The interfaces in the team create an IEEE802.3ad link aggregation group. |  |
+| None | No teaming. |  |
+| RoundRobin | Packets are transmitted in sequential order from the teamed interfaces. |  |
+| XOR | Transmitting is determined based upon a hash policy. |  |
+
+
 ## <a name="networkadapter-1.11.0"></a>NetworkAdapter 1.11.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Version** | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *...* |
 | **Release** | 2024.1 | 2023.3 | 2021.4 | 2021.2 | 2021.1 | 2020.4 | 2020.3 | 2020.2 | 2019.2 | 2018.2 | 2017.3 | ... |
+
+
+**Conditional Requirements:**
+
+|     |     |     |
+| :--- | :--- | :--- |
+| Resource instance is subordinate to "NetworkAdapterCollection" | Mandatory (Read) |                      |
 
 ### URIs
 
@@ -379,6 +1209,161 @@ The state of the resource.
 
 
 
+## <a name="networkadaptercollection"></a>NetworkAdapterCollection
+
+
+**Conditional Requirements:**
+
+|     |     |     |
+| :--- | :--- | :--- |
+| Resource instance is subordinate to "Chassis" | Mandatory (Read) |                      |
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;NetworkAdapters<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **Members** [ { | array | *Mandatory (Read-only), Minimum 1* | The members of this collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Assembly** *(v1.1+)* { | object | *Mandatory (Read-only)* | The link to the assembly resource associated with this adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Certificates** *(v1.6+)* { | object | *Mandatory (Read-only)* | The link to a collection of certificates for device identity and attestation. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Controllers** [ { | array | *Mandatory (Read)* | The set of network controllers ASICs that make up this NetworkAdapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ControllerCapabilities** { | object | *Mandatory (Read)* | The capabilities of this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataCenterBridging** { | object | *Mandatory (Read)* | Data center bridging (DCB) for this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Capable** | boolean | *Mandatory (Read-only)* | An indication of whether this controller is capable of data center bridging (DCB). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkDeviceFunctionCount** | integer | *Mandatory (Read-only)* | The maximum number of physical functions available on this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkPortCount** | integer | *Mandatory (Read-only)* | The number of physical ports on this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NPAR** *(v1.2+)* { | object | *Mandatory (Read)* | NIC Partitioning (NPAR) capabilities for this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NparCapable** *(v1.2+)* | boolean | *Mandatory (Read-only)* | An indication of whether the controller supports NIC function partitioning. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NparEnabled** *(v1.2+)* | boolean | *Mandatory (Read)* | An indication of whether NIC function partitioning is active on this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NPIV** { | object | *Mandatory (Read)* | N_Port ID Virtualization (NPIV) capabilities for this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxDeviceLogins** | integer | *Mandatory (Read-only)* | The maximum number of N_Port ID Virtualization (NPIV) logins allowed simultaneously from all ports on this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxPortLogins** | integer | *Mandatory (Read-only)* | The maximum number of N_Port ID Virtualization (NPIV) logins allowed per physical port on this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VirtualizationOffload** { | object | *Mandatory (Read)* | Virtualization offload for this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SRIOV** { | object | *Mandatory (Read)* | Single-root input/output virtualization (SR-IOV) capabilities. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SRIOVVEPACapable** | boolean | *Mandatory (Read-only)* | An indication of whether this controller supports single root input/output virtualization (SR-IOV) in Virtual Ethernet Port Aggregator (VEPA) mode. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VirtualFunction** { | object | *Mandatory (Read)* | The virtual function of the controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeviceMaxCount** | integer | *Mandatory (Read-only)* | The maximum number of virtual functions supported by this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MinAssignmentGroupSize** | integer | *Mandatory (Read-only)* | The minimum number of virtual functions that can be allocated or moved between physical functions for this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkPortMaxCount** | integer | *Mandatory (Read-only)* | The maximum number of virtual functions supported per network port for this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FirmwarePackageVersion** | string | *Mandatory (Read-only)* | The version of the user-facing firmware package. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Identifiers** *(v1.3+)* [ { } ] | array (object) | *Mandatory (Read)* | The durable names for the network adapter controller. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Links** { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ActiveSoftwareImage** *(v1.10+)* { | object | *Mandatory (Read)* | The link to the software inventory resource that represents the active firmware image for this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkDeviceFunctions** [ { | array | *Mandatory (Read-only)* | An array of links to the network device functions associated with this network controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a NetworkDeviceFunction resource. See the Links section and the *NetworkDeviceFunction* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkDeviceFunctions@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkPorts** *(deprecated v1.5)* [ { | array | *Mandatory (Read-only)* | An array of links to the network ports associated with this network controller. *Deprecated in v1.5 and later. This property has been deprecated in favor of the `Ports` property.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkPorts@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeDevices** [ { | array | *Mandatory (Read-only)* | An array of links to the PCIe devices associated with this network controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a PCIeDevice resource. See the Links section and the *PCIeDevice* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeDevices@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Ports** *(v1.5+)* [ { | array | *Mandatory (Read-only)* | An array of links to the ports associated with this network controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a Port resource. See the Links section and the *Port* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Ports@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SoftwareImages** *(v1.10+)* [ { | array | *Mandatory (Read-only)* | The images that are associated with this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SoftwareImages@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Location** *(v1.1+)* {} | object | *Mandatory (Read)* | The location of the network adapter controller. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeInterface** *(v1.2+)* { | object | *Mandatory (Read)* | The PCIe interface details for this controller. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LanesInUse** *(v1.3+)* | integer | *Mandatory (Read-only)* | The number of PCIe lanes in use by this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxLanes** *(v1.3+)* | integer | *Mandatory (Read-only)* | The number of PCIe lanes supported by this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxPCIeType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read-only)* | The highest version of the PCIe specification supported by this device. *For the possible property values, see MaxPCIeType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.3+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read-only)* | The version of the PCIe specification in use by this device. *For the possible property values, see PCIeType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnvironmentMetrics** *(v1.7+)* { | object | *Mandatory (Read-only)* | The link to the environment metrics for this network adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Identifiers** *(v1.4+)* [ { } ] | array (object) | *Mandatory (Read)* | The durable names for the network adapter. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LLDPEnabled** *(v1.7+)* | boolean | *Mandatory (Read)* | Enable or disable LLDP globally for an adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Location** *(v1.4+)* {} | object | *Mandatory (Read)* | The location of the network adapter. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Manufacturer** | string | *Mandatory (Read-only)* | The manufacturer or OEM of this network adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Measurements** *(v1.6+, deprecated v1.9)* [ { } ] | array (object) | *Mandatory (Read)* | An array of DSP0274-defined measurement blocks. See the *SoftwareInventory.v1_10_2* schema for details on this property. *Deprecated in v1.9 and later. This property has been deprecated in favor of the `ComponentIntegrity` resource.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Metrics** *(v1.7+)* { | object | *Mandatory (Read-only)* | The link to the metrics associated with this adapter. See the *NetworkAdapterMetrics* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a NetworkAdapterMetrics resource. See the Links section and the *NetworkAdapterMetrics* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Model** | string | *Mandatory (Read-only)* | The model string for this network adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkDeviceFunctions** { | object | *Mandatory (Read-only)* | The link to the collection of network device functions associated with this network adapter. Contains a link to a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to Collection of *NetworkDeviceFunction*. See the NetworkDeviceFunction schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkPorts** *(deprecated v1.5)* { | object | *Mandatory (Read-only)* | The link to the collection of network ports associated with this network adapter. *Deprecated in v1.5 and later. This property has been deprecated in favor of the `Ports` property.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PartNumber** | string | *Mandatory (Read-only)* | Part number for this network adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Ports** *(v1.5+)* { | object | *Mandatory (Read-only)* | The link to the collection of ports associated with this network adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Processors** *(v1.8+)* { | object | *Mandatory (Read-only)* | The link to the collection of offload processors contained in this network adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SerialNumber** | string | *Mandatory (Read-only)* | The serial number for this network adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SKU** | string | *Mandatory (Read-only)* | The manufacturer SKU for this network adapter. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Status** {} | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. See the *Resource* schema for details on this property. |
+| } ] |   |   |
+
+### Property details
+
+#### MaxPCIeType
+
+The highest version of the PCIe specification supported by this device.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Gen1 | A PCIe v1.0 slot. |  |
+| Gen2 | A PCIe v2.0 slot. |  |
+| Gen3 | A PCIe v3.0 slot. |  |
+| Gen4 | A PCIe v4.0 slot. |  |
+| Gen5 | A PCIe v5.0 slot. |  |
+| Gen6 *(v1.16+)* | A PCIe v6.0 slot. |  |
+
+#### PCIeType
+
+The version of the PCIe specification in use by this device.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Gen1 | A PCIe v1.0 slot. |  |
+| Gen2 | A PCIe v2.0 slot. |  |
+| Gen3 | A PCIe v3.0 slot. |  |
+| Gen4 | A PCIe v4.0 slot. |  |
+| Gen5 | A PCIe v5.0 slot. |  |
+| Gen6 *(v1.16+)* | A PCIe v6.0 slot. |  |
+
+
 ## <a name="networkadaptermetrics-1.1.0"></a>NetworkAdapterMetrics 1.1.0
 
 |     |     |     |
@@ -409,16 +1394,19 @@ The state of the resource.
 | **TXMulticastFrames** | integer | *Mandatory (Read-only)* | The total number of good multicast frames transmitted since reset. |
 | **TXUnicastFrames** | integer | *Mandatory (Read-only)* | The total number of good unicast frames transmitted since reset. |
 
-## <a name="networkdevicefunction-1.9.2"></a>NetworkDeviceFunction 1.9.2
+## <a name="networkdevicefunction-1.9.2-%28ethernetnic%29"></a>NetworkDeviceFunction 1.9.2 (EthernetNIC)
 
-|     |     |     |     |     |     |     |     |     |     |     |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
-| **Release** | 2022.2 | 2021.4 | 2021.2 | 2021.1 | 2020.3 | 2020.1 | 2018.2 | 2017.3 | 2017.1 | 2016.3 |
+### Description
+
+This section describes a UseCase of NetworkDeviceFunction.
+
+A service is required to implement this UseCase. (Mandatory)
+
+This UseCase is must exist at the following URIs: 
 
 ### URIs
 
-/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;NetworkAdapters/&#8203;*{NetworkAdapterId}*/&#8203;NetworkDeviceFunctions/&#8203;*{NetworkDeviceFunctionId}*<br>
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;NetworkAdapters/&#8203;*{NetworkAdapterId}*/&#8203;NetworkDeviceFunctions/&#8203;*{NetworkAdapterId}*<br>
 
 
 ### Properties
@@ -435,6 +1423,12 @@ The state of the resource.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MTUSize** | integer | *Recommended (Read)* | The hardware maximum transmission unit (MTU) configured for this network device function. |
 | } |   |   |
 | **Links** { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EthernetInterfaces** *(v1.7+)* [ { | array | *Mandatory (Read)* | The links to Ethernet interfaces that were created when one of the network device function VLANs is represented as a virtual NIC for the purpose of showing the IP address associated with that VLAN. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeFunction** { | object | *Mandatory (Read-only)* | The link to the PCIe function associated with this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalNetworkPortAssignment** *(v1.5+)* { | object | *Mandatory (Read)* | The physical port to which this network device function is currently assigned. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
@@ -606,7 +1600,12 @@ The state of the resource.
         },
         "PhysicalNetworkPortAssignment": {
             "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1"
-        }
+        },
+        "EthernetInterfaces": [
+            {
+                "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/5"
+            }
+        ]		
     },
     "@odata.context": "/redfish/v1/$metadata#NetworkDeviceFunction.NetworkDeviceFunction",
     "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1",
@@ -614,6 +1613,248 @@ The state of the resource.
 }
 ```
 
+
+
+## <a name="networkdevicefunctioncollection"></a>NetworkDeviceFunctionCollection
+
+
+**Conditional Requirements:**
+
+|     |     |     |
+| :--- | :--- | :--- |
+| Resource instance is subordinate to "NetworkAdapter" | Mandatory (Read) |                      |
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;NetworkAdapters/&#8203;*{NetworkAdapterId}*/&#8203;NetworkDeviceFunctions<br>
+/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;NetworkInterfaces/&#8203;*{NetworkInterfaceId}*/&#8203;NetworkDeviceFunctions<br>
+\* Note: Some URIs omitted for brevity, refer to schema for the complete list.<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **Members** [ { | array | *Mandatory (Read-only), Minimum 1* | The members of this collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AllowDeny** *(v1.7+)* {} | object | *Mandatory (Read-only)* | The link to the collection of allow and deny permissions for packets leaving and arriving to this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AssignablePhysicalNetworkPorts** *(v1.5+)* [ { | array | *Mandatory (Read-only)* | An array of physical ports to which this network device function can be assigned. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a Port resource. See the Links section and the *Port* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AssignablePhysicalNetworkPorts@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AssignablePhysicalPorts** *(deprecated v1.5)* [ { | array | *Mandatory (Read-only)* | An array of physical ports to which this network device function can be assigned. *Deprecated in v1.5 and later. This property has been deprecated in favor of the `AssignablePhysicalNetworkPorts` property.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AssignablePhysicalPorts@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BootMode** | string<br>(enum) | *Mandatory (Read)* | The boot mode configured for this network device function. *For the possible property values, see BootMode in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeviceEnabled** | boolean | *Mandatory (Read)* | An indication of whether the network device function is enabled. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Ethernet** { | object | *Mandatory (Read)* | The Ethernet capabilities, status, and configuration values for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EthernetInterfaces** *(v1.7+)* { | object | *Mandatory (Read-only)* | The Ethernet interface collection that contains the interfaces on this network device function. Contains a link to a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to Collection of *EthernetInterface*. See the EthernetInterface schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MACAddress** | string | *Mandatory (Read)* | The currently configured MAC address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MTUSize** | integer | *Mandatory (Read)* | The hardware maximum transmission unit (MTU) configured for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MTUSizeMaximum** *(v1.5+)* | integer | *Mandatory (Read-only)* | The largest maximum transmission unit (MTU) size supported for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PermanentMACAddress** | string | *Mandatory (Read-only)* | The permanent MAC address assigned to this function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VLAN** *(v1.3+)* {} | object | *Mandatory (Read)* | The VLAN information for this interface.  If this network interface supports more than one VLAN, this property is not present. See the *VLanNetworkInterface.v1_3_1* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VLANs** *(v1.3+, deprecated v1.7)* {} | object | *Mandatory (Read-only)* | The link to a collection of VLANs.  This property is used only if the interface supports more than one VLAN. *Deprecated in v1.7 and later. This property has been deprecated in favor of representing multiple VLANs as `EthernetInterface` resources.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FibreChannel** { | object | *Mandatory (Read)* | The Fibre Channel capabilities, status, and configuration values for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AllowFIPVLANDiscovery** | boolean | *Mandatory (Read)* | An indication of whether the FCoE Initialization Protocol (FIP) populates the FCoE VLAN ID. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BootTargets** [ { | array | *Mandatory (Read)* | An array of Fibre Channel boot targets configured for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BootPriority** | integer | *Mandatory (Read)* | The relative priority for this entry in the boot targets array. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LUNID** | string | *Mandatory (Read)* | The logical unit number (LUN) ID from which to boot on the device to which the corresponding WWPN refers. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**WWPN** | string | *Mandatory (Read)* | The World Wide Port Name (WWPN) from which to boot. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FCoEActiveVLANId** | integer | *Mandatory (Read-only)* | The active FCoE VLAN ID. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FCoELocalVLANId** | integer | *Mandatory (Read)* | The locally configured FCoE VLAN ID. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FibreChannelId** *(v1.3+)* | string | *Mandatory (Read-only)* | The Fibre Channel ID that the switch assigns for this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PermanentWWNN** | string | *Mandatory (Read-only)* | The permanent World Wide Node Name (WWNN) address assigned to this function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PermanentWWPN** | string | *Mandatory (Read-only)* | The permanent World Wide Port Name (WWPN) address assigned to this function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**WWNN** | string | *Mandatory (Read)* | The currently configured World Wide Node Name (WWNN) address of this function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**WWNSource** | string<br>(enum) | *Mandatory (Read)* | The configuration source of the World Wide Names (WWN) for this World Wide Node Name (WWNN) and World Wide Port Name (WWPN) connection. *For the possible property values, see WWNSource in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**WWPN** | string | *Mandatory (Read)* | The currently configured World Wide Port Name (WWPN) address of this function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HTTPBoot** *(v1.9+)* { | object | *Mandatory (Read)* | The HTTP and HTTPS boot capabilities, status, and configuration values for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BootMediaURI** *(v1.9+)* | string<br>(URI) | *Mandatory (Read)* | The URI of the boot media loaded with this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**InfiniBand** *(v1.5+)* { | object | *Mandatory (Read)* | The InfiniBand capabilities, status, and configuration values for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MTUSize** *(v1.5+)* | integer | *Mandatory (Read)* | The maximum transmission unit (MTU) configured for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NodeGUID** *(v1.5+)* | string | *Mandatory (Read-only)* | This is the currently configured node GUID of the network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PermanentNodeGUID** *(v1.5+)* | string | *Mandatory (Read-only)* | The permanent node GUID assigned to this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PermanentPortGUID** *(v1.5+)* | string | *Mandatory (Read-only)* | The permanent port GUID assigned to this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PermanentSystemGUID** *(v1.5+)* | string | *Mandatory (Read-only)* | The permanent system GUID assigned to this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PortGUID** *(v1.5+)* | string | *Mandatory (Read-only)* | The currently configured port GUID of the network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SupportedMTUSizes** *(v1.5+)* [ ] | array (integer, null) | *Mandatory (Read-only)* | The maximum transmission unit (MTU) sizes supported for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SystemGUID** *(v1.5+)* | string | *Mandatory (Read-only)* | This is the currently configured system GUID of the network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**iSCSIBoot** { | object | *Mandatory (Read)* | The iSCSI boot capabilities, status, and configuration values for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AuthenticationMethod** | string<br>(enum) | *Mandatory (Read)* | The iSCSI boot authentication method for this network device function. *For the possible property values, see AuthenticationMethod in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CHAPSecret** | string | *Mandatory (Read)* | The shared secret for CHAP authentication. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CHAPUsername** | string | *Mandatory (Read)* | The username for CHAP authentication. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**InitiatorDefaultGateway** | string | *Mandatory (Read)* | The IPv6 or IPv4 iSCSI boot default gateway. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**InitiatorIPAddress** | string | *Mandatory (Read)* | The IPv6 or IPv4 address of the iSCSI initiator. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**InitiatorName** | string | *Mandatory (Read)* | The iSCSI initiator name. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**InitiatorNetmask** | string | *Mandatory (Read)* | The IPv6 or IPv4 netmask of the iSCSI boot initiator. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPAddressType** | string<br>(enum) | *Mandatory (Read)* | The type of IP address being populated in the iSCSIBoot IP address fields. *For the possible property values, see IPAddressType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IPMaskDNSViaDHCP** | boolean | *Mandatory (Read)* | An indication of whether the iSCSI boot initiator uses DHCP to obtain the initiator name, IP address, and netmask. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MutualCHAPSecret** | string | *Mandatory (Read)* | The CHAP secret for two-way CHAP authentication. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MutualCHAPUsername** | string | *Mandatory (Read)* | The CHAP username for two-way CHAP authentication. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrimaryDNS** | string | *Mandatory (Read)* | The IPv6 or IPv4 address of the primary DNS server for the iSCSI boot initiator. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrimaryLUN** | integer | *Mandatory (Read)* | The logical unit number (LUN) for the primary iSCSI boot target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrimaryTargetIPAddress** | string | *Mandatory (Read)* | The IPv4 or IPv6 address for the primary iSCSI boot target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrimaryTargetName** | string | *Mandatory (Read)* | The name of the iSCSI primary boot target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrimaryTargetTCPPort** | integer | *Mandatory (Read)* | The TCP port for the primary iSCSI boot target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrimaryVLANEnable** | boolean | *Mandatory (Read)* | An indication of whether the primary VLAN is enabled. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrimaryVLANId** | integer | *Mandatory (Read)* | The 802.1q VLAN ID to use for iSCSI boot from the primary target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RouterAdvertisementEnabled** | boolean | *Mandatory (Read)* | An indication of whether IPv6 router advertisement is enabled for the iSCSI boot target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecondaryDNS** | string | *Mandatory (Read)* | The IPv6 or IPv4 address of the secondary DNS server for the iSCSI boot initiator. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecondaryLUN** | integer | *Mandatory (Read)* | The logical unit number (LUN) for the secondary iSCSI boot target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecondaryTargetIPAddress** | string | *Mandatory (Read)* | The IPv4 or IPv6 address for the secondary iSCSI boot target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecondaryTargetName** | string | *Mandatory (Read)* | The name of the iSCSI secondary boot target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecondaryTargetTCPPort** | integer | *Mandatory (Read)* | The TCP port for the secondary iSCSI boot target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecondaryVLANEnable** | boolean | *Mandatory (Read)* | An indication of whether the secondary VLAN is enabled. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecondaryVLANId** | integer | *Mandatory (Read)* | The 802.1q VLAN ID to use for iSCSI boot from the secondary target. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TargetInfoViaDHCP** | boolean | *Mandatory (Read)* | An indication of whether the iSCSI boot target name, LUN, IP address, and netmask should be obtained from DHCP. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Limits** *(v1.7+)* [ { | array | *Mandatory (Read)* | The byte and packet limits for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BurstBytesPerSecond** *(v1.7+)* | integer | *Mandatory (Read)* | The maximum number of bytes per second in a burst for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BurstPacketsPerSecond** *(v1.7+)* | integer | *Mandatory (Read)* | The maximum number of packets per second in a burst for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Direction** *(v1.7+)* | string<br>(enum) | *Mandatory (Read)* | Indicates the direction of the data to which this limit applies. *For the possible property values, see Direction in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SustainedBytesPerSecond** *(v1.7+)* | integer | *Mandatory (Read)* | The maximum number of sustained bytes per second for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SustainedPacketsPerSecond** *(v1.7+)* | integer | *Mandatory (Read)* | The maximum number of sustained packets per second for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Links** { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Endpoints** *(v1.2+)* [ { | array | *Mandatory (Read-only)* | An array of links to endpoints associated with this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Endpoints@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EthernetInterface** *(v1.4+, deprecated v1.7)* { | object | *Mandatory (Read)* | The link to a virtual Ethernet interface that was created when one of the network device function VLANs is represented as a virtual NIC for the purpose of showing the IP address associated with that VLAN. See the *EthernetInterface* schema for details on this property. *Deprecated in v1.7 and later. This property has been deprecated in favor of `EthernetInterfaces` as each `NetworkDeviceFunction` could have more than one `EthernetInterface`.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a EthernetInterface resource. See the Links section and the *EthernetInterface* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EthernetInterfaces** *(v1.7+)* [ { | array | *Mandatory (Read)* | The links to Ethernet interfaces that were created when one of the network device function VLANs is represented as a virtual NIC for the purpose of showing the IP address associated with that VLAN. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a EthernetInterface resource. See the Links section and the *EthernetInterface* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EthernetInterfaces@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OffloadProcessors** *(v1.7+)* [ { | array | *Mandatory (Read-only)* | The processors that perform offload computation for this network function, such as with a SmartNIC. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OffloadProcessors@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OffloadSystem** *(v1.7+)* {} | object | *Mandatory (Read-only)* | The system that performs offload computation for this network function, such as with a SmartNIC. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeFunction** { | object | *Mandatory (Read-only)* | The link to the PCIe function associated with this network device function. See the *PCIeFunction* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a PCIeFunction resource. See the Links section and the *PCIeFunction* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalNetworkPortAssignment** *(v1.5+)* { | object | *Mandatory (Read)* | The physical port to which this network device function is currently assigned. See the *Port* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a Port resource. See the Links section and the *Port* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalPortAssignment** *(v1.3+, deprecated v1.5)* {} | object | *Mandatory (Read)* | The physical port to which this network device function is currently assigned. *Deprecated in v1.5 and later. This property has been deprecated in favor of the `PhysicalNetworkPortAssignment` property.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxVirtualFunctions** | integer | *Mandatory (Read-only)* | The number of virtual functions that are available for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Metrics** *(v1.6+)* { | object | *Mandatory (Read-only)* | The link to the metrics associated with this network function. See the *NetworkDeviceFunctionMetrics* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a NetworkDeviceFunctionMetrics resource. See the Links section and the *NetworkDeviceFunctionMetrics* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetDevFuncCapabilities** [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | An array of capabilities for this network device function. *For the possible property values, see NetDevFuncCapabilities in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetDevFuncType** | string<br>(enum) | *Mandatory (Read)* | The configured capability of this network device function. *For the possible property values, see NetDevFuncType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalNetworkPortAssignment** *(v1.5+, deprecated v1.8)* { | object | *Mandatory (Read-only)* | The physical port to which this network device function is currently assigned. See the *Port* schema for details on this property. *Deprecated in v1.8 and later. This property has been deprecated in favor of `PhysicalNetworkPortAssignment` within `Links` to avoid loops on expand.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a Port resource. See the Links section and the *Port* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhysicalPortAssignment** *(deprecated v1.3)* {} | object | *Mandatory (Read-only)* | The physical port to which this network device function is currently assigned. *Deprecated in v1.3 and later. This property has been deprecated and moved to the `Links` property to avoid loops on expand.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SAVIEnabled** *(v1.7+)* | boolean | *Mandatory (Read)* | Indicates if Source Address Validation Improvement (SAVI) is enabled for this network device function. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Status** {} | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VirtualFunctionsEnabled** | boolean | *Mandatory (Read-only)* | An indication of whether single root input/output virtualization (SR-IOV) virtual functions are enabled for this network device function. |
+| } ] |   |   |
+
+### Property details
+
+#### AuthenticationMethod
+
+The iSCSI boot authentication method for this network device function.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| CHAP | iSCSI Challenge Handshake Authentication Protocol (CHAP) authentication is used. |  |
+| MutualCHAP | iSCSI Mutual Challenge Handshake Authentication Protocol (CHAP) authentication is used. |  |
+| None | No iSCSI authentication is used. |  |
+
+#### BootMode
+
+The boot mode configured for this network device function.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Disabled | Do not indicate to UEFI/BIOS that this device is bootable. |  |
+| FibreChannel | Boot this device by using the embedded Fibre Channel support and configuration.  Only applicable if the `NetDevFuncType` is `FibreChannel`. |  |
+| FibreChannelOverEthernet | Boot this device by using the embedded Fibre Channel over Ethernet (FCoE) boot support and configuration.  Only applicable if the `NetDevFuncType` is `FibreChannelOverEthernet`. |  |
+| HTTP *(v1.9+)* | Boot this device by using the embedded HTTP/HTTPS support.  Only applicable if the `NetDevFuncType` is `Ethernet`. |  |
+| iSCSI | Boot this device by using the embedded iSCSI boot support and configuration.  Only applicable if the `NetDevFuncType` is `iSCSI` or `Ethernet`. |  |
+| PXE | Boot this device by using the embedded PXE support.  Only applicable if the `NetDevFuncType` is `Ethernet` or `InfiniBand`. |  |
+
+#### Direction
+
+Indicates the direction of the data to which this limit applies.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Egress | Indicates that this limit is enforced on packets and bytes transmitted by the network device function. |  |
+| Ingress | Indicates that this limit is enforced on packets and bytes received by the network device function. |  |
+| None | Indicates that this limit not enforced. |  |
+
+#### idRef
+
+|     |     |     |     |
+| :--- | :--- | :--- | :---------------------------------------- |
+| **@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+#### IPAddressType
+
+The type of IP address being populated in the iSCSIBoot IP address fields.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| IPv4 | IPv4 addressing is used for all IP-fields in this object. |  |
+| IPv6 | IPv6 addressing is used for all IP-fields in this object. |  |
+
+#### NetDevFuncCapabilities
+
+An array of capabilities for this network device function.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Disabled | Neither enumerated nor visible to the operating system. |  |
+| Ethernet | Appears to the operating system as an Ethernet device. |  |
+| FibreChannel | Appears to the operating system as a Fibre Channel device. |  |
+| FibreChannelOverEthernet | Appears to the operating system as an FCoE device. |  |
+| InfiniBand | Appears to the operating system as an InfiniBand device. |  |
+| iSCSI | Appears to the operating system as an iSCSI device. |  |
+
+#### NetDevFuncType
+
+The configured capability of this network device function.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Disabled | Neither enumerated nor visible to the operating system. |  |
+| Ethernet | Appears to the operating system as an Ethernet device. |  |
+| FibreChannel | Appears to the operating system as a Fibre Channel device. |  |
+| FibreChannelOverEthernet | Appears to the operating system as an FCoE device. |  |
+| InfiniBand *(v1.5+)* | Appears to the operating system as an InfiniBand device. |  |
+| iSCSI | Appears to the operating system as an iSCSI device. |  |
+
+#### WWNSource
+
+The configuration source of the World Wide Names (WWN) for this World Wide Node Name (WWNN) and World Wide Port Name (WWPN) connection.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| ConfiguredLocally | The set of FC/FCoE boot targets was applied locally through API or UI. |  |
+| ProvidedByFabric | The set of FC/FCoE boot targets was applied by the Fibre Channel fabric. |  |
 
 
 ## <a name="networkdevicefunctionmetrics-1.2.0"></a>NetworkDeviceFunctionMetrics 1.2.0
@@ -674,12 +1915,12 @@ The state of the resource.
 
 
 
-## <a name="pciedevice-1.15.0"></a>PCIeDevice 1.15.0
+## <a name="pciedevice-1.17.0"></a>PCIeDevice 1.17.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *...* |
-| **Release** | 2024.2 | 2024.1 | 2023.3 | 2023.2 | 2022.3 | 2022.2 | 2021.4 | 2021.3 | 2021.1 | 2020.4 | 2020.3 | ... |
+| **Version** | *v1.17* | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *...* |
+| **Release** | 2024.4 | 2024.3 | 2024.2 | 2024.1 | 2023.3 | 2023.2 | 2022.3 | 2022.2 | 2021.4 | 2021.3 | 2021.1 | ... |
 
 ### URIs
 
@@ -749,6 +1990,7 @@ The highest version of the PCIe specification supported by this device.
 | Gen3 | A PCIe v3.0 slot. |  |
 | Gen4 | A PCIe v4.0 slot. |  |
 | Gen5 | A PCIe v5.0 slot. |  |
+| Gen6 *(v1.16+)* | A PCIe v6.0 slot. |  |
 
 #### PCIeType
 
@@ -761,6 +2003,7 @@ The version of the PCIe specification in use by this device.
 | Gen3 | A PCIe v3.0 slot. |  |
 | Gen4 | A PCIe v4.0 slot. |  |
 | Gen5 | A PCIe v5.0 slot. |  |
+| Gen6 *(v1.16+)* | A PCIe v6.0 slot. |  |
 
 #### State
 
@@ -817,6 +2060,219 @@ The state of the resource.
 }
 ```
 
+
+
+## <a name="pciedevicecollection"></a>PCIeDeviceCollection
+
+
+**Conditional Requirements:**
+
+|     |     |     |
+| :--- | :--- | :--- |
+| Resource instance is subordinate to "Chassis" | Mandatory (Read) |                      |
+
+### URIs
+
+/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;PCIeDevices<br>
+
+
+### Properties
+
+|Property     |Type     |Attributes   |Notes     |
+| :--- | :--- | :--- | :--------------------- |
+| **Members** [ { | array | *Mandatory (Read-only), Minimum 1* | The members of this collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Assembly** *(v1.2+)* { | object | *Mandatory (Read-only)* | The link to the assembly associated with this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AssetTag** | string | *Mandatory (Read)* | The user-assigned asset tag for this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CXLDevice** *(v1.11+)* { | object | *Mandatory (Read)* | The CXL-specific properties of this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeviceType** *(v1.11+)* | string<br>(enum) | *Mandatory (Read-only)* | The CXL device type. *For the possible property values, see DeviceType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DynamicCapacity** *(v1.12+)* { | object | *Mandatory (Read)* | The CXL dynamic capacity device (DCD) information for this CXL device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AddCapacityPoliciesSupported** *(v1.12+)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The set of selection policies supported by the CXL device when dynamic capacity is added. *For the possible property values, see AddCapacityPoliciesSupported in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxDynamicCapacityRegions** *(v1.12+)* | integer | *Mandatory (Read-only)* | The maximum number of dynamic capacity memory regions available per host from this CXL device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxHosts** *(v1.12+)* | integer | *Mandatory (Read-only)* | The maximum number of hosts supported by this CXL device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MemoryBlockSizesSupported** *(v1.12+)* [ { | array | *Mandatory (Read)* | The set of memory block sizes supported by memory regions in this CXL device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BlockSizeMiB** *(v1.12+)* [ ] | array<br>(mebibytes) (integer, null) | *Mandatory (Read-only)* | Set of memory block sizes supported by this memory region defined in mebibytes (MiB). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RegionNumber** *(v1.12+)* | integer | *Mandatory (Read-only)* | The memory region number. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReleaseCapacityPoliciesSupported** *(v1.12+)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The set of removal policies supported by the CXL device when dynamic capacity is released. *For the possible property values, see ReleaseCapacityPoliciesSupported in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SanitizationOnReleaseSupport** *(v1.12+)* [ { | array | *Mandatory (Read)* | An indication of whether the sanitization on capacity release is configurable for the memory regions in this CXL device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RegionNumber** *(v1.12+)* | integer | *Mandatory (Read-only)* | The memory region number. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SanitizationOnReleaseSupported** *(v1.12+)* | boolean | *Mandatory (Read-only)* | An indication of whether the sanitization on capacity release is configurable for this memory region. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TotalDynamicCapacityMiB** *(v1.12+)* | integer<br>(mebibytes) | *Mandatory (Read-only)* | The total memory media capacity of the CXL device available for dynamic assignment in mebibytes (MiB). |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EgressPortCongestionSupport** *(v1.11+)* | boolean | *Mandatory (Read-only)* | Indicates whether the CXL device supports egress port congestion management. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxNumberLogicalDevices** *(v1.11+)* | integer | *Mandatory (Read-only)* | The maximum number of logical devices supported by this CXL device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TemporaryThroughputReductionEnabled** *(v1.14+)* | boolean | *Mandatory (Read)* | Indicates whether temporary throughput reduction is enabled. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TemporaryThroughputReductionSupported** *(v1.14+)* | boolean | *Mandatory (Read-only)* | Indicates whether temporary throughput reduction is supported. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ThroughputReductionSupport** *(v1.11+, deprecated v1.14)* | boolean | *Mandatory (Read-only)* | Indicates whether the CXL device supports throughput reduction. *Deprecated in v1.14 and later. This property has been deprecated in favor of `TemporaryThroughputReductionSupported` to align with the CXL Specification-defined FMAPI command.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Timestamp** *(v1.11+)* | string<br>(date-time) | *Mandatory (Read)* | The timestamp set on the CXL device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CXLLogicalDevices** *(v1.11+)* { | object | *Mandatory (Read-only)* | The link to the collection of CXL logical devices within this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeviceType** | string<br>(enum) | *Mandatory (Read-only)* | The device type for this PCIe device. *For the possible property values, see DeviceType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnvironmentMetrics** *(v1.7+)* { | object | *Mandatory (Read-only)* | The link to the environment metrics for this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FirmwareVersion** | string | *Mandatory (Read-only)* | The version of firmware for this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Links** { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Chassis** [ { | array | *Mandatory (Read-only)* | An array of links to the chassis in which the PCIe device is contained. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Chassis@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeFunctions** *(deprecated v1.4)* [ { | array | *Mandatory (Read-only)* | An array of links to PCIe functions exposed by this device. *Deprecated in v1.4 and later. This property has been deprecated in favor of the `PCIeFunctions` property in the root that provides a link to a resource collection.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a PCIeFunction resource. See the Links section and the *PCIeFunction* schema for details. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeFunctions@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Processors** *(v1.12+)* [ { | array | *Mandatory (Read-only)* | An array of links to the processors that are directly connected or directly bridged to this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Processors@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Switch** *(v1.10+)* { | object | *Mandatory (Read-only)* | The link to a switch that is associated with this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocationIndicatorActive** *(v1.12+)* | boolean | *Mandatory (Read)* | An indicator allowing an operator to physically locate this resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Manufacturer** | string | *Mandatory (Read-only)* | The manufacturer of this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Model** | string | *Mandatory (Read-only)* | The model number for the PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PartNumber** | string | *Mandatory (Read-only)* | The part number for this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeFunctions** *(v1.4+)* { | object | *Mandatory (Read-only)* | The link to the collection of PCIe functions associated with this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeInterface** *(v1.3+)* { | object | *Mandatory (Read)* | The PCIe interface details for this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LanesInUse** *(v1.3+)* | integer | *Mandatory (Read-only)* | The number of PCIe lanes in use by this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxLanes** *(v1.3+)* | integer | *Mandatory (Read-only)* | The number of PCIe lanes supported by this device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxPCIeType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read-only)* | The highest version of the PCIe specification supported by this device. *For the possible property values, see MaxPCIeType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.3+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read-only)* | The version of the PCIe specification in use by this device. *For the possible property values, see PCIeType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReadyToRemove** *(v1.7+)* | boolean | *Mandatory (Read)* | An indication of whether the PCIe device is prepared by the system for removal. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SerialNumber** | string | *Mandatory (Read-only)* | The serial number for this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SKU** | string | *Mandatory (Read-only)* | The SKU for this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Slot** *(v1.9+)* { | object | *Mandatory (Read)* | Information about the slot for this PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HotPluggable** *(v1.12+)* | boolean | *Mandatory (Read-only)* | An indication of whether this PCIe slot supports hotplug. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Lanes** *(v1.9+)* | integer | *Mandatory (Read-only)* | The number of PCIe lanes supported by this slot. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LaneSplitting** *(v1.9+)* | string<br>(enum) | *Mandatory (Read-only)* | The lane splitting strategy used in the PCIe slot. *For the possible property values, see LaneSplitting in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Location** *(v1.9+)* {} | object | *Mandatory (Read)* | The location of the PCIe slot. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeType** *(v1.9+)* | string<br>(enum) | *Mandatory (Read-only)* | The PCIe specification this slot supports. *For the possible property values, see PCIeType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SlotType** *(v1.9+)* | string<br>(enum) | *Mandatory (Read-only)* | The PCIe slot type. *For the possible property values, see SlotType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SparePartNumber** *(v1.6+)* | string | *Mandatory (Read-only)* | The spare part number of the PCIe device. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**StagedVersion** *(v1.11+)* | string | *Mandatory (Read-only)* | The staged firmware version for this PCIe device; this firmware is not yet active. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Status** {} | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. See the *Resource* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UUID** *(v1.5+)* | string<br>(uuid) | *Mandatory (Read-only)* | The UUID for this PCIe device. |
+| } ] |   |   |
+
+### Property details
+
+#### AddCapacityPoliciesSupported
+
+The set of selection policies supported by the CXL device when dynamic capacity is added.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Contiguous | Contiguous add capacity policy. |  |
+| Free | Free add capacity policy. |  |
+| Prescriptive | Prescriptive add or release policy. |  |
+| TagBased | Tag-based release policy. |  |
+
+#### DeviceType
+
+##### In Members:
+
+The device type for this PCIe device.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| MultiFunction | A multi-function PCIe device. |  |
+| Retimer *(v1.10+)* | A PCIe retimer device. |  |
+| Simulated | A PCIe device that is not currently physically present, but is being simulated by the PCIe infrastructure. |  |
+| SingleFunction | A single-function PCIe device. |  |
+
+##### In Members: CXLDevice:
+
+The CXL device type.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Type1 | A CXL Type 1 device. |  |
+| Type2 | A CXL Type 2 device. |  |
+| Type3 | A CXL Type 3 device. |  |
+
+#### LaneSplitting
+
+The lane splitting strategy used in the PCIe slot.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Bifurcated | The slot is bifurcated to split the lanes with associated devices. |  |
+| Bridged | The slot has a bridge to share the lanes with associated devices. |  |
+| None | The slot has no lane splitting. |  |
+
+#### MaxPCIeType
+
+The highest version of the PCIe specification supported by this device.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Gen1 | A PCIe v1.0 slot. |  |
+| Gen2 | A PCIe v2.0 slot. |  |
+| Gen3 | A PCIe v3.0 slot. |  |
+| Gen4 | A PCIe v4.0 slot. |  |
+| Gen5 | A PCIe v5.0 slot. |  |
+| Gen6 *(v1.16+)* | A PCIe v6.0 slot. |  |
+
+#### PCIeType
+
+The version of the PCIe specification in use by this device.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Gen1 | A PCIe v1.0 slot. |  |
+| Gen2 | A PCIe v2.0 slot. |  |
+| Gen3 | A PCIe v3.0 slot. |  |
+| Gen4 | A PCIe v4.0 slot. |  |
+| Gen5 | A PCIe v5.0 slot. |  |
+| Gen6 *(v1.16+)* | A PCIe v6.0 slot. |  |
+
+#### ReleaseCapacityPoliciesSupported
+
+The set of removal policies supported by the CXL device when dynamic capacity is released.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Contiguous | Contiguous add capacity policy. |  |
+| Free | Free add capacity policy. |  |
+| Prescriptive | Prescriptive add or release policy. |  |
+| TagBased | Tag-based release policy. |  |
+
+#### SlotType
+
+The PCIe slot type.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| EDSFF *(v1.17+)* | EDSFF slot. |  |
+| FullLength | Full-Length PCIe slot. |  |
+| HalfLength | Half-Length PCIe slot. |  |
+| LowProfile | Low-Profile or Slim PCIe slot. |  |
+| M2 | PCIe M.2 slot. |  |
+| Mini | Mini PCIe slot. |  |
+| OCP3Large | Open Compute Project 3.0 large form factor slot. |  |
+| OCP3Small | Open Compute Project 3.0 small form factor slot. |  |
+| OEM | An OEM-specific slot. |  |
+| U2 | U.2 / SFF-8639 slot or bay. |  |
 
 
 ## <a name="pciefunction-1.6.0"></a>PCIeFunction 1.6.0
@@ -969,12 +2425,12 @@ The state of the resource.
 
 
 
-## <a name="port-1.13.0"></a>Port 1.13.0
+## <a name="port-1.15.0"></a>Port 1.15.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *...* |
-| **Release** | 2024.2 | 2024.1 | 2023.3 | 2023.2 | 2023.1 | 2022.3 | 2022.2 | 2021.4 | 2021.2 | 2021.1 | 2020.3 | ... |
+| **Version** | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *...* |
+| **Release** | 2024.4 | 2024.3 | 2024.2 | 2024.1 | 2023.3 | 2023.2 | 2023.1 | 2022.3 | 2022.2 | 2021.4 | 2021.2 | ... |
 
 ### URIs
 
@@ -1134,11 +2590,12 @@ The state of the resource.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SupplyVoltage** *(v1.1+)* | number<br>(volts) | *Mandatory (Read-only)* | The supply voltage of a small form-factor pluggable (SFP) transceiver. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBiasCurrentMilliAmps** *(v1.1+)* | number<br>(mA) | *Mandatory (Read-only)* | The TX bias current value of a small form-factor pluggable (SFP) transceiver. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXOutputPowerMilliWatts** *(v1.1+)* | number<br>(milliwatts) | *Mandatory (Read-only)* | The TX output power value of a small form-factor pluggable (SFP) transceiver. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**WavelengthNanometers** *(v1.7+)* | string<br>(nm) | *Mandatory (Read-only)* | The laser wavelength, in nanometers, for a small form-factor pluggable (SFP) transceiver. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXBytes** *(v1.1+)* | integer<br>(bytes) | *Mandatory (Read-only)* | The total number of bytes transmitted on a port since reset. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TXErrors** *(v1.1+)* | integer | *Mandatory (Read-only)* | The total number of transmission errors on a port since reset. |
 | } |   |   |
-| **PortId** *(deprecated v1.12)* | string | *Mandatory (Read-only)* | The label of this port on the physical package for this port. *Deprecated in v1.12 and later. This property has been deprecated in favor of `Location` and `ServiceLabel`.* |
+| **PortId** | string | *Mandatory (Read-only)* | The hardware-defined identifier of this port. |
 | **PortProtocol** | string<br>(enum) | *Recommended (Read-only)* | The protocol being sent over this port. *For the possible property values, see PortProtocol in Property details.* |
 | **SignalDetected** *(v1.2+)* | boolean | *Recommended (Read-only)* | An indication of whether a signal is detected on this interface. |
 
@@ -1361,12 +2818,12 @@ The protocol being sent over this port.
 
 
 
-## <a name="portmetrics-1.6.1"></a>PortMetrics 1.6.1
+## <a name="portmetrics-1.7.0"></a>PortMetrics 1.7.0
 
-|     |     |     |     |     |     |     |     |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
-| **Release** | 2024.1 | 2023.2 | 2022.3 | 2022.1 | 2021.2 | 2021.1 | 2019.4 |
+|     |     |     |     |     |     |     |     |     |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Version** | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
+| **Release** | 2024.3 | 2024.1 | 2023.2 | 2022.3 | 2022.1 | 2021.2 | 2021.1 | 2019.4 |
 
 ### URIs
 
@@ -1487,7 +2944,7 @@ The protocol being sent over this port.
 ```
 
 
-## <a name="base-registry-v1.0.0%2B-%28current-release%3A-v1.19.0%29"></a>Base Registry v1.0.0+ (current release: v1.19.0)
+## <a name="base-registry-v1.0.0%2B-%28current-release%3A-v1.20.0%29"></a>Base Registry v1.0.0+ (current release: v1.20.0)
 
 Requirement: Mandatory
 

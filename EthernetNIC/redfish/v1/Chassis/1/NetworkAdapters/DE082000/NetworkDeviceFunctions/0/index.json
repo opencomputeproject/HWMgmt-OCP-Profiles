@@ -29,7 +29,12 @@
         },
         "PhysicalNetworkPortAssignment": {
             "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/0"
-        }
+        },
+        "EthernetInterfaces": [
+            {
+                "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/141"
+            }
+        ]
     },
     "MaxVirtualFunctions": 64,
     "Name": "NetworkDeviceFunction",

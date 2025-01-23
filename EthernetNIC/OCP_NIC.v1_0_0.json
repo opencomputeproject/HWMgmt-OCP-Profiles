@@ -18,6 +18,14 @@
                     "Parameters": {}
                 }
             },
+            "ConditionalRequirements": [
+                {
+                    "SubordinateToResource": [
+                        "NetworkAdapterCollection"
+                    ],
+                    "ReadRequirement": "Mandatory"
+                }
+            ],
             "PropertyRequirements": {
                 "@Redfish.Settings": {
                     "PropertyRequirements": {
@@ -170,81 +178,110 @@
             }
         },
         "NetworkDeviceFunction": {
-            "ReadRequirement": "Mandatory",
-            "PropertyRequirements": {
-                "@Redfish.Settings": {
+            "UseCases": [
+                {
+                    "UseCaseTitle": "EthernetNIC",
+                    "UseCseKeyProperty": "NetDevFuncType",
+                    "UseCaseComparison": "Equal",
+                    "UseCaseKeyValues": [
+                        "Ethernet"
+                    ],
+                    "URIs": [
+                        "/redfish/v1/Chassis/{ChassisId}/NetworkAdapters/{NetworkAdapterId}/NetworkDeviceFunctions/{NetworkAdapterId}"
+                    ],
                     "ReadRequirement": "Mandatory",
                     "PropertyRequirements": {
-                        "SettingsObject": {
+                        "@Redfish.Settings": {
+                            "ReadRequirement": "Mandatory",
+                            "PropertyRequirements": {
+                                "SettingsObject": {
+                                    "ReadRequirement": "Mandatory",
+                                    "PropertyRequirements": {
+                                        "@odata.id": {
+                                            "ReadRequirement": "Mandatory"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "AssignablePhysicalNetworkPorts": {
                             "ReadRequirement": "Mandatory",
                             "PropertyRequirements": {
                                 "@odata.id": {
                                     "ReadRequirement": "Mandatory"
                                 }
                             }
-                        }
-                    }
-                },
-                "AssignablePhysicalNetworkPorts": {
-                    "ReadRequirement": "Mandatory",
-                    "PropertyRequirements": {
-                        "@odata.id": {
-                            "ReadRequirement": "Mandatory"
-                        }
-                    }
-                },
-                "BootMode": {},
-                "DeviceEnabled": {},
-                "Ethernet": {
-                    "ReadRequirement": "Mandatory",
-                    "PropertyRequirements": {
-                        "MACAddress": {
-                            "ReadRequirement": "Mandatory",
-                            "MinCount": 1
                         },
-                        "MTUSize": {
-                            "ReadRequirement": "Recommended"
-                        }
-                    }
-                },
-                "Links": {
-                    "ReadRequirement": "Mandatory",
-                    "PropertyRequirements": {
-                        "PhysicalNetworkPortAssignment": {
+                        "BootMode": {},
+                        "DeviceEnabled": {},
+                        "Ethernet": {
                             "ReadRequirement": "Mandatory",
                             "PropertyRequirements": {
-                                "@odata.id": {
-                                    "ReadRequirement": "Mandatory"
+                                "MACAddress": {
+                                    "ReadRequirement": "Mandatory",
+                                    "MinCount": 1
+                                },
+                                "MTUSize": {
+                                    "ReadRequirement": "Recommended"
                                 }
                             }
-                        }
-                    }
-                },
-                "MaxVirtualFunctions": {},
-                "Metrics": {},
-                "NetDevFuncCapabilities": {},
-                "NetDevFuncType": {},
-                "Status": {
-                    "ReadRequirement": "Mandatory",
-                    "PropertyRequirements": {
-                        "Health": {
-                            "ReadRequirement": "Mandatory",
-                            "Comparison": "NotEqual",
-                            "Values": [
-                                null
-                            ]
                         },
-                        "State": {
+                        "Links": {
                             "ReadRequirement": "Mandatory",
-                            "Comparison": "NotEqual",
-                            "Values": [
-                                null
-                            ]
-                        }
+                            "PropertyRequirements": {
+                                "PhysicalNetworkPortAssignment": {
+                                    "ReadRequirement": "Mandatory",
+                                    "PropertyRequirements": {
+                                        "@odata.id": {
+                                            "ReadRequirement": "Mandatory"
+                                        }
+                                    }
+                                },
+                                "PCIeFunction": {
+                                    "ReadRequirement": "Mandatory",
+                                    "PropertyRequirements": {
+                                        "@odata.id": {
+                                            "ReadRequirement": "Mandatory"
+                                        }
+                                    }
+                                },
+                                "EthernetInterfaces": {
+                                    "ReadRequirement": "Mandatory",
+                                    "PropertyRequirements": {
+                                        "@odata.id": {
+                                            "ReadRequirement": "Mandatory"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "MaxVirtualFunctions": {},
+                        "Metrics": {},
+                        "NetDevFuncCapabilities": {},
+                        "NetDevFuncType": {},
+                        "Status": {
+                            "ReadRequirement": "Mandatory",
+                            "PropertyRequirements": {
+                                "Health": {
+                                    "ReadRequirement": "Mandatory",
+                                    "Comparison": "NotEqual",
+                                    "Values": [
+                                        null
+                                    ]
+                                },
+                                "State": {
+                                    "ReadRequirement": "Mandatory",
+                                    "Comparison": "NotEqual",
+                                    "Values": [
+                                        null
+                                    ]
+                                }
+                            }
+                        },
+                        "VirtualFunctionsEnabled": {}
                     }
-                },
-                "VirtualFunctionsEnabled": {}
-            }
+                }
+            ]
         },
         "PCIeDevice": {
             "ReadRequirement": "Mandatory",
@@ -337,6 +374,96 @@
                             "PropertyRequirements": {
                                 "@odata.id": {
                                     "ReadRequirement": "Recommended"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "EthernetInterface": {
+            "URIs": [
+                "/redfish/v1/Systems/{SystemId}/EthernetInterfaces/{EthernetInterfaceId}"
+            ],  			
+            "MinVersion": "1.1.0",
+            "ReadRequirement": "Recommended",
+            "ConditionalRequirements": [
+                {
+                    "SubordinateToResource": [
+                        "EthernetInterfaceCollection"
+                    ],
+                    "ReadRequirement": "Mandatory"
+                }
+            ],
+            "PropertyRequirements": {
+                "MACAddress": {},
+                "SpeedMbps": {},
+                "InterfaceEnabled": {},
+                "LinkStatus": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "DHCPv4": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Recommended"
+                },
+                "DHCPv6": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Recommended"
+                },
+                "HostName": {
+                    "ReadRequirement": "Recommended"
+                },
+                "FQDN": {
+                    "ReadRequirement": "Recommended"
+                },
+                "NameServers": {
+                    "ReadRequirement": "Recommended"
+                },
+                "IPv4Addresses": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "Address": {},
+                        "SubnetMask": {},
+                        "AddressOrigin": {},
+                        "Gateway": {}
+                    }
+                },
+                "IPv4StaticAddresses": {
+                    "ReadRequirement": "Recommended"
+                },
+                "IPv6AddressPolicyTable": {
+                    "ReadRequirement": "Recommended"
+                },
+                "IPv6StaticAddresses": {
+                    "ReadRequirement": "Recommended"
+                },
+                "IPv6StaticDefaultGateways": {
+                    "ReadRequirement": "Recommended"
+                },
+                "IPv6Addresses": {
+                    "ReadRequirement": "IfImplemented",
+                    "PropertyRequirements": {
+                        "Address": {},
+                        "PrefixLength": {},
+                        "AddressOrigin": {},
+                        "AddressState": {}
+                    }
+                },
+                "StaticNameServers": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Links": {
+                    "ReadRequirement": "Mandatory",
+                    "PropertyRequirements": {
+                        "NetworkDeviceFunctions": {
+                            "ReadRequirement": "Mandatory",
+                            "PropertyRequirements": {
+                                "@odata.id": {
+                                    "ReadRequirement": "Mandatory"
                                 }
                             }
                         }
@@ -556,12 +683,75 @@
                     "ReadRequirement": "Recommended"
                 }
             }
+        },
+        "NetworkAdapterCollection": {
+            "ConditionalRequirements": [
+                {
+                    "SubordinateToResource": [
+                        "Chassis"
+                    ],
+                    "ReadRequirement": "Mandatory"
+                }
+            ],
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 1
+                }
+            }
+        },
+        "NetworkDeviceFunctionCollection": {
+            "ConditionalRequirements": [
+                {
+                    "SubordinateToResource": [
+                        "NetworkAdapter"
+                    ],
+                    "ReadRequirement": "Mandatory"
+                }
+            ],
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 1
+                }
+            }
+        },
+        "PCIeDeviceCollection": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/PCIeDevices"
+            ],            
+			"ConditionalRequirements": [
+                {
+                    "SubordinateToResource": [
+                        "Chassis"
+                    ],
+                    "ReadRequirement": "Mandatory"
+                }
+            ],
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 1
+                }
+            }
+        },
+        "EthernetInterfaceCollection": {
+            "ConditionalRequirements": [
+                {
+                    "SubordinateToResource": [
+                        "ComputerSystem"
+                    ],
+                    "ReadRequirement": "Mandatory"
+                }
+            ],
+            "PropertyRequirements": {
+                "Members": {
+                    "MinCount": 1
+                }
+            }
         }
     },
     "Registries": {
         "Base": {
             "ReadRequirement": "Mandatory",
-            "Repository": "https://redfish.dmtf.org/registries",			
+            "Repository": "https://redfish.dmtf.org/registries",
             "Messages": {
                 "PropertyValueFormatError": {},
                 "PropertyValueError": {},
@@ -591,7 +781,7 @@
         },
         "NetworkDevice": {
             "ReadRequirement": "Mandatory",
-            "Repository": "https://redfish.dmtf.org/registries",			
+            "Repository": "https://redfish.dmtf.org/registries",
             "Messages": {
                 "ConnectionDropped": {},
                 "ConnectionEstablished": {},
