@@ -92,7 +92,7 @@ The relationship between the above resources are specified by the Links property
 - On the ComputerSystem resource, there are links to the NetworkDeviceFunction that describes the NIC.
 
 The following diagram helps to show the relationships between these Redfish resources:
-<div style="text-align: center;"><img src="Figures/NIC-Profile-Figure2.svg" alt="Figure 1" title="Figure 1" width="100%">
+<div style="text-align: center;"><img src="Figures/NIC-Profile-Figure2.jpg" alt="Figure 1" title="Figure 1" width="100%">
 
 *Figure 1: Redfish NIC Hierarchy*</div>
 
