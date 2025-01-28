@@ -4,10 +4,9 @@
     "ProfileVersion": "1.0.0",
     "Purpose": "Profile for OpenRMC Rack Manager Controller.",
     "OwningEntity": "Open Compute Project",
-	"ContributedBy": "Intel Corporation",
-	"License": "Creative Commons Attribution-ShareAlike 4.0 International License",
+    "ContributedBy": "Intel Corporation",
+    "License": "Creative Commons Attribution-ShareAlike 4.0 International License",
     "ContactInfo": "john.leung@opencompute.org",
-    "OwningEntity": "Open Compute Project",
     "Protocol": {
         "MinVersion": "1.0"
     },
@@ -353,16 +352,14 @@
                     }
                 },
                 "Voltages": {
-                    {
-                        "PropertyRequirements": {
-                            "Name": "VRM1 Voltage",
-                            "SensorNumber": {},
-                            "Status": {},
-                            "ReadingVolts": {},
-                            "PhysicalContext": "VoltageRegulator"
-                        }
+                    "PropertyRequirements": {
+                        "Name": "VRM1 Voltage",
+                        "SensorNumber": {},
+                        "Status": {},
+                        "ReadingVolts": {},
+                        "PhysicalContext": "VoltageRegulator"
                     }
-				},
+                },
                 "PowerSupplies": {
                     "Purpose": "Needed for inventory. Min info - N Watt DC power supply",
                     "PropertyRequirements": {
