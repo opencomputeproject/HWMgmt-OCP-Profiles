@@ -354,6 +354,7 @@
                 },
                 "PumpSpeedPercent": {},
                 "PumpType": {},
+                "PumpMode": {},
                 "ServiceHours": {
                     "ReadRequirement": "Recommended"
                 },
@@ -363,6 +364,17 @@
                         "State": {}
                     }
                 }
+            },
+            "Actions": {
+              "SetMode": {
+                "ReadRequirement": "Mandatory",
+                "Purpose": "Turn the immersion tank pump functions off (disable), implies that ITE power is shutdown as well",
+                "Parameters": {
+                  "Mode": {
+                    "ReadRequirement": "Mandatory"
+                  }
+                }
+              }
             }
         }    
   }
