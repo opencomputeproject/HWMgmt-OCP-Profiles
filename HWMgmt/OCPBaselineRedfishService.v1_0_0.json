@@ -459,7 +459,7 @@
             "DeleteResource": true
         },
         "OutboundConnection": {
-            "ReadRequirement": "Recommended",
+            "ReadRequirement": "IfPopulated",
             "PropertyRequirements": {
                 "Authentication": {},
                 "Certificates": {},
@@ -486,7 +486,7 @@
             "DeleteResource": true
         },
         "RegisteredClient": {
-            "ReadRequirement": "Recommended",
+            "ReadRequirement": "IfPopulated",
             "PropertyRequirements": {
                 "Context": {},
                 "ClientType": {},
