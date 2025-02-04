@@ -22,29 +22,29 @@
 				},
 				"Thermal": {
 					"ReadRequirement": "Recommended",
-          "ConditionalRequirements": [
-            {
-              "Purpose": "Required if ChassisType are specific values",
-              "ReadRequirement": "Mandatory",
-              "CompareType": "AnyOf",
-              "CompareProperty": "ChassisType",
-              "CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
-            }
-          ]
-        },
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Mandatory",
+              				"CompareType": "AnyOf",
+              				"CompareProperty": "ChassisType",
+              				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+            			}
+          			]
+        		},
 				"Power": {
 					"ReadRequirement": "Recommended",
-          "ConditionalRequirements": [
-            {
-              "Purpose": "Required if ChassisType are specific values",
-              "ReadRequirement": "Mandatory",
-              "CompareType": "AnyOf",
-              "CompareProperty": "ChassisType",
-              "CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
-            }
-          ]
-			  }
-      }
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Mandatory",
+              				"CompareType": "AnyOf",
+              				"CompareProperty": "ChassisType",
+              				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+            			}
+          			]
+				}
+      		}
 		},
 		"ComputerSystem": {
 			"MinVersion": "1.0.0",
