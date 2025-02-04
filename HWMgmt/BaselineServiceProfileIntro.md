@@ -359,7 +359,7 @@ The `LicenseService` resource contains service-level actions for managing licens
 The `License` resource represents an individual license availabe on the Redfish service.
 For the full schema definition, see the `LicenseService` and `License` sections of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
-To information about a license, perform a `GET` operation on a `License` resource:
+To retrieve information about a license, perform a `GET` operation on a `License` resource:
 
 ```
 GET /redfish/v1/LicenseService/Licenses/RemotePresence
@@ -383,7 +383,7 @@ GET /redfish/v1/LicenseService/Licenses/RemotePresence
 }
 ```
 
-To a new license, perform a `POST` operation on the `LicenseCollection` resource:
+To install a new license, perform a `POST` operation on the `LicenseCollection` resource:
 
 ```
 POST /redfish/v1/LicenseService/Licenses
@@ -401,7 +401,101 @@ DELETE /redfish/v1/LicenseService/Licenses/Feature25
 
 ## Event logging
 
-## Software and firmware updates
+## Software inventory
+
+## Firmware update
+
+The ability to update device firmware using industry standard protocols and utilities is a key enabling technology for OCP platforms.  This is accomplished using the [UpdateService](#UpdateService) processes.
+
+It is recommended that all equipment support both styles of performing firmware updates: the standard "push" method which utilizes a POST to the `MultipartHttpPushUri`, and a "pull" method that uses the `SimpleUpdate` action.
+
+To retrieve information about the supported update methods, perform a `GET` operation on the `UpdateService` resource:
+
+```
+GET /redfish/v1/UpdateService
+```
+
+```json
+{
+    "@odata.type": "#UpdateService.v1_12_0.UpdateService",
+    "Id": "UpdateService",
+    "Name": "Update service",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK",
+    },
+    "ServiceEnabled": true,
+    "MultipartHttpPushUri": "/redfish/v1/UpdateService/FWUpdate",
+    "FirmwareInventory": {
+        "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory"
+    },
+    "Actions": {
+        "#UpdateService.SimpleUpdate": {
+            "target": "/redfish/v1/UpdateService/Actions/SimpleUpdate",
+            "@Redfish.ActionInfo": "/redfish/v1/UpdateService/SimpleUpdateActionInfo"
+        }
+    },
+    "@odata.id": "/redfish/v1/UpdateService"
+}
+```
+
+To install a new firmware image, perform a `POST` operation on the `LicenseCollection` resource:
+
+```
+POST /redfish/v1/UpdateService/Actions/SimpleUpdate
+
+{
+    "ImageURI": "https://images.contoso.org/bmc_0260_2021.bin"
+}
+```
+
+## Manager network protocol configuration
+
+The ability the script network settings or updates to all managed devices is a common operational requirement.  This is accomplished by support of various properties in the [EthernetInterface](#EthernetInterface) and [ManagerNetworkProtocol](#ManagerNetworkProtocol) resources.
+
+To retrieve information about the manager's supported protocols and their configuration, perform a `GET` operation on the `ManagerNetworkProtocol` resource for that manager:
+
+```
+GET /redfish/v1/Managers/BMC/NetworkProtocol
+```
+
+```json
+{
+    "@odata.type": "#ManagerNetworkProtocol.v1_9_1.ManagerNetworkProtocol",
+    "Id": "NetworkProtocol",
+    "Name": "Manager Network Protocol",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "HostName": "rack42-pdu",
+    "FQDN": "rack42-pdu.dmtf.org",
+    "HTTP": {
+        "ProtocolEnabled": true,
+        "Port": 80
+    },
+    "HTTPS": {
+        "ProtocolEnabled": true,
+        "Port": 443
+    },
+    "SSH": {
+        "ProtocolEnabled": true,
+        "Port": 22
+    },
+    "SNMP": {
+        "ProtocolEnabled": true,
+        "Port": 161
+    },
+    "SSDP": {
+        "ProtocolEnabled": true,
+        "Port": 1900,
+        "NotifyMulticastIntervalSeconds": 600,
+        "NotifyTTL": 5,
+        "NotifyIPv6Scope": "Site"
+    },
+    "@odata.id": "/redfish/v1/Managers/BMC/NetworkProtocol"
+}
+```
 
 ## Data model infrastructure resources and properties 
 
@@ -417,13 +511,13 @@ The Redfish Service Root provides basic connection information in an unauthentic
 
 
 
-# Baseline Service Profile Reference Guide
+# Appendix A: Baseline Service Profile Reference Guide
 
 To produce this guide, DMTF's [Redfish Documentation Generator](#redfish-documentation-generator) merges DMTF's Redfish Schema bundle (DSP8010) contents with supplemental text.
 
 ## Using the reference guide
 
-Every Redfish response consists of a JSON payload containing properties that are strictly defined by a schema for that Resource.  The schema defining a particular Resource can be determined from the value of the "@odata.type" property returned in every Redfish response.  This guide details the definitions for every Redfish standard schema.
+Every Redfish response consists of a JSON payload containing properties that are strictly defined by a schema for that Resource.  The schema defining a particular Resource can be determined from the value of the `@odata.type` property returned in every Redfish response.  This guide details the definitions for every Redfish standard schema.
 
 Each schema section contains:
 
