@@ -127,6 +127,16 @@
 				"LogServices": {
 					"ReadRequirement": "Recommended"
 				},
+				"SerialConsole": {
+					"ReadRequirement": "Mandatory",
+					"Purpose": "SSH or IPMI-based serial remote console is required.",
+					"PropertyRequirements": {
+						"ConnectTypesSupported": {
+							"Values": [ "SSH", "IPMI"],
+							"Comparison": "AnyOf"
+						}
+					}
+				}
 				"Links": {
 					"PropertyRequirements": {
 						"Chassis": {},
@@ -177,20 +187,6 @@
 						"SubnetMask": {},
 						"AddressOrigin": {},
 						"Gateway": {}
-					}
-				}
-			}
-		},
-		"Manager": {
-			"PropertyRequirements": {
-				"SerialConsole": {
-					"ReadRequirement": "Mandatory",
-					"Purpose": "SSH or IPMI-based serial remote console is required.",
-					"PropertyRequirements": {
-						"ConnectTypesSupported": {
-							"Values": [ "SSH", "IPMI"],
-							"Comparison": "AnyOf"
-						}
 					}
 				}
 			}
