@@ -403,6 +403,41 @@ DELETE /redfish/v1/LicenseService/Licenses/Feature25
 
 ## Software inventory
 
+The `SoftwareInventory` resource provides information about a software or firmware component installed on one or more device managed by the service.  The components are shown in two separate resource collections, divided by usage as either firmware and software.  For the full schema definition, see the `SoftwareInventory` sections of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
+
+To retrieve information about an individual software or firmware component, perform a `GET` operation on a `SoftwareInventory` resource:
+
+```
+GET /redfish/v1/UpdateService/FirmwareInventory/BMC
+```
+
+```json
+{
+    "@odata.type": "#SoftwareInventory.v1_10_2.SoftwareInventory",
+    "Id": "BMC",
+    "Name": "Contoso BMC Firmware",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "Updateable": true,
+    "Manufacturer": "Contoso",
+    "ReleaseDate": "2017-08-22T12:00:00",
+    "Version": "1.45.455b66-rev4",
+    "SoftwareId": "1624A9DF-5E13-47FC-874A-DF3AFF143089",
+    "LowestSupportedVersion": "1.30.367a12-rev1",
+    "UefiDevicePaths": [
+        "BMC(0x1,0x0ABCDEF)"
+    ],
+    "RelatedItem": [
+        {
+            "@odata.id": "/redfish/v1/Managers/1"
+        }
+    ],
+    "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/BMC"
+}
+```
+
 ## Firmware update
 
 The ability to update device firmware using industry standard protocols and utilities is a key enabling technology for OCP platforms.  This is accomplished using the [UpdateService](#UpdateService) processes.
