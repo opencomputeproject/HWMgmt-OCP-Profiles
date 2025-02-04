@@ -34,7 +34,7 @@ To access user account information, perform a `GET` operation on a `ManagerAccou
 GET /redfish/v1/AccountService/Accounts/1
 
 {
-    "@odata.id": "/redfish/v1/AccountService/Accounts/1"
+    "@odata.id": "/redfish/v1/AccountService/Accounts/1",
     "@odata.type": "#ManagerAccount.v1_13_0.ManagerAccount",
     "Id": "1",
     "Name": "User Account",
@@ -62,7 +62,7 @@ To add a new user account, perform a `POST` operation on the `ManagerAccountColl
 POST /redfish/v1/AccountService/Accounts
 
 {
-    "UserName": "NewUser"
+    "UserName": "NewUser",
     "Password": "N3wP@ssw0RD",
     "RoleId": "Operator",
     "Enabled": true
@@ -182,7 +182,176 @@ GET /redfish/v1/Managers/1/NetworkProtocol/HTTPS/Certificates/1
 
 ## Event delivery
 
+The `EventService` resource contains the eventing capabilities available on the Redfish service.
+The `EventDestination` resource represents an individual subscriber listening for Redfish events.
+The `Event` object is an event payload sent from a Redfish service to a subscriber.
+For the full schema definition, see the `EventService`, `EventDestination`, and `Event` sections of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
+
+To access subscription information for an event listener, perform a `GET` operation on a `EventDestination` resource:
+
+```
+GET /redfish/v1/EventService/Subscriptions/1
+
+{
+    "@odata.id": "/redfish/v1/EventService/Subscriptions/1",
+    "@odata.type": "#EventDestination.v1_15_1.EventDestination",
+    "Id": "1",
+    "Name": "Subscription 'Data Center Monitor'",
+    "Destination": "https://www.contoso.org/DataCenterListener",
+    "SubscriptionType": "RedfishEvent",
+    "DeliveryRetryPolicy": "TerminateAfterRetries",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "Context": "Data Center Monitor",
+    "Protocol": "Redfish",
+}
+```
+
+To add a new subscription for events, perform a `POST` operation on the `EventDestinationCollection` resource:
+
+```
+POST /redfish/v1/EventService/Subscriptions
+
+{
+    "Destination": "https://monitor.contoso.org/events",
+    "SubscriptionType": "RedfishEvent",
+    "Context": "Event Monitor",
+    "Protocol": "Redfish",
+}
+```
+
+To remove a subscription, perform a `DELETE` operation on an `EventDestination` resource:
+
+```
+DELETE /redfish/v1/EventService/Subscriptions/3
+```
+
+To transmit an event from a Redfish service to an event listener, the service performs a `POST` operation on the URI contained by the `Destination` for each applicable `EventDestination` resource.
+
+```
+POST /events
+
+{
+    "@odata.type": "#Event.v1_7_0.Event",
+    "Id": "1",
+    "Name": "Event Array",
+    "Context": "Event Monitor",
+    "Events": [
+        {
+            "EventType": "Other",
+            "EventId": "346",
+            "Severity": "Critical",
+            "Message": "Temperature 'Ambient' reading of 50 degrees (C) is above the 45 upper critical threshold.",
+            "MessageId": "Environmental.1.1.TemperatureAboveUpperCriticalThreshold",
+            "MessageArgs": [
+                "1",
+                "1"
+            ],
+            "OriginOfCondition": {
+                "@odata.id": "/redfish/v1/Chassis/1/Sensors/Ambient"
+            },
+            "LogEntry": {
+                "@odata.id": "/redfish/v1/Managers/1/LogServices/EventLog/Entries/3"
+            }
+        }
+    ]
+}
+```
+
 ## Ethernet interface / IP configuration
+
+The `EthernetInterface` resources subordinate to the `Manager` resource represent the network interfaces available on the Redfish service.
+For the full schema definition, see the `EthernetInterface` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
+
+To access Ethernet interface information for an interface on the service, perform a `GET` operation on an `EthernetInterface` resource:
+
+```
+GET /redfish/v1/Managers/1/EthernetInterfaces/1
+
+{
+    "@odata.id": "/redfish/v1/Managers/1/EthernetInterfaces/1",
+    "@odata.type": "#EthernetInterface.v1_12_3.EthernetInterface",
+    "Id": "1",
+    "Name": "Ethernet Interface 1",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "LinkStatus": "LinkUp",
+    "PermanentMACAddress": "12:44:6A:3B:04:11",
+    "MACAddress": "12:44:6A:3B:04:11",
+    "SpeedMbps": 1000,
+    "AutoNeg": true,
+    "FullDuplex": true,
+    "MTUSize": 1500,
+    "HostName": "redfish100",
+    "FQDN": "redfish100.contoso.com",
+    "NameServers": [
+        "names.contoso.com"
+    ],
+    "IPv4Addresses": [
+        {
+            "Address": "192.168.0.10",
+            "SubnetMask": "255.255.252.0",
+            "AddressOrigin": "DHCP",
+            "Gateway": "192.168.0.1"
+        }
+    ],
+    "IPv4StaticAddresses": [
+        null
+    ],
+    "DHCPv4": {
+        "DHCPEnabled": true,
+        "UseDNSServers": true,
+        "UseGateway": true,
+        "UseNTPServers": false,
+        "UseStaticRoutes": true,
+        "UseDomainName": true
+    },
+    "VLAN": {
+        "VLANEnable": false,
+        "VLANId": 101
+    }
+}
+```
+
+To set an Ethernet interface to a static IP address, perform a `PATCH` operation on the desired `EthernetInterface` resource.
+In the request body, specify a static IP address and disable DHCP.
+
+```
+PATCH /redfish/v1/Managers/1/EthernetInterfaces/1
+
+{
+    "IPv4StaticAddresses": [
+        {
+            "Address": "192.190.40.55",
+            "SubnetMask": "255.255.252.0",
+            "Gateway": "192.190.40.1"
+        }
+    ],
+    "DHCPv4": {
+        "DHCPEnabled": false
+    }
+}
+```
+
+To set an Ethernet interface to DHCP, perform a `PATCH` operation on the desired `EthernetInterface` resource.
+In the request body, enable DHCP and optionally clear the static address array.
+
+```
+PATCH /redfish/v1/Managers/1/EthernetInterfaces/1
+
+{
+    "IPv4StaticAddresses": [
+        null
+    ],
+    "DHCPv4": {
+        "DHCPEnabled": true
+    }
+}
+```
 
 ## Software licensing
 
