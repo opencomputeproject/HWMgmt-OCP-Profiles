@@ -355,6 +355,50 @@ PATCH /redfish/v1/Managers/1/EthernetInterfaces/1
 
 ## Software licensing
 
+The `LicenseService` resource contains service-level actions for managing licenses and references to all licenses in the service.
+The `License` resource represents an individual license availabe on the Redfish service.
+For the full schema definition, see the `LicenseService` and `License` sections of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
+
+To information about a license, perform a `GET` operation on a `License` resource:
+
+```
+GET /redfish/v1/LicenseService/Licenses/RemotePresence
+
+{
+    "@odata.id": "/redfish/v1/LicenseService/Licenses/RemotePresence",
+    "@odata.type": "#License.v1_1_3.License",
+    "Id": "RemotePresence",
+    "Name": "Remote Presence Feature License",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "EntitlementId": "LIC2130213RP",
+    "LicenseType": "Production",
+    "Removable": false,
+    "LicenseOrigin": "BuiltIn",
+    "AuthorizationScope": "Service",
+    "Manufacturer": "Contoso",
+    "LicenseInfoURI": "http://licenses.contoso.org/licenses/remote-presence"
+}
+```
+
+To a new license, perform a `POST` operation on the `LicenseCollection` resource:
+
+```
+POST /redfish/v1/LicenseService/Licenses
+
+{
+    "LicenseString": "PENvbnRvc29IZWFkZXI+PERhdGE9IkxpY2Vuc2VEYXRhIi8+PC9Db250b3NvSGVhZGVyPg=="
+}
+```
+
+To uninstall a license, perform a `DELETE` operation on a `License` resource:
+
+```
+DELETE /redfish/v1/LicenseService/Licenses/Feature25
+```
+
 ## Event logging
 
 ## Software and firmware updates
