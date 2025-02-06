@@ -69,6 +69,38 @@
                 "Ports": {},
                 "SerialNumber": {},
                 "SKU": {},
+                "Controllers": {
+                    "ReadRequirement": "Mandatory",
+                    "PropertyRequirements": {
+                        "FirmwarePackageVersion": {
+                            "ReadRequirement": "Mandatory",
+                            "Comparison": "NotEqual",
+                            "Values": [
+                                null
+                            ]
+                        },
+                        "ControllerCapabilities": {
+                            "ReadRequirement": "Mandatory",
+                            "PropertyRequirements": {
+                                "NetworkPortCount": {},
+                                "NetworkDeviceFunctionCount": {},
+                                "NPAR": {},
+                                "VirtualizationOffload": {
+                                    "ReadRequirement": "Mandatory",
+                                    "PropertyRequirements": {
+                                        "SRIOV": {},
+                                        "VirtualFunction": {
+                                            "ReadRequirement": "Mandatory",
+                                            "PropertyRequirements": {
+                                                "DeviceMaxCount": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "Status": {
                     "ReadRequirement": "Mandatory",
                     "PropertyRequirements": {
@@ -384,7 +416,7 @@
         "EthernetInterface": {
             "URIs": [
                 "/redfish/v1/Systems/{SystemId}/EthernetInterfaces/{EthernetInterfaceId}"
-            ],  			
+            ],
             "MinVersion": "1.1.0",
             "ReadRequirement": "Recommended",
             "ConditionalRequirements": [
@@ -407,12 +439,10 @@
                     }
                 },
                 "DHCPv4": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "Recommended"
+                    "ReadRequirement": "Recommended"
                 },
                 "DHCPv6": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "Recommended"
+                    "ReadRequirement": "Recommended"
                 },
                 "HostName": {
                     "ReadRequirement": "Recommended"
@@ -717,8 +747,8 @@
         "PCIeDeviceCollection": {
             "URIs": [
                 "/redfish/v1/Chassis/{ChassisId}/PCIeDevices"
-            ],            
-			"ConditionalRequirements": [
+            ],
+            "ConditionalRequirements": [
                 {
                     "SubordinateToResource": [
                         "Chassis"

@@ -8,11 +8,35 @@
 
 # Overview & Scope
 
-This document contains the Redfish interface requirements for reporting Network Interface Card (NIC) managability information. NICs report inventory, configuration, metrics and other data using equivalent Redfish resources and properties as specified in this document.
+This document contains the Redfish interface requirements for reporting Network Interface Card (NIC) manageability information. NICs report inventory, configuration, metrics and other data using equivalent Redfish resources and properties as specified in this document.
 
 Profile source: OCP-NIC.v1_0_0.json
 
 Direct feedback to: jeff.hilland@hpe.com
+
+# Capabilities
+
+The following use cases and associated resources have been identified to
+allow BMC interface to provide baseline management capabilities.
+
++---------------+-------------------------------+------------+---------+
+| **Use Case**  | **Manageable Capabilities**   | **Req      |         |
+|               |                               | uirement** |         |
++===============+===============================+============+=========+
+| NIC           | - Get NIC Configuration       | Mandatory  | Section |
+| Configuration | - Set NIC Configuration       |            |         |
+|               | - Reset Settings To Default   |            | 5.1     |
++---------------+-------------------------------+------------+---------+
+| NIC Hardware  | - Get FRU Information         | Mandatory  |         |
++---------------+-------------------------------+------------+---------+
+| Get Telemetry | - Get Metrics                 | Mandatory  |         |
++---------------+-------------------------------+------------+---------+
+| FW Update     | - Get FW Revision Information | Mandatory  |         |
+|               | - Update FW                   |            |         |  
++---------------+-------------------------------+------------+---------+
+
+Set NIC Configuration:
+- Assign
 
 # NIC Management Use Cases
 
@@ -36,9 +60,13 @@ The following diagram helps to show the relationships between these Redfish reso
 
 *Figure 1: Redfish NIC Hierarchy*</div>
 
-## Retrieving Network Adapter Information
+## Get NIC Configuration
 
 Many NICs are multi-function devices.  It is important to discover the state of the physical card, the number of Ports and their information, how many functions are on the card and PCIe information for the card and the functions.  This is begun by finding the NetworkAdapter under the Chassis.
+
+### GET NetworkAdapter
+The following illustrates how to get the NetworkAdapter resource.
+
 ```
 	GET /redfish/v1/Chassis/1/NetworkAdapter/DE07A000
 ```
@@ -133,7 +161,7 @@ Many NICs are multi-function devices.  It is important to discover the state of 
 ```
 
 
-## Retriving NetworkDeviceFunction and Port information 
+### Retriving NetworkDeviceFunction and Port information 
 
 Also found in the Network Adapter are the NetworkDeviceFunctions and the Ports, so retrieving those are needed.  First we will get the NetworkDeviceFunction.  Note that the NetDevFuncType must equal Ethernet for this profile to apply.
 
@@ -288,28 +316,12 @@ This is an example of retrieving a Port object
             "Health": "OK",
             "State": "Enabled"
         },
-        "Manufacturer": "Mellanox",
+        "Manufacturer": "Contoso",
         "PartNumber": "844483-B21",
         "SerialNumber": "THY1020240",
         "MediumType": "FiberOptic",
         "FiberConnectionType": "SingleMode",
         "Type": "SFP28"
-    },
-    "Actions": {
-        "#Port.Reset": {
-            "target": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Actions/Port.Reset",
-            "ResetType@Redfish.AllowableValues": [
-                "ForceRestart",
-                "ForceOn",
-                "ForceOff"
-            ],
-            "@Redfish.OperationApplyTimeSupport": {
-                "@odata.type": "#Settings.v1_3_3.OperationApplyTimeSupport",
-                "SupportedValues": [
-                    "Immediate"
-                ]
-            }
-        }
     },
 	"@odata.context": "/redfish/v1/$metadata#Port.Port",
     "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1",
@@ -326,7 +338,7 @@ This is an example of retrieving a Port object
 }
 ```
 
-## Retrieving PCIe Information
+### Retrieving PCIe Information
 
 The Network Adapter is analgous to a PCIe Device, so this next retrieval gets the PCIeDevice information for the link we found in the Network Adapter.
 
@@ -406,7 +418,7 @@ The PCIeFunction information is linked to the PCIeDevice as well as the NetworkD
 }
 ```
 
-## Retrieving System NIC information
+### Retrieving System NIC information
 
 EthernetInterface is the System's view of the NIC and will have constructs of what is traditionally the software stack, such as IPv4/IPv6 addresses. 
 
@@ -450,11 +462,196 @@ EthernetInterface is the System's view of the NIC and will have constructs of wh
 }
 ```
 
+## Set NIC Information
+
+Setting live network information is not required by this profile.  If the implementation supports setting any of the properties at the next system reset, those settings are exposed through a `Settings` object in each resource, per the Redfish specification.
+
 ## Retrieving Metrics
+
+There are metrics objects on the NetworkAdapter, NetworkDeviceFunction and the Port.  
+
+## Retrieving Network Adapter Metrics
+
+As the NetworkAdapter resouce represents the card, or PCIe device, it will have some global metrics that correspond to the device.  
+
+```
+	GET /redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Metrics
+```
+
+```json
+{
+    "@odata.type": "#NetworkAdapterMetrics.v1_0_0.NetworkAdapterMetrics",
+    "Id": "Metrics",
+    "Name": "Network Adapter Metrics",
+    "NCSIRXBytes": 20250,
+    "NCSIRXFrames": 450,
+    "NCSITXBytes": 16168,
+    "NCSITXFrames": 450,
+    "RXBytes": 1411160,
+    "RXUnicastFrames": 9,
+    "RXMulticastFrames": 6506,
+    "TXBytes": 12179,
+    "TXUnicastFrames": 0,
+    "TXMulticastFrames": 69,
+    "@odata.context": "/redfish/v1/$metadata#NetworkAdapterMetrics.NetworkAdapterMetrics",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Metrics",
+    "@odata.etag": "W/\"B85BFB25\""	
+}
+```
+
+## Retrieving Network Device Function Metrics
+
+For any individual PCIe or virtual function, those metrics can be found on the NetworkDeviceFunctionMetrics.
+
+```
+    GET /redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/0/Metrics
+```
+
+```json
+{
+    "@odata.type": "#NetworkDeviceFunctionMetrics.v1_1_0.NetworkDeviceFunctionMetrics",
+    "Id": "Metrics",
+    "Name": "Network Device Function 1 Metrics",
+    "RXBytes": 286683,
+    "RXFrames": 1867,
+    "RXUnicastFrames": 0,
+    "RXMulticastFrames": 1,
+    "TXBytes": 0,
+    "TXFrames": 0,
+    "TXUnicastFrames": 0,
+    "TXMulticastFrames": 0,
+    "@odata.context": "/redfish/v1/$metadata#NetworkDeviceFunctionMetrics.NetworkDeviceFunctionMetrics",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1/Metrics",
+    "@odata.etag": "W/\"7BD1348E\""	
+}
+```
+
+## Retrieving Port Metrics
+
+Any metrics on the port itself are represented by the PortMetrics object. 
+
+```
+    GET /redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Metrics
+```
+
+```json
+{
+    "@odata.type": "#PortMetrics.v1_2_0.PortMetrics",
+    "Id": "Metrics",
+    "Name": "Ethernet Port 1 Metrics",
+    "Networking": {
+        "RXFrames": 8519,
+        "RXUnicastFrames": 9,
+        "RXMulticastFrames": 6467,
+        "RXBroadcastFrames": 2043,
+        "RXPFCFrames": 0,
+        "RXDiscards": 0,
+        "RXFalseCarrierErrors": 0,
+        "RXFCSErrors": 0,
+        "RXFrameAlignmentErrors": 0,
+        "RXOversizeFrames": 0,
+        "RXUndersizeFrames": 0,
+        "TXFrames": 69,
+        "TXUnicastFrames": 0,
+        "TXMulticastFrames": 69,
+        "TXBroadcastFrames": 0,
+        "TXPFCFrames": 0,
+        "TXDiscards": 0,
+        "TXExcessiveCollisions": 0,
+        "TXLateCollisions": 0,
+        "TXMultipleCollisions": 0,
+        "TXSingleCollisions": 0
+    },
+    "RXBytes": 1401596,
+    "RXErrors": 169,
+    "TXBytes": 12179,
+    "TXErrors": 0,
+    "Transceivers": [
+        {
+            "RXInputPowerMilliWatts": 6985.0,
+            "SupplyVoltage": 52096.0,
+            "TXBiasCurrentMilliAmps": 3375.0,
+            "TXOutputPowerMilliWatts": 7108.0
+        }
+    ],
+    "@odata.context": "/redfish/v1/$metadata#PortMetrics.PortMetrics",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Metrics",
+    "@odata.etag": "W/\"4E6105EA\""	
+}
+```
+
+## Reset Settings To Default
+
+In order to reset the settings to default, there is a required action called `ResetSettingsToDefault`.  This action takes no paramaters. It is invoked as follows:
+
+```
+	POST /redfish/v1/Chassis/1/NetworkAdapter/DE07A000/Actions/NetworkAdapter.ResetSettingsToDefault
+```
+
+## Get FRU Information
+
+FRU information is found on the NetworkAdapter. The properties Manufacturer, Model, SKU and SerialNumber are all required properties.   For more information, see [GET NetworkAdapter](#get-networkadapter). 
+
+```
+	GET /redfish/v1/Chassis/1/NetworkAdapter/DE07A000
+```
+
+```json
+{
+    "Manufacturer": "Contoso",
+    "Model": "Contoso 2",
+    "SKU": "Contoso 2 function adapter",
+    "SerialNumber": "LMNOP4279",
+    "PartNumber": "ABCDEFG2"
+}
+```
+
+## Firmware Information
+
+Like FRU, the firmware version can be found on the NetworkAdapter object under the FirmwarePackageVersion property.  This is a required property.  For more information, see [GET NetworkAdapter](#get-networkadapter). 
+
+```
+	GET /redfish/v1/Chassis/1/NetworkAdapter/DE07A000
+```
+
+```json
+{
+    "FirmwarePackageVersion": "1.2.3"
+}
+```
+
+### Update Firmware
+
+Updating firmware is done via the Redfish UpdateService, supported by the service (usually instantiated by the BMC).  The following is an example of how to update firmware on a NetworkAdapter using HTTP multipart for BMC's that support it.
+
+```
+POST /redfish/v1/UpdateService/upload HTTP/1.1
+Host: <host-path>
+Content-Type: multipart/form-data; boundary=---------------------------e67f97b6546ac967b
+Content-Length: <computed-length>
+Connection: keep-alive
+X-Auth-Token: <session-auth-token>
+
+-----------------------------e67f97b6546ac967b
+Content-Disposition: form-data; name="UpdateParameters"
+Content-Type: application/json
+
+{
+   "Targets": ["/redfish/v1/Chassis/1/NetworkAdapter/DE07A000"],
+   "@Redfish.OperationApplyTime": "OnReset",
+   "Oem": {}
+}
+
+-----------------------------e67f97b6546ac967b
+Content-Disposition: form-data; name="UpdateFile"; filename="firmwareimage.bin"
+Content-Type: application/octet-stream
+
+<software image binary>
+```
 
 # Appendix A: NIC Profile Reference Guide
 
-To produce this guide, DMTF's [Redfish Documentation Generator](#redfish-documentation-generator) merges DMTF's Redfish Schema bundle (DSP8010) contents with supplemental text.
+To produce this guide, DMTF's [Redfish Documentation Generator](#redfish-documentation-generator) merges DMTF's Redfish Schema bundle (DSP8010) contents with supplemental text.  All content below this point is automatically generated from the referenced Profile source.
 
 ## Using the reference guide
 
