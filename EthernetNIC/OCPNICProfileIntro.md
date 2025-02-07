@@ -466,11 +466,59 @@ EthernetInterface is the System's view of the NIC and will have constructs of wh
 
 Setting live network information is not required by this profile.  If the implementation supports setting any of the properties at the next system reset, those settings are exposed through a `Settings` object in each resource, per the Redfish specification.
 
+### Finding the Settings object on the Network Adapter
+
+The previous GETs returned the following properties.  By performing a GET operation on that URI, the client can determine what properties can be changed and can set them by performing a PUT or PATCH operation on that resource.
+
+```json
+    "@Redfish.Settings": {
+        "@odata.type": "#Settings.v1_3_3.Settings",
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Settings"
+        },
+        "SupportedApplyTimes": [
+            "OnReset"
+        ]
+    }	
+```
+
+### Finding the Settings object on the Network Device Function
+
+The previous GETs returned the following properties.  By performing a GET operation on that URI, the client can determine what properties can be changed and can set them by performing a PUT or PATCH operation on that resource.
+
+```json
+    "@Redfish.Settings": {
+        "@odata.type": "#Settings.v1_3_3.Settings",
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFUnctions/1/Settings"
+        },
+        "SupportedApplyTimes": [
+            "OnReset"
+        ]
+    }	
+```
+
+### Finding the Settings object on the Port
+
+The previous GETs returned the following properties.  By performing a GET operation on that URI, the client can determine what properties can be changed and can set them by performing a PUT or PATCH operation on that resource.
+
+```json
+    "@Redfish.Settings": {
+        "@odata.type": "#Settings.v1_3_3.Settings",
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Settings"
+        },
+        "SupportedApplyTimes": [
+            "OnReset"
+        ]
+    }
+```
+
 ## Retrieving Metrics
 
 There are metrics objects on the NetworkAdapter, NetworkDeviceFunction and the Port.  
 
-## Retrieving Network Adapter Metrics
+### Retrieving Network Adapter Metrics
 
 As the NetworkAdapter resouce represents the card, or PCIe device, it will have some global metrics that correspond to the device.  
 
@@ -499,7 +547,7 @@ As the NetworkAdapter resouce represents the card, or PCIe device, it will have 
 }
 ```
 
-## Retrieving Network Device Function Metrics
+### Retrieving Network Device Function Metrics
 
 For any individual PCIe or virtual function, those metrics can be found on the NetworkDeviceFunctionMetrics.
 
@@ -526,7 +574,7 @@ For any individual PCIe or virtual function, those metrics can be found on the N
 }
 ```
 
-## Retrieving Port Metrics
+### Retrieving Port Metrics
 
 Any metrics on the port itself are represented by the PortMetrics object. 
 
