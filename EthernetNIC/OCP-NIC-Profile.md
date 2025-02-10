@@ -61,7 +61,7 @@
 
    - [PortMetrics 1.7.0](#portmetrics-1.7.0)
 
-   - [Base Registry v1.0.0+ (current release: v1.20.0)](#base-registry-v1.0.0%2B-%28current-release%3A-v1.20.0%29)
+   - [Base Registry v1.0.0+](#base-registry-v1.0.0%2B)
 
    - [NetworkDevice Registry v1.0.0+ (current release: v1.1.0)](#networkdevice-registry-v1.0.0%2B-%28current-release%3A-v1.1.0%29)
 
@@ -2238,7 +2238,6 @@ The configuration source of the World Wide Names (WWN) for this World Wide Node 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LanesInUse** *(v1.3+)* | integer | *Mandatory (Read-only)* | The number of PCIe lanes in use by this device. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxLanes** *(v1.3+)* | integer | *Mandatory (Read-only)* | The number of PCIe lanes supported by this device. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxPCIeType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read-only)* | The highest version of the PCIe specification supported by this device. *For the possible property values, see MaxPCIeType in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.3+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PCIeType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read-only)* | The version of the PCIe specification in use by this device. *For the possible property values, see PCIeType in Property details.* |
 | } |   |   |
 | **SerialNumber** | string | *Mandatory (Read-only)* | The serial number for this PCIe device. |
@@ -3237,42 +3236,9 @@ The protocol being sent over this port.
 ```
 
 
-## <a name="base-registry-v1.0.0%2B-%28current-release%3A-v1.20.0%29"></a>Base Registry v1.0.0+ (current release: v1.20.0)
+## <a name="base-registry-v1.0.0%2B"></a>Base Registry v1.0.0+
 
 Requirement: Mandatory
-
-This registry defines the base messages for Redfish.
-
-### Messages
-
-|  | Requirement |
-| :--- | :--- |
-| ActionNotSupported | Mandatory |
-| ActionParameterMissing | Mandatory |
-| ActionParameterNotSupported | Mandatory |
-| ActionParameterValueError | Mandatory |
-| ActionParameterValueFormatError | Mandatory |
-| ActionParameterValueNotInList | Mandatory |
-| ActionParameterValueTypeError | Mandatory |
-| PropertyNotUpdated | Mandatory |
-| PropertyNotWritable | Mandatory |
-| PropertyValueConflict | Mandatory |
-| PropertyValueError | Mandatory |
-| PropertyValueFormatError | Mandatory |
-| PropertyValueModified | Mandatory |
-| PropertyValueOutOfRange | Mandatory |
-| PropertyValueTypeError | Mandatory |
-| QueryCombinationInvalid | Mandatory |
-| QueryNotSupported | Mandatory |
-| QueryNotSupportedOnOperation | Mandatory |
-| QueryNotSupportedOnResource | Mandatory |
-| QueryParameterOutOfRange | Mandatory |
-| QueryParameterUnsupported | Mandatory |
-| QueryParameterValueError | Mandatory |
-| QueryParameterValueFormatError | Mandatory |
-| QueryParameterValueTypeError | Mandatory |
-
-
 ## <a name="networkdevice-registry-v1.0.0%2B-%28current-release%3A-v1.1.0%29"></a>NetworkDevice Registry v1.0.0+ (current release: v1.1.0)
 
 Requirement: Mandatory
