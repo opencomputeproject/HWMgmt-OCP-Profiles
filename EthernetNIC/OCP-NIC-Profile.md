@@ -61,7 +61,7 @@
 
    - [PortMetrics 1.7.0](#portmetrics-1.7.0)
 
-   - [Base Registry v1.0.0+](#base-registry-v1.0.0%2B)
+   - [Base Registry v1.0.0+ (current release: v1.20.0)](#base-registry-v1.0.0%2B-%28current-release%3A-v1.20.0%29)
 
    - [NetworkDevice Registry v1.0.0+ (current release: v1.1.0)](#networkdevice-registry-v1.0.0%2B-%28current-release%3A-v1.1.0%29)
 
@@ -1030,12 +1030,7 @@ The state of the resource.
 
 ### URIs
 
-/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;NetworkAdapters/&#8203;*{NetworkAdapterId}*/&#8203;NetworkDeviceFunctions/&#8203;*{NetworkDeviceFunctionId}*/&#8203;EthernetInterfaces<br>
-/&#8203;redfish/&#8203;v1/&#8203;Managers/&#8203;*{ManagerId}*/&#8203;EthernetInterfaces<br>
-/&#8203;redfish/&#8203;v1/&#8203;Managers/&#8203;*{ManagerId}*/&#8203;HostInterfaces/&#8203;*{HostInterfaceId}*/&#8203;HostEthernetInterfaces<br>
-/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;EthernetInterfaces<br>
-/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;OperatingSystem/&#8203;Containers/&#8203;EthernetInterfaces<br>
-\* Note: Some URIs omitted for brevity, refer to schema for the complete list.<br>
+/&#8203;​redfish/&#8203;​v1/&#8203;​Systems/&#8203;​{ComputerSystemId}/&#8203;​EthernetInterfaces/&#8203;​{EthernetInterfaceId}<br>
 
 
 ### Properties
@@ -3236,9 +3231,42 @@ The protocol being sent over this port.
 ```
 
 
-## <a name="base-registry-v1.0.0%2B"></a>Base Registry v1.0.0+
+## <a name="base-registry-v1.0.0%2B-%28current-release%3A-v1.20.0%29"></a>Base Registry v1.0.0+ (current release: v1.20.0)
 
 Requirement: Mandatory
+
+This registry defines the base messages for Redfish.
+
+### Messages
+
+|  | Requirement |
+| :--- | :--- |
+| ActionNotSupported | Mandatory |
+| ActionParameterMissing | Mandatory |
+| ActionParameterNotSupported | Mandatory |
+| ActionParameterValueError | Mandatory |
+| ActionParameterValueFormatError | Mandatory |
+| ActionParameterValueNotInList | Mandatory |
+| ActionParameterValueTypeError | Mandatory |
+| PropertyNotUpdated | Mandatory |
+| PropertyNotWritable | Mandatory |
+| PropertyValueConflict | Mandatory |
+| PropertyValueError | Mandatory |
+| PropertyValueFormatError | Mandatory |
+| PropertyValueModified | Mandatory |
+| PropertyValueOutOfRange | Mandatory |
+| PropertyValueTypeError | Mandatory |
+| QueryCombinationInvalid | Mandatory |
+| QueryNotSupported | Mandatory |
+| QueryNotSupportedOnOperation | Mandatory |
+| QueryNotSupportedOnResource | Mandatory |
+| QueryParameterOutOfRange | Mandatory |
+| QueryParameterUnsupported | Mandatory |
+| QueryParameterValueError | Mandatory |
+| QueryParameterValueFormatError | Mandatory |
+| QueryParameterValueTypeError | Mandatory |
+
+
 ## <a name="networkdevice-registry-v1.0.0%2B-%28current-release%3A-v1.1.0%29"></a>NetworkDevice Registry v1.0.0+ (current release: v1.1.0)
 
 Requirement: Mandatory

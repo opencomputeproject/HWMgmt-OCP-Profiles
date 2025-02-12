@@ -1,5 +1,5 @@
 {
-    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_0_0",
+    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_8_0",
     "ProfileName": "ManagedNetworkAdapter",
     "ProfileVersion": "1.0.0",
     "Purpose": "This Redfish profile documents the properties necessary to be supported for a network adapter in DMTF compliant servers using the ACD model. Copyright 2024 Hewlett Packard Enterprise Development LP.",
@@ -104,20 +104,8 @@
                 "Status": {
                     "ReadRequirement": "Mandatory",
                     "PropertyRequirements": {
-                        "Health": {
-                            "ReadRequirement": "Mandatory",
-                            "Comparison": "NotEqual",
-                            "Values": [
-                                null
-                            ]
-                        },
-                        "State": {
-                            "ReadRequirement": "Mandatory",
-                            "Comparison": "NotEqual",
-                            "Values": [
-                                null
-                            ]
-                        }
+                        "Health": {},
+                        "State": {}
                     }
                 }
             }
@@ -294,20 +282,8 @@
                         "Status": {
                             "ReadRequirement": "Mandatory",
                             "PropertyRequirements": {
-                                "Health": {
-                                    "ReadRequirement": "Mandatory",
-                                    "Comparison": "NotEqual",
-                                    "Values": [
-                                        null
-                                    ]
-                                },
-                                "State": {
-                                    "ReadRequirement": "Mandatory",
-                                    "Comparison": "NotEqual",
-                                    "Values": [
-                                        null
-                                    ]
-                                }
+                                "Health": {},
+                                "State": {}
                             }
                         },
                         "VirtualFunctionsEnabled": {}
@@ -334,20 +310,8 @@
                 "Status": {
                     "ReadRequirement": "Mandatory",
                     "PropertyRequirements": {
-                        "Health": {
-                            "ReadRequirement": "Mandatory",
-                            "Comparison": "NotEqual",
-                            "Values": [
-                                null
-                            ]
-                        },
-                        "State": {
-                            "ReadRequirement": "Mandatory",
-                            "Comparison": "NotEqual",
-                            "Values": [
-                                null
-                            ]
-                        }
+                        "Health": {},
+                        "State": {}
                     }
                 },
                 "PCIeFunctions": {},
@@ -377,20 +341,8 @@
                 "Status": {
                     "ReadRequirement": "Mandatory",
                     "PropertyRequirements": {
-                        "Health": {
-                            "ReadRequirement": "Mandatory",
-                            "Comparison": "NotEqual",
-                            "Values": [
-                                null
-                            ]
-                        },
-                        "State": {
-                            "ReadRequirement": "Mandatory",
-                            "Comparison": "NotEqual",
-                            "Values": [
-                                null
-                            ]
-                        }
+                        "Health": {},
+                        "State": {}
                     }
                 },
                 "Links": {
@@ -766,6 +718,9 @@
             }
         },
         "EthernetInterfaceCollection": {
+            "URIs": [
+                "/​redfish/​v1/​Systems/​{ComputerSystemId}/​EthernetInterfaces/​{EthernetInterfaceId}"
+            ],			
             "ConditionalRequirements": [
                 {
                     "SubordinateToResource": [
