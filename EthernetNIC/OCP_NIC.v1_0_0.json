@@ -73,11 +73,7 @@
                     "ReadRequirement": "Mandatory",
                     "PropertyRequirements": {
                         "FirmwarePackageVersion": {
-                            "ReadRequirement": "Mandatory",
-                            "Comparison": "NotEqual",
-                            "Values": [
-                                null
-                            ]
+                            "ReadRequirement": "Mandatory"
                         },
                         "ControllerCapabilities": {
                             "ReadRequirement": "Mandatory",
@@ -201,7 +197,7 @@
             "UseCases": [
                 {
                     "UseCaseTitle": "EthernetNIC",
-                    "UseCseKeyProperty": "NetDevFuncType",
+                    "UseCaseKeyProperty": "NetDevFuncType",
                     "UseCaseComparison": "Equal",
                     "UseCaseKeyValues": [
                         "Ethernet"
