@@ -404,7 +404,7 @@ The ability to update device firmware using industry standard protocols and util
 }
 ```
 
-# Rack PDU Profile Reference Guide
+# Appendix A: Rack PDU Profile Reference Guide
 
 To produce this guide, DMTF's [Redfish Documentation Generator](#redfish-documentation-generator) merges DMTF's Redfish Schema bundle (DSP8010) contents with supplemental text.
 
