@@ -33,7 +33,12 @@
         },
         "PhysicalNetworkPortAssignment": {
             "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1"
-        }
+        },
+        "EthernetInterfaces": [
+            {
+                "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/5"
+            }
+        ]		
     },
     "@odata.context": "/redfish/v1/$metadata#NetworkDeviceFunction.NetworkDeviceFunction",
     "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1",

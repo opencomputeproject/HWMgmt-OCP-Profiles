@@ -16,8 +16,8 @@
     "Manufacturer": "HPE",
     "Model": "ProLiant DL385 Gen11",
     "Name": "Computer System",
-    "NetworkInterfaces": {
-        "@odata.id": "/redfish/v1/Systems/1/NetworkInterfaces"
+    "EthernetInterfaces": {
+        "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces"
     },
     "PowerState": "On",
     "ProcessorSummary": {

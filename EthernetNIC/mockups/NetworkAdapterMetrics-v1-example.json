@@ -1,0 +1,18 @@
+{
+    "@odata.type": "#NetworkAdapterMetrics.v1_0_0.NetworkAdapterMetrics",
+    "Id": "Metrics",
+    "Name": "Network Adapter Metrics",
+    "NCSIRXBytes": 20250,
+    "NCSIRXFrames": 450,
+    "NCSITXBytes": 16168,
+    "NCSITXFrames": 450,
+    "RXBytes": 1411160,
+    "RXUnicastFrames": 9,
+    "RXMulticastFrames": 6506,
+    "TXBytes": 12179,
+    "TXUnicastFrames": 0,
+    "TXMulticastFrames": 69,
+    "@odata.context": "/redfish/v1/$metadata#NetworkAdapterMetrics.NetworkAdapterMetrics",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Metrics",
+    "@odata.etag": "W/\"B85BFB25\""	
+}

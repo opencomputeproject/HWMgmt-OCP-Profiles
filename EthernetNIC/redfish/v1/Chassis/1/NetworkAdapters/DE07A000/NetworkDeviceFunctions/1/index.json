@@ -4,6 +4,12 @@
     "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1",
     "@odata.etag": "W/\"80212509\"",
     "Id": "1",
+    "@Redfish.Settings": {
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1/Settings"
+        },
+        "@odata.type": "#Settings.v1_3_3.Settings"
+    },	
     "Name": "Network Device Function 1",
     "Status": {
         "Health": "OK",
@@ -36,6 +42,11 @@
         },
         "PhysicalNetworkPortAssignment": {
             "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1"
-        }
+        },
+        "EthernetInterfaces": [
+            {
+                "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/5"
+            }
+        ]
     }
 }
