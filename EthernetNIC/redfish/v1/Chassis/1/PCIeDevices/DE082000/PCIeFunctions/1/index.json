@@ -8,13 +8,13 @@
     "DeviceId": "0x1593",
     "FunctionId": 1,
     "FunctionType": "Physical",
-    "Name": "E810",
+    "Name": "PCIEFunction 1",
     "RevisionId": "0x02",
     "Status": {
         "State": "Enabled",
         "Health": "OK"
     },
     "SubsystemId": "0x000E",
-    "SubsystemVendorId": "0x8086",
-    "VendorId": "0x8086"
+    "SubsystemVendorId": "0x1AB4",
+    "VendorId": "0x1AB4"
 }

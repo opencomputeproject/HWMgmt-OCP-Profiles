@@ -13,8 +13,8 @@
         ]
     },
     "LocationIndicatorActive": null,
-    "Manufacturer": "HPE",
-    "Model": "ProLiant DL385 Gen11",
+    "Manufacturer": "Contoso",
+    "Model": "Contoso 11",
     "Name": "Computer System",
     "EthernetInterfaces": {
         "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces"
@@ -22,18 +22,18 @@
     "PowerState": "On",
     "ProcessorSummary": {
         "Count": 1,
-        "Model": "AMD Eng Sample: 100-000000897-03               ",
+        "Model": "Superfast",
         "Status": {
             "HealthRollup": "OK"
         }
     },
-    "SKU": "G11",
-    "SerialNumber": "DL3x5GEN11",
+    "SKU": "S11",
+    "SerialNumber": "ABCDEFG",
     "Status": {
         "Health": "OK",
         "HealthRollup": "OK",
         "State": "Enabled"
     },
     "SystemType": "Physical",
-    "UUID": "00313147-0000-4C44-3378-3547454E3131"
+    "UUID": "00313947-0000-4D44-3378-3547454G3131"
 }

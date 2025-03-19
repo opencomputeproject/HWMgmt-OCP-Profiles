@@ -15,8 +15,8 @@
         ]
     },
     "LocationIndicatorActive": true,
-    "Manufacturer": "HPE",
-    "Model": "ProLiant DL385 Gen11",
+    "Manufacturer": "Contoso",
+    "Model": "Contoso 11",
     "Name": "Computer System Chassis",
     "NetworkAdapters": {
         "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters"
@@ -25,8 +25,8 @@
         "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices"
     },
     "PowerState": "On",
-    "SKU": "G11",
-    "SerialNumber": "DL3x5GEN11",
+    "SKU": "S11",
+    "SerialNumber": "ABCDEFGH",
     "Status": {
         "Health": "OK",
         "State": "Enabled"

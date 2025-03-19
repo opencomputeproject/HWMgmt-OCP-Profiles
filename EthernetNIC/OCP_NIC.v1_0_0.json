@@ -715,7 +715,7 @@
         },
         "EthernetInterfaceCollection": {
             "URIs": [
-                "/​redfish/​v1/​Systems/​{ComputerSystemId}/​EthernetInterfaces/​{EthernetInterfaceId}"
+                "/​redfish/​v1/​Systems/​{ComputerSystemId}/​EthernetInterfaces"
             ],			
             "ConditionalRequirements": [
                 {

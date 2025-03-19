@@ -9,11 +9,11 @@
     "DeviceClass": "NetworkController",
     "FunctionId": 1,
     "DeviceId": "0x1801",
-    "VendorId": "0x14e4",
+    "VendorId": "0x1AB4",
     "ClassCode": "0x020000",
     "RevisionId": "0x11",
     "SubsystemId": "0x1598",
-    "SubsystemVendorId": "0x14e4",
+    "SubsystemVendorId": "0x1AB4",
     "Status": {
         "Health": "OK",
         "State": "Enabled"

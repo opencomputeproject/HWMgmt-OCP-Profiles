@@ -1030,7 +1030,7 @@ The state of the resource.
 
 ### URIs
 
-/&#8203;​redfish/&#8203;​v1/&#8203;​Systems/&#8203;​{ComputerSystemId}/&#8203;​EthernetInterfaces/&#8203;​{EthernetInterfaceId}<br>
+/&#8203;​redfish/&#8203;​v1/&#8203;​Systems/&#8203;​{ComputerSystemId}/&#8203;​EthernetInterfaces<br>
 
 
 ### Properties
@@ -2685,11 +2685,11 @@ The state of the resource.
     "DeviceClass": "NetworkController",
     "FunctionId": 1,
     "DeviceId": "0x1801",
-    "VendorId": "0x14e4",
+    "VendorId": "0x1AB4",
     "ClassCode": "0x020000",
     "RevisionId": "0x11",
     "SubsystemId": "0x1598",
-    "SubsystemVendorId": "0x14e4",
+    "SubsystemVendorId": "0x1AB4",
     "Status": {
         "Health": "OK",
         "State": "Enabled"
@@ -3065,9 +3065,9 @@ The protocol being sent over this port.
             "Health": "OK",
             "State": "Enabled"
         },
-        "Manufacturer": "Mellanox",
-        "PartNumber": "844483-B21",
-        "SerialNumber": "THY1020240",
+        "Manufacturer": "Contoso",
+        "PartNumber": "844483",
+        "SerialNumber": "20240",
         "MediumType": "FiberOptic",
         "FiberConnectionType": "SingleMode",
         "Type": "SFP28"
