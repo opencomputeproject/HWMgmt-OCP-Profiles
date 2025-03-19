@@ -28,7 +28,7 @@
         }
     },
     "SKU": "S11",
-    "SerialNumber": "ABCDEFGH",
+    "SerialNumber": "ABCDEFG",
     "Status": {
         "Health": "OK",
         "HealthRollup": "OK",
