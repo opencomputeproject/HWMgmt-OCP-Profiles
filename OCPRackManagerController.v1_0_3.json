@@ -333,16 +333,22 @@
        }
     },
     "Voltages": {
-       {
-          "PropertyRequirements": {
-             "Name": "VRM1 Voltage",
-             "SensorNumber": {},
-             "Status": {},
-             "ReadingVolts": {},
-             "PhysicalContext": "VoltageRegulator"
-          }
-       }
-	},
+      "PropertyRequirements": {
+        "Name": {
+          "Values": [
+            "VRM1 Voltage"
+          ]
+        },
+        "SensorNumber": {},
+        "Status": {},
+        "ReadingVolts": {},
+        "PhysicalContext": {
+          "Values": [
+            "VoltageRegulator"
+          ]
+        }
+      }
+    },
     "PowerSupplies": {
        "Purpose": "Needed for inventory. Min info - N Watt DC power supply",
        "PropertyRequirements": {
