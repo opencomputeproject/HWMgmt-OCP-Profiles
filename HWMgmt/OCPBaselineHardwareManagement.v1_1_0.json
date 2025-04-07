@@ -327,7 +327,10 @@
 				"SSDP": {
 					"ReadRequirement": "Recommended",
 					"PropertyRequirements": {
-						"ProtocolEnabled": {},
+						"ProtocolEnabled": {
+							"ReadRequirement": "Mandatory",
+							"WriteRequirement": "Mandatory"
+						},
 						"Port": {},
 						"NotifyMulticastIntervalSeconds": {},
 						"NotifyIPv6Scope": {},
