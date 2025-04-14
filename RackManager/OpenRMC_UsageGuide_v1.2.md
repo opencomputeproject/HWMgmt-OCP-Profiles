@@ -105,7 +105,7 @@ Group operations are performed using the AggregationService.
 Groups can be passed with the action (temporary) or as an action upon a group which had been previously created (persistent).
 The AggregateService resource contains the Aggregates collection resource which contains the persistent groups that have been specified.
 
-  **GET** /redfish/v1/AggregationService
+    **GET** /redfish/v1/AggregationService
 
   
 The POST request shall contain a request body.
@@ -147,26 +147,26 @@ interacting via the Redfish Interface.
 
 The hardware inventory for the rack in obtained from the Chassis resource representing each node's hardware.
 
-  GET /redfish/v1/Chassis/{id}
+    GET /redfish/v1/Chassis/{id}
 
 The response contains the hardware inventory properties for manufacturer, model, SKU, serial number and part number.
 The AssetTag properties is a client writeable property.
 
 ```
-  {
-    "@odata.type": "#Chassis.v1_2_0.Chassis",
-    "@odata.id": "/redfish/v1/Chassis/Node1",
-    "Id": "Node1",
-    . . .
-    "ChassisType": "Node",
-    "Name": "Rack Manager Hardware",
-    "Manufacturer": "…"
-    "Model": "RackScale_Rack",
-    "SKU": "…"
-    "SerialNumber": "…",
-    "PartNumber": "…",
-    "AssetTag": null,
-  }
+    {
+        "@odata.type": "#Chassis.v1_2_0.Chassis",
+        "@odata.id": "/redfish/v1/Chassis/Node1",
+        "Id": "Node1",
+        . . .
+        "ChassisType": "Node",
+        "Name": "Rack Manager Hardware",
+        "Manufacturer": "…"
+        "Model": "RackScale_Rack",
+        "SKU": "…"
+        "SerialNumber": "…",
+        "PartNumber": "…",
+        "AssetTag": null,
+    }
 ```
 
 ## Rack Power Status
@@ -179,49 +179,46 @@ power state and the power usage reading.
 The power state for the rack in obtained from the Chassis resource
 representing the rack hardware.
 
-  GET /redfish/v1/Chassis/Rack
+    GET /redfish/v1/Chassis/Rack
 
 The response contains the PowerState properties.
 
-```
-  {
-    "@odata.type": "#Chassis.v1_2_0.Chassis",
-    "@odata.id": "/redfish/v1/Chassis/Rack",
-    "Id": "Node1",
-    . . .
-    "ChassisType": "Rack",
-    "PowerState": "On"
-  }
-```
+    {
+        "@odata.type": "#Chassis.v1_2_0.Chassis",
+        "@odata.id": "/redfish/v1/Chassis/Rack",
+        "Id": "Node1",
+        "ChassisType": "Rack",
+        "PowerState": "On"
+    }
 
 ## Get power usage for rack
 
 The power usage for the rack is obtained from the Power resource associated with the rack hardware.
 
-  GET /redfish/v1/Chassis/Rack/Power
+    GET /redfish/v1/Chassis/Rack/Power
 
 The response contains the Voltage array properties.
 The PowerConsumedWatts property contains the value of instantaneous power usage. 
 The PowerMetrics objects contains statistics (min, max, avg) power usage over a duration.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Chassis/Rack/Power",
-    "@odata.type": "#Power.v1_1_0.Power",
-    "Id": "Power",
-    "PowerControl": \[ {
-      "@odata.id": "/redfish/v1/Chassis/Zone1/Power#/PowerControl/0",
-      "MemberId": "0",
-      "Name": "System Power Control",
-      "PowerConsumedWatts": 8000,
-      "PowerMetrics": {
-        "IntervalInMin": null,
-        "MinConsumedWatts": null,
-        "MaxConsumedWatts": null,
-        "AverageConsumedWatts": null
-      }
-    }\]
-  }
+    {
+        "@odata.id": "/redfish/v1/Chassis/Rack/Power",
+        "@odata.type": "#Power.v1_1_0.Power",
+        "Id": "Power",
+        "PowerControl": \[ {
+            "@odata.id": "/redfish/v1/Chassis/Zone1/Power#/PowerControl/0",
+            "MemberId": "0",
+            "Name": "System Power Control",
+            "PowerConsumedWatts": 8000,
+            "PowerMetrics": {
+                "IntervalInMin": null,
+                "MinConsumedWatts": null,
+                "MaxConsumedWatts": null,
+                "AverageConsumedWatts": null
+            }
+        } \]
+    }
 ```
 
 ## Set power usage of rack
