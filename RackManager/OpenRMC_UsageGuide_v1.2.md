@@ -16,7 +16,7 @@ As a Redfish-based interface, the required Redfish interface model elements are 
 
 <https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPRackManagerController.v1_2_0_WIP.json>
 
-The OCPRackManagerController.v1.1.0 profile extends from the OCPBaselineHardwareManagement.v1.0.1 profile. The profile is located at –
+The OCPRackManagerController.v1.2.0 profile extends from the OCPBaselineHardwareManagement.v1.0.1 profile. The profile is located at –
 
 <https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_0_1.json>
 
@@ -65,61 +65,66 @@ v1.0.1" document
 
 The following are the usages and capabilities of the OpenRMC interface
 which are incremental to the OCP Baseline Hardware Management
-capabilities. For v1.1, the following use cases have been added:
+capabilities.
 
-- Get the certificate for the node
 
-- Update the firmware on the rack manager
+| **Use Case**        | **Management Task**                                       | **Requirement** |
+| :---                | :-----------                                              | :---	|
+| Rack Power Status   | [Get power state of rack](#get-power-state-of-rack)              | Mandatory |
+|                     | [Get power usage of rack](#get-power-usage-of-rack)              | Recommended |
+| Rack Power Control  | [Set power usage of reack](#set-power-usage-of-rack)             | Mandatory |
+| PSU State/Health    | [Get state of PSU](#get-state-of-PSU)                            | Mandatory |
+| Node inventory      | [Get FRU Info of node](#get-fru-info-of-node)                    | Mandatory |
+| Node Power Status   | [Get power state of node](#get-power-state-of-node)              | Mandatory |
+|                     | [Get Power usage of node](#get-power-usage-of-node)              | Mandatory |
+| Node Power Control  | [Set Power usage of node](#set-power-usage-of-node)              | Mandatory |
+| Node Temperature    | [Get temperature of node](#get-temperature-per-node)             | Mandatory |
+| Node Status/Health  | [Get status/health of node](#get-status/health-of-node)          | Mandatory |
+|                     | [Get status of node CPUs](#get-status-of-node-cpus)              | Mandatory |
+|                     | [Get status of node memory](#get-status-of-node-memory)          | Mandatory |
+|                     | [Get state of node LEDs](#get-state-of-node-LEDs)                | Mandatory |
+|                     | [Get logs from node](#get-logs-from-node)                        | Mandatory |
+| Firmware Update     | [Pull FW Update on Rack Manager](#pull-fw-update-on-rack-manager)| Mandatory |
+|                     | [Push FW Update on Rack Manager](#push-fw-update-on-rack-manager)| Mandatory |
+|                     | [Pull FW Update on node](#pull-fw-update-on-node)                | Mandatory |
+|                     | [Push FW Update on node](#push-fw-update-on-node)                | Mandatory |
+| Group Operations    | [Reset a temp group of nodes](#reset-a-temp-group-of-nodes)      | Mandatory |
+|                     | [Reset a persistent group of nodes](#reset-a-persistent-group-of-nodes)      | Mandatory |
+|                     | [Create a persistent group of nodes](#create-a-persistent-group-of-nodes) | Mandatory |
+|                     | [Set boot order of aggregate](#set-boot-order-of-aggregate-to-default) | Mandatory |
+| Authorization       | [Get certificate from node](#get-certificate-from-node)          | Mandatory |
+|                     | [Place certificate on node](#place-certificate-on-node)          | Mandatory |
+|                     | [Place token on node](#place-token-on-node)                      | Mandatory |
+|                     | [Place certificat on rack manager](#place-token-on-rack-manager) | Mandatory |
+|                     | [Place token on rack manager](#place-token-on-rack-manager)      | Mandatory |
+|                     | [Place manifest on rack manager](#place-manifest-on-rack-manager) | Mandatory |
 
-- Update BIOS firmware on the node
+## Group Operations in Redfish
 
-- Update BMC firmware on the node
+Group operations are performed using the AggregationService resource.
+Actions can be performed on temporary groups or persistent groups.
+A temporary group is passed within the action.
+A persistent group is create prior to action and referenced within the action.
+A persistent group is modelled as an Aggregate resource.
+The AggregateService resource contains the Aggregates collection resource whose members are Aggregate resources.
 
-- Create a persistent group
-
-- Reset a persistent group of nodes
-
-- Reset a temporary group of nodes
-
-| **Use Case**          | **Management Task**                                       | **Requirement** |
-| :---                  | :-----------                                              | :---	|
-| Rack Power Status     | [Get power state of rack](#get-power-state-of-rack)              | Mandatory |
-|                       | [Get power usage of rack](#get-power-usage-of-rack)              | Recommended |
-| Rack Power Control    | [Set power usage of reack](#set-power-usage-of-rack)             | Mandatory |
-| PSU State/Health      | [Get state of PSU](#get-state-of-PSU)                            | Mandatory |
-| Node inventory        | [Get FRU Info of node](#get-fru-info-of-node)                    | Mandatory |
-| Node Power Status     | [Get power state of node](#get-power-state-of-node)              | Mandatory |
-|                       | [Get Power usage of node](#get-power-usage-of-node)              | Mandatory |
-| Node Power Control    | [Set Power usage of node](#set-power-usage-of-node)              | Mandatory |
-| Node Temperature      | [Get temperature of node](#get-temperature-per-node)             | Mandatory |
-| Node Status/Health    | [Get status/health of node](#get-status/health-of-node)          | Mandatory |
-|                       | [Get status of node CPUs](#get-status-of-node-cpus)              | Mandatory |
-|                       | [Get status of node memory](#get-status-of-node-memory)          | Mandatory |
-|                       | [Get state of node LEDs](#get-state-of-node-LEDs)                | Mandatory |
-|                       | [Get logs from node](#get-logs-from-node)                        | Mandatory |
-| Certificate           | [Get certificate from node](#get-frucertificate-from-node)       | Mandatory |
-
-## Group Operations
-
-Group operations are performed using the AggregationService.
-Groups can be passed with the action (temporary) or as an action upon a group which had been previously created (persistent).
-The AggregateService resource contains the Aggregates collection resource which contains the persistent groups that have been specified.
+The following command
 
     **GET** /redfish/v1/AggregationService
 
-  
-The POST request shall contain a request body.
+The response contains the following fragment. The fragment shows the URI for the Aggregate collection resource.
+
+The fragment shows two actions that can be perform on an aggregate, either temporary or persistent.
+The action is invoke by performing a POST to the URI contained in Target property.
+The contents of the request body in desribed in resource whose URI is contained in the @Redfish.ActionInfo property.
 
 ```
     {
         "@odata.id": "/redfish/v1/AggregationService",
         "Id": "AggregationService",
-        "Description": "Aggregation Service",
-        "Name": "Aggregation Service",
         "ServiceEnabled": true,
         "Status": {
             "Health": "OK",
-            "HealthRollup": "OK",
             "State: "Enabled"
         },
         "Aggregates": {
@@ -137,6 +142,13 @@ The POST request shall contain a request body.
         }
     }
 ```
+
+## Update Firmware
+
+The firmware can be updated with a pull or push method. The "Redfish Firmware Update Whitepaper"\[3\] has detail discussion of the firmware update process.
+
+The main process is for the firmware package to be delivered opaquely, and the Redfish Service interprets the firmware package to determine the components that are updated.
+The Targets property can be used to guide and constrain this behavior.
 
 # Use Cases
 
@@ -168,11 +180,6 @@ The AssetTag properties is a client writeable property.
         "AssetTag": null,
     }
 ```
-
-## Rack Power Status
-
-In the rack power status use case, the Redfish Client obtains the rack's
-power state and the power usage reading.
 
 ### Get power state of the rack
 
@@ -437,7 +444,7 @@ The following message is the response. The System's Status object contains an ad
 
 Which responds with the following message. The PowerConsumedWatts property contains the value of instantaneous power usage.
 
-## Get Status of node CPUs
+## Get status of node CPUs
 
 The status and health the node CPUs is obtained by retrieving the System resource which represent the node.
 
@@ -461,7 +468,7 @@ The following message is the response. The information of interest is contained 
   }
 ```
 
-## Get Status of Node memory
+## Get status of node memory
 
 The status and health the node's memory is obtained by retrieving the System resource which represent the node.
 
@@ -500,7 +507,7 @@ is the value of the IndicatorLED property.
   }
 ```
 
-## Get the log from Rack manager
+## Get log from rack manager
 
 The RMC log is by retrieving the Log resource, which represent the RMC's log.
 
@@ -535,7 +542,7 @@ The response contains the following fragment.
   }
 ```
 
-## Get the log from node
+## Get log from node
 
 The System's log are retrieved is obtained by retrieving the Log resource which represent the node's log.
 
@@ -571,7 +578,7 @@ The response contains the following fragment.
   }
 ```
 
-## Get firmware version on Rack Manager Controller
+## Get FW version on rack manager
 
 The version of firmware on the rack manager is obtained by retrieving the Manager resource which represents the rack manager.
 
@@ -587,7 +594,7 @@ The response contains the following fragment. The information of interest is the
   }
 ```
 
-## Get the firmware version of node
+## Get FW version on node
 
 The version of BIOS firmware on a system is obtained by retrieving the System resource which represents the system.
 
@@ -603,7 +610,7 @@ The response contains the following fragment. The information of interest is the
   }
 ```
 
-## Get the BMC firmware version of node
+## Get BMC FW version on node
 
 The version of firmware on the BMC on a system is obtained by retrieving the Manager resource which represents the BMC of interest.
 
@@ -619,7 +626,7 @@ The response contains the following fragment. The information of interest is the
   }
 ```
 
-## Get firmware version of PSU
+## Get FW version of PSU
 
 The version of firmware on the PSU is obtained by retrieving the Power resource subordinate to the Chassis resource which represents the chassis of interest.
 
@@ -640,17 +647,6 @@ The response contains the following fragment. The information of interest is the
     \]
   }
 ```
-
-## Update Firmware
-
-The firmware can be updated with a pull or push method. The "Redfish Firmware Update Whitepaper"\[3\] has detail discussion of the firmware update process.
-
-The main process is for the firmware package to be delivered opaquely, and the Redfish Service interprets the firmware package to determine the components that are updated.
-The Targets property can be used to guide and constrain this behavior.
-
-### Update Firmware on the Rack Manager
-
-The rack manager firmware maybe updated with the pull or push method.
 
 ## Update Firmware on Rack Manager via Pull Method
 
@@ -677,7 +673,7 @@ The message may also include the TransferProtocol, Username and Password propert
 
 If the Redfish service starts a task to handle the firmware update, it will respond with a task pointer, TaskMonitorURI. The client monitors the task by performing GETs on the TaskMonitorURI and inspects the response.
 
-## Update Firmware on Rack Manager via Push Method
+## Push FW Update on Rack Manager
 
 To update the firmware on the rack manager via the push method, the
 client invokes the following command.
@@ -707,7 +703,7 @@ The POST command includes the following multi-part message
 
 Redfish service starts a task to handle the firmware update, it will respond with a task pointer, TaskMonitorURI. The client monitors the task by performing GETs on the TaskMonitorURI and inspects the response.
 
-## Update Firmware on Node via the Pull Method
+## Pull FW update on Node
 
 The node firmware maybe updated with a pull or push method.
 
@@ -826,7 +822,7 @@ The POST command has no request message.
 
 The use cases specified below is the support the process for authorization between the rack manager and the managed node as described in section 6.
 
-## Get the certificate from each node
+## Get certificate from node
 
 The certificate for a node is retrieved as member of the Certificates collection for the node.
 
@@ -865,7 +861,7 @@ The response contains the following fragment.
   }
 ```
 
-## Place a certificate on a node
+## Place certificate on  node
 
 The certificate is placed on a managed node with the following HTTP
 command.
@@ -899,7 +895,7 @@ shall have the value(s) ??.
   }
 ```
 
-## Place a token on a managed node
+## Place token on node
 
 The token is placed on a managed node with the following HTTP command.
 
@@ -932,7 +928,7 @@ shall have the value(s) ??.
   }
 ```
 
-## Place a certificate on the rack manager
+## Place certificate on rack manager
 
 The certificate is placed on the rack manager with the following HTTP command.
 
@@ -966,7 +962,7 @@ The response contains the following fragment. The KeyUsage property shall have t
   }
 ```
 
-### Place a token on the rack manager
+### Place token on rack manager
 
 The token is placed on the rack manager with the following HTTP command.
 
@@ -1002,7 +998,7 @@ shall have the value(s) ??.
   }
 ```
 
-### Place a manifest on token on rack manager
+### Place manifest on rack manager
 
 The manifest is placed on the rack manager with the following HTTP
 command.
