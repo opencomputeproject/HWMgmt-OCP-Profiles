@@ -1,0 +1,21 @@
+references:
+  - id: "openrmc-design-specification"
+    title: "OpenRMC Design Specification"
+    publisher: "Open Compute Project"
+    url: "http://www.opencompute.org"
+  - id: "ocp-baseline-hw-management-profile"
+    title: "Usage Guide and Requirements for the OCP Baseline Hardware Management Profile v1.0.1"
+    publisher: "Open Compute Project"
+    url: "https://www.opencompute.org/documents/usage-guide-for-baseline-hw-mgmt-api-v1-0-1-final-pdf"
+  - id: redfish-firmware-update
+    title: "Redfish Firmware Update White Paper"
+    publisher: "Distributed Management Task Force"
+    url: "https://www.dmtf.org/sites/default/files/standards/documents/DSP2062_1.0.0.pdf"
+  - id: redfish-api-specification
+    title: "Redfish API Specification"
+    publisher: "Distributed Management Task Force"
+    url: "https://www.dmtf.org/dsp/DSP0266"
+  - id: redfish-certificate-whitepaper
+    title: "Redfish Certificate Whitepaper"
+    publisher: "Distributed Management Task Force"
+    url: "https://www.dmtf.org/sites/default/files/standards/documents/DSP2059_1.1.0.pdf"
