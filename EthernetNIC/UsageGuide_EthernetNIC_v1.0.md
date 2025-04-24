@@ -56,14 +56,15 @@ The following table lists the management tasks supported by an implementation wh
 | NIC Configuration     | [Get NIC information](#get-nic-information)                           | Mandatory |
 |                       | [Get device function information](#get-device-function-information)   | Mandatory |
 |                       | [Get port information](#get-port-information)                         | Mandatory |
-|                       | [Get PCIe information](#get-PCIe-information)                         | Mandatory |
-|                       | [Get PCIe function information](#get-PCIe-function-information)       | Mandatory |
+|                       | [Get PCIe information](#get-pcie-information)                         | Mandatory |
+|                       | [Get PCIe function information](#get-pcie-function-information)       | Mandatory |
 |                       | [Set NIC information](#set-nic-information)                           | Mandatory |
+|                       | [Set device function information](#set-device-function-information)   | Mandatory |
 |                       | [Set port information](#set-port-information)                         | Mandatory |
 |                       | [Set NIC settings to default](#set-nic-settings-to-default)           | Mandatory |
 | NIC Hardware          | [Get FRU Information](#get-fru-information)                           | Mandatory |
-| System NIC            | [Get system NIC inforamtion](#get-system-nic-information)             | Mandatory |
-| Telemetry             | [Get NIC metrics](#get-NIC-metrics)                                   | Mandatory |
+| System NIC            | [Get system NIC information](#get-system-nic-information)             | Mandatory |
+| Telemetry             | [Get NIC metrics](#get-nic-metrics)                                   | Mandatory |
 |                       | [Get device function metrics](#get-device-function-metrics)           | Mandatory |
 |                       | [Get port metrics](#get-port-metrics)                                 | Mandatory |
 | Firmware Update       | [Get firmware version](#get-firmware-version)                         | Mandatory |
@@ -72,7 +73,8 @@ The following table lists the management tasks supported by an implementation wh
 The section below describes the interaction with the Redfish interface to fulfill the management tasks.
 In the example responses, a fragment of the full response or resource may be shown.
 
-## Get Network Adapter Information
+## Get NIC Information 
+
 The following illustrates how to get the NetworkAdapter resource.
 
 ```
@@ -347,7 +349,7 @@ This is an example of retrieving a Port object
 }
 ```
 
-## Get PCIe Information
+## Get PCIe Information 
 
 The Network Adapter is analgous to a PCIe Device, so this next retrieval gets the PCIeDevice information for the link we found in the Network Adapter.
 
@@ -386,7 +388,7 @@ The Network Adapter is analgous to a PCIe Device, so this next retrieval gets th
     "@odata.etag": "W/\"70C0367C\""
 }
 ```
-## Get PCIe Function Information
+## Get PCIe Function Information 
 
 The PCIeFunction information is linked to the PCIeDevice as well as the NetworkDeviceFunction so we must retrieve that information.
 
