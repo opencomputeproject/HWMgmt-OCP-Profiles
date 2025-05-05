@@ -1,0 +1,39 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#ComputerSystem.ComputerSystem",
+    "@odata.etag": "W/\"0F7DE6DF\"",
+    "@odata.id": "/redfish/v1/Systems/1",
+    "@odata.type": "#ComputerSystem.v1_17_0.ComputerSystem",
+    "Id": "1",
+    "HostName": "WIN-BBAV206VJ86",
+    "Links": {
+        "Chassis": [
+            {
+                "@odata.id": "/redfish/v1/Chassis/1"
+            }
+        ]
+    },
+    "LocationIndicatorActive": null,
+    "Manufacturer": "Contoso",
+    "Model": "Contoso 11",
+    "Name": "Computer System",
+    "EthernetInterfaces": {
+        "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces"
+    },
+    "PowerState": "On",
+    "ProcessorSummary": {
+        "Count": 1,
+        "Model": "Superfast",
+        "Status": {
+            "HealthRollup": "OK"
+        }
+    },
+    "SKU": "S11",
+    "SerialNumber": "ABCDEFG",
+    "Status": {
+        "Health": "OK",
+        "HealthRollup": "OK",
+        "State": "Enabled"
+    },
+    "SystemType": "Physical",
+    "UUID": "00313947-0000-4D44-3378-3547454G3131"
+}

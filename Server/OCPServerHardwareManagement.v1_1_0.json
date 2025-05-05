@@ -45,6 +45,7 @@
           			]
 				}
       		}
+
 		},
 		"ComputerSystem": {
 			"MinVersion": "1.0.0",

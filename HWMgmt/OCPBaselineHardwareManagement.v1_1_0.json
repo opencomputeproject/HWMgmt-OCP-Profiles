@@ -32,10 +32,11 @@
 		},
 		"Chassis": {
 			"UseCases": [{
-				"UseCaseTitle": "The primary Chassis requirements.",
+				"UseCaseTitle": "The primary Chassis requirements",
 				"UseCaseKeyProperty": "ChassisType",
 				"UseCaseComparison": "Equal",
 				"UseCaseKeyValues": ["Drawer", "RackMount", "Sled"],
+				"ReadRequirement": "IfImplemented",
 				"PropertyRequirements": {
 					"AssetTag": {
 						"ReadRequirement": "Recommended",
@@ -263,10 +264,11 @@
 		},
 		"Manager": {
 			"UseCases": [{
-				"UseCaseTitle": "The Manager providing Redfish service.",
+				"UseCaseTitle": "The Manager providing Redfish service",
 				"UseCaseKeyProperty": "ManagerType",
 				"UseCaseComparison": "Equal",
 				"UseCaseKeyValues": ["BMC", "RackManager", "EnclosureManager"],
+				"ReadRequirement": "IfImplemented",
 				"PropertyRequirements": {
 				"ManagerType": {},
 					"UUID": {},

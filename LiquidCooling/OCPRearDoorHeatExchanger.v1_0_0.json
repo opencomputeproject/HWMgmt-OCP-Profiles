@@ -1,0 +1,76 @@
+{
+    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_7_0",
+    "ProfileName": "OCP Rear Door Heat Exchanger",
+    "ProfileVersion": "1.0.0",
+    "Purpose": "Specifies the OCP management requirements for the Redfish interface on OCP rear door heat exchangers.",
+    "OwningEntity": "Open Compute Project",
+    "ContactInfo": "michael.raineri@dell.com",
+    "RequiredProfiles": {
+        "OCPLiquidCoolingBaseline": {
+            "MinVersion": "1.0.0"
+        }
+    },
+    "Resources": {
+        "ThermalEquipment": {
+            "URIs": [
+                "/redfish/v1/ThermalEquipment"
+            ],
+            "PropertyRequirements": {
+                "HeatExchangers": {}
+            }
+        },
+        "CoolingUnit": {
+            "URIs": [
+                "/redfish/v1/ThermalEquipment/HeatExchangers/{CoolingUnitId}"
+            ],
+            "PropertyRequirements": {
+                "CoolantConnectorRedundancy": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "EquipmentType": {
+                    "Comparison": "Equal",
+                    "Values": [
+                        "HeatExchanger"
+                    ]
+                },
+                "PrimaryCoolantConnectors": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                }
+            }
+        },
+        "CoolantConnector": {
+            "URIs": [
+                "/redfish/v1/ThermalEquipment/HeatExchangers/{CoolingUnitId}/PrimaryCoolantConnectors/{CoolantConnectorId}"
+            ],
+            "PropertyRequirements": {
+                "Coolant": {
+                    "PropertyRequirements": {
+                        "CoolantType": {},
+                        "DensityKgPerCubicMeter": {},
+                        "SpecificHeatkJoulesPerKgK": {}
+                    }
+                },
+                "CoolantConnectorType": {},
+                "FlowLitersPerMinute": {},
+                "RatedFlowLitersPerMinute": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "DeltaPressurekPa": {},
+                "DeltaTemperatureCelsius": {},
+                "SupplyPressurekPa": {},
+                "SupplyTemperatureCelsius": {},
+                "HeatRemovedkW": {},
+                "ReturnPressurekPa": {},
+                "ReturnTemperatureCelsius": {}
+            }
+        }
+    }
+}
