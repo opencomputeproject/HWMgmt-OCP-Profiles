@@ -1,14 +1,14 @@
 {
 	"SchemaDefinition": "RedfishInteroperabilityProfile.v1_4_0",
 	"ProfileName": "OCPServerHardwareManagement",
-	"ProfileVersion": "1.0.1",
+	"ProfileVersion": "1.1.0",
 	"Purpose": "Specifies the OCP management requirements for the Redfish interface on OCP Server platforms",
 	"OwningEntity": "Open Compute Project",
 	"ContactInfo": "OCP-Server@OCP-All.groups.io",
 	"License": "Creative Common Attribution-ShareAlike 4.0 International License",
 	"RequiredProfiles": {
 		"OCPBaselineHardwareManagement": {
-			"MinVersion": "1.0.1"
+			"MinVersion": "1.1.0"
 		}
 	},
 	"Resources": {
@@ -22,29 +22,30 @@
 				},
 				"Thermal": {
 					"ReadRequirement": "Recommended",
-          "ConditionalRequirements": [
-            {
-              "Purpose": "Required if ChassisType are specific values",
-              "ReadRequirement": "Mandatory",
-              "CompareType": "AnyOf",
-              "CompareProperty": "ChassisType",
-              "CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
-            }
-          ]
-        },
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Mandatory",
+              				"CompareType": "AnyOf",
+              				"CompareProperty": "ChassisType",
+              				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+            			}
+          			]
+        		},
 				"Power": {
 					"ReadRequirement": "Recommended",
-          "ConditionalRequirements": [
-            {
-              "Purpose": "Required if ChassisType are specific values",
-              "ReadRequirement": "Mandatory",
-              "CompareType": "AnyOf",
-              "CompareProperty": "ChassisType",
-              "CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
-            }
-          ]
-			  }
-      }
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Mandatory",
+              				"CompareType": "AnyOf",
+              				"CompareProperty": "ChassisType",
+              				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+            			}
+          			]
+				}
+      		}
+
 		},
 		"ComputerSystem": {
 			"MinVersion": "1.0.0",
@@ -127,6 +128,16 @@
 				"LogServices": {
 					"ReadRequirement": "Recommended"
 				},
+				"SerialConsole": {
+					"ReadRequirement": "Mandatory",
+					"Purpose": "SSH or IPMI-based serial remote console is required.",
+					"PropertyRequirements": {
+						"ConnectTypesSupported": {
+							"Values": [ "SSH", "IPMI"],
+							"Comparison": "AnyOf"
+						}
+					}
+				}
 				"Links": {
 					"PropertyRequirements": {
 						"Chassis": {},
@@ -177,20 +188,6 @@
 						"SubnetMask": {},
 						"AddressOrigin": {},
 						"Gateway": {}
-					}
-				}
-			}
-		},
-		"Manager": {
-			"PropertyRequirements": {
-				"SerialConsole": {
-					"ReadRequirement": "Mandatory",
-					"Purpose": "SSH or IPMI-based serial remote console is required.",
-					"PropertyRequirements": {
-						"ConnectTypesSupported": {
-							"Values": [ "SSH", "IPMI"],
-							"Comparison": "AnyOf"
-						}
 					}
 				}
 			}
