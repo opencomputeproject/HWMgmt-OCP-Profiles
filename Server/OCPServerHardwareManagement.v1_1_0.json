@@ -129,7 +129,7 @@
 					"ReadRequirement": "Recommended"
 				},
 				"SerialConsole": {
-					"ReadRequirement": "Mandatory",
+					"ReadRequirement": "IfImplemented",
 					"Purpose": "SSH or IPMI-based serial remote console is required.",
 					"PropertyRequirements": {
 						"ConnectTypesSupported": {
@@ -137,7 +137,7 @@
 							"Comparison": "AnyOf"
 						}
 					}
-				}
+				},
 				"Links": {
 					"PropertyRequirements": {
 						"Chassis": {},
