@@ -1,3 +1,25 @@
+---
+project: Hardware Management
+title: Usage Guide for Rack Management
+version: 1.2.0
+supersedes: 1.1.0
+status: draft
+released: true
+class: info
+date: 2025-03-20
+copyright: 2023-2025
+paragraph_numbering: no
+bibliography: bibliography.yaml
+header-includes: |
+  \newenvironment{smallcode}{\begin{footnotesize}}{\end{footnotesize}}
+...
+
+---
+
+\tableofcontents
+
+---
+
 # License
 
 This work is licensed under a [Creative Commons Attribution-ShareAlike
@@ -110,42 +132,48 @@ The AggregateService resource contains the Aggregates collection resource whose 
 
 The following command
 
-    **GET** /redfish/v1/AggregationService
+```
+GET /redfish/v1/AggregationService
+```
 
 The response contains the following fragment. The fragment shows the URI for the Aggregate collection resource.
 
 The fragment shows two actions that can be perform on an aggregate, either temporary or persistent.
 The action is invoke by performing a POST to the URI contained in Target property.
-The contents of the request body in desribed in resource whose URI is contained in the @Redfish.ActionInfo property.
+The contents of the request body in desribed in resource whose URI is contained in the \@Redfish.ActionInfo property.
 
-```
-    {
-        "@odata.id": "/redfish/v1/AggregationService",
-        "Id": "AggregationService",
-        "ServiceEnabled": true,
-        "Status": {
-            "Health": "OK",
-            "State: "Enabled"
-        },
-        "Aggregates": {
-            "@odata.id": "/redfish/v1/AggregationService/Aggregates"
-        },
-        "Actions": {
-            "#AggregationService.Reset": {
-                "target": "/redfish/v1/AggregationService/Actions/AggregationService.Reset",
-                "@Redfish.ActionInfo": "/redfish/v1/AggregationService/ResetActionInfo"
-            },
-            "#AggregationService.SetDefaultBootOrder": {
-                "target": "/redfish/v1/AggregationService/Actions/AggregationService.SetDefaultBootOrder",
-                "@Redfish.ActionInfo": "/redfish/v1/AggregationService/SetDefaultBootOrderActionInfo"
-            }
-        }
+``` {.small}
+{
+  "@odata.id": "/redfish/v1/AggregationService",
+  "Id": "AggregationService",
+  "ServiceEnabled": true,
+  "Status": {
+    "Health": "OK",
+    "State: "Enabled"
+  },
+  "Aggregates": {
+    "@odata.id": "/redfish/v1/AggregationService/Aggregates"
+  },
+  "Actions": {
+    "#AggregationService.Reset": {
+      "target":
+        "/redfish/v1/AggregationService/Actions/AggregationService.Reset",
+      "\@Redfish.ActionInfo":
+        "/redfish/v1/AggregationService/ResetActionInfo"
+    },
+    "#AggregationService.SetDefaultBootOrder": {
+      "target":
+        "/redfish/v1/AggregationService/Actions/AggregationService.SetDefaultBootOrder",
+      "\@Redfish.ActionInfo":
+        "/redfish/v1/AggregationService/SetDefaultBootOrderActionInfo"
     }
+  }
+}
 ```
 
 ## Update Firmware
 
-The firmware can be updated with a pull or push method. The "Redfish Firmware Update Whitepaper"\[3\] has detail discussion of the firmware update process.
+The firmware can be updated with a pull or push method. The "Redfish Firmware Update Whitepaper" [@{redfish-firmware-update}] has detail discussion of the firmware update process.
 
 The main process is for the firmware package to be delivered opaquely, and the Redfish Service interprets the firmware package to determine the components that are updated.
 The Targets property can be used to guide and constrain this behavior.
@@ -159,26 +187,28 @@ interacting via the Redfish Interface.
 
 The hardware inventory for the rack in obtained from the Chassis resource representing each node's hardware.
 
-    GET /redfish/v1/Chassis/{id}
+```
+GET /redfish/v1/Chassis/{id}
+```
 
 The response contains the hardware inventory properties for manufacturer, model, SKU, serial number and part number.
 The AssetTag properties is a client writeable property.
 
 ```
-    {
-        "@odata.type": "#Chassis.v1_2_0.Chassis",
-        "@odata.id": "/redfish/v1/Chassis/Node1",
-        "Id": "Node1",
-        . . .
-        "ChassisType": "Node",
-        "Name": "Rack Manager Hardware",
-        "Manufacturer": "…"
-        "Model": "RackScale_Rack",
-        "SKU": "…"
-        "SerialNumber": "…",
-        "PartNumber": "…",
-        "AssetTag": null,
-    }
+{
+  "@odata.type": "#Chassis.v1_2_0.Chassis",
+  "@odata.id": "/redfish/v1/Chassis/Node1",
+  "Id": "Node1",
+  . . .
+  "ChassisType": "Node",
+  "Name": "Rack Manager Hardware",
+  "Manufacturer": "…"
+  "Model": "RackScale_Rack",
+  "SKU": "…"
+  "SerialNumber": "…",
+  "PartNumber": "…",
+  "AssetTag": null,
+}
 ```
 
 ### Get power state of the rack
@@ -186,46 +216,52 @@ The AssetTag properties is a client writeable property.
 The power state for the rack in obtained from the Chassis resource
 representing the rack hardware.
 
-    GET /redfish/v1/Chassis/Rack
+```
+GET /redfish/v1/Chassis/Rack
+```
 
 The response contains the PowerState properties.
 
-    {
-        "@odata.type": "#Chassis.v1_2_0.Chassis",
-        "@odata.id": "/redfish/v1/Chassis/Rack",
-        "Id": "Node1",
-        "ChassisType": "Rack",
-        "PowerState": "On"
-    }
+```
+{
+  "@odata.type": "#Chassis.v1_2_0.Chassis",
+  "@odata.id": "/redfish/v1/Chassis/Rack",
+  "Id": "Node1",
+  "ChassisType": "Rack",
+  "PowerState": "On"
+}
+```
 
 ## Get power usage for rack
 
 The power usage for the rack is obtained from the Power resource associated with the rack hardware.
 
-    GET /redfish/v1/Chassis/Rack/Power
+```
+GET /redfish/v1/Chassis/Rack/Power
+```
 
 The response contains the Voltage array properties.
 The PowerConsumedWatts property contains the value of instantaneous power usage. 
 The PowerMetrics objects contains statistics (min, max, avg) power usage over a duration.
 
 ```
-    {
-        "@odata.id": "/redfish/v1/Chassis/Rack/Power",
-        "@odata.type": "#Power.v1_1_0.Power",
-        "Id": "Power",
-        "PowerControl": \[ {
-            "@odata.id": "/redfish/v1/Chassis/Zone1/Power#/PowerControl/0",
-            "MemberId": "0",
-            "Name": "System Power Control",
-            "PowerConsumedWatts": 8000,
-            "PowerMetrics": {
-                "IntervalInMin": null,
-                "MinConsumedWatts": null,
-                "MaxConsumedWatts": null,
-                "AverageConsumedWatts": null
-            }
-        } \]
+{
+  "@odata.id": "/redfish/v1/Chassis/Rack/Power",
+  "@odata.type": "#Power.v1_1_0.Power",
+  "Id": "Power",
+  "PowerControl": \[ {
+    "@odata.id": "/redfish/v1/Chassis/Zone1/Power#/PowerControl/0",
+    "MemberId": "0",
+    "Name": "System Power Control",
+    "PowerConsumedWatts": 8000,
+    "PowerMetrics": {
+      "IntervalInMin": null,
+      "MinConsumedWatts": null,
+      "MaxConsumedWatts": null,
+      "AverageConsumedWatts": null
     }
+  } \]
+}
 ```
 
 ## Set power usage of rack
@@ -234,16 +270,18 @@ The power usage for the rack is modifying the PowerLimit object within the Power
 
 The properties are writeable, so they can be PATCH'ed directly.
 
-  PATCH /redfish/v1/Chassis/Rack/Power
+```
+PATCH /redfish/v1/Chassis/Rack/Power
+```
 
 With the message
 
 ```
-  {
-    "PowerLimit": {
-      "LimitInWatts": 300
-    }
+{
+  "PowerLimit": {
+    "LimitInWatts": 300
   }
+}
 ```
 
 Note that the PowerLimit complex properties has other properties that may be set during the same patch.
@@ -252,42 +290,44 @@ The LimitException property specifies the action if the power limit cannot be en
 The possible values are: "NoAction", "HardPowerOff", "LogEventOnly".
 
 ```
-  {
-    "PowerLimit": {
-      "LimitInWatts": 300,
-      "LimitException": "LogEventOnly",
-      "CorrectionInMs": 100
-    }
+{
+  "PowerLimit": {
+    "LimitInWatts": 300,
+    "LimitException": "LogEventOnly",
+    "CorrectionInMs": 100
   }
+}
 ```
 
 ## Get status of PSU
 
 The status and health of the power supply unit is obtained from the Power resource associated with the rack hardware.
 
-  GET /redfish/v1/Chassis/Rack/Power
+```
+GET /redfish/v1/Chassis/Rack/Power
+```
 
 The status and health of the power supply is obtained from the PowerSupplies object within the Power resource associated with the rack hardware.
 Specifically the Status object contains both State and Health properties.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Chassis/Rack/Power",
-    "@odata.type": "#Power.v1_1_0.Power",
-    "Id": "Power",
-    "PowerSupplies": \[ {
-      "@odata.id": "/redfish/v1/Chassis/Zone1/Power#/PowerSupplies/0",
-      "MemberId": "0",
-      "Name": "Power Supply Bay 1",
-      "Status": {
-        "State": "Enabled",
-        "Health": "Warning"
-      },
-      "RelatedItem": \[ {
-      "@odata.id": "/redfish/v1/Chassis/Rack"
-      } \]
+{
+  "@odata.id": "/redfish/v1/Chassis/Rack/Power",
+  "@odata.type": "#Power.v1_1_0.Power",
+  "Id": "Power",
+  "PowerSupplies": \[ {
+    "@odata.id": "/redfish/v1/Chassis/Zone1/Power#/PowerSupplies/0",
+    "MemberId": "0",
+    "Name": "Power Supply Bay 1",
+    "Status": {
+      "State": "Enabled",
+      "Health": "Warning"
+    },
+    "RelatedItem": \[ {
+    "@odata.id": "/redfish/v1/Chassis/Rack"
     } \]
-  }
+  } \]
+}
 ```
 
 ## Get power state of node
@@ -295,16 +335,18 @@ Specifically the Status object contains both State and Health properties.
 The power state for the node in obtained from the Chassis resource
 representing the node chassis or hardware.
 
-  GET /redfish/v1/Chassis/Node-1
+```
+GET /redfish/v1/Chassis/Node-1
+```
 
 The response contains the PowerState properties.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Chassis/Node-1,
-    "ChassisType": "Node",
-    "PowerState": "On"
-  }
+{
+  "@odata.id": "/redfish/v1/Chassis/Node-1,
+  "ChassisType": "Node",
+  "PowerState": "On"
+}
 ```
 
 ## Get power usage of node
@@ -312,39 +354,41 @@ The response contains the PowerState properties.
 The power usage for a node is obtained from the Power resource
 associated with the node chassis or hardware.
 
-  GET /redfish/v1/Chassis/Node-1/Power
+```
+GET /redfish/v1/Chassis/Node-1/Power
+```
 
 Which responds with the following message. The PowerConsumedWatts
 property contains the value of instantaneous power usage.
 
 ```
-  {
+{
   "@odata.id": "/redfish/v1/Chassis/Node-1/Power",
   "PowerControl": \[
-      {
-      "Name": "System Power Control",
-      "PowerConsumedWatts": 200
-      }
-    \]
-  }
+    {
+    "Name": "System Power Control",
+    "PowerConsumedWatts": 200
+    }
+  \]
+}
 ```
 
 Note, the response also contains a PowerMetrics object.
 The PowerMetricsobject contains statistics regarding the power usage over a time interval (minimum, maximum, average).
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Chassis/Node-1/Power",
-    "PowerControl": \[ {
-      "MemberId": "0",
-      "PowerMetrics": {
-        "IntervalInMin": 1,
-        "MinConsumedWatts": 197,
-        "MaxConsumedWatts": 202,
-        "AverageConsumedWatts": 199
-      }
-    } \]
-  }
+{
+  "@odata.id": "/redfish/v1/Chassis/Node-1/Power",
+  "PowerControl": \[ {
+    "MemberId": "0",
+    "PowerMetrics": {
+      "IntervalInMin": 1,
+      "MinConsumedWatts": 197,
+      "MaxConsumedWatts": 202,
+      "AverageConsumedWatts": 199
+    }
+  } \]
+}
 ```
 
 ## Set power usage of Node
@@ -354,53 +398,57 @@ The power usage limit for the node is modifying the PowerLimit object within the
 The property is PATCH'ed directly.
 The PATCH is similar to set the power limit on the rack, except the URI specifies the node's Power resource, instead of the rack's Power resource.
 
-  PATCH /redfish/v1/Chassis/Node-1/Power
+```
+PATCH /redfish/v1/Chassis/Node-1/Power
+```
 
 With the message
 
 ```
-  {
-    "PowerLimit": {
-      "Limit InWatts": 300
-    }
+{
+  "PowerLimit": {
+    "Limit InWatts": 300
   }
+}
 ```
 
 ## Get temperature of Node
 
 The temperature of a node is obtained from the Thermal resource subordinate to Chassis resource which represents node's chassis.
 
-  GET /redfish/v1/Chassis/Node-1/Thermal
+```
+GET /redfish/v1/Chassis/Node-1/Thermal
+```
 
 The response message is shown below. In the Temperatures array element whose "PhysicalContext" property has the value of "Intake", the ReadingCelsius property contains the value of temperature.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Chassis/Node-1/Thermal",
-    "Temperatures": \[ {
-      "ReadingCelsius": 21
-      "PhysicalContext": "Intake"
-    } \]
-  }
+{
+  "@odata.id": "/redfish/v1/Chassis/Node-1/Thermal",
+  "Temperatures": \[ {
+    "ReadingCelsius": 21
+    "PhysicalContext": "Intake"
+  } \]
+}
 ```
 
 In the same array element, properties exists which specify the threshold values and the range of the temperature readings.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Chassis/Node-1/Thermal",
-    "Temperatures": \[ {
-      "PhysicalContext": "Intake"
-      "UpperThresholdNonCritical": 42,
-      "UpperThresholdCritical": 42,
-      "UpperThresholdFatal": 42,
-      "LowerThresholdNonCritical": 42,
-      "LowerThresholdCritical": 5,
-      "LowerThresholdFatal": 42,
-      "MinReadingRangeTemp": 0,
-      "MaxReadingRangeTemp": 200
-    } \]
-  }
+{
+  "@odata.id": "/redfish/v1/Chassis/Node-1/Thermal",
+  "Temperatures": \[ {
+    "PhysicalContext": "Intake"
+    "UpperThresholdNonCritical": 42,
+    "UpperThresholdCritical": 42,
+    "UpperThresholdFatal": 42,
+    "LowerThresholdNonCritical": 42,
+    "LowerThresholdCritical": 5,
+    "LowerThresholdFatal": 42,
+    "MinReadingRangeTemp": 0,
+    "MaxReadingRangeTemp": 200
+  } \]
+}
 ```
 
 ## Get status of node
@@ -411,35 +459,39 @@ Figure shows how a diagram of the resource tree.
 
 To determine the status and health the node chassis is obtained by retrieving the chassis resource which represent the chassis and hardware. or the node.
 
-  GET /redfish/v1/Chassis/Node-1
+```
+GET /redfish/v1/Chassis/Node-1
+```
 
 Which responds with the following message. The PowerConsumedWatts property contains the value of instantaneous power usage.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Chassis/Node-1",
-    "Status": {
-      "State": "Enabled",
-      "Health": "OK"
-    }
+{
+  "@odata.id": "/redfish/v1/Chassis/Node-1",
+  "Status": {
+    "State": "Enabled",
+    "Health": "OK"
   }
+}
 ```
 
 The status and health the node computer system aspect is obtained by retrieving the System resource representing the logical aspect of the
 
-  GET /redfish/v1/System/Node-1
+```
+GET /redfish/v1/System/Node-1
+```
 
 The following message is the response. The System's Status object contains an additional property, HealthRollup.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/System/Node-1",
-    "Status": {
-      "State": "Enabled",
-      "Health": "OK",
-      "HealthRollup": "OK"
-    }
+{
+  "@odata.id": "/redfish/v1/System/Node-1",
+  "Status": {
+    "State": "Enabled",
+    "Health": "OK",
+    "HealthRollup": "OK"
   }
+}
 ```
 
 Which responds with the following message. The PowerConsumedWatts property contains the value of instantaneous power usage.
@@ -448,204 +500,225 @@ Which responds with the following message. The PowerConsumedWatts property conta
 
 The status and health the node CPUs is obtained by retrieving the System resource which represent the node.
 
-  GET /redfish/v1/System/Node-1
+```
+GET /redfish/v1/System/Node-1
+```
 
 The following message is the response. The information of interest is contained in the Status object, which is contained by the ProcessSummary object.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/System/Node-1",
-    "ProcessorSummary": {
-      "Count": 8,
-      "LogicalProcessorCount": 256,
-      "Model": "Multi-Core Intel(R) Xeon(R) processor 7xxx Series",
-      "Status": {
-        "State": "Enabled",
-        "Health": "OK",
-        "HealthRollup": "OK"
-      }
+{
+  "@odata.id": "/redfish/v1/System/Node-1",
+  "ProcessorSummary": {
+    "Count": 8,
+    "LogicalProcessorCount": 256,
+    "Model": "Multi-Core Intel(R) Xeon(R) processor 7xxx Series",
+    "Status": {
+      "State": "Enabled",
+      "Health": "OK",
+      "HealthRollup": "OK"
     }
   }
+}
 ```
 
 ## Get status of node memory
 
 The status and health the node's memory is obtained by retrieving the System resource which represent the node.
 
-  GET /redfish/v1/System/Node-1
+```
+GET /redfish/v1/System/Node-1
+```
 
 The following message is the response. The information of interest is contained in the Status object.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/System/Node-1",
-    "MemorySummary": {
-      "TotalSystemMemoryGiB": 16,
-      "MemoryMirroring": "System",
-      "Status": {
-        "State": "Enabled",
-        "Health": "OK",
-        "HealthRollup": "OK"
-      }
+{
+  "@odata.id": "/redfish/v1/System/Node-1",
+  "MemorySummary": {
+    "TotalSystemMemoryGiB": 16,
+    "MemoryMirroring": "System",
+    "Status": {
+      "State": "Enabled",
+      "Health": "OK",
+      "HealthRollup": "OK"
     }
   }
+}
 ```
 
 ## Get state of node LED
 
 The state of the LED is obtained by retrieving the Chassis resource which represent the node chassis.
 
-  GET /redfish/v1/Chassis/Node-1
+```
+GET /redfish/v1/Chassis/Node-1
+```
 
 The response contain the following fragment. The information of interest
 is the value of the IndicatorLED property.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Chassis/Node-1",
-    "IndicatorLED": "Lit"
-  }
+{
+  "@odata.id": "/redfish/v1/Chassis/Node-1",
+  "IndicatorLED": "Lit"
+}
 ```
 
 ## Get log from rack manager
 
 The RMC log is by retrieving the Log resource, which represent the RMC's log.
 
-  GET /redfish/v1/Managers/RMC/LogService/Log
+```
+GET /redfish/v1/Managers/RMC/LogService/Log
+```
 
 The response contains the following fragment.
 
-```
-  {
-    "@odata.id": "/redfish/v1/Managers/RMC/LogServices/Log",
-    "Id": "Log1",
-    "Name": "Rack Manager Log",
-    "Description": "This log contains entries related to the operation of the BMC",
-    "MaxNumberOfRecords": 100,
-    "OverWritePolicy": "WrapsWhenFull",
-    "DateTime": "2020-03-13T04:14:33+06:00",
-    "DateTimeLocalOffset": "+06:00",
-    "ServiceEnabled": true,
-    "LogEntryType": "Event",
-    "Status": {
-      "State": "Enabled",
-      "Health": "OK"
-    },
-    "Actions": {
-      "#LogService.ClearLog": {
-        "target": "/redfish/v1/Managers/RMC/LogServices/Log/Actions/LogService.ClearLog"
-      }
-    },
-    "Entries": {
-      "@odata.id": "/redfish/v1/Managers/RMC/LogServices/Log/Entries"
+``` {.small}
+{
+  "@odata.id": "/redfish/v1/Managers/RMC/LogServices/Log",
+  "Id": "Log1",
+  "Name": "Rack Manager Log",
+  "Description":
+    "This log contains entries related to the operation of the BMC",
+  "MaxNumberOfRecords": 100,
+  "OverWritePolicy": "WrapsWhenFull",
+  "DateTime": "2020-03-13T04:14:33+06:00",
+  "DateTimeLocalOffset": "+06:00",
+  "ServiceEnabled": true,
+  "LogEntryType": "Event",
+  "Status": {
+    "State": "Enabled",
+    "Health": "OK"
+  },
+  "Actions": {
+    "#LogService.ClearLog": {
+      "target":
+        "/redfish/v1/Managers/RMC/LogServices/Log/Actions/LogService.ClearLog"
     }
+  },
+  "Entries": {
+    "@odata.id": "/redfish/v1/Managers/RMC/LogServices/Log/Entries"
   }
+}
 ```
 
 ## Get log from node
 
 The System's log are retrieved is obtained by retrieving the Log resource which represent the node's log.
 
-  GET /redfish/v1/Systems/Node-1/LogService/Log
+```
+GET /redfish/v1/Systems/Node-1/LogService/Log
+```
 
 The response contains the following fragment.
 
-```
-  {
-    "@odata.id": "/redfish/v1/Systems/Node-1/LogServices/Log",
-    "Id": "Log",
-    "Name": "System Log",
-    "Description": "This log contains entries related to the operation of a
-    system",
-    "MaxNumberOfRecords": 1000,
-    "OverWritePolicy": "WrapsWhenFull",
-    "DateTime": "2015-03-13T04:14:33+06:00",
-    "DateTimeLocalOffset": "+06:00",
-    "ServiceEnabled": true,
-    "LogEntryType": "Event",
-    "Status": {
-      "State": "Enabled",
-      "Health": "OK"
-    },
-    "Actions": {
-      "#LogService.ClearLog": {
-        "target": "/redfish/v1/Systems/Node-1/LogServices/Log/Actions/LogService.ClearLog"
-      }
-    },
-    "Entries": {
-      "@odata.id": "/redfish/v1/Systems/Node-1/LogServices/Log/Entries"
+``` {.small}
+{
+  "@odata.id": "/redfish/v1/Systems/Node-1/LogServices/Log",
+  "Id": "Log",
+  "Name": "System Log",
+  "Description":
+    "This log contains entries related to the operation of a system",
+  "MaxNumberOfRecords": 1000,
+  "OverWritePolicy": "WrapsWhenFull",
+  "DateTime": "2015-03-13T04:14:33+06:00",
+  "DateTimeLocalOffset": "+06:00",
+  "ServiceEnabled": true,
+  "LogEntryType": "Event",
+  "Status": {
+    "State": "Enabled",
+    "Health": "OK"
+  },
+  "Actions": {
+    "#LogService.ClearLog": {
+      "target":
+        "/redfish/v1/Systems/Node-1/LogServices/Log/Actions/LogService.ClearLog"
     }
+  },
+  "Entries": {
+    "@odata.id": "/redfish/v1/Systems/Node-1/LogServices/Log/Entries"
   }
+}
 ```
 
 ## Get FW version on rack manager
 
 The version of firmware on the rack manager is obtained by retrieving the Manager resource which represents the rack manager.
 
-  GET /redfish/v1/Managers/RMC
+```
+GET /redfish/v1/Managers/RMC
+```
 
 The response contains the following fragment. The information of interest is the value of the FirmwareVersion property.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Managers/RMC",
-    "Id": "RMC",
-    "FirmwareVersion": "1.00"
-  }
+{
+  "@odata.id": "/redfish/v1/Managers/RMC",
+  "Id": "RMC",
+  "FirmwareVersion": "1.00"
+}
 ```
 
 ## Get FW version on node
 
 The version of BIOS firmware on a system is obtained by retrieving the System resource which represents the system.
 
-  GET /redfish/v1/Systems/{id}
+```
+GET /redfish/v1/Systems/{id}
+```
 
 The response contains the following fragment. The information of interest is the value of the BiosVersion property.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/System/CS_1",
-    "Id": "CS_1",
-    "BiosVersion": "P79 v1.00 (09/20/2013)"
-  }
+{
+  "@odata.id": "/redfish/v1/System/CS_1",
+  "Id": "CS_1",
+  "BiosVersion": "P79 v1.00 (09/20/2013)"
+}
 ```
 
 ## Get BMC FW version on node
 
 The version of firmware on the BMC on a system is obtained by retrieving the Manager resource which represents the BMC of interest.
 
-  GET /redfish/v1/Managers/BMC_1
+```
+GET /redfish/v1/Managers/BMC_1
+```
 
 The response contains the following fragment. The information of interest is the value of the FirmwareVersion property.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Managers/BMC_1",
-    "Id": "BMC_1",
-    "FirmwareVersion": "1.00"
-  }
+{
+  "@odata.id": "/redfish/v1/Managers/BMC_1",
+  "Id": "BMC_1",
+  "FirmwareVersion": "1.00"
+}
 ```
 
 ## Get FW version of PSU
 
 The version of firmware on the PSU is obtained by retrieving the Power resource subordinate to the Chassis resource which represents the chassis of interest.
 
-  GET /redfish/v1/Chassis/Ch_1/Power
+```
+GET /redfish/v1/Chassis/Ch_1/Power
+```
 
 The response contains the following fragment. The information of interest is the value of the FirmwareVersion property.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Chassis/Ch_1/Power",
-    "Id": "Power",
-    "PowerSupplies": \[
-      {
-        "@odata.id": "/redfish/v1/Chassis/Ch_1/Power#/PowerSupplies/0",
-        "MemberId": "0",
-        "FirmwareVersion": "1.00"
-      }
-    \]
-  }
+{
+  "@odata.id": "/redfish/v1/Chassis/Ch_1/Power",
+  "Id": "Power",
+  "PowerSupplies": \[
+    {
+      "@odata.id": "/redfish/v1/Chassis/Ch_1/Power#/PowerSupplies/0",
+      "MemberId": "0",
+      "FirmwareVersion": "1.00"
+    }
+  \]
+}
 ```
 
 ## Update Firmware on Rack Manager via Pull Method
@@ -653,22 +726,26 @@ The response contains the following fragment. The information of interest is the
 To update the firmware on the rack manager via the pull method, the
 client invokes the following command.
 
-  POST /redfish/v1/UpdateService/Actions/SimpleUpdate
+```
+POST /redfish/v1/UpdateService/Actions/SimpleUpdate
+```
 
 The POST command includes the following message.
 The value of the ImageURI property is the path to the new rack manager firmware image.
 The message may also include the TransferProtocol, Username and Password properties.
 
-  POST /redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate
-  HTTP/1.1 Content-Type: application/json Content-Length:
+```
+POST /redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate
+HTTP/1.1 Content-Type: application/json Content-Length:
+```
 
 ```
-  {
-    "ImageURI": "https://192.168.1.250/images/rmc_update.bin",
-    "Target": \[
-      "/redfish/v1/managers/RMC"
-    \]
-  }
+{
+  "ImageURI": "https://192.168.1.250/images/rmc_update.bin",
+  "Target": \[
+    "/redfish/v1/managers/RMC"
+  \]
+}
 ```
 
 If the Redfish service starts a task to handle the firmware update, it will respond with a task pointer, TaskMonitorURI. The client monitors the task by performing GETs on the TaskMonitorURI and inspects the response.
@@ -678,27 +755,29 @@ If the Redfish service starts a task to handle the firmware update, it will resp
 To update the firmware on the rack manager via the push method, the
 client invokes the following command.
 
-  POST /redfish/v1/UpdateService/upload
+```
+POST /redfish/v1/UpdateService/upload
+```
 
 The POST command includes the following multi-part message
 
 ```
-  Content-Type: multipart/form-data;
-  boundary=---------------------------d74496d66958873e
-  Content-Length:
-  -----------------------------d74496d66958873e
-  Content-Disposition: form-data; name="UpdateParameters"
-  Content-Type: application/json
-  {
-    "Target": \[
-      "/redfish/v1/managers/RMC"
-    \]
-  }
-  -----------------------------d74496d66958873e
-  Content-Disposition: form-data; name="UpdateFile";
-  filename="bmc_update.bin"
-  Content-Type: application/octet-stream
-  \<software image binary\>
+Content-Type: multipart/form-data;
+boundary=---------------------------d74496d66958873e
+Content-Length:
+-----------------------------d74496d66958873e
+Content-Disposition: form-data; name="UpdateParameters"
+Content-Type: application/json
+{
+  "Target": \[
+    "/redfish/v1/managers/RMC"
+  \]
+}
+-----------------------------d74496d66958873e
+Content-Disposition: form-data; name="UpdateFile";
+filename="bmc_update.bin"
+Content-Type: application/octet-stream
+\<software image binary\>
 ```
 
 Redfish service starts a task to handle the firmware update, it will respond with a task pointer, TaskMonitorURI. The client monitors the task by performing GETs on the TaskMonitorURI and inspects the response.
@@ -712,33 +791,33 @@ To update the firmware on a node, the process described above for the rack manag
 The Target property can specify the components, of interest.
 
 ```
-  {
-    "Targets": \[
-      "/redfish/v1/Systems/CS-3"
-      "/redfish/v1/Managers/BMC_3"
-    \]
-  }
+{
+  "Targets": \[
+    "/redfish/v1/Systems/CS-3"
+    "/redfish/v1/Managers/BMC_3"
+  \]
+}
 ```
 
 The Target property can specify the node, of interest.
 
 ```
-  {
-    "Targets": \[
-      "/redfish/v1/systems/CS-3"
-    \]
-  }
+{
+  "Targets": \[
+    "/redfish/v1/systems/CS-3"
+  \]
+}
 ```
 
 The Targets property can specify the nodes, of interest.
 
 ```
-  {
-    "Target": \[
-      "/redfish/v1/systems/CS-1",
-      "/redfish/v1/systems/CS-3"
-    \]
-  }
+{
+  "Target": \[
+    "/redfish/v1/systems/CS-1",
+    "/redfish/v1/systems/CS-3"
+  \]
+}
 ```
 
 ## Reset a temporary group of nodes
@@ -749,22 +828,24 @@ The resource URI is the 'target' property of the within the \#Aggregate.Reset pr
 
 To perform a reset of the group, a POST is invoked to the value of the Target property within the \#Aggregate.Reset property.
 
-  POST /redfish/v1/AggregationService/Actions/Aggregate.Reset
+```
+POST /redfish/v1/AggregationService/Actions/Aggregate.Reset
+```
 
 The POST request shall contain a request body. The contents of the request body are described by resource specified by the
-@Reddfish.ActionInfo property. The TargetURIs property specifies the group to be used.
+\@Reddfish.ActionInfo property. The TargetURIs property specifies the group to be used.
 After the group is used, it is forgotten.
 
 ```
-  {
-    "BatchSize": 10,
-    "DelayBetweenBatchesInSeconds": 15,
-    "ResetType": "ForceRestart",
-    "TargetURIs": \[
-      "/redfish/v1/Systems/cluster-node3",
-      "/redfish/v1/Systems/cluster-node4"
-    \]
-  }
+{
+  "BatchSize": 10,
+  "DelayBetweenBatchesInSeconds": 15,
+  "ResetType": "ForceRestart",
+  "TargetURIs": \[
+    "/redfish/v1/Systems/cluster-node3",
+    "/redfish/v1/Systems/cluster-node4"
+  \]
+}
 ```
 
 ## Reset a persistent group of nodes
@@ -772,18 +853,20 @@ After the group is used, it is forgotten.
 To update a persistent set of nodes, the client invokes the following
 command.
 
-  POST /redfish/v1/AggregationService/Aggregates/Agg1/Actions/Aggregate.Reset
+```
+POST /redfish/v1/AggregationService/Aggregates/Agg1/Actions/Aggregate.Reset
+```
 
 The POST command contains a request body.
 The ResetType property specifies what type of reset to perform and is mandatory.
 The BatchSize and DelayBetweenBatechesInSeconds specifies that the reset be done in batches, instead of all at the same time.
 
 ```
-  {
-    "BatchSize": 10,
-    "DelayBetweenBatchesInSeconds": 15,
-    "ResetType": "ForceRestart"
-  }
+{
+  "BatchSize": 10,
+  "DelayBetweenBatchesInSeconds": 15,
+  "ResetType": "ForceRestart"
+}
 ```
 
 ## Create a Persistent Set of Nodes
@@ -792,21 +875,23 @@ The previous usage model assumes that the aggregate, Agg1, already exists in the
 
 To create an aggregate, the client invokes the following command.
 
-  POST /redfish/v1/AggregationService/Aggregates/Agg1
+```
+POST /redfish/v1/AggregationService/Aggregates/Agg1
+```
 
 The response contains the following fragment. The Elements property contains the members of the group. The Actions property contains the actions that can be performed on the aggregate. An action is invoked by POST'ing to the URI value of the Target property with a request body containing the properties described in the ActionInfo resource.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/AggregationService/Aggregates/Agg1",
-    "Id": "Agg1",
-    "Name": "Aggregate One",
-    "ElementsCount": 2,
-    "Elements": \[
-      { "@odata.id": "/redfish/v1/Systems/cluster-node3" },
-      { "@odata.id": "/redfish/v1/Systems/cluster-node4" }
-    \]
-  }
+{
+  "@odata.id": "/redfish/v1/AggregationService/Aggregates/Agg1",
+  "Id": "Agg1",
+  "Name": "Aggregate One",
+  "ElementsCount": 2,
+  "Elements": \[
+    { "@odata.id": "/redfish/v1/Systems/cluster-node3" },
+    { "@odata.id": "/redfish/v1/Systems/cluster-node4" }
+  \]
+}
 ```
 
 ## Set the Boot Order to their defaults a persistent group of nodes
@@ -814,7 +899,9 @@ The response contains the following fragment. The Elements property contains the
 To set the boot order of a persistent group of nodes to their default
 boot order, the client invokes the following command.
 
-  POST /redfish/v1/AggregationService/Aggregates/Agg1/Actions/Aggregate.SetDefaultBootOrder
+``` {.small}
+POST /redfish/v1/AggregationService/Aggregates/Agg1/Actions/Aggregate.SetDefaultBootOrder
+```
 
 The POST command has no request message.
 
@@ -826,39 +913,42 @@ The use cases specified below is the support the process for authorization betwe
 
 The certificate for a node is retrieved as member of the Certificates collection for the node.
 
-  GET /redfish/v1/Systems/Node-1/Certificates/Cert-1
+```
+GET /redfish/v1/Systems/Node-1/Certificates/Cert-1
+```
 
 The response contains the following fragment.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Systems/Node-1/Certificates/Cert-1",
-    "Id": "Cert-1",
-    "Name": "HTTPS Certificate",
-    "CertificateString": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
-    "CertificateType": "PEM",
-    "Issuer": {
-      "Country": "US",
-      "State": "Oregon",
-      "City": "Portland",
-      "Organization": "Contoso",
-      "OrganizationalUnit": "ABC",
-      "CommonName": "manager.contoso.org"
-    },
-    "Subject": {
-      "Country": "US",
-      "State": "Oregon",
-      "City": "Portland",
-      "Organization": "Contoso",
-      "OrganizationalUnit": "ABC",
-      "CommonName": "manager.contoso.org"
-    },
-    "ValidNotBefore": "2018-09-07T13:22:05Z",
-    "ValidNotAfter": "2019-09-07T13:22:05Z",
-    "KeyUsage": \[
-      "ServerAuthentication"
-    \]
-  }
+{
+  "@odata.id": "/redfish/v1/Systems/Node-1/Certificates/Cert-1",
+  "Id": "Cert-1",
+  "Name": "HTTPS Certificate",
+  "CertificateString":
+    "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+  "CertificateType": "PEM",
+  "Issuer": {
+    "Country": "US",
+    "State": "Oregon",
+    "City": "Portland",
+    "Organization": "Contoso",
+    "OrganizationalUnit": "ABC",
+    "CommonName": "manager.contoso.org"
+  },
+  "Subject": {
+    "Country": "US",
+    "State": "Oregon",
+    "City": "Portland",
+    "Organization": "Contoso",
+    "OrganizationalUnit": "ABC",
+    "CommonName": "manager.contoso.org"
+  },
+  "ValidNotBefore": "2018-09-07T13:22:05Z",
+  "ValidNotAfter": "2019-09-07T13:22:05Z",
+  "KeyUsage": \[
+    "ServerAuthentication"
+  \]
+}
 ```
 
 ## Place certificate on  node
@@ -866,107 +956,118 @@ The response contains the following fragment.
 The certificate is placed on a managed node with the following HTTP
 command.
 
-  POST /redfish/v1/Systems/{id}/Certificates/SystemID
+```
+POST /redfish/v1/Systems/{id}/Certificates/SystemID
+```
 
 The response contains the following fragment. The KeyUsage property
 shall have the value(s) ??.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/System/1/Certificates/SystemID",
-    "@odata.type": "#Certificate.v1_1_0.Certificate",
-    "Id": "1",
-    "Name": "HTTPS Certificate",
-    "CertificateString": "-----BEGIN CERTIFICATE-----\n...\n-----END ERTIFICATE-----",
-    "CertificateType": "PEM",
-    "Issuer": {
-      "CommonName": "…" },
-      "Organization": "…",
-      "OrganizationalUnit": "…"
-    },
-    "Subject": {
-      "CommonName": "…" ,
-      "Organization": "…",
-      "OrganizationalUnit": "…"
-    },
-    "ValidNotBefore": "2018-09-07T13:22:05Z",
-    "ValidNotAfter": "2019-09-07T13:22:05Z",
-    "KeyUsage": \[ "KeyCertSign" \]
-  }
+{
+  "@odata.id": "/redfish/v1/System/1/Certificates/SystemID",
+  "@odata.type": "#Certificate.v1_1_0.Certificate",
+  "Id": "1",
+  "Name": "HTTPS Certificate",
+  "CertificateString":
+    "-----BEGIN CERTIFICATE-----\n...\n-----END ERTIFICATE-----",
+  "CertificateType": "PEM",
+  "Issuer": {
+    "CommonName": "…",
+    "Organization": "…",
+    "OrganizationalUnit": "…"
+  },
+  "Subject": {
+    "CommonName": "…" ,
+    "Organization": "…",
+    "OrganizationalUnit": "…"
+  },
+  "ValidNotBefore": "2018-09-07T13:22:05Z",
+  "ValidNotAfter": "2019-09-07T13:22:05Z",
+  "KeyUsage": \[ "KeyCertSign" \]
+}
 ```
 
 ## Place token on node
 
 The token is placed on a managed node with the following HTTP command.
 
-  POST /redfish/v1/Systems/{id}/Certificates/Token
+```
+POST /redfish/v1/Systems/{id}/Certificates/Token
+```
 
 The response contains the following fragment. The KeyUsage property
 shall have the value(s) ??.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/System/1/Certificates/Token",
-    "@odata.type": "#Certificate.v1_1_0.Certificate",
-    "Id": "Token",
-    "Name": "HTTPS Certificate",
-    "CertificateString": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
-    "CertificateType": "PEM",
-    "Issuer": {
-      "CommonName": "…" ,
-      "Organization": "…",
-      "OrganizationalUnit": "…"
-    },
-    "Subject": {
-      "CommonName": "…" },
-      "Organization": "…",
-      "OrganizationalUnit": "…"
-    },
-    "ValidNotBefore": "2018-09-07T13:22:05Z",
-    "ValidNotAfter": "2019-09-07T13:22:05Z",
-    "KeyUsage": \[ "KeyCertSign" \]
-  }
+{
+  "@odata.id": "/redfish/v1/System/1/Certificates/Token",
+  "@odata.type": "#Certificate.v1_1_0.Certificate",
+  "Id": "Token",
+  "Name": "HTTPS Certificate",
+  "CertificateString":
+    "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+  "CertificateType": "PEM",
+  "Issuer": {
+    "CommonName": "…" ,
+    "Organization": "…",
+    "OrganizationalUnit": "…"
+  },
+  "Subject": {
+    "CommonName": "…",
+    "Organization": "…",
+    "OrganizationalUnit": "…"
+  },
+  "ValidNotBefore": "2018-09-07T13:22:05Z",
+  "ValidNotAfter": "2019-09-07T13:22:05Z",
+  "KeyUsage": \[ "KeyCertSign" \]
+}
 ```
 
 ## Place certificate on rack manager
 
 The certificate is placed on the rack manager with the following HTTP command.
 
-  POST /redfish/v1/Managers/\<RackManager\>/Certificates/Certificate
+```
+POST /redfish/v1/Managers/\<RackManager\>/Certificates/Certificate
+```
 
 Where \<RackManager\> is the member in which the "ManagerType" property has the value "RackManager".
 
 The response contains the following fragment. The KeyUsage property shall have the value KeyCertSign.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/\<RackManager\>/1/Certificates/Token",
-    "@odata.type": "#Certificate.v1_1_0.Certificate",
-    "Id": "1",
-    "Name": "HTTPS Certificate",
-    "CertificateString": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
-    "CertificateType": "PEM",
-    "Issuer": {
-      "CommonName": "…" ,
-      "Organization": "…",
-      "OrganizationalUnit": "…"
-    },
-    "Subject": {
-      "CommonName": "…" },
-      "Organization": "…",
-      "OrganizationalUnit": "…"
-    },
-    "ValidNotBefore": "2018-09-07T13:22:05Z",
-    "ValidNotAfter": "2019-09-07T13:22:05Z",
-    "KeyUsage": \[ "KeyCertSign" \]
-  }
+{
+  "@odata.id": "/redfish/v1/\<RackManager\>/1/Certificates/Token",
+  "@odata.type": "#Certificate.v1_1_0.Certificate",
+  "Id": "1",
+  "Name": "HTTPS Certificate",
+  "CertificateString":
+    "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+  "CertificateType": "PEM",
+  "Issuer": {
+    "CommonName": "…" ,
+    "Organization": "…",
+    "OrganizationalUnit": "…"
+  },
+  "Subject": {
+    "CommonName": "…",
+    "Organization": "…",
+    "OrganizationalUnit": "…"
+  },
+  "ValidNotBefore": "2018-09-07T13:22:05Z",
+  "ValidNotAfter": "2019-09-07T13:22:05Z",
+  "KeyUsage": \[ "KeyCertSign" \]
+}
 ```
 
 ### Place token on rack manager
 
 The token is placed on the rack manager with the following HTTP command.
 
-  POST /redfish/v1/Managers/\<RackManager\>/Certificates/Token
+```
+POST /redfish/v1/Managers/\<RackManager\>/Certificates/Token
+```
 
 Where \<RackManager\> is the member in which the "ManagerType" property
 has the value "RackManager".
@@ -975,27 +1076,28 @@ The response contains the following fragment. The KeyUsage property
 shall have the value(s) ??.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/\<RackManager\>/1/Certificates/Token",
-    "@odata.type": "#Certificate.v1_1_0.Certificate",
-    "Id": "1",
-    "Name": "HTTPS Certificate",
-    "CertificateString": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
-    "CertificateType": "PEM",
-    "Issuer": {
-      "CommonName": "…" ,
-      "Organization": "…",
-      "OrganizationalUnit": "…"
-    },
-    "Subject": {
-      "CommonName": "…" },
-      "Organization": "…",
-      "OrganizationalUnit": "…"
-    },
-    "ValidNotBefore": "2018-09-07T13:22:05Z",
-    "ValidNotAfter": "2019-09-07T13:22:05Z",
-    "KeyUsage": \[ "KeyCertSign" \]
-  }
+{
+  "@odata.id": "/redfish/v1/\<RackManager\>/1/Certificates/Token",
+  "@odata.type": "#Certificate.v1_1_0.Certificate",
+  "Id": "1",
+  "Name": "HTTPS Certificate",
+  "CertificateString":
+    "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+  "CertificateType": "PEM",
+  "Issuer": {
+    "CommonName": "…" ,
+    "Organization": "…",
+    "OrganizationalUnit": "…"
+  },
+  "Subject": {
+    "CommonName": "…",
+    "Organization": "…",
+    "OrganizationalUnit": "…"
+  },
+  "ValidNotBefore": "2018-09-07T13:22:05Z",
+  "ValidNotAfter": "2019-09-07T13:22:05Z",
+  "KeyUsage": \[ "KeyCertSign" \]
+}
 ```
 
 ### Place manifest on rack manager
@@ -1003,39 +1105,45 @@ shall have the value(s) ??.
 The manifest is placed on the rack manager with the following HTTP
 command.
 
-  POST /redfish/v1/Managers/rmc/ManageabilityManifest
+```
+POST /redfish/v1/Managers/rmc/ManageabilityManifest
+```
 
 The request contains the following fragment.
 
 ```
-  {
-    "@odata.id": "/redfish/v1/Managers/rmc/ManageabilityManifest",
-    "@odata.type": "#ManageabilityManifest.v1_0_0.ManageabilityManifest",
-    "Id": "ManageabilityManifest",
-    "Name": "Manageability Manift\est",
-    "NodesToManage": {
-      {
-        "NodeName": "node1",
-        "NodeIDCertificateString": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
-        "CertificateType": "PEM"
-      },
-      {
-        "NodeName": "node2",
-        "NodeIDCertificateString": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
-        "CertificateType": "PEM"
-      },
-      {
-        "NodeName": "switch1",
-        "NodeIDCertificateString": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
-        "CertificateType": "PEM"
-      },
-      {
-        "NodeName": "nas1",
-        "NodeIDCertificateString": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
-        "CertificateType": "PEM"
-      }
+{
+  "@odata.id": "/redfish/v1/Managers/rmc/ManageabilityManifest",
+  "@odata.type": "#ManageabilityManifest.v1_0_0.ManageabilityManifest",
+  "Id": "ManageabilityManifest",
+  "Name": "Manageability Manift\est",
+  "NodesToManage": {
+    {
+      "NodeName": "node1",
+      "NodeIDCertificateString":
+        "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+      "CertificateType": "PEM"
+    },
+    {
+      "NodeName": "node2",
+      "NodeIDCertificateString":
+        "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+      "CertificateType": "PEM"
+    },
+    {
+      "NodeName": "switch1",
+      "NodeIDCertificateString":
+        "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+      "CertificateType": "PEM"
+    },
+    {
+      "NodeName": "nas1",
+      "NodeIDCertificateString":
+        "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+      "CertificateType": "PEM"
     }
   }
+}
 ```
 
 # Security
@@ -1109,7 +1217,7 @@ it.
 - **Managed Node List =** Node Certificate + Time Stamp of Initial
   session establishment
 
-> In the Redfish Certificate Management Whitepaper \[1\], the node
+> In the Redfish Certificate Management Whitepaper [@{redfish-certificate-whitepaper}], the node
 > certificate and rack manager certificate are referred to as device
 > identity certificates.
 
@@ -1246,18 +1354,6 @@ Reason for Classification
 | 8 | Non designated rack manager (belong to the same CSP as the node) attempts to manage nodes | Network Adversary | End User’s Data | H | In discovery flow, rack manager sends node’s token from its manifest as a proof that this rack manager is the designated rack manager for that node. Node verifies the node token to make sure rack manager is its designated rack manager. |
 |  |  |  |  |  | Other node managers do not have node’s token (encrypted during transit) |
 | 9 | A rogue rack manager attempts to reply legitimate encrypted rack manager’s token | Network Adversary | End User’s Data | H | In discovery flow, node decrypts rack manager’s token and checks the cert in token with the cert that rogue rack manager passes down early in discovery flow. Discrepancy leads to the fact that node logs “Suspicious Node Manger” event (no session will get establish). |
-
-# References
-
-\[1\] "[OpenRMC Design Specification](http://www.opencompute.org/)"
-
-\[2\] Usage Guide and Requirements for the OCP Baseline Hardware Management Profile v1.0.1
-
-\[3\] "[Redfish Firmware Update White Paper](https://www.dmtf.org/sites/default/files/standards/documents/DSP2062_1.0.0.pdf)"
-
-\[4\] "[Redfish API Specification](https://www.dmtf.org/dsp/DSP0266)"
-
-\[5\] "[Redfish Certificate Whitepaper](https://www.dmtf.org/sites/default/files/standards/documents/DSP2059_1.1.0.pdf)"
 
 # Revision 
 
