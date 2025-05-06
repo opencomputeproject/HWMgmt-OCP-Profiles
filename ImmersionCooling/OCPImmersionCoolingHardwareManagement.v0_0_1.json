@@ -1,0 +1,205 @@
+{
+  "SchemaDefinition": "RedfishInteroperabilityProfile.v1_4_1",
+  "ProfileName": "OCPImmersionCoolingController",
+  "ProfileVersion": "0.0.1",
+  "Purpose": "Profile for the OCP Immersion Cooling Controller.",
+  "OwningEntity": "Open Compute Project",
+  "ContactInfo": "redfish@opencompute.org",
+  "RequiredProfiles": {    
+  },
+  "Resources": {    
+    "Control": {
+      "MinVersion": "1.1.0",
+      "Purpose": "To control the Cooling Unit resource",
+      "PropertyRequirements": {
+        "Accuracy": {
+          "ReadRequirement": "Recommended"
+        },
+        "Actions": {
+          "ReadRequirement": "Recommended"
+        },
+        "AssociatedSensors": {
+          "ReadRequirement": "Recommended"
+        },
+        "ControlLoop": {
+          "Purpose": "To define the Control Loop for the Thermal resource",
+          "PropertyRequirements": {
+            "Differential": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Integral": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Proportional": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            }
+          }
+        },
+        "ControlType": {
+          "Purpose": "Supported Control Types",
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "DeadBand": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Description": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Id": {},
+        "Increment": {
+          "ReadRequirement": "Recommended"
+        },
+        "Location": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Name": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended",
+          "Comparison": "AnyOf",
+          "Values": [
+            "Air temperature, In",
+            "Air temperature, Out",
+            "Air temperature, Differential",
+            "Air pressure, Differential ",
+            "Water temperature, Out",
+            "Water temperature, Differential"
+          ]
+        },
+        "Oem": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "OperatingMode": {},
+        "PhysicalContext": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "PhysicalSubContext": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Sensor": {
+          "ReadRequirement": "Recommended"
+        },
+        "SetPoint": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "Mandatory"
+        },
+        "SetPointRangeMax": {
+          "ReadRequirement": "Recommended"
+        },
+        "SetPointRangeMin": {
+          "ReadRequirement": "Recommended"
+        },
+        "SetPointUnits": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "SetPointUpdateTime": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Status": {
+          "ReadRequirement": "Recommended"
+        },
+        "Links": {}
+      }
+    },
+    "ControlCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },                
+    "Sensor": {
+      "MinVersion": "1.5.0",
+      "Purpose": "Required Temperature Sensors",
+      "ReadRequirement": "Mandatory",
+      "MinCount": 2,
+      "PropertyRequirements": {
+        "Name": {
+          "Comparison": "AnyOf",
+          "Values": [
+            "Air temperature, In",
+            "Air temperature, Out"
+          ]
+        }
+      }
+    },
+    "SensorCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "Facility": {
+      "MinVersion": "1.4.0",
+      "Purpose": "The Facility that the cooling units belong to",
+      "ReadRequirement": "Mandatory",
+      "PropertyRequirements": {
+        "FacilityType": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "Recommended"
+        },
+        "AmbientMetrics": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Description": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Links": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Location": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Status": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "CoolingDomains": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        }
+      }
+    },
+    "Resource": {
+      "Purpose": "Common Redfish resources"
+    },
+    "CoolingLoop": {
+      "MinVersion": "1.0.0"
+    },
+    "LoopConnection": {
+      "MinVersion": "1.0.0"
+    },
+    "LoopConnectionCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "CoolingUnit": {
+      "MinVersion": "1.0.0"
+    },
+    "Circuit": {
+      "MinVersion": "1.4.0"
+    },
+    "ServiceRoot": {
+      "MinVersion": "1.12.0"
+    }    
+  }
+}

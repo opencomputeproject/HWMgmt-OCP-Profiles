@@ -1,0 +1,381 @@
+{
+  "SchemaDefinition": "RedfishInteroperabilityProfile.v1_4_1",
+  "ProfileName": "OCPImmersionCoolingController",
+  "ProfileVersion": "0.0.1",
+  "Purpose": "Profile for the OCP Immersion Cooling Controller.",
+  "OwningEntity": "Open Compute Project",
+  "ContactInfo": "redfish@opencompute.org",
+  "RequiredProfiles": {
+    "OCPCoolantDistributionUnit": {
+      "MinVersion": "1.0.0"
+    }
+  },
+  "Resources": {
+    "ThermalEquipment": {
+      "URIs": [
+        "/redfish/v1/ThermalEquipment"
+      ],
+      "PropertyRequirements": {
+        "ImmersionUnits": {}
+      }
+    },
+    "CoolingUnit": {
+      "URIs": [
+        "/redfish/v1/ThermalEquipment/ImmersionUnits/{CoolingUnitId}"
+      ],
+      "PropertyRequirements": {
+        "CoolantConnectorRedundancy": {
+          "ReadRequirement": "IfImplemented"
+        },
+        "EquipmentType": {
+          "Comparison": "Equal",
+          "Values": [
+            "ImmersionUnit"
+          ]
+        },
+        "Name": {
+          "ReadRequirement": "Mandatory"
+        },
+        "Manufacturer": {
+          "ReadRequirement": "Mandatory"
+        },
+        "Model": {
+          "ReadRequirement": "Mandatory"
+        },
+        "SerialNumber": {
+          "ReadRequirement": "Mandatory"
+        },
+        "FirmwareVersion": {
+          "ReadRequirement": "Mandatory"
+        },
+        "Version": {
+          "ReadRequirement": "Mandatory"
+        },
+        "ProductionDate": {
+          "ReadRequirement": "Mandatory"
+        },
+        "Location": {
+          "ReadRequirement": "Mandatory"
+        },
+        "CoolingUnitMode": {
+          "ReadRequirement": "Mandatory"
+        },
+        "Links": {
+          "ReadRequirement": "Recommended"
+        },
+        "FilterRedundancy": {
+          "ReadRequirement": "IfImplemented"
+        },
+        "Filters": {
+          "ReadRequirement": "IfImplemented"
+        },
+        "PrimaryCoolantConnectors": {},
+        "PumpRedundancy": {
+          "ReadRequirement": "IfImplemented"
+        },
+        "Pumps": {},
+        "Reservoirs": {
+          "ReadRequirement": "IfImplemented"
+        },
+        "SecondaryCoolantConnectors": {},
+        "Status": {
+          "PropertyRequirements": {
+            "Health": {},
+            "State": {}
+          }
+        }
+      },
+      "Actions": {
+        "SetMode": {
+          "ReadRequirement": "Mandatory",
+          "Purpose": "Turn the immersion tank cooling functions off (disable), implies that ITE power is shutdown as well",
+          "Parameters": {
+            "Mode": {
+              "ReadRequirement": "Mandatory"
+            }
+          }
+        }
+      }
+    },
+    "Control": {
+      "MinVersion": "1.6.0",
+      "Purpose": "To control the Cooling Unit resource",
+      "PropertyRequirements": {
+        "Accuracy": {
+          "ReadRequirement": "Recommended"
+        },
+        "Actions": {
+          "ReadRequirement": "Recommended"
+        },
+        "AssociatedSensors": {
+          "ReadRequirement": "Recommended"
+        },
+        "ControlLoop": {
+          "ReadRequirement": "Recommended",
+          "Purpose": "To define the Control Loop for the Thermal resource",
+          "PropertyRequirements": {
+            "Differential": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Integral": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            },
+            "Proportional": {
+              "ReadRequirement": "Recommended",
+              "WriteRequirement": "Recommended"
+            }
+          }
+        },
+        "ControlType": {
+          "Purpose": "Supported Control Types",
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "DeadBand": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Description": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Id": {},
+        "Increment": {
+          "ReadRequirement": "Recommended"
+        },
+        "Location": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Name": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"          
+        },        
+        "ControlMode": {},
+        "PhysicalContext": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "PhysicalSubContext": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Sensor": {
+          "ReadRequirement": "Recommended"
+        },
+        "SetPoint": {
+          "ReadRequirement": "Mandatory",
+          "WriteRequirement": "Mandatory"
+        },
+        "SetPointRangeMax": {
+          "ReadRequirement": "Recommended"
+        },
+        "SetPointRangeMin": {
+          "ReadRequirement": "Recommended"
+        },
+        "SetPointUnits": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "SetPointUpdateTime": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Status": {
+          "ReadRequirement": "Recommended"
+        },
+        "Links": {
+          "ReadRequirement": "Recommended"
+        }
+      }
+    },
+    "ControlCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "Sensor": {
+      "MinVersion": "1.5.0",
+      "Purpose": "Required Temperature Sensors",
+      "ReadRequirement": "Mandatory",
+      "MinCount": 2,
+      "PropertyRequirements": {
+        "Name": {
+          "ReadRequirement": "Mandatory"
+        }
+      }
+    },
+    "SensorCollection": {
+      "PropertyRequirements": {
+        "Members": {
+          "MinCount": 1
+        }
+      }
+    },
+    "Facility": {
+      "MinVersion": "1.4.0",
+      "Purpose": "The Facility that the cooling units belong to",
+      "ReadRequirement": "Recommended",
+      "PropertyRequirements": {
+        "FacilityType": {
+          "ReadRequirement": "IfImplemented",
+          "WriteRequirement": "Recommended"
+        },
+        "AmbientMetrics": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Description": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Links": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Location": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "Status": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        },
+        "CoolingDomains": {
+          "ReadRequirement": "Recommended",
+          "WriteRequirement": "Recommended"
+        }
+      }
+    },
+    "Circuit": {
+      "MinVersion": "1.4.0"
+    },
+    "CoolantConnector": {
+            "URIs": [
+                "/redfish/v1/ThermalEquipment/ImmersionUnits/{CoolingUnitId}/PrimaryCoolantConnectors/{CoolantConnectorId}",
+                "/redfish/v1/ThermalEquipment/ImmersionUnits/{CoolingUnitId}/SecondaryCoolantConnectors/{CoolantConnectorId}"
+            ],
+            "PropertyRequirements": {
+                "Coolant": {
+                    "PropertyRequirements": {
+                        "CoolantType": {},
+                        "DensityKgPerCubicMeter": {},
+                        "SpecificHeatkJoulesPerKgK": {}
+                    }
+                },
+                "CoolantConnectorType": {},
+                "FlowLitersPerMinute": {},
+                "RatedFlowLitersPerMinute": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "DeltaPressurekPa": {},
+                "DeltaTemperatureCelsius": {},
+                "SupplyPressurekPa": {},
+                "SupplyTemperatureCelsius": {},
+                "HeatRemovedkW": {},
+                "ReturnPressurekPa": {},
+                "ReturnTemperatureCelsius": {}
+            }
+        },
+        "Filter": {
+            "ReadRequirement": "IfImplemented",            
+            "URIs": [
+                "/redfish/v1/ThermalEquipment/ImmersionUnits/{CoolingUnitId}/Filters/{FilterId}"
+            ],
+            "PropertyRequirements": {
+                "HotPluggable": {},
+                "Location": {
+                    "PropertyRequirements": {
+                        "PartLocation": {
+                            "PropertyRequirements": {
+                                "LocationOrdinalValue": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "LocationType": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Orientation": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Reference": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "ServiceLabel": {}
+                            }
+                        }
+                    }
+                },
+                "RatedServiceHours": {},
+                "Replaceable": {},
+                "ServicedDate": {},
+                "ServiceHours": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                }
+            }
+        },
+        "Pump": {
+            "ReadRequirement": "IfImplemented",
+            "URIs": [
+                "/redfish/v1/ThermalEquipment/ImmersionUnits/{CoolingUnitId}/Pumps/{PumpId}"
+            ],
+            "PropertyRequirements": {
+                "Location": {
+                    "PropertyRequirements": {
+                        "PartLocation": {
+                            "PropertyRequirements": {
+                                "LocationOrdinalValue": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "LocationType": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Orientation": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Reference": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "ServiceLabel": {}
+                            }
+                        }
+                    }
+                },
+                "PumpSpeedPercent": {},
+                "PumpType": {},
+                "PumpMode": {},
+                "ServiceHours": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                }
+            },
+            "Actions": {
+              "SetMode": {
+                "ReadRequirement": "Mandatory",
+                "Purpose": "Turn the immersion tank pump functions off (disable), implies that ITE power is shutdown as well",
+                "Parameters": {
+                  "Mode": {
+                    "ReadRequirement": "Mandatory"
+                  }
+                }
+              }
+            }
+        }    
+  }
+}
