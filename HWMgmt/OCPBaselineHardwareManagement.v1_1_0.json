@@ -188,7 +188,7 @@
 					"ConditionalRequirements": [{
 						"SubordinateToResource": ["Manager", "EthernetInterfaceCollection"],
 						"ReadRequirement": "Mandatory",
-						"WriteRequirement": "Supported"
+						"WriteRequirement": "Mandatory"
 					}]
 				},
 				"FQDN": {
