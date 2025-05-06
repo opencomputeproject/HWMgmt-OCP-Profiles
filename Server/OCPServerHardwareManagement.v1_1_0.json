@@ -137,7 +137,7 @@
 							"Comparison": "AnyOf"
 						}
 					}
-				}
+				},
 				"Links": {
 					"PropertyRequirements": {
 						"Chassis": {},
