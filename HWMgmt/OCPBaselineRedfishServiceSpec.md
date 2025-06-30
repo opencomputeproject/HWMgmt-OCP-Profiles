@@ -27,7 +27,7 @@ The following table lists the capabilities prescribed in the OCP Baseline Redfis
 |                       | [Manager IP configuration](#manager-ip-configuration)                             | Mandatory |
 |                       | [Manager network protocol configuration}(#manager-network-protocol-configuration) | Mandatory |
 | Service maintenance   | [Software licensing](#software-licensing)                                         | Recommended |
-|                       | [Tasks](#tasks)                                                                   | IfImplemented }
+|                       | [Tasks](#tasks)                                                                   | IfImplemented |
 | Logging               | [Event logging](#event-logging)                                                   | Mandatory |
 |                       | [Service conditions(#service-conditions)                                          | Recommended |
 | Software managemnent  | [Software inventory](#software-inventory)                                         | Mandatory |
