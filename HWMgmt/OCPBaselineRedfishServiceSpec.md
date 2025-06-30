@@ -25,7 +25,7 @@ The following table lists the capabilities prescribed in the OCP Baseline Redfis
 | Service configuration | [Certificate management](#certificate-management)                                 | Mandatory |
 |                       | [Event delivery](#event-delivery)                                                 | Mandatory |
 |                       | [Manager IP configuration](#manager-ip-configuration)                             | Mandatory |
-|                       | [Manager network protocol configuration}(#manager-network-protocol-configuration) | Mandatory |
+|                       | [Manager network protocol configuration](#manager-network-protocol-configuration) | Mandatory |
 | Service maintenance   | [Software licensing](#software-licensing)                                         | Recommended |
 |                       | [Tasks](#tasks)                                                                   | IfImplemented |
 | Logging               | [Event logging](#event-logging)                                                   | Mandatory |
@@ -425,9 +425,7 @@ To retrieve log entries for a given log service, perform a `GET` operation on a 
 
 ```
 GET /redfish/v1/Managers/1/LogServices/EventLog/Entries
-```
 
-```json
 {
     "@odata.id": "/redfish/v1/Managers/1/LogServices/EventLog/Entries",
     "@odata.type": "#LogEntryCollection.LogEntryCollection",
@@ -478,9 +476,7 @@ To retrieve information about an individual software or firmware component, perf
 
 ```
 GET /redfish/v1/UpdateService/FirmwareInventory/BMC
-```
 
-```json
 {
     "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/BMC",
     "@odata.type": "#SoftwareInventory.v1_10_2.SoftwareInventory",
@@ -517,9 +513,7 @@ To retrieve information about the supported update methods, perform a `GET` oper
 
 ```
 GET /redfish/v1/UpdateService
-```
 
-```json
 {
     "@odata.id": "/redfish/v1/UpdateService",
     "@odata.type": "#UpdateService.v1_12_0.UpdateService",
@@ -562,9 +556,7 @@ To retrieve information about the manager's supported protocols and their config
 
 ```
 GET /redfish/v1/Managers/1/NetworkProtocol
-```
 
-```json
 {
     "@odata.id": "/redfish/v1/Managers/1/NetworkProtocol",
     "@odata.type": "#ManagerNetworkProtocol.v1_9_1.ManagerNetworkProtocol",
@@ -624,9 +616,7 @@ To retrieve active conditions detected by the service, perform a `GET` operation
 
 ```
 GET /redfish/v1/ServiceConditions
-```
 
-```json
 {
     "@odata.id": "/redfish/v1/ServiceConditions",
     "@odata.type": "#ServiceConditions.v1_0_1.ServiceConditions",
@@ -664,9 +654,7 @@ To retrieve information about an individual registered client, perform a `GET` o
 
 ```
 GET /redfish/v1/RegisteredClients/1
-```
 
-```json
 {
     "@odata.id": "/redfish/v1/RegisteredClients/1",
     "@odata.type": "#RegisteredClient.v1_1_2.RegisteredClient",
@@ -726,9 +714,7 @@ To retrieve information about an individual session, perform a `GET` operation o
 
 ```
 GET /redfish/v1/SessionService/Sessions/1
-```
 
-```json
 {
     "@odata.id": "/redfish/v1/SessionService/Sessions/1"
     "@odata.type": "#Session.v1_8_0.Session",
@@ -761,9 +747,7 @@ To change the session timeout limit for the service, perform a `PATCH` operation
 
 ```
 PATCH /redfish/v1/SessionService
-```
 
-```json
 {
     "SessionTimeout": 600
 }
@@ -779,9 +763,7 @@ To retrieve information about an individual task, perform a `GET` operation on a
 
 ```
 GET /redfish/v1/TaskService/Tasks/5
-```
 
-```json
 {
     "@odata.id": "/redfish/v1/TaskService/Tasks/5",
     "@odata.type": "#Task.v1_7_4.Task",
