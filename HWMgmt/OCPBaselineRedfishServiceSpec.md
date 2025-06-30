@@ -46,9 +46,11 @@ For the full schema definition, see the `AccountService`, `ManagerAccount`, and 
 
 To access user account information, perform a `GET` operation on a `ManagerAccount` resource:
 
-```
+```http
 GET /redfish/v1/AccountService/Accounts/1
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/AccountService/Accounts/1",
     "@odata.type": "#ManagerAccount.v1_13_0.ManagerAccount",
@@ -74,8 +76,9 @@ GET /redfish/v1/AccountService/Accounts/1
 
 To add a new user account, perform a `POST` operation on the `ManagerAccountCollection` resource:
 
-```
+```http
 POST /redfish/v1/AccountService/Accounts
+Content-Type: application/json
 
 {
     "UserName": "NewUser",
@@ -87,7 +90,7 @@ POST /redfish/v1/AccountService/Accounts
 
 To remove a user account, perform a `DELETE` operation on a `ManagerAccount` resource:
 
-```
+```http
 DELETE /redfish/v1/AccountService/Accounts/3
 ```
 
@@ -99,7 +102,7 @@ For the full schema definition, see the `CertificateService` and `Certificate` s
 
 To generate a certificate signing request for a new certificate, perform a `POST` operation on the `GenerateCSR` action:
 
-```
+```http
 POST /redfish/v1/CertificateService/Actions/CertificateService.GenerateCSR HTTP/1.1
 Content-Type: application/json
 
@@ -141,7 +144,7 @@ Content-Type: application/json
 
 To replace a certificate on the service with a new certificate, perform a `POST` operation on the `ReplaceCertificate` action:
 
-```
+```http
 POST /redfish/v1/CertificateService/Actions/CertificateService.ReplaceCertificate HTTP/1.1
 Content-Type: application/json
 
@@ -161,9 +164,11 @@ Location: /redfish/v1/Managers/1/NetworkProtocol/HTTPS/Certificates/2
 
 To view information about a certificate, perform a `GET` operation on a `Certificate` resource:
 
-```
+```http
 GET /redfish/v1/Managers/1/NetworkProtocol/HTTPS/Certificates/1
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/Managers/1/NetworkProtocol/HTTPS/Certificates/1",
     "@odata.type": "#Certificate.v1_1_0.Certificate",
@@ -205,9 +210,11 @@ For the full schema definition, see the `EventService`, `EventDestination`, and 
 
 To access subscription information for an event listener, perform a `GET` operation on a `EventDestination` resource:
 
-```
+```http
 GET /redfish/v1/EventService/Subscriptions/1
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/EventService/Subscriptions/1",
     "@odata.type": "#EventDestination.v1_15_1.EventDestination",
@@ -227,8 +234,9 @@ GET /redfish/v1/EventService/Subscriptions/1
 
 To add a new subscription for events, perform a `POST` operation on the `EventDestinationCollection` resource:
 
-```
+```http
 POST /redfish/v1/EventService/Subscriptions
+Content-Type: application/json
 
 {
     "Destination": "https://monitor.contoso.org/events",
@@ -240,14 +248,15 @@ POST /redfish/v1/EventService/Subscriptions
 
 To remove a subscription, perform a `DELETE` operation on an `EventDestination` resource:
 
-```
+```http
 DELETE /redfish/v1/EventService/Subscriptions/3
 ```
 
 To transmit an event from a Redfish service to an event listener, the service performs a `POST` operation on the URI contained by the `Destination` for each applicable `EventDestination` resource.
 
-```
+```http
 POST /events
+Content-Type: application/json
 
 {
     "@odata.type": "#Event.v1_7_0.Event",
@@ -283,9 +292,11 @@ For the full schema definition, see the `EthernetInterface` section of the refer
 
 To access Ethernet interface information for an interface on the service, perform a `GET` operation on an `EthernetInterface` resource:
 
-```
+```http
 GET /redfish/v1/Managers/1/EthernetInterfaces/1
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/Managers/1/EthernetInterfaces/1",
     "@odata.type": "#EthernetInterface.v1_12_3.EthernetInterface",
@@ -336,8 +347,9 @@ GET /redfish/v1/Managers/1/EthernetInterfaces/1
 To set an Ethernet interface to a static IP address, perform a `PATCH` operation on the desired `EthernetInterface` resource.
 In the request body, specify a static IP address and disable DHCP.
 
-```
+```http
 PATCH /redfish/v1/Managers/1/EthernetInterfaces/1
+Content-Type: application/json
 
 {
     "IPv4StaticAddresses": [
@@ -356,8 +368,9 @@ PATCH /redfish/v1/Managers/1/EthernetInterfaces/1
 To set an Ethernet interface to DHCP, perform a `PATCH` operation on the desired `EthernetInterface` resource.
 In the request body, enable DHCP and optionally clear the static address array.
 
-```
+```http
 PATCH /redfish/v1/Managers/1/EthernetInterfaces/1
+Content-Type: application/json
 
 {
     "IPv4StaticAddresses": [
@@ -377,9 +390,11 @@ For the full schema definition, see the `LicenseService` and `License` sections 
 
 To retrieve information about a license, perform a `GET` operation on a `License` resource:
 
-```
+```http
 GET /redfish/v1/LicenseService/Licenses/RemotePresence
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/LicenseService/Licenses/RemotePresence",
     "@odata.type": "#License.v1_1_3.License",
@@ -401,8 +416,9 @@ GET /redfish/v1/LicenseService/Licenses/RemotePresence
 
 To install a new license, perform a `POST` operation on the `LicenseCollection` resource:
 
-```
+```http
 POST /redfish/v1/LicenseService/Licenses
+Content-Type: application/json
 
 {
     "LicenseString": "PENvbnRvc29IZWFkZXI+PERhdGE9IkxpY2Vuc2VEYXRhIi8+PC9Db250b3NvSGVhZGVyPg=="
@@ -411,7 +427,7 @@ POST /redfish/v1/LicenseService/Licenses
 
 To uninstall a license, perform a `DELETE` operation on a `License` resource:
 
-```
+```http
 DELETE /redfish/v1/LicenseService/Licenses/Feature25
 ```
 
@@ -423,9 +439,11 @@ For the full schema definition, see the `LogService` and `LogEntry` sections of 
 
 To retrieve log entries for a given log service, perform a `GET` operation on a `LogEntryCollection` resource:
 
-```
+```http
 GET /redfish/v1/Managers/1/LogServices/EventLog/Entries
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/Managers/1/LogServices/EventLog/Entries",
     "@odata.type": "#LogEntryCollection.LogEntryCollection",
@@ -460,8 +478,9 @@ GET /redfish/v1/Managers/1/LogServices/EventLog/Entries
 
 To clear the log entries for a given log service, perform a `POST` operation on the `ClearLog` action:
 
-```
+```http
 POST /redfish/v1/Managers/1/LogServices/EventLog/Actions/LogService.ClearLog
+Content-Type: application/json
 
 {}
 ```
@@ -474,9 +493,11 @@ For the full schema definition, see the `SoftwareInventory` section of the refer
 
 To retrieve information about an individual software or firmware component, perform a `GET` operation on a `SoftwareInventory` resource:
 
-```
+```http
 GET /redfish/v1/UpdateService/FirmwareInventory/BMC
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/BMC",
     "@odata.type": "#SoftwareInventory.v1_10_2.SoftwareInventory",
@@ -511,9 +532,11 @@ For the full schema definition, see the `UpdateService` section of the reference
 
 To retrieve information about the supported update methods, perform a `GET` operation on the `UpdateService` resource:
 
-```
+```http
 GET /redfish/v1/UpdateService
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/UpdateService",
     "@odata.type": "#UpdateService.v1_12_0.UpdateService",
@@ -539,8 +562,9 @@ GET /redfish/v1/UpdateService
 
 To install a new firmware image, perform a `POST` operation on the `SimpleUpdate` action:
 
-```
+```http
 POST /redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate
+Content-Type: application/json
 
 {
     "ImageURI": "https://images.contoso.org/bmc_0260_2021.bin"
@@ -554,9 +578,11 @@ For the full schema definition, see the `For the full schema definition, see the
 
 To retrieve information about the manager's supported protocols and their configuration, perform a `GET` operation on the `ManagerNetworkProtocol` resource for that manager:
 
-```
+```http
 GET /redfish/v1/Managers/1/NetworkProtocol
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/Managers/1/NetworkProtocol",
     "@odata.type": "#ManagerNetworkProtocol.v1_9_1.ManagerNetworkProtocol",
@@ -597,8 +623,9 @@ GET /redfish/v1/Managers/1/NetworkProtocol
 To configure the settings for protocols exposed by the service, perform a `PATCH` operation on the `ManagerNetworkProtocol` resource.
 In the request body, specify the new protocol settings.
 
-```
+```http
 PATCH /redfish/v1/Managers/1/NetworkProtocol
+Content-Type: application/json
 
 {
     "SNMP": {
@@ -614,9 +641,11 @@ For the full schema definition, see the `ServiceConditions` section of the refer
 
 To retrieve active conditions detected by the service, perform a `GET` operation on the `ServiceConditions` resource:
 
-```
+```http
 GET /redfish/v1/ServiceConditions
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/ServiceConditions",
     "@odata.type": "#ServiceConditions.v1_0_1.ServiceConditions",
@@ -652,9 +681,11 @@ For the full schema definition, see the `RegisteredClient` section of the refere
 
 To retrieve information about an individual registered client, perform a `GET` operation on a `RegisteredClient` resource:
 
-```
+```http
 GET /redfish/v1/RegisteredClients/1
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/RegisteredClients/1",
     "@odata.type": "#RegisteredClient.v1_1_2.RegisteredClient",
@@ -681,8 +712,9 @@ GET /redfish/v1/RegisteredClients/1
 
 To register a new client, perform a `POST` operation on the `RegisteredClientCollection` resource:
 
-```
+```http
 POST /redfish/v1/RegisteredClients
+Content-Type: application/json
 
 {
     "Name": "Monitoring Client",
@@ -700,7 +732,7 @@ POST /redfish/v1/RegisteredClients
 
 To remove a registered client, perform a `DELETE` operation on the `RegisteredClient` resource:
 
-```
+```http
 DELETE /redfish/v1/RegisteredClients/2
 ```
 
@@ -712,9 +744,11 @@ For the full schema definition, see the `SessionService` and `Session` sections 
 
 To retrieve information about an individual session, perform a `GET` operation on a `Session` resource:
 
-```
+```http
 GET /redfish/v1/SessionService/Sessions/1
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/SessionService/Sessions/1"
     "@odata.type": "#Session.v1_8_0.Session",
@@ -728,8 +762,9 @@ GET /redfish/v1/SessionService/Sessions/1
 
 To create a new session, perform a `POST` operation on the `SessionCollection` resource:
 
-```
+```http
 POST /redfish/v1/SessionService/Sessions
+Content-Type: application/json
 
 {
     "UserName": "Fred",
@@ -739,14 +774,15 @@ POST /redfish/v1/SessionService/Sessions
 
 To delete a session, perform a `DELETE` operation on the `Session` resource:
 
-```
+```http
 DELETE /redfish/v1/SessionService/Sessions/1
 ```
 
 To change the session timeout limit for the service, perform a `PATCH` operation on the `SessionService` resource:
 
-```
+```http
 PATCH /redfish/v1/SessionService
+Content-Type: application/json
 
 {
     "SessionTimeout": 600
@@ -761,9 +797,11 @@ For the full schema definition, see the `TaskService` and `Task` sections of the
 
 To retrieve information about an individual task, perform a `GET` operation on a `Task` resource:
 
-```
+```http
 GET /redfish/v1/TaskService/Tasks/5
+```
 
+```json
 {
     "@odata.id": "/redfish/v1/TaskService/Tasks/5",
     "@odata.type": "#Task.v1_7_4.Task",
