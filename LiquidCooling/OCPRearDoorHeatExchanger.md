@@ -1,11 +1,11 @@
 # Scope
 
-This document references requirements and provide the usage examples for the OCP Read Door Heat Exchanger API v1.0.0.
+This document references requirements and provide the usage examples for the OCP Rear Door Heat Exchanger API v1.0.0.
 
 # Requirements
 
 As a Redfish-based interface, the required Redfish interface model elements are specified in a profile document.
-For the OCP Read Door Heat Exchanger API v1.0.0, the profile is located at: <TBD>
+For the OCP Rear Door Heat Exchanger API v1.0.0, the profile is located at: <TBD>
 
 The Redfish Interop Validator is an open-source conformance test that reads the profile, executes the tests against an implementation, and generates a test report in text or HTML format.
 
@@ -15,9 +15,9 @@ The Redfish Interop Validator is an open-source conformance test that reads the 
 
 The Redfish Interop Validator is located at https://github.com/DMTF/Redfish-Interop-Validator.
 
-The OCP Read Door Heat Exchanger v1.0.0 profile extends from the OCP Liquid Cooling Baseline v1.0.0 profile.
+The OCP Rear Door Heat Exchanger v1.0.0 profile extends from the OCP Liquid Cooling Baseline v1.0.0 profile.
 This extension is specified directly in the profile.
-This means that the specification requires conformance to the OCP Liquid Cooling Baseline profile in addition to any requirements specified in the OCP Read Door Heat Exchanger profile.
+This means that the specification requires conformance to the OCP Liquid Cooling Baseline profile in addition to any requirements specified in the OCP Rear Door Heat Exchanger profile.
 
 ```
 "RequiredProfiles": {
@@ -29,11 +29,11 @@ This means that the specification requires conformance to the OCP Liquid Cooling
 
 # Capabilities
 
-The following use cases are enabled by conformance to this OCP Read Door Heat Exchanger profile.
-The OCP Read Door Heat Exchanger profile is extended from the OCP Liquid Cooling Baseline profile.
+The following use cases are enabled by conformance to this OCP Rear Door Heat Exchanger profile.
+The OCP Rear Door Heat Exchanger profile is extended from the OCP Liquid Cooling Baseline profile.
 For capabilities specified in the the OCP Liquid Cooling Baseline profile, see the "OCP Liquid Cooling Baseline Specification".
 
-The following table lists the capabilities prescribed in the OCP Read Door Heat Exchanger profile.
+The following table lists the capabilities prescribed in the OCP Rear Door Heat Exchanger profile.
 
 | Use Case         | Management Task                                                         | Requirement |
 | :---             | :---------                                                              | :---        |

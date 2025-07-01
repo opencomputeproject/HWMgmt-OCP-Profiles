@@ -1,8 +1,8 @@
 {
     "SchemaDefinition": "RedfishInteroperabilityProfile.v1_6_0",
-    "ProfileName": "OCP Redfish Service",
+    "ProfileName": "OCP Service Baseline",
     "ProfileVersion": "1.0.0",
-    "Purpose": "Describes OCP requirements for any Redfish Service instance.  This profile covers only the purely software/firmware service portions of the Redfish schema.  Any device or product (software or firmware-based) implementing the Redfish Specification should meet these basic functionality requirements - regardless of the underlying hardware or system it is supporting.  This profile is intended to be included as a Required Profile by other OCP profiles to serve as a base for Redfish Service functionality.",
+    "Purpose": "Describes OCP requirements for any Redfish service instance.  This profile covers only the purely software/firmware service portions of the Redfish schema.  Any device or product (software or firmware-based) implementing the Redfish Specification should meet these basic functionality requirements, regardless of the underlying hardware or system it is supporting.  This profile is intended to be included as a required profile by other OCP profiles to serve as a base for Redfish service functionality.",
     "OwningEntity": "OCP",
     "ContactInfo": "jeff.autor@ocproject.com",
     "Protocol": {
