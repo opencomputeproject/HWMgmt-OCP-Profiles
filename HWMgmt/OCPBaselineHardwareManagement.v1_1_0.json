@@ -293,7 +293,7 @@
 					"Reset": {
 						"Parameters": {
 							"ResetType": {
-								"MinSupportValues": ["ForceRestart"]
+								"ParameterValues": ["ForceRestart"]
 							}
 						}
 					}
