@@ -38,7 +38,7 @@ The following table lists the capabilities prescribed in the OCP Service Baselin
 | Event logging            | [Get an event log](#get-an-event-log)                                             | Mandatory |
 |                          | [Clear an event log](#clear-an-event-log)                                         | Mandatory |
 | Software managemnent     | [Software inventory](#software-inventory)                                         | Mandatory |
-|                          | [Firmware update)(#firmware-update)                                               | Mandatory |
+|                          | [Firmware update](#firmware-update)                                               | Mandatory |
 | Protocol configuration   | [Get manager network protocols](#get-manager-network-protocols)                   | Mandatory |
 |                          | [Set manager network protocols](#set-manager-network-protocols)                   | Recommended |
 | Service condition        | [Get service conditions](#get-service-conditions)                                 | Recommended |
