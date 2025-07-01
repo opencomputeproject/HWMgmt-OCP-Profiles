@@ -28,11 +28,11 @@
               				"ReadRequirement": "Mandatory",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
-              				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+              				"CompareValues": ["RackMount", "Sled", "Drawer"]
             			}
           			]
         		},
-				"Power": {
+				"ThermalSubsystem": {
 					"ReadRequirement": "Recommended",
           			"ConditionalRequirements": [
             			{
@@ -40,11 +40,34 @@
               				"ReadRequirement": "Mandatory",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
-              				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+              				"CompareValues": ["RackMount", "Sled", "Drawer"]
             			}
           			]
-				}
-      		}
+        		},
+                "Power": {
+					"ReadRequirement": "Recommended",
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Mandatory",
+              				"CompareType": "AnyOf",
+              				"CompareProperty": "ChassisType",
+              				"CompareValues": ["RackMount", "Sled", "Drawer"]
+            			}
+          			]
+				},
+                "PowerSubsystem": {
+					"ReadRequirement": "Recommended",
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Mandatory",
+              				"CompareType": "AnyOf",
+              				"CompareProperty": "ChassisType",
+              				"CompareValues": ["RackMount", "Sled", "Drawer"]
+            			}
+          			]
+				}      		}
 
 		},
 		"ComputerSystem": {
@@ -193,7 +216,7 @@
 			}
 		},
 		"Power": {
-			"ReadRequirement": "Mandatory",
+			"ReadRequirement": "IfImplemented",
 			"PropertyRequirements": {
 				"PowerControl": {
 					"PropertyRequirements": {
@@ -209,11 +232,19 @@
 				}
 			}
 		},
-		"Thermal": {
+		"PowerSubsystem/EnvironmentMetrics": {
+			"ReadRequirement": "IfImplemented",
+			"PropertyRequirements": {
+				"PowerConsumedWatts": {},
+				"PowerCapacityWatts": {},
+				"PowerLimitWatts": {}
+			}
+		},
+        "Thermal": {
 			"MinVersion": "1.1.0",
 			"PropertyRequirements": {
 				"Temperatures": {
-					"ReadRequirement": "Mandatory",
+					"ReadRequirement": "IfImplemented",
 					"MinCount": 3,
 					"PropertyRequirements": {
 						"ReadingCelsius": {},
@@ -248,7 +279,21 @@
 				}
 			}
 		},
-		"ServiceRoot": {
+		"ThermalSubsystem": {
+			"ReadRequirement": "IfImplemented",
+			"PropertyRequirements": {
+				"ThermalMetric": {
+					"PropertyRequirements": {
+						"TemperatureSummaryCelsius": {
+							"PropertyRequirements": {
+								"Exhaust": {}
+							}
+						}
+					}
+				}
+			}
+		},
+        "ServiceRoot": {
 			"PropertyRequirements": {
 				"Systems": {}
 			}
