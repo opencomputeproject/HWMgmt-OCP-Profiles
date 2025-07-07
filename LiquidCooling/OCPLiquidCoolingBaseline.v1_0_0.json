@@ -6,7 +6,7 @@
     "OwningEntity": "Open Compute Project",
     "ContactInfo": "michael.raineri@dell.com",
     "RequiredProfiles": {
-        "OCPBaselineRedfishService": {
+        "OCPServiceBaseline": {
             "MinVersion": "1.0.0"
         }
     },

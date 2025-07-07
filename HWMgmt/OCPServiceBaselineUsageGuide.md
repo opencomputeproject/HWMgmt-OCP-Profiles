@@ -1,6 +1,6 @@
 # Scope
 
-This document references requirements and provide the usage examples for the OCP Service Baseline API v1.0.0.
+This document contains requirements and provides the usage examples for the OCP Service Baseline API v1.0.0.
 
 # Requirements
 
@@ -41,7 +41,7 @@ The following table lists the capabilities prescribed in the OCP Service Baselin
 |                          | [Firmware update](#firmware-update)                                               | Mandatory |
 | Protocol configuration   | [Get manager network protocols](#get-manager-network-protocols)                   | Mandatory |
 |                          | [Set manager network protocols](#set-manager-network-protocols)                   | Recommended |
-| Service condition        | [Get service conditions](#get-service-conditions)                                 | Recommended |
+| Service conditions       | [Get service conditions](#get-service-conditions)                                 | Recommended |
 | Registered client        | [Get a registered client](#get-a-registered-client)                               | Recommended |
 |                          | [Create a registered client](#create-a-registered-client)                         | Recommended |
 |                          | [Remove a registered client](#remove-a-registered-client)                         | Recommended |
@@ -51,14 +51,26 @@ The following table lists the capabilities prescribed in the OCP Service Baselin
 |                          | [Change session timeout](#change-session-timeout)                                 | Recommended |
 | Task management          | [Get a task](#get-a-task)                                                         | IfImplemented |
 
+Refer to the following sections of the [*Redfish Data Model Specification*](#dsp0268) for the Redfish schema definitions for the previous use cases:
+
+* User account management: `AccountService`, `Role`, and `ManagerAccount` sections.
+* Certificate management: `CertificateService` and `Certificate` sections.
+* Event notifications: `EventService`, `EventDestination`, and `Event` sections.
+* Manger IP configuration: `EthernetInterface` section.
+* License management: `LicenseService` and `License` sections.
+* Event logging: `LogService` and `LogEntry` sections.
+* Software management: `UpdateService` and `SoftwareInventory` sections.
+* Protocol configuration: `ManagerNetworkProtocol` section.
+* Service conditions: `ServiceConditions` section.
+* Registered client: `RegisteredClient` section.
+* Session management: `SessionService` and `Session` sections.
+* Task management: `TaskService` and `Task` sections.
+
 # Use cases
 
 This section describes how each capability is accomplished by interacting with the Redfish service.
 
 ## Get user accounts
-
-The `ManagerAccount` resource represents an individual user that can access the Redfish service.
-For the full schema definition, see the `ManagerAccount` sections of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To access user account information, perform a `GET` operation on a `ManagerAccount` resource:
 
@@ -92,9 +104,6 @@ GET /redfish/v1/AccountService/Accounts/1
 
 ## Create a new user
 
-The `ManagerAccount` resource represents an individual user that can access the Redfish service.
-For the full schema definition, see the `ManagerAccount` sections of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To add a new user account, perform a `POST` operation on the `ManagerAccountCollection` resource:
 
 ```http
@@ -111,9 +120,6 @@ Content-Type: application/json
 
 ## Remove a user
 
-The `ManagerAccount` resource represents an individual user that can access the Redfish service.
-For the full schema definition, see the `ManagerAccount` sections of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To remove a user account, perform a `DELETE` operation on a `ManagerAccount` resource:
 
 ```http
@@ -121,9 +127,6 @@ DELETE /redfish/v1/AccountService/Accounts/3
 ```
 
 ## Generate a CSR
-
-The `CertificateService` resource contains service-level actions for managing certificates and references to all certificates in the service.
-For the full schema definition, see the `CertificateService` sections of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To generate a certificate signing request for a new certificate, perform a `POST` operation on the `GenerateCSR` action:
 
@@ -169,9 +172,6 @@ Content-Type: application/json
 
 ## Replace a certificate
 
-The `CertificateService` resource contains service-level actions for managing certificates and references to all certificates in the service.
-For the full schema definition, see the `CertificateService` sections of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To replace a certificate on the service with a new certificate, perform a `POST` operation on the `ReplaceCertificate` action:
 
 ```http
@@ -193,9 +193,6 @@ Location: /redfish/v1/Managers/1/NetworkProtocol/HTTPS/Certificates/2
 ```
 
 ## Get a certificate
-
-The `Certificate` resource represents an individual certificate availabe on the Redfish service.
-For the full schema definition, see the `Certificate` sections of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To view information about a certificate, perform a `GET` operation on a `Certificate` resource:
 
@@ -238,9 +235,6 @@ GET /redfish/v1/Managers/1/NetworkProtocol/HTTPS/Certificates/1
 
 ## Get an event subscription
 
-The `EventDestination` resource represents an individual subscriber listening for Redfish events.
-For the full schema definition, see the `EventDestination` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To access subscription information for an event listener, perform a `GET` operation on a `EventDestination` resource:
 
 ```http
@@ -267,9 +261,6 @@ GET /redfish/v1/EventService/Subscriptions/1
 
 ## Create an event subscription
 
-The `EventDestination` resource represents an individual subscriber listening for Redfish events.
-For the full schema definition, see the `EventDestination` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To add a new subscription for events, perform a `POST` operation on the `EventDestinationCollection` resource:
 
 ```http
@@ -286,9 +277,6 @@ Content-Type: application/json
 
 ## Remove an event subscription
 
-The `EventDestination` resource represents an individual subscriber listening for Redfish events.
-For the full schema definition, see the `EventDestination` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To remove a subscription, perform a `DELETE` operation on an `EventDestination` resource:
 
 ```http
@@ -296,9 +284,6 @@ DELETE /redfish/v1/EventService/Subscriptions/3
 ```
 
 ## Send an event to a subscriber
-
-The `Event` object is an event payload sent from a Redfish service to a subscriber.
-For the full schema definition, see the `Event` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To transmit an event from a Redfish service to an event listener, the service performs a `POST` operation on the URI contained by the `Destination` for each applicable `EventDestination` resource.
 
@@ -334,9 +319,6 @@ Content-Type: application/json
 ```
 
 ## Get manager IP configuration
-
-The `EthernetInterface` resources subordinate to the `Manager` resource represent the network interfaces available on the Redfish service.
-For the full schema definition, see the `EthernetInterface` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To access Ethernet interface information for an interface on the service, perform a `GET` operation on an `EthernetInterface` resource:
 
@@ -394,9 +376,6 @@ GET /redfish/v1/Managers/1/EthernetInterfaces/1
 
 ## Set manager to a static IP address
 
-To set an Ethernet interface to a static IP address, perform a `PATCH` operation on the desired `EthernetInterface` resource.
-In the request body, specify a static IP address and disable DHCP.
-
 ```http
 PATCH /redfish/v1/Managers/1/EthernetInterfaces/1
 Content-Type: application/json
@@ -417,9 +396,6 @@ Content-Type: application/json
 
 ## Set manager to DHCP
 
-To set an Ethernet interface to DHCP, perform a `PATCH` operation on the desired `EthernetInterface` resource.
-In the request body, enable DHCP and optionally clear the static address array.
-
 ```http
 PATCH /redfish/v1/Managers/1/EthernetInterfaces/1
 Content-Type: application/json
@@ -435,9 +411,6 @@ Content-Type: application/json
 ```
 
 ## Get a software license
-
-The `License` resource represents an individual license availabe on the Redfish service.
-For the full schema definition, see the `License` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To retrieve information about a license, perform a `GET` operation on a `License` resource:
 
@@ -467,9 +440,6 @@ GET /redfish/v1/LicenseService/Licenses/RemotePresence
 
 ## Install a software license
 
-The `License` resource represents an individual license availabe on the Redfish service.
-For the full schema definition, see the `License` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To install a new license, perform a `POST` operation on the `LicenseCollection` resource:
 
 ```http
@@ -483,9 +453,6 @@ Content-Type: application/json
 
 ## Uninstall a software license
 
-The `License` resource represents an individual license availabe on the Redfish service.
-For the full schema definition, see the `License` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To uninstall a license, perform a `DELETE` operation on a `License` resource:
 
 ```http
@@ -493,9 +460,6 @@ DELETE /redfish/v1/LicenseService/Licenses/Feature25
 ```
 
 ## Get an event log
-
-The `LogEntry` resource represents a single entry in a given log with event details.
-For the full schema definition, see the `LogEntry` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To retrieve log entries for a given log service, perform a `GET` operation on a `LogEntryCollection` resource:
 
@@ -538,9 +502,6 @@ GET /redfish/v1/Managers/1/LogServices/EventLog/Entries
 
 ## Clear an event log
 
-The `LogService` resource represents a logging facility in the server.
-For the full schema definition, see the `LogService` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To clear the log entries for a given log service, perform a `POST` operation on the `ClearLog` action:
 
 ```http
@@ -551,10 +512,6 @@ Content-Type: application/json
 ```
 
 ## Software inventory
-
-The `SoftwareInventory` resource contains information about a software or firmware component installed on one or more device managed by the service.
-The components are shown in two separate resource collections, divided by usage as either firmware and software.
-For the full schema definition, see the `SoftwareInventory` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To retrieve information about an individual software or firmware component, perform a `GET` operation on a `SoftwareInventory` resource:
 
@@ -591,10 +548,7 @@ GET /redfish/v1/UpdateService/FirmwareInventory/BMC
 
 ## Firmware update
 
-The `UpdateService` resource contains methods for installing new firmware managed by the service.
-It is recommended that services support both styles of performing firmware updates: the "push" method performed with a `POST` operation to the URI specified by the `MultipartHttpPushUri` propertu, and a "pull" method performed with the `SimpleUpdate` action.
-For the full schema definition, see the `UpdateService` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-See the "Update service" clause of the [*Redfish Specification*](#dsp0266) for additional details.
+See the "Update service" clause of the [*Redfish Specification*](#dsp0266) for additional details regarding firmware update operations.
 
 To retrieve information about the supported update methods, perform a `GET` operation on the `UpdateService` resource:
 
@@ -638,9 +592,6 @@ Content-Type: application/json
 ```
 
 ## Get manager network protocols
-
-The `ManagerNetworkProtocol` resource settings for the external protocol provided by the service.
-For the full schema definition, see the `For the full schema definition, see the `ManagerNetworkProtocol` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To retrieve information about the manager's supported protocols and their configuration, perform a `GET` operation on the `ManagerNetworkProtocol` resource for that manager:
 
@@ -688,9 +639,6 @@ GET /redfish/v1/Managers/1/NetworkProtocol
 
 ## Set manager network protocols
 
-The `ManagerNetworkProtocol` resource settings for the external protocol provided by the service.
-For the full schema definition, see the `For the full schema definition, see the `ManagerNetworkProtocol` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To configure the settings for protocols exposed by the service, perform a `PATCH` operation on the `ManagerNetworkProtocol` resource.
 In the request body, specify the new protocol settings.
 
@@ -706,9 +654,6 @@ Content-Type: application/json
 ```
 
 ## Get service conditions
-
-The `ServiceConditions` resource contains active conditions detected by the service.
-For the full schema definition, see the `ServiceConditions` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To retrieve active conditions detected by the service, perform a `GET` operation on the `ServiceConditions` resource:
 
@@ -747,9 +692,6 @@ GET /redfish/v1/ServiceConditions
 
 ## Get a registered client
 
-The `RegisteredClient` resource contains information about a client that is monitoring or controling resources provided by the service.
-For the full schema definition, see the `RegisteredClient` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To retrieve information about an individual registered client, perform a `GET` operation on a `RegisteredClient` resource:
 
 ```http
@@ -783,9 +725,6 @@ GET /redfish/v1/RegisteredClients/1
 
 ## Create a registered client
 
-The `RegisteredClient` resource contains information about a client that is monitoring or controling resources provided by the service.
-For the full schema definition, see the `RegisteredClient` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To register a new client, perform a `POST` operation on the `RegisteredClientCollection` resource:
 
 ```http
@@ -808,9 +747,6 @@ Content-Type: application/json
 
 ## Remove a registered client
 
-The `RegisteredClient` resource contains information about a client that is monitoring or controling resources provided by the service.
-For the full schema definition, see the `RegisteredClient` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To remove a registered client, perform a `DELETE` operation on the `RegisteredClient` resource:
 
 ```http
@@ -818,9 +754,6 @@ DELETE /redfish/v1/RegisteredClients/2
 ```
 
 ## Get a session
-
-The `Session` resource represents a user session open with the service.
-For the full schema definition, see the `Session` sections of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To retrieve information about an individual session, perform a `GET` operation on a `Session` resource:
 
@@ -842,9 +775,6 @@ GET /redfish/v1/SessionService/Sessions/1
 
 ## Create a session
 
-The `Session` resource represents a user session open with the service.
-For the full schema definition, see the `Session` sections of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To create a new session, perform a `POST` operation on the `SessionCollection` resource:
 
 ```http
@@ -859,9 +789,6 @@ Content-Type: application/json
 
 ## Delete a session
 
-The `Session` resource represents a user session open with the service.
-For the full schema definition, see the `Session` sections of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
-
 To delete a session, perform a `DELETE` operation on the `Session` resource:
 
 ```http
@@ -869,9 +796,6 @@ DELETE /redfish/v1/SessionService/Sessions/1
 ```
 
 ## Change session timeout
-
-The `SessionService` resource contains the session policies and session information for the service.
-For the full schema definition, see the `SessionService` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To change the session timeout limit for the service, perform a `PATCH` operation on the `SessionService` resource:
 
@@ -885,9 +809,6 @@ Content-Type: application/json
 ```
 
 ## Get a task
-
-The `Task` resource represents an individual task maintained by the service.
-For the full schema definition, see the `Task` section of the reference guide in the [*Redfish Data Model Specification*](#dsp0268).
 
 To retrieve information about an individual task, perform a `GET` operation on a `Task` resource:
 
