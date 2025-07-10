@@ -92,6 +92,11 @@ capabilities.
 |                     | [Reset a persistent group of nodes](#reset-a-persistent-group-of-nodes)      | Mandatory |
 |                     | [Create a persistent group of nodes](#create-a-persistent-group-of-nodes) | Mandatory |
 |                     | [Set boot order of aggregate](#set-boot-order-of-aggregate-to-default) | Mandatory |
+| Composability       | [Construct a system with GPU's](#construct-system-with-gpus)     | Recommended |
+|                     | [Get Health of GPU's from composed compute system](#gpu_health_composed_system) | Recommended |
+|                     | [Set policy when a GPU in a composed system fails](#policy_composed_system_gpu_failure) | Recommended |
+| Telemetry           | [Get telemetry blob from a compute system device](#get_telemetry_blob_compute_system) | Recommended |
+|                     | [Stream_Power_Consumption_All_Compute_Systems](#stream_power_consumption_compute_system) | Recommended |
 | Authorization       | [Get certificate from node](#get-certificate-from-node)          | Mandatory |
 |                     | [Place certificate on node](#place-certificate-on-node)          | Mandatory |
 |                     | [Place token on node](#place-token-on-node)                      | Mandatory |
@@ -817,6 +822,46 @@ boot order, the client invokes the following command.
   POST /redfish/v1/AggregationService/Aggregates/Agg1/Actions/Aggregate.SetDefaultBootOrder
 
 The POST command has no request message.
+
+## Construct a system with GPU's
+
+To construct a system with X GPU's, the client invokes the following command
+
+   POST /redfish/v1/
+
+```
+  {
+    "@odata.id": "/redfish/v1/",
+    "Id": "Comp1",
+    "Name": "Composition 1",
+    "ElementsCount": X,
+    "Elements": \[
+      {  },
+      {  }
+    \]
+  }
+```
+## Get Health of GPU's from composed compute system
+
+To get the health of all GPU's attached to a specific node, the client invokes the following command
+
+   GET /redfish/v1/
+
+## Set policy when a GPU in a composed system fails
+
+When a composed system of GPU's has one or more GPU failures, a policy in the rack manager can define whether more GPU's can be added from another switch or the composition should de deconstructed so another rack or compute node can be built to meet the minimum required configuration.
+
+## Get telemetry blob from a compute system device
+
+To get a telemetry blob from a compute system, the client invokes the following command
+
+   GET/redfish/v1
+
+## Stream_Power_Consumption_All_Compute_Systems
+
+To set up a new stream for power consumption with X second sampling time to all compute systems in a rack, the client invokes the following command(s).  Recommend to use the open socket method.
+
+   PATCH /redfish/v1
 
 ## Authorization between rack manager and manage node
 
