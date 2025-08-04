@@ -21,7 +21,7 @@
         "AccountService": {
             "PropertyRequirements": {
                 "Accounts": {},
-                "ActiveDirecotory": {
+                "ActiveDirectory": {
                     "ReadRequirement": "Recommended",
                     "PropertyRequirements": {
                         "ServiceEnabled": {},
@@ -556,6 +556,7 @@
                     "ReadRequirement": "Recommended"
                 },
                 "Links": {
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "OutboundConnection": {
                             "ReadRequirement": "IfImplemented"
