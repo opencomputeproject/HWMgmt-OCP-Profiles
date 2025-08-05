@@ -6,7 +6,9 @@ This document contains requirements and provide usage examples for the OCP Ether
 
 The required Redfish interface model elements are specified in a corresponding profile document - OCP Ethenet NIC Profile v1.0 [4].
 
-The Profile Reference Guide includes the resources which are part of this profile.
+The OCP Ethernet NIC Profile Reference Guide [6] includes the resources which are part of this profile.
+
+A mockup up the resource hierarchy is available [7].
 
 ## Validating conformance
 
@@ -709,12 +711,16 @@ Content-Type: application/octet-stream
 
 \[3\] "[Redfish Interop Validator](https://github.com/DMTF/Redfish-Interop-Validator)"
 
-\[4\] "[Ethernet NIC Profile v1.0](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/nicdoc/EthernetNIC/OCP_NIC.v1_0_0.json)"
+\[4\] "[OCP Ethernet NIC Profile v1.0](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/EthernetNIC/OCP_NIC.v1_0_0.json)"
 
 \[5\] "[Redfish Firmware Update White Paper](https://www.dmtf.org/dsp/DSP2062)
+
+\[6\] "[OCP Ethernet NIC Profile Reference Guide v1.0](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/EthernetNIC/ProfileRefGuide-EthernetNIC_v1_0_0.pdf)"
+
+\[7\] "[OCP Ethernet NIC mockup](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/EthernetNIC/redfish)"
 
 # Revision 
 
 | **Revision**  | **Date**      | **Description** |
 | :---          | :---          | :--- |
-| 1.0           | 4/20/2025     | Initial contribution |
+| 1.0           | 7/20/2025     | Initial contribution |
