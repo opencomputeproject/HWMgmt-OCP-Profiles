@@ -1,7 +1,6 @@
 # **OCP Ethernet Network Interface Card Profile** #
 
 ***Version 1.0.0***
-(Not approved yet)
 
 # Table of Contents
 [add_toc]
@@ -19,24 +18,15 @@ Direct feedback to: jeff.hilland@hpe.com
 The following use cases and associated resources have been identified to
 allow BMC interface to provide baseline management capabilities.
 
-+---------------+-------------------------------+------------+---------+
-| **Use Case**  | **Manageable Capabilities**   | **Req      |         |
-|               |                               | uirement** |         |
-+===============+===============================+============+=========+
-| NIC           | - Get NIC Configuration       | Mandatory  | Section |
-| Configuration | - Set NIC Configuration       |            |         |
-|               | - Reset Settings To Default   |            | 5.1     |
-+---------------+-------------------------------+------------+---------+
-| NIC Hardware  | - Get FRU Information         | Mandatory  |         |
-+---------------+-------------------------------+------------+---------+
-| Get Telemetry | - Get Metrics                 | Mandatory  |         |
-+---------------+-------------------------------+------------+---------+
-| FW Update     | - Get FW Revision Information | Mandatory  |         |
-|               | - Update FW                   |            |         |  
-+---------------+-------------------------------+------------+---------+
-
-Set NIC Configuration:
-- Assign
+|**Use Case**       |**Manageable Capabilities**    |**Requirement** | 
+| :--- | :--- | :--- | 
+| NIC Configuration | - Get NIC Configuration       | Mandatory  | 
+| NIC Configuration | - Set NIC Configuration       |            |         
+| NIC Configuration | - Reset Settings To Default   |            | 
+| NIC Hardware      | - Get FRU Information         | Mandatory  |         
+| Get Telemetry     | - Get Metrics                 | Mandatory  |         
+| FW Update         | - Get FW Revision Information | Mandatory  |         
+| FW Update         | - Update FW                   |            |        
 
 # NIC Management Use Cases
 
