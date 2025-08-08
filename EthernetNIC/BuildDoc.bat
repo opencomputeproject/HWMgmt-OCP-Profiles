@@ -1,1 +1,0 @@
-python ..\..\Redfish-Tools\doc-generator\doc_generator.py --config NIC-config.json

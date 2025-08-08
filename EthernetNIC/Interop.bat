@@ -1,1 +1,0 @@
-python ..\..\Redfish-Interop-Validator\RedfishInteropValidator.py --authtype None --nooemcheck -i http://127.0.0.1:8000 %1 >interop.log
