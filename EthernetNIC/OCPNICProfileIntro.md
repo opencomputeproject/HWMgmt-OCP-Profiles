@@ -19,7 +19,7 @@ The following use cases and associated resources have been identified to
 allow BMC interface to provide baseline management capabilities.
 
 |**Use Case**       |**Manageable Capabilities**    |**Requirement** | 
-| :--- | :--- | :--- | 
+| :--- | :--- | :--- |  
 | NIC Configuration | - Get NIC Configuration       | Mandatory  | 
 | NIC Configuration | - Set NIC Configuration       |            |         
 | NIC Configuration | - Reset Settings To Default   |            | 
