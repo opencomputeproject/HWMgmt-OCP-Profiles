@@ -6,125 +6,67 @@
 
 # <a name="table-of-contents"></a>Table of Contents
 
-- [**OCP Ethernet Network Interface Card Profile**](#ocp-ethernet-network-interface-card-profile)
+- [**OCP Ethernet Network Interface Card Profile** #](#%2A%2Aocp-ethernet-network-interface-card-profile%2A%2A-%23)
+
 - [Table of Contents](#table-of-contents)
-- [Overview \& Scope](#overview--scope)
+
+- [Overview & Scope](#overview-%26-scope)
+
 - [Capabilities](#capabilities)
+
 - [NIC Management Use Cases](#nic-management-use-cases)
-  - [Redfish Model for NICs](#redfish-model-for-nics)
-  - [Get NIC Configuration](#get-nic-configuration)
-    - [GET NetworkAdapter](#get-networkadapter)
-    - [Retriving NetworkDeviceFunction and Port information](#retriving-networkdevicefunction-and-port-information)
-    - [Retrieving PCIe Information](#retrieving-pcie-information)
-    - [Retrieving System NIC information](#retrieving-system-nic-information)
-  - [Set NIC Information](#set-nic-information)
-    - [Finding the Settings object on the Network Adapter](#finding-the-settings-object-on-the-network-adapter)
-    - [Finding the Settings object on the Network Device Function](#finding-the-settings-object-on-the-network-device-function)
-    - [Finding the Settings object on the Port](#finding-the-settings-object-on-the-port)
-  - [Retrieving Metrics](#retrieving-metrics)
-    - [Retrieving Network Adapter Metrics](#retrieving-network-adapter-metrics)
-    - [Retrieving Network Device Function Metrics](#retrieving-network-device-function-metrics)
-    - [Retrieving Port Metrics](#retrieving-port-metrics)
-  - [Reset Settings To Default](#reset-settings-to-default)
-  - [Get FRU Information](#get-fru-information)
-  - [Firmware Information](#firmware-information)
-    - [Update Firmware](#update-firmware)
-- [Appendix A: NIC Profile Reference Guide](#appendix-a-nic-profile-reference-guide)
-  - [Using the reference guide](#using-the-reference-guide)
-  - [EthernetInterface v1.1.0 (current release: v1.12.4)](#ethernetinterface-v110-current-release-v1124)
-    - [URIs](#uris)
-    - [Properties](#properties)
-    - [Property details](#property-details)
-      - [AddressOrigin](#addressorigin)
-        - [In IPv4Addresses, IPv4StaticAddresses:](#in-ipv4addresses-ipv4staticaddresses)
-        - [In IPv6Addresses:](#in-ipv6addresses)
-      - [AddressState](#addressstate)
-      - [FallbackAddress](#fallbackaddress)
-      - [Health](#health)
-      - [LinkStatus](#linkstatus)
-      - [OperatingMode](#operatingmode)
-      - [State](#state)
-    - [Example response](#example-response)
-  - [EthernetInterfaceCollection](#ethernetinterfacecollection)
-    - [URIs](#uris-1)
-    - [Properties](#properties-1)
-  - [NetworkAdapter 1.11.0](#networkadapter-1110)
-    - [URIs](#uris-2)
-    - [Properties](#properties-2)
-    - [Actions](#actions)
-      - [ResetSettingsToDefault](#resetsettingstodefault)
-    - [Property details](#property-details-1)
-      - [Health](#health-1)
-      - [LocationType](#locationtype)
-      - [RackOffsetUnits](#rackoffsetunits)
-      - [State](#state-1)
-    - [Example response](#example-response-1)
-  - [NetworkAdapterCollection](#networkadaptercollection)
-    - [URIs](#uris-3)
-    - [Properties](#properties-3)
-  - [NetworkAdapterMetrics 1.1.0](#networkadaptermetrics-110)
-    - [URIs](#uris-4)
-    - [Properties](#properties-4)
-    - [Example response](#example-response-2)
-  - [NetworkDeviceFunction 1.10.0 (EthernetNIC)](#networkdevicefunction-1100-ethernetnic)
-    - [Description](#description)
-    - [URIs](#uris-5)
-    - [Properties](#properties-5)
-    - [Property details](#property-details-2)
-      - [BootMode](#bootmode)
-      - [Health](#health-2)
-      - [NetDevFuncCapabilities](#netdevfunccapabilities)
-      - [NetDevFuncType](#netdevfunctype)
-      - [State](#state-2)
-    - [Example response](#example-response-3)
-  - [NetworkDeviceFunctionCollection](#networkdevicefunctioncollection)
-    - [URIs](#uris-6)
-    - [Properties](#properties-6)
-  - [NetworkDeviceFunctionMetrics 1.2.0](#networkdevicefunctionmetrics-120)
-    - [URIs](#uris-7)
-    - [Properties](#properties-7)
-    - [Example response](#example-response-4)
-  - [PCIeDevice 1.18.0](#pciedevice-1180)
-    - [URIs](#uris-8)
-    - [Properties](#properties-8)
-    - [Property details](#property-details-3)
-      - [DeviceType](#devicetype)
-      - [Health](#health-3)
-      - [MaxPCIeType](#maxpcietype)
-      - [PCIeType](#pcietype)
-      - [State](#state-3)
-    - [Example response](#example-response-5)
-  - [PCIeDeviceCollection](#pciedevicecollection)
-    - [URIs](#uris-9)
-    - [Properties](#properties-9)
-  - [PCIeFunction 1.6.0](#pciefunction-160)
-    - [URIs](#uris-10)
-    - [Properties](#properties-10)
-    - [Property details](#property-details-4)
-      - [DeviceClass](#deviceclass)
-      - [FunctionType](#functiontype)
-      - [Health](#health-4)
-      - [State](#state-4)
-    - [Example response](#example-response-6)
-  - [Port 1.16.0](#port-1160)
-    - [URIs](#uris-11)
-    - [Properties](#properties-11)
-    - [Property details](#property-details-5)
-      - [LinkNetworkTechnology](#linknetworktechnology)
-      - [LinkState](#linkstate)
-      - [LinkStatus](#linkstatus-1)
-      - [PortProtocol](#portprotocol)
-    - [Example response](#example-response-7)
-  - [PortMetrics 1.7.0](#portmetrics-170)
-    - [URIs](#uris-12)
-    - [Properties](#properties-12)
-    - [Example response](#example-response-8)
-  - [Base Registry v1.0.0+ (current release: v1.21.0)](#base-registry-v100-current-release-v1210)
-    - [Messages](#messages)
-  - [NetworkDevice Registry v1.0.0+ (current release: v1.1.0)](#networkdevice-registry-v100-current-release-v110)
-    - [Messages](#messages-1)
+
+   - [Redfish Model for NICs](#redfish-model-for-nics)
+
+   - [Get NIC Configuration](#get-nic-configuration)
+
+   - [Set NIC Information](#set-nic-information)
+
+   - [Retrieving Metrics](#retrieving-metrics)
+
+   - [Reset Settings To Default](#reset-settings-to-default)
+
+   - [Get FRU Information](#get-fru-information)
+
+   - [Firmware Information](#firmware-information)
+
+- [Appendix A: NIC Profile Reference Guide](#appendix-a%3A-nic-profile-reference-guide)
+
+   - [Using the reference guide](#using-the-reference-guide)
+
+   - [EthernetInterface v1.1.0 (current release: v1.12.4)](#ethernetinterface-v1.1.0-%28current-release%3A-v1.12.4%29)
+
+   - [EthernetInterfaceCollection](#ethernetinterfacecollection)
+
+   - [NetworkAdapter 1.11.0](#networkadapter-1.11.0)
+
+   - [NetworkAdapterCollection](#networkadaptercollection)
+
+   - [NetworkAdapterMetrics 1.1.0](#networkadaptermetrics-1.1.0)
+
+   - [NetworkDeviceFunction 1.10.0 (EthernetNIC)](#networkdevicefunction-1.10.0-%28ethernetnic%29)
+
+   - [NetworkDeviceFunctionCollection](#networkdevicefunctioncollection)
+
+   - [NetworkDeviceFunctionMetrics 1.2.0](#networkdevicefunctionmetrics-1.2.0)
+
+   - [PCIeDevice 1.18.0](#pciedevice-1.18.0)
+
+   - [PCIeDeviceCollection](#pciedevicecollection)
+
+   - [PCIeFunction 1.6.0](#pciefunction-1.6.0)
+
+   - [Port 1.16.0](#port-1.16.0)
+
+   - [PortMetrics 1.7.0](#portmetrics-1.7.0)
+
+   - [Base Registry v1.0.0+ (current release: v1.21.0)](#base-registry-v1.0.0%2B-%28current-release%3A-v1.21.0%29)
+
+   - [NetworkDevice Registry v1.0.0+ (current release: v1.1.0)](#networkdevice-registry-v1.0.0%2B-%28current-release%3A-v1.1.0%29)
+
 - [Redfish documentation generator](#redfish-documentation-generator)
-- [ANNEX A (informative) Change log](#annex-a-informative-change-log)
+
+- [ANNEX A (informative) Change log](#annex-a-%28informative%29-change-log)
 
 
 # <a name="overview-%26-scope"></a>Overview & Scope
@@ -141,14 +83,14 @@ The following use cases and associated resources have been identified to
 allow BMC interface to provide baseline management capabilities.
 
 |**Use Case**       |**Manageable Capabilities**    |**Requirement** | 
-| :--- | :--- | :--- | 
+| :--- | :--- | :--- |  
 | NIC Configuration | - Get NIC Configuration       | Mandatory  | 
 | NIC Configuration | - Set NIC Configuration       |            |         
 | NIC Configuration | - Reset Settings To Default   |            | 
 | NIC Hardware      | - Get FRU Information         | Mandatory  |         
 | Get Telemetry     | - Get Metrics                 | Mandatory  |         
 | FW Update         | - Get FW Revision Information | Mandatory  |         
-| FW Update         | - Update FW                   |            |         
+| FW Update         | - Update FW                   |            |        
 
 # <a name="nic-management-use-cases"></a>NIC Management Use Cases
 
