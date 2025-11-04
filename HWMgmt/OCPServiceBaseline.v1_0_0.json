@@ -117,7 +117,9 @@
                 "FQDN": {
                     "ReadRequirement": "Supported"
                 },
-                "NameServers": {},
+                "NameServers": {
+                    "ReadRequirement": "Supported"
+                },
                 "IPv4Addresses": {
                     "PropertyRequirements": {
                         "Address": {},
@@ -398,8 +400,12 @@
         },
         "ManagerNetworkProtocol": {
             "PropertyRequirements": {
-                "HostName": {},
-                "FQDN": {},
+                "HostName": {
+                    "ReadRequirement": "Recommended"
+                },
+                "FQDN": {
+                    "ReadRequirement": "Recommended"
+                },
                 "HTTP": {
                     "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
@@ -556,13 +562,16 @@
                     "ReadRequirement": "Recommended"
                 },
                 "Links": {
+                    "ReadRequirement": "IfImplemented"
                     "PropertyRequirements": {
                         "OutboundConnection": {
                             "ReadRequirement": "IfImplemented"
                         }
                     }
                 },
-                "Password": {},
+                "Password": {
+                    "ReadRequirement": "Recommended"
+                },
                 "UserName": {}
             }
         },
