@@ -400,12 +400,8 @@
         },
         "ManagerNetworkProtocol": {
             "PropertyRequirements": {
-                "HostName": {
-                    "ReadRequirement": "Recommended"
-                },
-                "FQDN": {
-                    "ReadRequirement": "Recommended"
-                },
+                "HostName": {},
+                "FQDN": {},
                 "HTTP": {
                     "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
