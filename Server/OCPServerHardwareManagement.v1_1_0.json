@@ -232,12 +232,16 @@
 				}
 			}
 		},
-		"PowerSubsystem/EnvironmentMetrics": {
-			"ReadRequirement": "IfImplemented",
-			"PropertyRequirements": {
-				"PowerConsumedWatts": {},
-				"PowerCapacityWatts": {},
-				"PowerLimitWatts": {}
+		"PowerSubsystem": {
+            "PropertyRequirements": {
+                "EnvironmentMetrics": {
+			        "ReadRequirement": "IfImplemented",
+			        "PropertyRequirements": {
+				        "PowerConsumedWatts": {},
+				        "PowerCapacityWatts": {},
+				        "PowerLimitWatts": {}
+                    }
+                }
 			}
 		},
         "Thermal": {
