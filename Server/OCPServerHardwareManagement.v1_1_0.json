@@ -286,7 +286,7 @@
 		"ThermalSubsystem": {
 			"ReadRequirement": "IfImplemented",
 			"PropertyRequirements": {
-				"ThermalMetric": {
+				"ThermalMetrics": {
 					"PropertyRequirements": {
 						"TemperatureSummaryCelsius": {
 							"PropertyRequirements": {
