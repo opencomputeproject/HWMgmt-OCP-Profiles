@@ -30,7 +30,7 @@ License](https://creativecommons.org/licenses/by-sa/4.0/).
 
 # Scope
 
-This document references requirements and provide the usage examples for the OpenRMC northbound API v1.2.0 for a rack management controller.
+This document references requirements and provide the usage examples for the OpenRMC northbound API v1.3.0 for a rack management controller.
 
 # Requirements
 
@@ -38,7 +38,7 @@ As a Redfish-based interface, the required Redfish interface model elements are 
 
 <https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPRackManagerController.v1_2_0_WIP.json>
 
-The OCPRackManagerController.v1.2.0 profile extends from the OCPBaselineHardwareManagement.v1.0.1 profile. The profile is located at –
+The OCPRackManagerController.v1.3.0 profile extends from the OCPBaselineHardwareManagement.v1.0.1 profile. The profile is located at –
 
 <https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_0_1.json>
 
@@ -93,8 +93,10 @@ capabilities.
 | **Use Case**        | **Management Task**                                       | **Requirement** |
 | :---                | :-----------                                              | :---	|
 | Inventory           | [Get FRU Info](#get-fru-info)                    | Mandatory |
+|                     | [Get FRU Info for all systems](#get-fru-info-all-systems)                    | Mandatory |
 | Rack Power          | [Get power state of rack](#get-power-state-of-rack)              | Mandatory |
 |                     | [Get power usage of rack](#get-power-usage-of-rack)              | Recommended |
+|                     | [Get power usage of each system in rack](#get-power-usage-of-rack)              | Recommended |
 |                     | [Set power usage of rack](#set-power-usage-of-rack)             | Mandatory |
 | PSU Status          | [Get status of PSU](#get-status-of-psu)                            | Mandatory |
 | Node Power          | [Get power state of node](#get-power-state-of-node)              | Mandatory |
@@ -106,7 +108,8 @@ capabilities.
 |                     | [Get status of node memory](#get-status-of-node-memory)          | Mandatory |
 |                     | [Get state of node LED](#get-state-of-node-led)                | Mandatory |
 |                     | [Get system log from node](#get-system-log-from-node)                        | Mandatory |
-| Firmware Update     | [Pull FW Update on Rack Manager](#pull-fw-update-on-rack-manager)| Mandatory |
+| Firmware Update     | [Get FW Version of each system in rack](#pull-fw-update-on-rack-manager)| Mandatory |
+|                     | [Pull FW Update on Rack Manager](#pull-fw-update-on-rack-manager)| Mandatory |
 |                     | [Push FW Update on Rack Manager](#push-fw-update-on-rack-manager)| Mandatory |
 |                     | [Pull FW Update on node](#pull-fw-update-on-node)                | Mandatory |
 |                     | [Push FW Update on node](#push-fw-update-on-node)                | Mandatory |
@@ -114,11 +117,23 @@ capabilities.
 |                     | [Reset a persistent group of nodes](#reset-a-persistent-group-of-nodes)      | Mandatory |
 |                     | [Create a persistent group of nodes](#create-a-persistent-group-of-nodes) | Mandatory |
 |                     | [Set boot order of aggregate to default](#set-boot-order-of-aggregate-to-default) | Mandatory |
+|                     | [Configure MRD (Telemetry) for every system in the rack](#configure-mrd-rack) | Recommended |
+|                     | [Configure BIOS settings for every system in the rack](#configure-bios-rack) | Recommneded |
+|                     | [Set Boot Order for every system in the rack](#configure-boot-order_rack) | Recommended |
+|                     | [Set events subscription for every system in the rack](#configure-event-subscritpion-rack) | Recommended |
+|                     | [Upload Policies to Rack Manager](#upload-rack-policies) | Recommended |
+|                     | [Get Task Update from a list of task ID’s](#get-task-status-multiple-systems) | Recommended |
 | Composability       | [Construct a system with GPU's](#construct-system-with-gpus)     | Recommended |
 |                     | [Get Health of GPU's from composed compute system](#gpu_health_composed_system) | Recommended |
 |                     | [Set policy when a GPU in a composed system fails](#policy_composed_system_gpu_failure) | Recommended |
+|                     | [Get all external links of a specific node (i.e. powershelves, CDU’s, UA switches, network switches)](#get-external-links-scale-up) | Recommended |
 | Telemetry           | [Get telemetry blob from a compute system device](#get_telemetry_blob_compute_system) | Recommended |
 |                     | [Stream_Power_Consumption_All_Compute_Systems](#stream_power_consumption_compute_system) | Recommended |
+| POD Manager         | [Get list of all racks in a pod](#list-racks-pod)          | Recommended |
+|                     | [List all systems from a single rack in a pod](#list-systems-rack-from-pod)          | Recommended |
+|                     | [Get fail over POD manager](#get-failover-pod-mgr)          | Recommended |
+|                     | [Get parent (rack mgr or pod mgr) from a system/rack](#get-parent) | Recommended |
+|                     | [Get Power Consumption of every node of entire POD](#get-power-consumption-pod) | Recommended |
 | Authorization       | [Get certificate from node](#get-certificate-from-node)          | Mandatory |
 |                     | [Place certificate on node](#place-certificate-on-node)          | Mandatory |
 |                     | [Place token on node](#place-token-on-node)                      | Mandatory |
@@ -215,6 +230,19 @@ The AssetTag properties is a client writeable property.
   "AssetTag": null,
 }
 ```
+## Get FRU Info for all systems
+
+A single command is needed to give filtered information for every system in the rack.
+
+```
+
+```
+
+The response contains the hardware inventory properties for manufacturer, model, SKU, serial number and part number for each system.
+
+```
+```
+
 
 ## Get power state of rack
 
@@ -268,6 +296,21 @@ The PowerMetrics objects contains statistics (min, max, avg) power usage over a 
   } \]
 }
 ```
+
+## Get power usage of each system in rack
+
+The power usage may be required for each system in the rack individually
+
+```
+```
+
+The response contains the Voltage array properties.
+The PowerConsumedWatts property contains the value of instantaneous power usage. 
+The PowerMetrics objects contains statistics (min, max, avg) power usage over a duration.
+
+```
+```
+
 
 ## Set power usage of rack
 
@@ -725,6 +768,15 @@ The response contains the following fragment. The information of interest is the
   \]
 }
 ```
+## Get FW Version of each system in rack
+
+Retrieve BMC version of every system of the rack with a single command
+
+```
+```
+
+```
+```
 
 ## Pull FW Update on Rack Manager
 
@@ -941,6 +993,32 @@ POST /redfish/v1/AggregationService/Aggregates/Agg1/Actions/Aggregate.SetDefault
 
 The POST command has no request message.
 
+## Configure MRD (Telemetry) for every system in the rack
+
+Set same MRD for every system in the rack
+
+## Configure BIOS settings for every system in the rack
+
+Set BIOS configuration changes for every system in the rack
+
+## Set Boot Order for every system in the rack
+
+Set permanent boot order for every system in the rack
+
+## Set events subscription for every system in the rack
+
+Set event subscription for every system in the rack
+
+## Upload Policies to Rack Manager
+
+Upload policies to rack manager.  Policies should be in the form of JSON file and can handle following example policies
+- Leak Detection
+- Failed Firmware Update or BIOS configuration
+- Power sequencing
+- Power cap failures
+
+## Get Task Update from a list of task ID’s
+
 ## Get Health of GPU's from composed compute system
 
 To get the health of all GPU's attached to a specific node, the client invoke a Redfish command or RedPath command
@@ -952,6 +1030,9 @@ To get the health of all GPU's attached to a specific node, the client invoke a 
 ## Set policy when a GPU in a composed system fails
 
 When a composed system of GPU's has one or more GPU failures, a policy in the rack manager can define whether more GPU's can be added from another switch or the composition should de deconstructed so another rack or compute node can be built to meet the minimum required configuration.
+
+## Get all external links of a specific node (i.e. powershelves, CDU’s, UA switches, network switches)
+
 
 ## Get telemetry blob from a compute system device
 
@@ -988,6 +1069,16 @@ The response contains the following fragment. The response either contains all t
 To set up a new stream for power consumption with X second sampling time to all compute systems in a rack, the client invokes the following command(s).  Recommend to use the open socket method.
 
    PATCH /redfish/v1
+
+## Get list of all racks in a pod
+
+## List all systems from a single rack in a pod
+
+## Get fail over POD manager
+
+## Get parent (rack mgr or pod mgr) from a system/rack
+
+## Get Power Consumption of every node of entire POD
 
 ## Authorization between rack manager and manage node
 
