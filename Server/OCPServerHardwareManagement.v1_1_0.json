@@ -155,9 +155,11 @@
 					"ReadRequirement": "Mandatory",
 					"Purpose": "SSH or IPMI-based serial remote console is required.",
 					"PropertyRequirements": {
-						"ConnectTypesSupported": {
-							"Values": [ "SSH", "IPMI"],
-							"Comparison": "AnyOf"
+						"SSH": {
+                            "ReadRequirement": "IfImplemented"
+                        },
+                        "IPMI": {
+							"ReadRequirement": "IfImplemented"
 						}
 					}
 				},
@@ -246,6 +248,7 @@
 		},
         "Thermal": {
 			"MinVersion": "1.1.0",
+            "ReadRequirement": "IfImplemented",
 			"PropertyRequirements": {
 				"Temperatures": {
 					"ReadRequirement": "IfImplemented",
