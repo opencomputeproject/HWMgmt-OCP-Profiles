@@ -93,10 +93,10 @@ capabilities.
 | **Use Case**        | **Management Task**                                       | **Requirement** |
 | :---                | :-----------                                              | :---	|
 | Inventory           | [Get FRU Info](#get-fru-info)                    | Mandatory |
-|                     | [Get FRU Info for all systems](#get-fru-info-for-all-systems)                    | Mandatory |
+|                     | [Get FRU Info for all nodes](#get-fru-info-for-all-nodes)                    | Mandatory |
 | Rack Power          | [Get power state of rack](#get-power-state-of-rack)              | Mandatory |
 |                     | [Get power usage of rack](#get-power-usage-of-rack)              | Recommended |
-|                     | [Get power usage of each system in rack](#get-power-usage-of-each-system-in-rack)              | Recommended |
+|                     | [Get power usage of each node in rack](#get-power-usage-of-each-node-in-rack)              | Recommended |
 |                     | [Set power usage of rack](#set-power-usage-of-rack)             | Mandatory |
 | PSU Status          | [Get status of PSU](#get-status-of-psu)                            | Mandatory |
 | Node Power          | [Get power state of node](#get-power-state-of-node)              | Mandatory |
@@ -108,7 +108,7 @@ capabilities.
 |                     | [Get status of node memory](#get-status-of-node-memory)          | Mandatory |
 |                     | [Get state of node LED](#get-state-of-node-led)                | Mandatory |
 |                     | [Get system log from node](#get-system-log-from-node)                        | Mandatory |
-| Firmware Update     | [Get FW Version of each system in rack](#get-fw-version-of-each-system-in-rack)| Mandatory |
+| Firmware Update     | [Get FW Version of each node in rack](#get-fw-version-of-each-node-in-rack)| Mandatory |
 |                     | [Pull FW Update on Rack Manager](#pull-fw-update-on-rack-manager)| Mandatory |
 |                     | [Push FW Update on Rack Manager](#push-fw-update-on-rack-manager)| Mandatory |
 |                     | [Pull FW Update on node](#pull-fw-update-on-node)                | Mandatory |
@@ -117,10 +117,10 @@ capabilities.
 |                     | [Reset a persistent group of nodes](#reset-a-persistent-group-of-nodes)      | Mandatory |
 |                     | [Create a persistent group of nodes](#create-a-persistent-group-of-nodes) | Mandatory |
 |                     | [Set boot order of aggregate to default](#set-boot-order-of-aggregate-to-default) | Mandatory |
-|                     | [Configure MRD for every system in the rack](#configure-mrd-for-every-system-in-the-rack) | Recommended |
-|                     | [Configure BIOS settings for every system in the rack](#configure-bios-settings-for-every-system-in-the-rack) | Recommneded |
-|                     | [Set Boot Order for every system in the rack](#set-boot-order-for-every-system-in-the-rack) | Recommended |
-|                     | [Set events subscription for every system in the rack](#set-events-subscription-for-every-system-in-the-rack) | Recommended |
+|                     | [Configure MRD for every node in the rack](#configure-mrd-for-every-node-in-the-rack) | Recommended |
+|                     | [Configure BIOS settings for every node in the rack](#configure-bios-settings-for-every-node-in-the-rack) | Recommneded |
+|                     | [Set Boot Order for every node in the rack](#set-boot-order-for-every-node-in-the-rack) | Recommended |
+|                     | [Set events subscription for every node in the rack](#set-events-subscription-for-every-node-in-the-rack) | Recommended |
 |                     | [Upload Policies to Rack Manager](#upload-policies-to-rack-manager) | Recommended |
 |                     | [Get Task Update from a list of task IDs](#get-task-update-from-a-list-of-task-ids) | Recommended |
 | Composability       | [Construct a system with GPUs](#construct-a-system-with-gpus)     | Recommended |
@@ -230,7 +230,7 @@ The AssetTag properties is a client writeable property.
   "AssetTag": null,
 }
 ```
-## Get FRU Info for all systems
+## Get FRU Info for all nodes
 
 A single command is needed to give filtered information for every system in the rack.
 
@@ -297,7 +297,7 @@ The PowerMetrics objects contains statistics (min, max, avg) power usage over a 
 }
 ```
 
-## Get power usage of each system in rack
+## Get power usage of each node in rack
 
 The power usage may be required for each system in the rack individually
 
@@ -768,7 +768,7 @@ The response contains the following fragment. The information of interest is the
   \]
 }
 ```
-## Get FW Version of each system in rack
+## Get FW Version of each node in rack
 
 Retrieve BMC version of every system of the rack with a single command
 
@@ -993,19 +993,19 @@ POST /redfish/v1/AggregationService/Aggregates/Agg1/Actions/Aggregate.SetDefault
 
 The POST command has no request message.
 
-## Configure MRD for every system in the rack
+## Configure MRD for every node in the rack
 
 Set same MRD for every system in the rack
 
-## Configure BIOS settings for every system in the rack
+## Configure BIOS settings for every node in the rack
 
 Set BIOS configuration changes for every system in the rack
 
-## Set Boot Order for every system in the rack
+## Set Boot Order for every node in the rack
 
 Set permanent boot order for every system in the rack
 
-## Set events subscription for every system in the rack
+## Set events subscription for every node in the rack
 
 Set event subscription for every system in the rack
 
