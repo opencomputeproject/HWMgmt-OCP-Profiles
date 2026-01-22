@@ -93,7 +93,7 @@ capabilities.
 | **Use Case**        | **Management Task**                                       | **Requirement** |
 | :---                | :-----------                                              | :---	|
 | Inventory           | [Get FRU Info](#get-fru-info)                    | Mandatory |
-|                     | [Get FRU Info for all systems](#get-fru-info-all-systems)                    | Mandatory |
+|                     | [Get FRU Info for all systems](#get-fru-info-for-all-systems)                    | Mandatory |
 | Rack Power          | [Get power state of rack](#get-power-state-of-rack)              | Mandatory |
 |                     | [Get power usage of rack](#get-power-usage-of-rack)              | Recommended |
 |                     | [Get power usage of each system in rack](#get-power-usage-of-rack)              | Recommended |
