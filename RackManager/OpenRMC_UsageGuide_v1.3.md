@@ -96,7 +96,7 @@ capabilities.
 |                     | [Get FRU Info for all systems](#get-fru-info-for-all-systems)                    | Mandatory |
 | Rack Power          | [Get power state of rack](#get-power-state-of-rack)              | Mandatory |
 |                     | [Get power usage of rack](#get-power-usage-of-rack)              | Recommended |
-|                     | [Get power usage of each system in rack](#get-power-usage-of-rack)              | Recommended |
+|                     | [Get power usage of each system in rack](#get-power-usage-of-each-system-in-rack)              | Recommended |
 |                     | [Set power usage of rack](#set-power-usage-of-rack)             | Mandatory |
 | PSU Status          | [Get status of PSU](#get-status-of-psu)                            | Mandatory |
 | Node Power          | [Get power state of node](#get-power-state-of-node)              | Mandatory |
@@ -108,7 +108,7 @@ capabilities.
 |                     | [Get status of node memory](#get-status-of-node-memory)          | Mandatory |
 |                     | [Get state of node LED](#get-state-of-node-led)                | Mandatory |
 |                     | [Get system log from node](#get-system-log-from-node)                        | Mandatory |
-| Firmware Update     | [Get FW Version of each system in rack](#pull-fw-update-on-rack-manager)| Mandatory |
+| Firmware Update     | [Get FW Version of each system in rack](#get-fw-version-of-each-system-in-rack)| Mandatory |
 |                     | [Pull FW Update on Rack Manager](#pull-fw-update-on-rack-manager)| Mandatory |
 |                     | [Push FW Update on Rack Manager](#push-fw-update-on-rack-manager)| Mandatory |
 |                     | [Pull FW Update on node](#pull-fw-update-on-node)                | Mandatory |
@@ -117,23 +117,23 @@ capabilities.
 |                     | [Reset a persistent group of nodes](#reset-a-persistent-group-of-nodes)      | Mandatory |
 |                     | [Create a persistent group of nodes](#create-a-persistent-group-of-nodes) | Mandatory |
 |                     | [Set boot order of aggregate to default](#set-boot-order-of-aggregate-to-default) | Mandatory |
-|                     | [Configure MRD (Telemetry) for every system in the rack](#configure-mrd-rack) | Recommended |
-|                     | [Configure BIOS settings for every system in the rack](#configure-bios-rack) | Recommneded |
-|                     | [Set Boot Order for every system in the rack](#configure-boot-order_rack) | Recommended |
-|                     | [Set events subscription for every system in the rack](#configure-event-subscritpion-rack) | Recommended |
-|                     | [Upload Policies to Rack Manager](#upload-rack-policies) | Recommended |
-|                     | [Get Task Update from a list of task ID’s](#get-task-status-multiple-systems) | Recommended |
-| Composability       | [Construct a system with GPU's](#construct-system-with-gpus)     | Recommended |
-|                     | [Get Health of GPU's from composed compute system](#gpu_health_composed_system) | Recommended |
-|                     | [Set policy when a GPU in a composed system fails](#policy_composed_system_gpu_failure) | Recommended |
-|                     | [Get all external links of a specific node (i.e. powershelves, CDU’s, UA switches, network switches)](#get-external-links-scale-up) | Recommended |
-| Telemetry           | [Get telemetry blob from a compute system device](#get_telemetry_blob_compute_system) | Recommended |
-|                     | [Stream_Power_Consumption_All_Compute_Systems](#stream_power_consumption_compute_system) | Recommended |
-| POD Manager         | [Get list of all racks in a pod](#list-racks-pod)          | Recommended |
-|                     | [List all systems from a single rack in a pod](#list-systems-rack-from-pod)          | Recommended |
-|                     | [Get fail over POD manager](#get-failover-pod-mgr)          | Recommended |
-|                     | [Get parent (rack mgr or pod mgr) from a system/rack](#get-parent) | Recommended |
-|                     | [Get Power Consumption of every node of entire POD](#get-power-consumption-pod) | Recommended |
+|                     | [Configure MRD (Telemetry) for every system in the rack](#configure-mrd-(telemetry)-for-every-system-in-the-rack) | Recommended |
+|                     | [Configure BIOS settings for every system in the rack](#configure-bios-settings-for-every-system-in-the-rack) | Recommneded |
+|                     | [Set Boot Order for every system in the rack](#set-boot-order-for-every-system-in-the-rack) | Recommended |
+|                     | [Set events subscription for every system in the rack](#set-event-subscription-for-every-system-in-the-rack) | Recommended |
+|                     | [Upload Policies to Rack Manager](#upload-policies-to-rack-manager) | Recommended |
+|                     | [Get Task Update from a list of task ID’s](#get-task-update-from-a-list-of-task-id's) | Recommended |
+| Composability       | [Construct a system with GPU's](#construct-a-system-with-gpu's)     | Recommended |
+|                     | [Get Health of GPU's from composed compute system](#get-health-of-gpu's-from-composed-compute-system) | Recommended |
+|                     | [Set policy when a GPU in a composed system fails](#set-policy-when-a-gpu-in-a-composed-system-fails) | Recommended |
+|                     | [Get all external links of a specific node (i.e. powershelves, CDU’s, UA switches, network switches)](#get-all-external-links-of-a-specific-node-(i.e.-powershelvs,-cud's-ua-switches,-network-switches) | Recommended |
+| Telemetry           | [Get telemetry blob from a compute system device](#get_telemetry_blob-from-a-compute-system-device) | Recommended |
+|                     | [Stream_Power_Consumption_All_Compute_Systems](#stream-power-consumption-all-compute-systems) | Recommended |
+| POD Manager         | [Get list of all racks in a pod](#get-list-of-all-racks-in-a-pod)          | Recommended |
+|                     | [List all systems from a single rack in a pod](#list-all-systems-from-a-single-rack-in-a-pod)          | Recommended |
+|                     | [Get fail over POD manager](#get-fail-over-pod-manager)          | Recommended |
+|                     | [Get parent from a system/rack](#get-parent-from-a-system/rack) | Recommended |
+|                     | [Get Power Consumption of every node of entire POD](#get-power-consumption-of-every-node-of-entire-pod) | Recommended |
 | Authorization       | [Get certificate from node](#get-certificate-from-node)          | Mandatory |
 |                     | [Place certificate on node](#place-certificate-on-node)          | Mandatory |
 |                     | [Place token on node](#place-token-on-node)                      | Mandatory |
