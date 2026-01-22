@@ -117,22 +117,22 @@ capabilities.
 |                     | [Reset a persistent group of nodes](#reset-a-persistent-group-of-nodes)      | Mandatory |
 |                     | [Create a persistent group of nodes](#create-a-persistent-group-of-nodes) | Mandatory |
 |                     | [Set boot order of aggregate to default](#set-boot-order-of-aggregate-to-default) | Mandatory |
-|                     | [Configure MRD (Telemetry) for every system in the rack](#configure-mrd-(telemetry)-for-every-system-in-the-rack) | Recommended |
+|                     | [Configure MRD for every system in the rack](#configure-mrd-for-every-system-in-the-rack) | Recommended |
 |                     | [Configure BIOS settings for every system in the rack](#configure-bios-settings-for-every-system-in-the-rack) | Recommneded |
 |                     | [Set Boot Order for every system in the rack](#set-boot-order-for-every-system-in-the-rack) | Recommended |
-|                     | [Set events subscription for every system in the rack](#set-event-subscription-for-every-system-in-the-rack) | Recommended |
+|                     | [Set events subscription for every system in the rack](#set-events-subscription-for-every-system-in-the-rack) | Recommended |
 |                     | [Upload Policies to Rack Manager](#upload-policies-to-rack-manager) | Recommended |
-|                     | [Get Task Update from a list of task ID’s](#get-task-update-from-a-list-of-task-id's) | Recommended |
-| Composability       | [Construct a system with GPU's](#construct-a-system-with-gpu's)     | Recommended |
-|                     | [Get Health of GPU's from composed compute system](#get-health-of-gpu's-from-composed-compute-system) | Recommended |
+|                     | [Get Task Update from a list of task IDs](#get-task-update-from-a-list-of-task-ids) | Recommended |
+| Composability       | [Construct a system with GPUs](#construct-a-system-with-gpus)     | Recommended |
+|                     | [Get Health of GPUs from composed compute system](#get-health-of-gpus-from-composed-compute-system) | Recommended |
 |                     | [Set policy when a GPU in a composed system fails](#set-policy-when-a-gpu-in-a-composed-system-fails) | Recommended |
-|                     | [Get all external links of a specific node (i.e. powershelves, CDU’s, UA switches, network switches)](#get-all-external-links-of-a-specific-node-(i.e.-powershelvs,-cud's-ua-switches,-network-switches) | Recommended |
-| Telemetry           | [Get telemetry blob from a compute system device](#get_telemetry_blob-from-a-compute-system-device) | Recommended |
+|                     | [Get all external links of a specific node](#get-all-external-links-of-a-specific-node) | Recommended |
+| Telemetry           | [Get telemetry blob from a compute system device](#get-telemetry-blob-from-a-compute-system-device) | Recommended |
 |                     | [Stream_Power_Consumption_All_Compute_Systems](#stream-power-consumption-all-compute-systems) | Recommended |
 | POD Manager         | [Get list of all racks in a pod](#get-list-of-all-racks-in-a-pod)          | Recommended |
 |                     | [List all systems from a single rack in a pod](#list-all-systems-from-a-single-rack-in-a-pod)          | Recommended |
 |                     | [Get fail over POD manager](#get-fail-over-pod-manager)          | Recommended |
-|                     | [Get parent from a system/rack](#get-parent-from-a-system/rack) | Recommended |
+|                     | [Get parent from a node or rack](#get-parent-from-a-node-or-rack) | Recommended |
 |                     | [Get Power Consumption of every node of entire POD](#get-power-consumption-of-every-node-of-entire-pod) | Recommended |
 | Authorization       | [Get certificate from node](#get-certificate-from-node)          | Mandatory |
 |                     | [Place certificate on node](#place-certificate-on-node)          | Mandatory |
@@ -993,7 +993,7 @@ POST /redfish/v1/AggregationService/Aggregates/Agg1/Actions/Aggregate.SetDefault
 
 The POST command has no request message.
 
-## Configure MRD (Telemetry) for every system in the rack
+## Configure MRD for every system in the rack
 
 Set same MRD for every system in the rack
 
@@ -1017,9 +1017,13 @@ Upload policies to rack manager.  Policies should be in the form of JSON file an
 - Power sequencing
 - Power cap failures
 
-## Get Task Update from a list of task ID’s
+## Get Task Update from a list of task IDs
 
-## Get Health of GPU's from composed compute system
+## Construct a system with GPUs
+
+Compose a system from a pool of GPU's
+
+## Get Health of GPUs from composed compute system
 
 To get the health of all GPU's attached to a specific node, the client invoke a Redfish command or RedPath command
 
@@ -1031,8 +1035,9 @@ To get the health of all GPU's attached to a specific node, the client invoke a 
 
 When a composed system of GPU's has one or more GPU failures, a policy in the rack manager can define whether more GPU's can be added from another switch or the composition should de deconstructed so another rack or compute node can be built to meet the minimum required configuration.
 
-## Get all external links of a specific node (i.e. powershelves, CDU’s, UA switches, network switches)
-
+## Get all external links of a specific node
+ 
+ Examples include attached powershelves, CDU’s, UA switches, network switches
 
 ## Get telemetry blob from a compute system device
 
@@ -1064,7 +1069,7 @@ The response contains the following fragment. The response either contains all t
 }
 ```
 
-## Stream_Power_Consumption_All_Compute_Systems
+## Stream Power Consumption All Compute Systems
 
 To set up a new stream for power consumption with X second sampling time to all compute systems in a rack, the client invokes the following command(s).  Recommend to use the open socket method.
 
@@ -1076,7 +1081,7 @@ To set up a new stream for power consumption with X second sampling time to all 
 
 ## Get fail over POD manager
 
-## Get parent (rack mgr or pod mgr) from a system/rack
+## Get parent from a node or rack
 
 ## Get Power Consumption of every node of entire POD
 
