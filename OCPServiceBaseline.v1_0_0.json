@@ -1,0 +1,642 @@
+{
+    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_6_0",
+    "ProfileName": "OCP Service Baseline",
+    "ProfileVersion": "1.0.0",
+    "Purpose": "Describes OCP requirements for any Redfish service instance.  This profile covers only the purely software/firmware service portions of the Redfish schema.  Any device or product (software or firmware-based) implementing the Redfish Specification should meet these basic functionality requirements, regardless of the underlying hardware or system it is supporting.  This profile is intended to be included as a required profile by other OCP profiles to serve as a base for Redfish service functionality.",
+    "OwningEntity": "OCP",
+    "ContactInfo": "jeff.autor@ocproject.com",
+    "Protocol": {
+        "MinVersion": "1.6",
+        "Discovery": "Recommended",
+        "HostInterface": "None",
+        "ExpandQuery": "Recommended",
+        "SelectQuery": "None",
+        "FilterQuery": "Recommended",
+        "OnlyQuery": "Mandatory",
+        "ExcerptQuery": "None",
+        "DeepPATCH": "None",
+        "DeepPOST": "None"
+    },
+    "Resources": {
+        "AccountService": {
+            "PropertyRequirements": {
+                "Accounts": {},
+                "ActiveDirectory": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "ServiceEnabled": {},
+                        "ServiceAddresses": {},
+                        "RemoteRoleMapping": {}
+                    }
+                },
+                "Roles": {},
+                "LDAP": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "LDAPService": {
+                            "ReadRequirement": "IfImplemented"
+                        },
+                        "ServiceEnabled": {},
+                        "ServiceAddresses": {},
+                        "RemoteRoleMapping": {}
+                    }
+                },
+                "OAuth2": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "OAuth2Service": {},
+                        "ServiceEnabled": {},
+                        "ServiceAddresses": {}
+                    }
+                },
+                "OutboundConnections": {
+                    "ReadRequirement": "Recommended"
+                },
+                "SupportedAccountTypes": {}
+            }
+        },
+        "Certificate": {
+            "ReadRequirement": "Mandatory",
+            "URIs": [ "/redfish/v1/Managers/{ManagerId}/NetworkProtocol/HTTPS/Certificates/{CertificateId}"],
+            "PropertyRequirements": {
+                "CertificateString": {}
+            }
+        },
+        "CertificateService": {
+            "ReadRequirement": "Mandatory",
+            "PropertyRequirements": {
+                "CertificateLocations": {}
+            },
+            "ActionRequirements": {
+                "GenerateCSR": {
+                    "ReadRequirement": "Mandatory",
+                    "ActionInfo": "Mandatory"
+                },
+                "ReplaceCertificate": {}
+            }
+        },
+        "EthernetInterface": {
+            "ReadRequirement": "Mandatory",
+            "URIs": [
+                "/redfish/v1/Managers/{ManagerId}/EthernetInterfaces/{EthernetInterfaceId}"
+            ],
+            "PropertyRequirements": {
+                "MACAddress": {},
+                "SpeedMbps": {
+                    "ReadRequirement": "Supported"
+                },
+                "InterfaceEnabled": {},
+                "LinkStatus": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "DHCPv4": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "DHCPEnabled": {
+                            "ReadRequirement": "IfImplemented"
+                        }
+                    }
+                },
+                "DHCPv6": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "OperatingMode": {
+                            "ReadRequirement": "IfImplemented"
+                        }
+                    }
+                },
+                "HostName": {
+                    "ReadRequirement": "Supported"
+                },
+                "FQDN": {
+                    "ReadRequirement": "Supported"
+                },
+                "NameServers": {
+                    "ReadRequirement": "Supported"
+                },
+                "IPv4Addresses": {
+                    "PropertyRequirements": {
+                        "Address": {},
+                        "AddressOrigin": {},
+                        "Gateway": {},
+                        "SubnetMask": {}
+                    }
+                },
+                "IPv4StaticAddresses": {
+                    "ReadRequirement": "IfImplemented",
+                    "PropertyRequirements": {
+                        "Address": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "Gateway": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "SubnetMask": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    }
+                },
+                "IPv6AddressPolicyTable": {
+                    "ReadRequirement": "Recommended"
+                },
+                "IPv6StaticAddresses": {
+                    "ReadRequirement": "IfImplemented",
+                    "PropertyRequirements": {
+                        "Address": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    }
+                },
+                "IPv6StaticDefaultGateways": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "Address": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    }
+                },
+                "IPv6Addresses": {
+                    "ReadRequirement": "IfImplemented",
+                    "PropertyRequirements": {
+                        "Address": {},
+                        "PrefixLength": {},
+                        "AddressOrigin": {},
+                        "AddressState": {}
+                    }
+                },
+                "StaticNameServers": {
+                    "ReadRequirement": "Recommended"
+                }
+            }
+        },
+        "EventDestination": {
+            "ReadRequirement": "IfPopulated",
+            "PropertyRequirements": {
+                "Context": {},
+                "Destination": {},
+                "DeliveryRetryPolicy": {},
+                "Protocol": {},
+                "EventFormatType": {},
+                "SubscriptionType": {},
+                "ExcludeMessageIds": {
+                    "ReadRequirement": "Recommended"
+                },
+                "ExcludeRegistryPrefixes": {
+                    "ReadRequirement": "Recommended"
+                },
+                "HttpHeaders": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Mandatory"
+                },
+                "IncludeOriginOfCondition": {
+                    "ReadRequirement": "Recommended"
+                },
+                "RegistryPrefixes": {
+                    "ReadRequirement": "Recommended"
+                },
+                "ResourceTypes": {
+                    "ReadRequirement": "Recommended"
+                },
+                "SubordinateResources": {
+                    "ReadRequirement": "Recommended"
+                }
+            },
+            "ActionRequirements": {
+                "ResumeSubscription": {
+                    "ReadRequirement": "Recommended"
+                },
+                "SuspendSubscription": {
+                    "ReadRequirement": "Recommended"
+                }
+            }
+        },
+        "EventService": {
+            "PropertyRequirements": {
+                "ExcludeMessageId": {},
+                "ExcludeRegistryPrefix": {},
+                "IncludeOriginOfConditionSupported": {},
+                "RegistryPrefixes": {},
+                "ResourceTypes": {},
+                "ServerSentEventUri": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "ServiceEnabled": {},
+                "SubordinateResourcesSupported": {},
+                "Subscriptions": {}
+            },
+            "ActionRequirements": {
+                "TestEventSubscription": {
+                    "ReadRequirement": "Recommended"
+                },
+                "SubmitTestEvent": {
+                    "ReadRequirement": "Recommended"
+                }
+            }
+        },
+        "License": {
+            "ReadRequirement": "IfImplemented",
+            "PropertyRequirements": {
+                "AuthorizationScope": {},
+                "EntitlementId": {},
+                "ExpirationDate": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "InstallDate": {},
+                "LicenseInfoURI": {
+                    "ReadRequirement": "Recommended"
+                },
+                "LicenseOrigin": {},
+                "LicenseType": {},
+                "Manufacturer": {},
+                "Removable": {},
+                "SKU": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Status": {
+                    "PropertyRequirements": {
+                        "State": {
+                            "ReadRequirement": "Recommended"
+                        }
+                    }
+                }
+            }
+        },
+        "LicenseCollection": {
+            "ReadRequirement": "IfImplemented",
+            "CreateResource": true,
+            "DeleteResource": true,
+            "UpdateResource": true
+        },
+        "LicenseService": {
+            "ReadRequirement": "Recommended",
+            "Purpose": "For products that utilize software licensing, supporting the installation and updating of licenses through the Redfish interface is highly recommended.",
+            "PropertyRequirements": {
+                "Licenses": {}
+            },
+            "ActionRequirements": {
+                "Install": {
+                    "ReadRequirement": "Mandatory",
+                    "Purpose": "Encourage common toolchain usage for mass operations.  While individual licenses will be highly dependent on vendor definitions, the process to install those licenses should be vendor-independent.",
+                    "Parameters": {
+                        "LicenseFileURI": {}
+                    }
+                }
+            }
+        },
+        "LogEntry": {
+            "URIs": [ "/redfish/v1/Managers/{ManagerId}/LogServices/{LogServiceId}/Entries/{LogEntryId}" ],
+            "PropertyRequirements": {
+                "Created": {},
+                "EntryType": {},
+                "EventGroupId": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Message": {
+                    "ReadRequirement": "Recommended"
+                },
+                "MessageId": {},
+                "MesageArgs": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Severity": {}
+            }
+        },
+        "LogService": {
+            "URIs": [ "/redfish/v1/Managers/{ManagerId}/LogServices/{LogServiceId}" ],
+            "PropertyRequirements": {
+                "DateTime": {},
+                "DateTimeLocalOffset": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Entries": {},
+                "LogEntryType": {},
+                "LogPurposes": {
+                    "ReadRequirement": "Recommended"
+                },
+                "ServiceEnabled": {
+                    "ReadRequirement": "Recommended"
+                }
+            },
+            "ActionRequirements": {
+                "ClearLog": {
+                    "ReadRequirement": "Recommended"
+                }
+            }
+        },
+        "Manager": {
+            "PropertyRequirements": {
+                "DateTime": {
+                    "ReadRequirement": "Mandatory",
+                    "WriteRequirement": "Recommended"
+                },
+                "DateTimeLocalOffset": {
+                    "ReadRequirement": "Mandatory",
+                    "WriteRequirement": "Recommended"
+                },
+                "ManagerType": {},
+                "UUID": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "FirmwareVersion": {},
+                "NetworkProtocol": {
+                    "ReadRequirement": "Supported"
+                },
+                "EthernetInterfaces": {},
+                "LogServices": {},
+                "Links": {
+                    "PropertyRequirements": {
+                        "ManagerForChassis": {
+                            "ReadRequirement": "Supported"
+                        }
+                    }
+                }
+            },
+            "ActionRequirements": {
+                "Reset": {
+                    "Parameters": {
+                        "ResetType": {
+                            "ParameterValues": [
+                                "ForceRestart"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ManagerAccount": {
+            "PropertyRequirements": {
+                "AccountTypes": {},
+                "Enabled": {},
+                "Links": {
+                    "PropertyRequirements": {
+                        "Role": {}
+                    }
+                },
+                "Password": {},
+                "PasswordChangeRequired": {
+                    "ReadRequirement": "Recommended"
+                },
+                "PasswordExpiration": {
+                    "ReadRequirement": "Recommended"
+                },
+                "RoleId": {},
+                "UserName": {}
+            }
+        },
+        "ManagerNetworkProtocol": {
+            "PropertyRequirements": {
+                "HostName": {},
+                "FQDN": {},
+                "HTTP": {
+                    "ReadRequirement": "IfImplemented",
+                    "PropertyRequirements": {
+                        "ProtocolEnabled": {},
+                        "Port": {}
+                    }
+                },
+                "HTTPS": {
+                    "PropertyRequirements": {
+                        "Certificates": {},
+                        "ProtocolEnabled": {},
+                        "Port": {}
+                    }
+                },
+                "NTP": {
+                    "ReadRequirement": "IfImplemented",
+                    "PropertyRequirements": {
+                        "NTPServers": {},
+                        "Port": {},
+                        "ProtocolEnabled": {}
+                    }
+                },
+                "SSH": {
+                    "ReadRequirement": "IfImplemented",
+                    "PropertyRequirements": {
+                        "ProtocolEnabled": {},
+                        "Port": {}
+                    }
+                },
+                "SSDP": {
+                    "ReadRequirement": "Recommended",
+                    "PropertyRequirements": {
+                        "ProtocolEnabled": {
+                            "ReadRequirement": "Mandatory",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "Port": {},
+                        "NotifyMulticastIntervalSeconds": {
+                            "ReadRequirement": "IfImplemented",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "NotifyIPv6Scope": {
+                            "ReadRequirement": "IfImplemented",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "NotifyTTL": {
+                            "ReadRequirement": "IfImplemented",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    }
+                }
+            }
+        },
+        "OutboundConnectionCollection": {
+            "ReadRequirement": "Recommended",
+            "CreateResource": true,
+            "UpdateResource": true,
+            "DeleteResource": true
+        },
+        "OutboundConnection": {
+            "ReadRequirement": "IfPopulated",
+            "PropertyRequirements": {
+                "Authentication": {},
+                "Certificates": {},
+                "ClientCertificates": {},
+                "ConnectionEnabled": {},
+                "EndpointURI": {},
+                "Links": {
+                    "PropertyRequirements": {
+                        "Session": {}
+                    }
+                },
+                "PreUpgradeHTTPHeaders": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Roles": {},
+                "Status": {},
+                "WebSocketPingIntervalMinutes": {}
+            }
+        },
+        "RegisteredClientCollection": {
+            "ReadRequirement": "Recommended",
+            "CreateResource": true,
+            "UpdateResource": true,
+            "DeleteResource": true
+        },
+        "RegisteredClient": {
+            "ReadRequirement": "IfPopulated",
+            "PropertyRequirements": {
+                "Context": {},
+                "ClientType": {},
+                "ClientURI": {},
+                "CreatedDate": {},
+                "ManagedResources": {},
+                "SubContext": {}
+            }
+        },
+        "Role": {
+            "PropertyRequirements": {
+                "AssignedPrivileges": {},
+                "IsPredefined": {},
+                "RoleId": {}
+            }
+        },
+        "ServiceConditions": {
+            "ReadRequirement": "Recommended",
+            "PropertyRequirements": {
+                "Conditions": {},
+                "HealthRollup": {}
+            }
+        },
+        "ServiceRoot": {
+            "PropertyRequirements": {
+                "AccountService": {},
+                "CertificateService": {},
+                "EventService": {},
+                "LicenseService": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Managers": {},
+                "SessionService": {},
+                "Product": {},
+                "ProtocolFeaturesSupported": {
+                    "PropertyRequirements": {
+                        "ExpandQuery": {},
+                        "FilterQuery": {},
+                        "OnlyMemberQuery": {},
+                        "MultipleHTTPRequests": {}
+                    }
+                },
+                "RedfishVersion": {},
+                "RegisteredClients": {
+                    "ReadRequirement": "Recommended"
+                },
+                "ServiceConditions": {
+                    "ReadRequirement": "Recommended"
+                },
+                "ServiceIdentification": {
+                    "ReadRequirement": "Recommended"
+                },
+                "UpdateService": {},
+                "Vendor": {}
+            }
+        },
+        "Session": {
+            "PropertyRequirements": {
+                "ClientOriginIPAddress": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Context": {
+                    "ReadRequirement": "Recommended"
+                },
+                "CreatedTime": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Links": {
+                    "ReadRequirement": "IfImplemented",
+                    "PropertyRequirements": {
+                        "OutboundConnection": {
+                            "ReadRequirement": "IfImplemented"
+                        }
+                    }
+                },
+                "Password": {
+                    "ReadRequirement": "Recommended"
+                },
+                "UserName": {}
+            }
+        },
+        "SessionService": {
+            "PropertyRequirements": {
+                "Sessions": {},
+                "SessionTimeout": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Recommended"
+                }
+            }
+        },
+        "SoftwareInventory": {
+            "PropertyRequirements": {
+                "Manufacturer": {},
+                "RelatedItem": {
+                    "ReadRequirement": "Supported"
+                },
+                "ReleaseDate": {
+                    "ReadRequirement": "Recommended"
+                },
+                "ReleaseType": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Updateable": {},
+                "Version": {},
+                "VersionScheme": {
+                    "ReadRequirement": "Recommended"
+                }
+            }
+        },
+        "Task": {
+            "ReadRequirement": "IfImplemented",
+            "PropertyRequirements": {
+                "Messages": {},
+                "TaskMonitor": {},
+                "TaskState": {},
+                "TaskStatus": {}
+            }
+        },
+        "TaskService": {
+            "ReadRequirement": "IfImplemented",
+            "PropertyRequirements": {
+                "DateTime": {},
+                "Tasks": {}
+            }
+        },
+        "UpdateService": {
+            "ReadRequirement": "Recommended",
+            "PropertyRequirements": {
+                "FirmwareInventory": {},
+                "MultipartHttpPushUri": {
+                    "ReadRequirement": "Recommended",
+                    "Purpose": "Desired that all equipment support both standard push and pull update methods."
+                }
+            },
+            "ActionRequirements": {
+                "SimpleUpdate": {
+                    "ReadRequirement": "Recommended",
+                    "Parameters": {
+                        "ImageURI": {},
+                        "Password": {},
+                        "TransferProtocol": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "Username": {}
+                    }
+                }
+            }
+        }
+    }
+}
