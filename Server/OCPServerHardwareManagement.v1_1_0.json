@@ -190,6 +190,13 @@
 				}
 			}
 		},
+		"EnvironmentMetrics": {
+			"ReadRequirement": "IfImplemented",
+			"PropertyRequirements": {
+				"PowerWatts": {},
+				"PowerLimitWatts": {}
+			}
+		}
 		"EthernetInterface": {
 			"MinVersion": "1.1.0",
 			"ReadRequirement": "Recommended",
@@ -236,14 +243,7 @@
 		},
 		"PowerSubsystem": {
             "PropertyRequirements": {
-                "EnvironmentMetrics": {
-			        "ReadRequirement": "IfImplemented",
-			        "PropertyRequirements": {
-				        "PowerConsumedWatts": {},
-				        "PowerCapacityWatts": {},
-				        "PowerLimitWatts": {}
-                    }
-                }
+                "CapacityWatts": {}
 			}
 		},
         "Thermal": {
@@ -286,18 +286,20 @@
 				}
 			}
 		},
+		"ThermalMetrics": {
+            "ReadRequirement": "IfImplemented",
+			"PropertyRequirements": {
+				"TemperatureSummaryCelsius": {
+					"PropertyRequirements": {
+						"Exhaust": {}
+					}
+				}
+			}
+		},
 		"ThermalSubsystem": {
 			"ReadRequirement": "IfImplemented",
 			"PropertyRequirements": {
-				"ThermalMetrics": {
-					"PropertyRequirements": {
-						"TemperatureSummaryCelsius": {
-							"PropertyRequirements": {
-								"Exhaust": {}
-							}
-						}
-					}
-				}
+				"ThermalMetrics": {}
 			}
 		},
         "ServiceRoot": {
