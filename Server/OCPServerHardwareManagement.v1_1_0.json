@@ -43,33 +43,33 @@
               				"CompareValues": ["RackMount", "Sled", "Drawer"]
             			}
           			]
-        		},
+                },
                 "Power": {
-					"ReadRequirement": "Recommended",
-          			"ConditionalRequirements": [
-            			{
-              				"Purpose": "Required if ChassisType are specific values",
-              				"ReadRequirement": "Mandatory",
-              				"CompareType": "AnyOf",
-              				"CompareProperty": "ChassisType",
-              				"CompareValues": ["RackMount", "Sled", "Drawer"]
-            			}
-          			]
-				},
+                    "ReadRequirement": "Recommended",
+                    "ConditionalRequirements": [
+                        {
+                            "Purpose": "Required if ChassisType are specific values",
+                            "ReadRequirement": "Mandatory",
+                            "CompareType": "AnyOf",
+                            "CompareProperty": "ChassisType",
+                            "CompareValues": ["RackMount", "Sled", "Drawer"]
+                        }
+                    ]
+                },
                 "PowerSubsystem": {
-					"ReadRequirement": "Recommended",
-          			"ConditionalRequirements": [
-            			{
-              				"Purpose": "Required if ChassisType are specific values",
-              				"ReadRequirement": "Mandatory",
-              				"CompareType": "AnyOf",
-              				"CompareProperty": "ChassisType",
-              				"CompareValues": ["RackMount", "Sled", "Drawer"]
-            			}
-          			]
-				}      		}
-
-		},
+                    "ReadRequirement": "Recommended",
+                    "ConditionalRequirements": [
+                        {
+                            "Purpose": "Required if ChassisType are specific values",
+                            "ReadRequirement": "Mandatory",
+                            "CompareType": "AnyOf",
+                            "CompareProperty": "ChassisType",
+                            "CompareValues": ["RackMount", "Sled", "Drawer"]
+                        }
+                    ]
+                }
+            }
+        },
 		"ComputerSystem": {
 			"MinVersion": "1.0.0",
 			"PropertyRequirements": {
@@ -152,7 +152,7 @@
 					"ReadRequirement": "Recommended"
 				},
 				"SerialConsole": {
-					"ReadRequirement": "Mandatory",
+					"ReadRequirement": "Recommended",
 					"Purpose": "SSH or IPMI-based serial remote console is required.",
 					"PropertyRequirements": {
 						"SSH": {
