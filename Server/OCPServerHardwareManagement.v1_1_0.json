@@ -15,6 +15,9 @@
 		"Chassis": {
 			"MinVersion": "1.0.0",
 			"PropertyRequirements": {
+				"EnvironmentMetrics": {
+					"ReadRequirement": "IfImplemented"
+				},
 				"Links": {
 					"PropertyRequirements": {
 						"ComputerSystems": {}
