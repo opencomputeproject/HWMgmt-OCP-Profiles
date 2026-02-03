@@ -42,7 +42,7 @@ The following table lists the capabilities prescribed in the OCP Liquid Cooling 
 | Temperature    | [Get temperatures](#get-temperatures)                     | If implemented, mandatory |
 |                | [Get fan info](#get-fan-info)                             | If implemented, mandatory |
 |                | [Get fan redundancy info](#get-fan-redundancy-info)       | If implemented, mandatory |
-| Power          | [Get power usage](#get-power-usage)                       | Mandatory |
+| Power          | [Get power usage](#get-power-usage)                       | If implemented, mandatory |
 | Leak Detection | [Get leak detection summary](#get-leak-detection-summary) | Mandatory |
 |                | [Get leak detector info](#get-leak-detector-info)         | Mandatory |
 

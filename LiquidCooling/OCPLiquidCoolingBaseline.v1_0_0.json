@@ -17,7 +17,9 @@
             ],
             "PropertyRequirements": {
                 "ChassisType": {},
-                "EnvironmentMetrics": {},
+                "EnvironmentMetrics": {
+                    "ReadRequirement": "IfImplemented"
+                },
                 "Links": {
                     "PropertyRequirements": {
                         "CoolingUnits": {},
@@ -44,16 +46,21 @@
             }
         },
         "EnvironmentMetrics": {
+            "ReadRequirement": "IfImplemented",
             "URIs": [
                 "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics",
                 "/redfish/v1/ThermalEquipment/{CoolingUnitTypeId}/{CoolingUnitId}/EnvironmentMetrics"
             ],
             "PropertyRequirements": {
-                "EnergykWh": {},
+                "EnergykWh": {
+                    "ReadRequirement": "IfImplemented"
+                },
                 "HumidityPercent": {
                     "ReadRequirement": "IfImplemented"
                 },
-                "PowerWatts": {},
+                "PowerWatts": {
+                    "ReadRequirement": "IfImplemented"
+                },
                 "TemperatureCelsius": {
                     "ReadRequirement": "IfImplemented"
                 }
@@ -152,7 +159,9 @@
                     }
                 },
                 "CoolingCapacityWatts": {},
-                "EnvironmentMetrics": {},
+                "EnvironmentMetrics": {
+                    "ReadRequirement": "IfImplemented"
+                },
                 "EquipmentType": {},
                 "FirmwareVersion": {},
                 "LeakDetection": {},
