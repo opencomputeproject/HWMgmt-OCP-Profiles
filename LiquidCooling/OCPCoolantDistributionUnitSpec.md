@@ -69,7 +69,6 @@ GET /redfish/v1/ThermalEquipment/CDUs/1
     "Model": "LCOOL6000",
     "SerialNumber": "489609023",
     "PartNumber": "329-23489-3498-0A",
-    "UUID": "5ee175f7-7d0a-4775-a616-c5afd324dc55",
     "Status": {
         "State": "Enabled",
         "Health": "OK"
