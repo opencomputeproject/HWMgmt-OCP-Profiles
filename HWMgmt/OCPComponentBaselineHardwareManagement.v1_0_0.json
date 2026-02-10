@@ -1,0 +1,138 @@
+{
+	"SchemaDefinition": "RedfishInteroperabilityProfile.v1_4_0",
+	"ProfileName": "OCPComponentBaselineHardwareManagement",
+	"ProfileVersion": "1.0.0",
+	"Purpose": "Specifies the OCP component baseline hardware management requirements for the Redfish interface on platform components.  Component profiles may be referenced with platform profiles which would prescribe the Redfish Service service resources'.",
+	"OwningEntity": "Open Compute Project",
+	"ContactInfo": "OCP-HWmgt@OCP-All.groups.io",
+	"License": "Creative Common Attribution-ShareAlike 4.0 International License",
+	"Protocol": {
+		"MinVersion": "1.0",
+		"Discovery": "Recommended",
+		"HostInterface": "Recommended"
+	},
+	"Resources": {
+		"Chassis": {
+			"PropertyRequirements": {
+				"AssetTag": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended"
+				},
+				"ChassisType": {},
+				"IndicatorLED": {
+					"ReadRequirement": "Recommended",
+					"WriteRequirement": "Recommended"
+				},
+				"Manufacturer": {},
+				"Model": {},
+				"SerialNumber": {},
+				"SKU": {
+					"ReadRequirement": "Recommended"
+				},
+				"PartNumber": {
+					"ReadRequirement": "Recommended"
+				},
+				"PowerState": {},
+				"Status": {
+					"PropertyRequirements": {
+						"State": {},
+						"Health": {}
+					}
+				},
+				"EnvironmentMetrics": {
+					"ReadRequirement": "Recommended"
+				},
+				"Links": {
+					"PropertyRequirements": {
+						"ManagedBy": {}
+					}
+				}
+			}
+		},
+		"ChassisCollection": {
+			"PropertyRequirements": {
+				"Members": {
+					"MinCount": 1
+				}
+			}
+		},
+		"ManagerAccount": {},
+		"ManagerCollection": {
+			"PropertyRequirements": {
+				"Members": {
+					"MinCount": 1
+				}
+			}
+		},
+		"Manager": {
+			"PropertyRequirements": {
+				"ManagerType": {},
+				"UUID": {},
+				"Status": {},
+				"FirmwareVersion": {},
+				"NetworkProtocol": {},
+				"EthernetInterfaces": {},
+				"LogServices": {},
+				"Links": {
+					"PropertyRequirements": {
+						"ManagerForServers": {
+							"ReadRequirement": "IfImplemented"
+						},
+						"ManagerForChassis": {
+							"ReadRequirement": "IfImplemented"
+						}
+					}
+				}
+			}
+		},
+		"EnvironmentMetrics": {
+			"MinVersion": "1.0.0",
+			"PropertyRequirements": {
+				"TemperatureCelsius": {
+					"ReadRequirement": "Recommended",
+					"PropertyRequirements": {
+						"Reading": {}
+					}
+				},
+				"PowerWatts": {
+					"ReadRequirement": "Recommended",
+					"PropertyRequirements": {
+						"Reading": {}
+					}
+				},
+				"PowerLimitWatts": {
+					"ReadRequirement": "Recommended",
+					"PropertyRequirements": {
+						"SetPoint": {}
+					}
+				}
+			}
+		},
+		"LogService": {
+			"PropertyRequirements": {
+				"Entries": {}
+			},
+			"ActionRequirements": {
+				"ClearLog": {
+					"ReadRequirement": "Recommended"
+				}
+			}
+		},
+		"LogEntry": {
+			"PropertyRequirements": {
+				"Created": {},
+				"EntryType": {},
+				"Message": {},
+				"Severity": {}
+			}
+		},
+		"ServiceRoot": {
+			"PropertyRequirements": {
+				"UUID": {},
+				"RedfishVersion": {},
+				"Chassis": {},
+				"Managers": {}
+			}
+		}
+	}
+}
