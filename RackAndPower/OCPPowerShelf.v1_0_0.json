@@ -1,27 +1,344 @@
 {
-    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_6_0",
-    "ProfileName": "OCP Rack Power Distribution Unit",
+    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_7_0",
+    "ProfileName": "OCP Power Shelf",
     "ProfileVersion": "1.0.0",
-    "Purpose": "Describes Redfish requirements for a power distribution unit (PDU) intended for a single rack or similar amount of managed equipment.  The profile covers PDUs that support monitoring and may support outlet-level control (switching).",
-    "OwningEntity": "OCP",
-    "ContactInfo": "jeff.autor@ocproject.com",
+    "Purpose": "Specifies the OCP management requirements for the Redfish interface on OCP power shelves.",
+    "OwningEntity": "Open Compute Project",
+    "ContactInfo": "michael.raineri@dell.com",
     "RequiredProfiles": {
         "OCPServiceBaseline": {
             "MinVersion": "1.0.0"
         }
     },
     "Resources": {
+        "Chassis": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}"
+            ],
+            "PropertyRequirements": {
+                "AssetTag": {
+                    "ReadRequirement": "Recommended",
+                    "WriteRequirement": "Mandatory"
+                },
+                "ChassisType": {},
+                "EnvironmentMetrics": {},
+                "HeightMm": {
+                    "ReadRequirement": "Recommended"
+                },
+                "Links": {
+                    "PropertyRequirements": {
+                        "ContainedBy": {
+                            "ReadRequirement": "Recommended",
+                            "PropertyRequirements": {
+                                "@odata.id": {
+                                    "ReadRequirement": "Mandatory",
+                                    "WriteRequirement": "Mandatory"
+                                }
+                            }
+                        },
+                        "ManagedBy": {},
+                        "Facility": {
+                            "ReadRequirement": "Recommended",
+                            "PropertyRequirements": {
+                                "@odata.id": {
+                                    "ReadRequirement": "Mandatory",
+                                    "WriteRequirement": "Mandatory"
+                                }
+                            }
+                        },
+                        "PowerDistribution": {}
+                    }
+                },
+                "Location": {
+                    "PropertyRequirements": {
+                        "Placement": {
+                            "Purpose": "Allow user to specify the rack-level physical location of the PDU.",
+                            "PropertyRequirements": {
+                                "Rack": {
+                                    "ReadRequirement": "Mandatory",
+                                    "WriteRequirement": "Mandatory"
+                                },
+                                "Row": {
+                                    "ReadRequirement": "Recommended",
+                                    "WriteRequirement": "Mandatory"
+                                },
+                                "RackOffset": {
+                                    "ReadRequirement": "Recommended",
+                                    "WriteRequirement": "Mandatory"
+                                },
+                                "RackOffsetUnits": {
+                                    "ReadRequirement": "Recommended",
+                                    "WriteRequirement": "Recommended"
+                                }
+                            }
+                        },
+                        "Contacts": {
+                            "ReadRequirement": "Recommended",
+                            "WriteRequirement": "Mandatory"
+                        }
+                    }
+                },
+                "LocationIndicatorActive": {
+                    "ReadRequirement": "IfImplemented",
+                    "WriteRequirement": "Mandatory"
+                },
+                "Manufacturer": {},
+                "Model": {},
+                "PartNumber": {},
+                "PowerState": {},
+                "PowerSubsystem": {},
+                "Sensors": {},
+                "SerialNumber": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "ThermalSubsystem": {},
+                "UUID": {},
+                "Version": {
+                    "ReadRequirement": "Recommended"
+                }
+            }
+        },
+        "EnvironmentMetrics": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics"
+            ],
+            "PropertyRequirements": {
+                "PowerWatts": {},
+                "TemperatureCelsius": {}
+            }
+        },
+        "ThermalSubsystem": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem"
+            ],
+            "PropertyRequirements": {
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "ThermalMetrics": {}
+            }
+        },
+        "ThermalMetrics": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/ThermalSubsystem/ThermalMetrics"
+            ],
+            "PropertyRequirements": {
+                "TemperatureReadingsCelsius": {},
+                "TemperatureSummaryCelsius": {
+                    "PropertyRequirements": {
+                        "Ambient": {},
+                        "Internal": {}
+                    }
+                }
+            }
+        },
+        "Sensor": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/Sensors/{SensorId}"
+            ],
+            "PropertyRequirements": {
+                "ApparentVA": {
+                    "ReadRequirement": "Conditional",
+                    "Purpose": "For power sensors",
+                    "ConditionalRequirements": [
+                        {
+                            "CompareProperty": "ReadingType",
+                            "CompareValues": [
+                                "Power"
+                            ],
+                            "CompareType": "Equal",
+                            "ReadRequirement": "Recommended"
+                        }
+                    ]
+                },
+                "ElectricalContext": {
+                    "ReadRequirement": "Conditional",
+                    "Purpose": "For all electrical measurement sensors",
+                    "ConditionalRequirements": [
+                        {
+                            "CompareProperty": "ReadingType",
+                            "CompareValues": [
+                                "Power",
+                                "EnergykWh",
+                                "Voltage",
+                                "Frequency",
+                                "Current"
+                            ],
+                            "CompareType": "Equal",
+                            "ReadRequirement": "Mandatory"
+                        }
+                    ]
+                },
+                "PeakReading": {
+                    "ReadRequirement": "Conditional",
+                    "Purpose": "For power sensors, peak reading must be reported by at least one sensor.",
+                    "ConditionalRequirements": [
+                        {
+                            "CompareProperty": "ReadingType",
+                            "CompareValues": [
+                                "Power"
+                            ],
+                            "CompareType": "Equal",
+                            "ReadRequirement": "Supported"
+                        }
+                    ]
+                },
+                "PeakReadingTime": {
+                    "ReadRequirement": "Conditional",
+                    "Purpose": "For power sensors, peak reading time must be reported by at least one sensor.",
+                    "ConditionalRequirements": [
+                        {
+                            "CompareProperty": "ReadingType",
+                            "CompareValues": [
+                                "Power"
+                            ],
+                            "CompareType": "Equal",
+                            "ReadRequirement": "Supported"
+                        }
+                    ]
+                },
+                "Reading": {},
+                "ReadingTime": {},
+                "ReadingType": {},
+                "SensingInterval": {},
+                "Thresholds": {
+                    "ReadRequirement": "IfImplemented",
+                    "PropertyRequirements": {
+                        "UpperCaution": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "UpperCritical": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "LowerCaution": {
+                            "ReadRequirement": "Recommended"
+                        },
+                        "LowerCritical": {
+                            "ReadRequirement": "Recommended"
+                        }
+                    }
+                }
+            }
+        },
+        "PowerSubsystem": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/PowerSubsystem"
+            ],
+            "PropertyRequirements": {
+                "CapacityWatts": {},
+                "PowerSupplies": {},
+                "PowerSupplyRedundancy": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                }
+            }
+        },
+        "PowerSupply": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/PowerSubsystem/PowerSupplies/{PowerSupplyId}"
+            ],
+            "PropertyRequirements": {
+                "EfficiencyRatings": {
+                    "ReadRequirement": "Recommended"
+                },
+                "FirmwareVersion": {},
+                "InputNominalVoltageType": {},
+                "InputRanges": {
+                    "ReadRequirement": "Recommended"
+                },
+                "LineInputStatus": {},
+                "Location": {
+                    "PropertyRequirements": {
+                        "PartLocation": {
+                            "PropertyRequirements": {
+                                "LocationOrdinalValue": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "LocationType": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Orientation": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "Reference": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "ServiceLabel": {
+                                    "ReadRequirement": "Recommended"
+                                }
+                            }
+                        }
+                    }
+                },
+                "LocationIndicatorActive": {
+                    "ReadRequirement": "Mandatory",
+                    "WriteRequirement": "Mandatory"
+                },
+                "Manufacturer": {},
+                "Metrics": {},
+                "Model": {},
+                "OutputRails": {},
+                "PartNumber": {},
+                "PowerCapacityWatts": {},
+                "PowerSupplyType": {},
+                "ProductionDate": {},
+                "SerialNumber": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "Version": {}
+            }
+        },
+        "PowerSupplyMetrics": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}/PowerSubsystem/PowerSupplies/{PowerSupplyId}/Metrics"
+            ],
+            "PropertyRequirements": {
+                "FanSpeedsPercent": {
+                    "ReadRequirement": "IfImplemented"
+                },
+                "InputCurrentAmps": {},
+                "InputPowerWatts": {},
+                "InputVoltage": {},
+                "OutputPowerWatts": {},
+                "RailCurrentAmps": {},
+                "RailPowerWatts": {},
+                "RailVoltage": {},
+                "Status": {
+                    "PropertyRequirements": {
+                        "Health": {},
+                        "State": {}
+                    }
+                },
+                "TemperatureCelsius": {}
+            }
+        },
         "PowerEquipment": {
             "URIs": [
                 "/redfish/v1/PowerEquipment"
             ],
             "PropertyRequirements": {
-                "RackPDUs": {}
+                "PowerShelves": {}
             }
         },
         "PowerDistribution": {
             "URIs": [
-                "/redfish/v1/PowerEquipment/RackPDUs/{PowerDistributionId}"
+                "/redfish/v1/PowerEquipment/PowerShelves/{PowerDistributionId}"
             ],
             "PropertyRequirements": {
                 "AssetTag": {
@@ -33,30 +350,14 @@
                     "ReadRequirement": "Mandatory",
                     "Comparison": "Equal",
                     "Values": [
-                        "RackPDU"
+                        "PowerShelf"
                     ]
                 },
                 "FirmwareVersion": {},
                 "Links": {
                     "PropertyRequirements": {
-                        "Chassis": {
-                            "ReadRequirement": "Mandatory",
-                            "Purpose": "Must provide a link to the Chassis resource that represents the physical location data and placement.",
-                            "PropertyRequirements": {
-                                "@odata.id": {
-                                    "ReadRequirement": "Mandatory"
-                                }
-                            }
-                        },
-                        "ManagedBy": {
-                            "ReadRequirement": "Mandatory",
-                            "Purpose": "Provide link to the manager since one manager may be shared among several PDU instances",
-                            "PropertyRequirements": {
-                                "@odata.id": {
-                                    "ReadRequirement": "Mandatory"
-                                }
-                            }
-                        }
+                        "Chassis": {},
+                        "ManagedBy": {}
                     }
                 },
                 "Location": {
@@ -97,16 +398,11 @@
                     "ReadRequirement": "IfImplemented"
                 },
                 "Manufacturer": {},
-                "Metrics": {
-                    "ReadRequirement": "Mandatory",
-                    "PropertyRequirements": {
-                        "@odata.id": {
-                            "ReadRequirement": "Mandatory"
-                        }
-                    }
-                },
+                "Metrics": {},
                 "Model": {},
-                "Outlets": {},
+                "Outlets": {
+                    "ReadRequirement": "IfImplemented"
+                },
                 "PartNumber": {},
                 "ProductionDate": {
                     "ReadRequirement": "Recommended"
@@ -130,11 +426,12 @@
         },
         "PowerDistributionMetrics": {
             "URIs": [
-                "/redfish/v1/PowerEquipment/RackPDUs/{PowerDistributionId}/Metrics"
+                "/redfish/v1/PowerEquipment/PowerShelves/{PowerDistributionId}/Metrics"
             ],
             "PropertyRequirements": {
-                "EnergykWh": {},
                 "PowerWatts": {},
+                "EnergykWh": {},
+                "TemperatureCelsius": {},
                 "PowerLoadPercent": {}
             },
             "ActionRequirements": {
@@ -152,9 +449,8 @@
                     ],
                     "UseCaseComparison": "Equal",
                     "ReadRequirement": "Mandatory",
-                    "Purpose": "Mains circuits must report total power and energy consumption values for the entire PDU.  They must also report wiring details.",
                     "URIs": [
-                        "/redfish/v1/PowerEquipment/RackPDUs/{PowerDistributionId}/Mains/{CircuitId}"
+                        "/redfish/v1/PowerEquipment/PowerShelves/{PowerDistributionId}/Mains/{CircuitId}"
                     ],
                     "PropertyRequirements": {
                         "BreakerState": {
@@ -188,7 +484,6 @@
                             "WriteRequirement": "Mandatory"
                         },
                         "EnergykWh": {
-                            "Purpose": "Total Energy must be reported for Mains circuits.",
                             "ReadRequirement": "Mandatory",
                             "PropertyRequirements": {
                                 "Reading": {},
@@ -220,20 +515,12 @@
                         },
                         "Links": {
                             "PropertyRequirements": {
-                                "PowerOutlet": {
+                                "SourceCircuit": {
                                     "ReadRequirement": "Recommended",
                                     "PropertyRequirements": {
                                         "@odata.id": {
                                             "ReadRequirement": "Mandatory",
                                             "WriteRequirement": "Mandatory"
-                                        }
-                                    }
-                                },
-                                "DistributionCircuits": {
-                                    "ReadRequirement": "Recommended",
-                                    "PropertyRequirements": {
-                                        "@odata.id": {
-                                            "ReadRequirement": "Mandatory"
                                         }
                                     }
                                 }
@@ -244,9 +531,6 @@
                             "ReadRequirement": "Recommended"
                         },
                         "PhaseWiringType": {},
-                        "PlugType": {
-                            "ReadRequirement": "Recommended"
-                        },
                         "PolyPhaseCurrentAmps": {
                             "ReadRequirement": "Conditional",
                             "Purpose": "Provide CurrentAmps or PolyPhaseCurrentAmps.",
@@ -369,12 +653,6 @@
                                 }
                             ]
                         },
-                        "PowerControlLocked": {
-                            "ReadRequirement": "Recommended"
-                        },
-                        "PowerEnabled": {
-                            "ReadRequirement": "Recommended"
-                        },
                         "PowerLoadPercent": {
                             "ReadRequirement": "Recommended"
                         },
@@ -398,12 +676,6 @@
                             }
                         },
                         "RatedCurrentAmps": {},
-                        "UnbalancedCurrentPercent": {
-                            "ReadRequirement": "Recommended"
-                        },
-                        "UnbalancedVoltagePercent": {
-                            "ReadRequirement": "Recommended"
-                        },
                         "Status": {
                             "PropertyRequirements": {
                                 "Health": {},
@@ -444,14 +716,12 @@
                     "UseCaseType": "Normal",
                     "UseCaseKeyProperty": "CircuitType",
                     "UseCaseKeyValues": [
-                        "Branch",
-                        "Bus"
+                        "Branch"
                     ],
-                    "UseCaseComparison": "AnyOf",
+                    "UseCaseComparison": "Equal",
                     "ReadRequirement": "Mandatory",
-                    "Purpose": "Branch circuits may report electrical measurements, and must provide mapping to outlets.",
                     "URIs": [
-                        "/redfish/v1/PowerEquipment/RackPDUs/{PowerDistributionId}/Branches/{CircuitId}"
+                        "/redfish/v1/PowerEquipment/PowerShelves/{PowerDistributionId}/Branches/{CircuitId}"
                     ],
                     "PropertyRequirements": {
                         "BreakerState": {
@@ -470,11 +740,21 @@
                             ]
                         },
                         "ElectricalContext": {},
-                        "EnergykWh": {
+                        "ElectricalConsumerNames": {
                             "ReadRequirement": "Recommended",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "EnergykWh": {
+                            "ReadRequirement": "Mandatory",
                             "PropertyRequirements": {
                                 "Reading": {},
                                 "DataSourceUri": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "LifetimeReading": {
+                                    "ReadRequirement": "Recommended"
+                                },
+                                "SensorResetTime": {
                                     "ReadRequirement": "Recommended"
                                 },
                                 "ApparentVAh": {
@@ -485,44 +765,46 @@
                                 }
                             }
                         },
-                        "Links": {
+                        "FrequencyHz": {
+                            "ReadRequirement": "Recommended",
                             "PropertyRequirements": {
-                                "Outlets": {
-                                    "ReadRequirement": "Supported",
-                                    "PropertyRequirements": {
-                                        "@odata.id": {
-                                            "ReadRequirement": "Mandatory"
-                                        }
-                                    }
-                                },
-                                "SourceCircuit": {
-                                    "ReadRequirement": "Recommended",
-                                    "PropertyRequirements": {
-                                        "@odata.id": {
-                                            "ReadRequirement": "Mandatory",
-                                            "WriteRequirement": "Mandatory"
-                                        }
-                                    }
+                                "Reading": {},
+                                "DataSourceUri": {
+                                    "ReadRequirement": "Recommended"
                                 }
                             }
                         },
-                        "LocationIndicatorActive": {
-                            "ReadRequirement": "IfImplemented",
-                            "WriteRequirement": "Mandatory"
+                        "Links": {
+                            "PropertyRequirements": {
+                                "Outlets": {
+                                    "ReadRequirement": "IfImplemented"
+                                }
+                            }
                         },
                         "NominalVoltage": {},
-                        "PhaseWiringType": {},
-                        "PolyPhaseCurrentAmps": {
+                        "NominalFrequencyHz": {
                             "ReadRequirement": "Recommended"
+                        },
+                        "PhaseWiringType": {},
+                        "PlugType": {
+                            "ReadRequirement": "IfImplemented",
+                            "Purpose": "For utility outlets directly on the power shelf, if available."
+                        },
+                        "PolyPhaseCurrentAmps": {
+                            "ReadRequirement": "IfImplemented",
+                            "Purpose": "For utility outlets directly on the power shelf, if available."
                         },
                         "PolyPhaseEnergykWh": {
-                            "ReadRequirement": "Recommended"
+                            "ReadRequirement": "IfImplemented",
+                            "Purpose": "For utility outlets directly on the power shelf, if available."
                         },
                         "PolyPhasePowerWatts": {
-                            "ReadRequirement": "Recommended"
+                            "ReadRequirement": "IfImplemented",
+                            "Purpose": "For utility outlets directly on the power shelf, if available."
                         },
                         "PolyPhaseVoltage": {
-                            "ReadRequirement": "Recommended"
+                            "ReadRequirement": "IfImplemented",
+                            "Purpose": "For utility outlets directly on the power shelf, if available."
                         },
                         "PowerControlLocked": {
                             "ReadRequirement": "Recommended"
@@ -552,7 +834,7 @@
                             "Purpose": "Support for power on/off delay and staging."
                         },
                         "PowerWatts": {
-                            "ReadRequirement": "Recommended",
+                            "ReadRequirement": "Mandatory",
                             "PropertyRequirements": {
                                 "Reading": {},
                                 "DataSourceUri": {
@@ -577,7 +859,13 @@
                             }
                         },
                         "Voltage": {
-                            "ReadRequirement": "Recommended"
+                            "ReadRequirement": "Mandatory",
+                            "PropertyRequirements": {
+                                "Reading": {},
+                                "DataSourceUri": {
+                                    "ReadRequirement": "Recommended"
+                                }
+                            }
                         },
                         "VoltageType": {}
                     },
@@ -602,8 +890,9 @@
             ]
         },
         "Outlet": {
+            "ReadRequirement": "IfImplemented",
             "URIs": [
-                "/redfish/v1/PowerEquipment/RackPDUs/{PowerDistributionId}/Outlets/{OutletId}"
+                "/redfish/v1/PowerEquipment/PowerShelves/{PowerDistributionId}/Outlets/{OutletId}"
             ],
             "PropertyRequirements": {
                 "CurrentAmps": {
@@ -641,20 +930,19 @@
                         }
                     }
                 },
-                "Links": {
+                "FrequencyHz": {
+                    "ReadRequirement": "Recommended",
                     "PropertyRequirements": {
-                        "BranchCircuit": {
-                            "PropertyRequirements": {
-                                "@odata.id": {
-                                    "ReadRequirement": "Mandatory"
-                                }
-                            }
+                        "Reading": {},
+                        "DataSourceUri": {
+                            "ReadRequirement": "Recommended"
                         }
                     }
                 },
-                "LocationIndicatorActive": {
-                    "ReadRequirement": "IfImplemented",
-                    "WriteRequirement": "Mandatory"
+                "Links": {
+                    "PropertyRequirements": {
+                        "BranchCircuit": {}
+                    }
                 },
                 "NominalVoltage": {},
                 "OutletType": {},
@@ -726,213 +1014,6 @@
                 "ResetMetrics": {
                     "ReadRequirement": "Recommended"
                 }
-            }
-        },
-        "Sensor": {
-            "URIs": [
-                "/redfish/v1/Chassis/{ChassisId}/Sensors/{SensorId}"
-            ],
-            "PropertyRequirements": {
-                "ApparentVA": {
-                    "ReadRequirement": "Conditional",
-                    "Purpose": "For power sensors",
-                    "ConditionalRequirements": [
-                        {
-                            "CompareProperty": "ReadingType",
-                            "CompareValues": [
-                                "Power"
-                            ],
-                            "CompareType": "Equal",
-                            "ReadRequirement": "Recommended"
-                        }
-                    ]
-                },
-                "ElectricalContext": {
-                    "ReadRequirement": "Conditional",
-                    "Purpose": "For all electrical measurement sensors",
-                    "ConditionalRequirements": [
-                        {
-                            "CompareProperty": "ReadingType",
-                            "CompareValues": [
-                                "Power",
-                                "EnergykWh",
-                                "Voltage",
-                                "Frequency",
-                                "Current"
-                            ],
-                            "CompareType": "Equal",
-                            "ReadRequirement": "Mandatory"
-                        }
-                    ]
-                },
-                "PeakReading": {
-                    "ReadRequirement": "Conditional",
-                    "Purpose": "For power sensors, peak reading must be reported by at least one sensor.",
-                    "ConditionalRequirements": [
-                        {
-                            "CompareProperty": "ReadingType",
-                            "CompareValues": [
-                                "Power"
-                            ],
-                            "CompareType": "Equal",
-                            "ReadRequirement": "Supported"
-                        }
-                    ]
-                },
-                "PeakReadingTime": {
-                    "ReadRequirement": "Conditional",
-                    "Purpose": "For power sensors, peak reading time must be reported by at least one sensor.",
-                    "ConditionalRequirements": [
-                        {
-                            "CompareProperty": "ReadingType",
-                            "CompareValues": [
-                                "Power"
-                            ],
-                            "CompareType": "Equal",
-                            "ReadRequirement": "Supported"
-                        }
-                    ]
-                },
-                "Reading": {},
-                "ReadingTime": {},
-                "ReadingType": {},
-                "SensingInterval": {},
-                "Thresholds": {
-                    "ReadRequirement": "IfImplemented",
-                    "PropertyRequirements": {
-                        "UpperCaution": {
-                            "ReadRequirement": "Recommended"
-                        },
-                        "UpperCritical": {
-                            "ReadRequirement": "Recommended"
-                        },
-                        "LowerCaution": {
-                            "ReadRequirement": "Recommended"
-                        },
-                        "LowerCritical": {
-                            "ReadRequirement": "Recommended"
-                        }
-                    }
-                }
-            }
-        },
-        "Chassis": {
-            "PropertyRequirements": {
-                "AssetTag": {
-                    "ReadRequirement": "Recommended",
-                    "WriteRequirement": "Mandatory"
-                },
-                "ChassisType": {},
-                "HeightMm": {
-                    "ReadRequirement": "Recommended",
-                    "Purpose": "For rack-mounted PDUs that consume 'U' spaces in the rack."
-                },
-                "Links": {
-                    "PropertyRequirements": {
-                        "ContainedBy": {
-                            "ReadRequirement": "Recommended",
-                            "PropertyRequirements": {
-                                "@odata.id": {
-                                    "ReadRequirement": "Mandatory",
-                                    "WriteRequirement": "Mandatory"
-                                }
-                            }
-                        },
-                        "ManagedBy": {
-                            "ReadRequirement": "Mandatory",
-                            "PropertyRequirements": {
-                                "@odata.id": {
-                                    "ReadRequirement": "Mandatory"
-                                }
-                            }
-                        },
-                        "Facility": {
-                            "ReadRequirement": "Recommended",
-                            "PropertyRequirements": {
-                                "@odata.id": {
-                                    "ReadRequirement": "Mandatory",
-                                    "WriteRequirement": "Mandatory"
-                                }
-                            }
-                        },
-                        "PowerDistribution": {
-                            "ReadRequirement": "Mandatory",
-                            "PropertyRequirements": {
-                                "@odata.id": {
-                                    "ReadRequirement": "Mandatory"
-                                }
-                            }
-                        }
-                    }
-                },
-                "Location": {
-                    "PropertyRequirements": {
-                        "Placement": {
-                            "Purpose": "Allow user to specify the rack-level physical location of the PDU.",
-                            "PropertyRequirements": {
-                                "Rack": {
-                                    "ReadRequirement": "Mandatory",
-                                    "WriteRequirement": "Mandatory"
-                                },
-                                "Row": {
-                                    "ReadRequirement": "Recommended",
-                                    "WriteRequirement": "Mandatory"
-                                },
-                                "RackOffset": {
-                                    "ReadRequirement": "Recommended",
-                                    "WriteRequirement": "Mandatory"
-                                },
-                                "RackOffsetUnits": {
-                                    "ReadRequirement": "Recommended",
-                                    "WriteRequirement": "Recommended"
-                                }
-                            }
-                        },
-                        "Contacts": {
-                            "ReadRequirement": "Recommended",
-                            "WriteRequirement": "Mandatory"
-                        }
-                    }
-                },
-                "LocationIndicatorActive": {
-                    "ReadRequirement": "IfImplemented",
-                    "WriteRequirement": "Mandatory"
-                },
-                "Manufacturer": {},
-                "Model": {},
-                "PartNumber": {},
-                "PowerState": {},
-                "Sensors": {},
-                "SerialNumber": {},
-                "Status": {
-                    "PropertyRequirements": {
-                        "Health": {},
-                        "State" :{}
-                    }
-                },
-                "UUID": {},
-                "Version": {
-                    "ReadRequirement": "Recommended"
-                }
-            }
-        },
-        "EventService": {
-            "PropertyRequirements": {
-                "RegistryPrefixes": {
-                    "ReadRequirement": "Recommended",
-                    "Purpose": "PDU should support event subscriptions based on Power, SensorEvent, and Update messages.  Note that many PDU models should also support the Environmental registry if it offers temperature or humidity sensors (typically as accessories).",
-                    "Comparison": "AllOf",
-                    "Values": [
-                        "Power",
-                        "SensorEvent",
-                        "Update"
-                    ]
-                }
-            }
-        },
-        "ServiceRoot": {
-            "PropertyRequirements": {
-                "PowerEquipment": {}
             }
         }
     }
