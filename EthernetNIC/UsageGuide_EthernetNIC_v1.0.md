@@ -1,3 +1,16 @@
+# Version History
+
+| **Date**  | **Version** | **Author** | **Description** |
+| :---      | :---: | :---:      | :--- |
+| 11/4/2025 | 1.0.0 | Jeff Hilland | Initial usage guide and profile contribution |
+
+# License
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+
+![Manageability Architectures](images/CreativeCommonsBYSA.png)
+
+NOTWITHSTANDING THE FOREGOING LICENSES, THIS SPECIFICATION IS PROVIDED BY OCP "AS IS" AND OCP EXPRESSLY DISCLAIMS ANY WARRANTIES (EXPRESS, IMPLIED, OR OTHERWISE), INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, FITNESS FOR A PARTICULAR PURPOSE, OR TITLE, RELATED TO THE SPECIFICATION. NOTICE IS HEREBY GIVEN, THAT OTHER RIGHTS NOT GRANTED AS SET FORTH ABOVE, INCLUDING WITHOUT LIMITATION, RIGHTS OF THIRD PARTIES WHO DID NOT EXECUTE THE ABOVE LICENSES, MAY BE IMPLICATED BY THE IMPLEMENTATION OF OR COMPLIANCE WITH THIS SPECIFICATION. OCP IS NOT RESPONSIBLE FOR IDENTIFYING RIGHTS FOR WHICH A LICENSE MAY BE REQUIRED IN ORDER TO IMPLEMENT THIS SPECIFICATION. THE ENTIRE RISK AS TO IMPLEMENTING OR OTHERWISE USING THE SPECIFICATION IS ASSUMED BY YOU. IN NO EVENT WILL OCP BE LIABLE TO YOU FOR ANY MONETARY DAMAGES WITH RESPECT TO ANY CLAIMS RELATED TO, OR ARISING OUT OF YOUR USE OF THIS SPECIFICATION, INCLUDING BUT NOT LIMITED TO ANY LIABILITY FOR LOST PROFITS OR ANY CONSEQUENTIAL, INCIDENTAL, INDIRECT, SPECIAL OR PUNITIVE DAMAGES OF ANY CHARACTER FROM ANY CAUSES OF ACTION OF ANY KIND WITH RESPECT TO THIS SPECIFICATION, WHETHER BASED ON BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, AND EVEN IF OCP HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 # Scope
 
 This document contains requirements and provide usage examples for the OCP Ethernet NIC Hardware Management API v1.0.
@@ -6,7 +19,9 @@ This document contains requirements and provide usage examples for the OCP Ether
 
 The required Redfish interface model elements are specified in a corresponding profile document - OCP Ethenet NIC Profile v1.0 [4].
 
-The Profile Reference Guide includes the resources which are part of this profile.
+The OCP Ethernet NIC Profile Reference Guide [6] includes the resources which are part of this profile.
+
+A mockup up the resource hierarchy is available [7].
 
 ## Validating conformance
 
@@ -709,12 +724,16 @@ Content-Type: application/octet-stream
 
 \[3\] "[Redfish Interop Validator](https://github.com/DMTF/Redfish-Interop-Validator)"
 
-\[4\] "[Ethernet NIC Profile v1.0](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/nicdoc/EthernetNIC/OCP_NIC.v1_0_0.json)"
+\[4\] "[OCP Ethernet NIC Profile v1.0](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/EthernetNIC/OCP_NIC.v1_0_0.json)"
 
 \[5\] "[Redfish Firmware Update White Paper](https://www.dmtf.org/dsp/DSP2062)
+
+\[6\] "[OCP Ethernet NIC Profile Reference Guide v1.0](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/EthernetNIC/ProfileRefGuide-EthernetNIC_v1_0_0.pdf)"
+
+\[7\] "[OCP Ethernet NIC mockup](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/EthernetNIC/redfish)"
 
 # Revision 
 
 | **Revision**  | **Date**      | **Description** |
 | :---          | :---          | :--- |
-| 1.0           | 4/20/2025     | Initial contribution |
+| 1.0           | 7/20/2025     | Initial contribution |

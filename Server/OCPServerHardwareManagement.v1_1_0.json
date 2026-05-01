@@ -155,7 +155,11 @@
 					"ReadRequirement": "Recommended"
 				},
 				"SerialConsole": {
+<<<<<<< server1_1_0
 					"ReadRequirement": "Recommended",
+=======
+					"ReadRequirement": "IfImplemented",
+>>>>>>> master
 					"Purpose": "SSH or IPMI-based serial remote console is required.",
 					"PropertyRequirements": {
 						"SSH": {

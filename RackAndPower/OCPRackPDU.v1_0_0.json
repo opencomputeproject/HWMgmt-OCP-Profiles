@@ -6,7 +6,7 @@
     "OwningEntity": "OCP",
     "ContactInfo": "jeff.autor@ocproject.com",
     "RequiredProfiles": {
-        "OCPBaselineRedfishService": {
+        "OCPServiceBaseline": {
             "MinVersion": "1.0.0"
         }
     },

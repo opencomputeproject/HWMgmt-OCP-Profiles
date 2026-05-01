@@ -114,11 +114,6 @@ capabilities.
 |                     | [Reset a persistent group of nodes](#reset-a-persistent-group-of-nodes)      | Mandatory |
 |                     | [Create a persistent group of nodes](#create-a-persistent-group-of-nodes) | Mandatory |
 |                     | [Set boot order of aggregate to default](#set-boot-order-of-aggregate-to-default) | Mandatory |
-| Composability       | [Construct a system with GPU's](#construct-system-with-gpus)     | Recommended |
-|                     | [Get Health of GPU's from composed compute system](#gpu_health_composed_system) | Recommended |
-|                     | [Set policy when a GPU in a composed system fails](#policy_composed_system_gpu_failure) | Recommended |
-| Telemetry           | [Get telemetry blob from a compute system device](#get_telemetry_blob_compute_system) | Recommended |
-|                     | [Stream_Power_Consumption_All_Compute_Systems](#stream_power_consumption_compute_system) | Recommended |
 | Authorization       | [Get certificate from node](#get-certificate-from-node)          | Mandatory |
 |                     | [Place certificate on node](#place-certificate-on-node)          | Mandatory |
 |                     | [Place token on node](#place-token-on-node)                      | Mandatory |
@@ -941,57 +936,7 @@ POST /redfish/v1/AggregationService/Aggregates/Agg1/Actions/Aggregate.SetDefault
 
 The POST command has no request message.
 
-## Get Health of GPU's from composed compute system
-
-To get the health of all GPU's attached to a specific node, the client invoke a Redfish command or RedPath command
-
-    Redfish
-
-    Redpath: (/Systems[*]/Processors[ProcessorType=GPU])
-
-## Set policy when a GPU in a composed system fails
-
-When a composed system of GPU's has one or more GPU failures, a policy in the rack manager can define whether more GPU's can be added from another switch or the composition should de deconstructed so another rack or compute node can be built to meet the minimum required configuration.
-
-## Get telemetry blob from a compute system device
-
-To get a telemetry blob from a compute system, the client invokes the following command to request that data be collected
-
-   POST /redfish/v1/TelemetyService/Action.CollectTelemetryData
-
-The POST command contains the following request message. The message specifies that telemetry be collecgtion for processor "P1" of "Sys-1".  The telemetry data formatted is "ContosoAggregator2_0" as defined by the OEM.
-
-```
-    {
-        "TelemetryDataType": "OEM",
-        "OEMTelemetryDataType": "ContosoAggregator",
-        "TargetDevices": [ "/redfish/v1/Systems/Sys-1/Processors/P1" ]
-    }
-```
-
-The response contains the following fragment. The response either contains all the telemetry blob in *AdditionalData* property or the blob was placed in the resource "TelemetrySnapshot.1".
-
-```
-{
-    "@odata.type": "#TelemetryData.v1_0_0.TelemetryData",
-    "Name": "TelemetrySnapshot.1", 
-    "Timestamp": "2025-11-08T12:25:00-05:00",
-    "TelemetryDataType": "OEM",
-    "OEMTelemetryDataType": "ContosoAggregator",
-    "AdditionalData":"7wO4gDjQvhpA5ejg0xty ... HB6u7ppOGprACFqlMD1N",
-    "@odata.id": "/redfish/v1/TelemetryService/TelemetryData/TelemetrySnapshot.1"
-}
-```
-
-## Stream_Power_Consumption_All_Compute_Systems
-
-To set up a new stream for power consumption with X second sampling time to all compute systems in a rack, the client invokes the following command(s).  Recommend to use the open socket method.
-
-   PATCH /redfish/v1
-
 ## Authorization between rack manager and manage node
-
-The use cases specified below is the support the process for authorization between the rack manager and the managed node as described in section 6.## Authorization between rack manager and manage node
 
 The use cases specified below is the support the process for authorization between the rack manager and the managed node as described in section 6.
 
