@@ -435,7 +435,7 @@
 					"ReadRequirement": "IfImplemented",
 					"PropertyRequirements": {
 						"RedundancyType": {},
-						"MinNeededinGroup": {},
+						"MinNeededInGroup": {},
 						"MaxSupportedInGroup": {
 							"ReadRequirement": "Recommended"
 						},
