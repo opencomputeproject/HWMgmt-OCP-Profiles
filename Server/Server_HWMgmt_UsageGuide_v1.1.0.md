@@ -33,7 +33,7 @@ This document desribes the manageability usages that are enabled by an implement
 
 # Requirements
 
-The required Redfish data model elements are specified in an OCP profile document.  An OCP profile is a document that conforms to the [Redfish Interoperability Profile Specification](#dsp0270).
+The required Redfish data model elements are specified in an OCP profile document.  An OCP profile is a document that conforms to the [Redfish Interoperability Profile Specification](#dsp0272).
 
 An OCP profile can be read by the [Redfish Interop Validator](#interop-validator).  The validator autogenerates, executes the tests against an implementation, and generates a test report.
 
@@ -764,7 +764,7 @@ POST /redfish/v1/Systems/CS-1/LogService/Log/Actions/LogService.ClearLog
 
 * <a id="dsp0266"/>DMTF DSP0266, *Redfish Specification*: [https://www.dmtf.org/dsp/DSP0266](https://www.dmtf.org/dsp/DSP0266)
 * <a id="dsp0268"/>DMTF DSP0268, *Redfish Data Model Specification*: [https://www.dmtf.org/dsp/DSP0268](#dsp0268)
-* <a id="dsp0270"/>DMTF DSP0270, *Redfish Interoperability Profiles Specification*: [https://www.dmtf.org/dsp/DSP0270](https://www.dmtf.org/dsp/DSP0270)
+* <a id="dsp0272"/>DMTF DSP0272, *Redfish Interoperability Profiles Specification*: [https://www.dmtf.org/dsp/DSP0272](https://www.dmtf.org/dsp/DSP0272)
 * <a id="interop-validator"/>Redfish Interop Validator: [https://github.com/DMTF/Redfish-Interop-Validator](https://github.com/DMTF/Redfish-Interop-Validator)
 
 # Revision 
