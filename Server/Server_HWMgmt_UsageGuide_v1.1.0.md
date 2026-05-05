@@ -1,6 +1,6 @@
 ---
 project: Hardware Management
-title: Usage Guide for Server Management
+title: Usage Guide for Server Hardware Management
 version: 1.1.0
 supersedes: 1.0.0
 status: draft
@@ -29,33 +29,21 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike
 
 # Scope
 
-This document references requirements and provide the usage examples for the OpenRMC northbound API v1.2.0 for a rack management controller.
+This document desribes the manageability usages that are enabled by an implementation which conforms to the Server Hardware Management Profile v1.1.
 
 # Requirements
 
-As a Redfish-based interface, the required Redfish interface model elements are specified in a profile document. The profile is located at -
+The required Redfish data model elements are specified in an OCP profile document.  An OCP profile is a document that conforms to the [Redfish Interoperability Profile Specification](#dsp0272).
 
-<https://github.com/opencomputeproject/OCP-Profiles/blob/master/Server/OCPServerHardwareManagement.v1_1_0.json>
-
-This profile extends from the OCPBaselineHardwareManagement.v1.1 profile. The profile is located at -
-
-<https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1_0.json>
-
-A profile is read by the Redfish Interop Validator which autogenerates and executes the tests against an implementation.  The Interop Validator generates a test report - in text or HTML format.
-
-  \$\> python3 RedfishInteropValidator.py profileName --ip host:port
-
-The Interop Validator is open source - located at
-<https://github.com/DMTF/Redfish-Interop-Validator>.
+An OCP profile can be read by the [Redfish Interop Validator](#interop-validator).  The validator autogenerates, executes the tests against an implementation, and generates a test report.
 
 # Capabilities
 
-The following use cases are enabled by conformance to this Server Hardware Management profile.
-The Server Hardware Management profile is extended from the Baseline Hardware Management profile. 
+The following use cases are enabled by conformance to this Server Hardware Management profile [5].
 
-The following table lists the capabilities provide the baseline profile requirements. These capabilities
-are described in the "Usage Guide and Requirements for the OCP Baseline Hardware Management 
-Profile v1.0.1" document.
+The Server Hardware Management profile is extended from the Baseline Hardware Management profile [6]. 
+
+The following table lists the usages enabled by conformance to the Baseline Hardware Management profile. These usages are described in the "Usage Guide for Baseline Hardware Management v1.1" [1].
 
 | **Use Case**          | **Management Task**        | **Requirement** |
 | :---                  | :-----------               | :---	|
@@ -82,32 +70,32 @@ Profile v1.0.1" document.
 
 : Baseline Capabilities
 
-The following table lists the capabilities provided by the server profile\'s direct requirements.
+The following table lists the usage enabled by conformance to the Server Hardware Management Profile [5].
 
 | **Use Case**        | **Management Task**                                       | **Requirement** |
 | :---                | :-----------                                              | :---	|
-| Systems             | [Get the list of systems](#get-the-list-of-systems)                                   | Mandatory |
-|                     | [Get a system](#get-a-system)                   | Mandatory |
-| System Inventory    | [Get the inventory information](#get-the-inventory-information)               | Mandatory |
-|                     | [Set the asset tag](#set-the-asset-tag)                                       | Mandatory |
-| Location            | [Get the location LED](#get-the-location-led)                                 | Mandatory |
-|                     | [Set the location LED](#set-the-location-led)                                 | Mandatory |
-| System              | [Get the type of system](#get-the-type-of-system)                             | Mandatory |
-|                     | [Get power state of system](#get-power-state-of-system)                       | Mandatory |
-|                     | [Get state of system](#get-status-of-the-computer-system)                     | Mandatory |
-|                     | [Reset the system](#reset-the-computer-system)                                | Mandatory |
-| System Firmware     | [Get system firmware](#get-the-revision-of-the-system-firmware)               | Mandatory |
-| Processor           | [Get summary of processor information](#get-a-summary-of-the-processor-information) | Mandatory |
-| Memory              | [Get summary of memory information](#get-summary-of-the-memory-information)       | Mandatory |
-| Ethernet            | [Get list of Ethernet interfaces](#get-list-of-ethernet-interfaces)           | Mandatory |
-|                     | [Get an Ethernet interface](#get-an-ethernet-interface)                       | Mandatory |
-|                     | [Get status of Ethernet interface](#get-status-of-ethernet-interface)         | Mandatory |
-|                     | [Get IPv4 address](#get-ipv4-address)                                         | Mandatory |
-|                     | [Set IPv4 address](#set-ipv4-address)                                         | Mandatory |
-| System Log          | [Get system log](#get-system-log)                                             | Mandatory |
-|                     | [Get system log entries](#get-system-log-entries)                             | Mandatory |
-|                     | [Get a system log entry](#get-a-system-log-entry)                             | Mandatory |
-|                     | [Clear Log](#clear-the-system-log)                                            | Mandatory |
+| Systems             | [Get list of systems](#get-list-of-systems)                           | Mandatory |
+| System              | [Get system](#get-system)                                             | Mandatory |
+|                     | [Get type of system](#get-type-of-system)                             | Mandatory |
+|                     | [Get status of system](#get-status-of-system)                         | Mandatory |
+| Power State         | [Get power state of system](#get-power-state-of-system)               | Mandatory |
+|                     | [Reset the system](#reset-the-system)                                 | Mandatory |
+| System Inventory    | [Get inventory information](#get-inventory-information)               | Mandatory |
+|                     | [Set asset tag](#set-asset-tag)                                       | Mandatory |
+| Location LED        | [Get location LED](#get-location-led)                                 | Mandatory |
+|                     | [Set location LED](#set-location-led)                                 | Mandatory |
+| System Firmware     | [Get system firmware](#get-the-revision-of-the-system-firmware)       | Mandatory |
+| Processor           | [Get processor summary](#get-processor-summary)                       | Mandatory |
+| Memory              | [Get memory summary](#get-memory-summary)                             | Mandatory |
+| Ethernet            | [Get list of Ethernet interfaces](#get-list-of-ethernet-interfaces)   | Mandatory |
+|                     | [Get an Ethernet interface](#get-an-ethernet-interface)               | Mandatory |
+|                     | [Get status of Ethernet interface](#get-status-of-ethernet-interface) | Mandatory |
+|                     | [Get IPv4 address](#get-ipv4-address)                                 | Mandatory |
+|                     | [Set IPv4 address](#set-ipv4-address)                                 | Mandatory |
+| System Log          | [Get system log](#get-system-log)                                     | Mandatory |
+|                     | [Get system log entries](#get-system-log-entries)                     | Mandatory |
+|                     | [Get a system log entry](#get-a-system-log-entry)                     | Mandatory |
+|                     | [Clear system log](#clear-system-log)                                 | Mandatory |
 
 : Server-specific Capabilities
 
@@ -115,42 +103,42 @@ The following table lists the capabilities provided by the server profile\'s dir
 
 This section describes how each capability is accomplished by interacting with the Redfish Service.
 
-## Get the list of systems
+## Get list of systems
 
 The systems managed by the Redfish Service is obtained from the Systems resource.
 
-```
+``` {.small}
 GET /redfish/v1/Systems
 ```
 
 The response message contains the following fragment.
 
-``` 
+``` {.small}
 {
     "@odata.id": "/redfish/v1/Systems",
     "Name": "Computer System Collection",
     "Members@odata.count": 4,
- "Members": [
-  { "@odata.id": "/redfish/v1/Systems/System-3" },
-  { "@odata.id": "/redfish/v1/Systems/System-4" },
-  { "@odata.id": "/redfish/v1/Systems/System-2" },
-  { "@odata.id": "/redfish/v1/Systems/System-1" }
- }
+    "Members": [
+        { "@odata.id": "/redfish/v1/Systems/System-3" },
+        { "@odata.id": "/redfish/v1/Systems/System-4" },
+        { "@odata.id": "/redfish/v1/Systems/System-2" },
+        { "@odata.id": "/redfish/v1/Systems/System-1" }
+    ]
     "@odata.type": "#ComputerSystemCollection.ComputerSystemCollection",
 }
 ```
 
-## Get a system
+## Get system
 
 A system managed by the Redfish Service is obtained from the System resource.
 
-```
+``` {.small}
 GET /redfish/v1/Systems/{id}
 ```
 
 The response message contains the following fragment. The fragment only contains the required properties as specified in the Server profile.  The other properties can be found in the schema files and new properties may be added in a Redfish schema update, which occurs 3-4 times a year.  A snapshot is provided in the appendix.
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/Systems/1",
     "SystemType": "Physical",
@@ -183,8 +171,8 @@ The response message contains the following fragment. The fragment only contains
     },
     "LogServices": { ... },
     "Links": {
-  "Chassis":   [ { "@odata.id": "/redfish/v1/Chassis/1" } ],
-       "ManagedBy":  [ { "@odata.id": "/redfish/v1/Managers/1" } ]
+        "Chassis":   [ { "@odata.id": "/redfish/v1/Chassis/1" } ],
+        "ManagedBy":  [ { "@odata.id": "/redfish/v1/Managers/1" } ]
     },
     "Actions": {
         "#ComputerSystem.Reset": {
@@ -197,19 +185,19 @@ The response message contains the following fragment. The fragment only contains
 
 Redfish models a node as a physical chassis and the logical computer system.  The relationship of the system to the chassis which hosts the system is specified in the Links.Chassis property. The relationship of the system to the manager which manages the system (i.e., management controller) is specified in the Links.ManagedBy property.
 
-## Get the inventory information
+## Get inventory information
 
 The inventory information for the system is obtained by retrieving the System resource.
 
-```
+``` {.small}
 GET /redfish/v1/Systems/{id}
 ```
 
 The response message contains the following fragment. The AssetTag properties is a client writeable property.
 
-```
+``` {.small}
 {
-  "@odata.id": "/redfish/v1/System/1",
+    "@odata.id": "/redfish/v1/System/1",
     "AssetTag": "free form asset tag",
     "Manufacturer": "Manufacturer Name",
     "Model": "Model Name",
@@ -220,35 +208,35 @@ The response message contains the following fragment. The AssetTag properties is
 }
 ```
 
-## Set the asset tag 
+## Set asset tag 
 
 The asset tag of system is set by modifying the System resource.
 
-```
-PATCH /redfish/v1/System/(id}
+``` {.small}
+PATCH /redfish/v1/System/{id}
 ```
 
 The PATCH request includes the following message.
 
-```
+``` {.small}
 {
-  "AssetTag": "989846353530048"
+    "AssetTag": "989846353530048"
 }
 ```
 
 On successful completion, the response message contains the System resource.
 
-## Get the location LED
+## Get location LED
 
 The state of the location LED is obtained by retrieving the System resource.
 
-```
+``` {.small}
 GET /redfish/v1/System/1
 ```
 
 The response message contains one of the following two fragments.
 
-```
+``` {.small}
 {
     "IndicatorLED": "Lit"
 }
@@ -256,23 +244,23 @@ The response message contains one of the following two fragments.
 
 Or
 
-```
+``` {.small}
 {
     "LocationIndicatorActive": True
 }
 ```
 
-## Set the location LED
+## Set location LED
 
 The state of the location LED is set by setting the IndicatorLED or the LocationIndicatorActive property in the Chassis resource.
 
-```
+``` {.small}
 PATCH /redfish/v1/Chassis/Ch-1
 ```
 
 The PATCH request includes one of the following two messages, with corresponds to the property returned in the GET request.
 
-```
+``` {.small}
 {
     "IndicatorLED": "Lit"
 }
@@ -280,23 +268,23 @@ The PATCH request includes one of the following two messages, with corresponds t
 
 Or
 
-```
+``` {.small}
 {
     "LocationIndicatorActive": True
 }
 ```
 
-## Get the type of system
+## Get type of system
 
 The type of the system is obtained by retrieving the System resource.
 
-```
+``` {.small}
 GET /redfish/v1/System/{id}
 ```
 
 The response message contains the following fragment.
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/System/1",
     "SystemType": "Physical"
@@ -309,30 +297,30 @@ The possible values for the SystemType property are: "Physical", "Virtual", "OS"
 
 The power state of the computer system is obtained by retrieving the System resource.
 
-```
+``` {.small}
 GET /redfish/v1/System/CS-1
 ```
 
 The response message contains the following fragment.
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/System/CS-1",
     "PowerState": "On"
 }
 ```
 
-## Get status of the computer system
+## Get status of system
 
 The status and health the computer system aspect is obtained by retrieving the System resource.
 
-```
+``` {.small}
 GET /redfish/v1/System/CS-1
 ```
 
 The response message contains the following fragment.
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/System/1",
     "Status": {
@@ -342,7 +330,7 @@ The response message contains the following fragment.
 }
 ```
 
-## Reset the computer system
+## Reset the system
 
 The system is reset by performing a POST action.
 
@@ -352,7 +340,7 @@ POST /redfish/v1/System/{id}/Actions/Manager.Reset
 
 The POST request includes the following message. The ResetType property contains type of reset to perform.
 
-```
+``` {.small}
 {
     "ResetType": "ForceRestart"
 }
@@ -366,30 +354,32 @@ No response message is provided.
 
 The version of system firmware (AKA BIOS) on a computer system is obtained by retrieving the System resource.
 
-```
+``` {.small}
 GET /redfish/v1/Systems/{id}
 ```
 
 The response contains the following fragment.  The information of interest is the value of the BiosVersion property.
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/System/CS_1",
     "BiosVersion": "P79 v1.00 (09/20/2013)"
 }
 ```
 
-## Get a summary of the processor information
+## Get processor summary
 
 The status of the processors is obtained by retrieving the System resource.
 
-```
+``` {.small}
 GET /redfish/v1/System/CS-1
 ```
 
 The response message contains the following fragment. Within the ProcessorSummary property, the Status property contains the State and Health of the processors.
 
-```
+The details and health of individual processors can be found by inspecting the individual processor resources in the Processors collection resource.
+
+``` {.small}
 {
     "@odata.id": "/redfish/v1/System/CS-1",
     "ProcessorSummary": {
@@ -400,23 +390,24 @@ The response message contains the following fragment. Within the ProcessorSummar
             "State": "Enabled",
             "Health": "OK",
             "HealthRollup": "OK"
-        },
+        }
+    }
 }
 ```
 
-More details and health of the individual processors can be found by inspecting the individual processor resources in the Processors collection resource.
-
-## Get summary of the memory information
+## Get memory summary
 
 The status of the memory is obtained by retrieving the System resource.
 
-```
+``` {.small}
 GET /redfish/v1/System/CS-1
 ```
 
 The response message contains the following fragment. Within the MemorySummary property, the Status property contains the State and Health of the memory.
 
-```
+Details and health of the individual memory components can be found by inspecting the individual memory resources in the Memory collection resource.
+
+``` {.small}
 {
     "@odata.id": "/redfish/v1/System/CS-1",
     "MemorySummary": {
@@ -431,19 +422,17 @@ The response message contains the following fragment. Within the MemorySummary p
 }
 ```
 
-More details and health of the individual processors can be found by inspecting the individual processor resources in the Memory collection resource.
-
 ## Get list of Ethernet interfaces
 
 The list of Ethernet interfaces is obtained by retrieving the EthernetInterfaces resource on the System of interest.
 
-```
+``` {.small}
 GET /redfish/v1/System/{id}/EthernetInterfaces
 ```
 
 The response message contains the following fragment.
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces",
     "Members@odata.count": 1,
@@ -457,13 +446,13 @@ The response message contains the following fragment.
 
 The Ethernet interface is obtained by retrieving the EthernetInterface resource on the System of interest.
 
-```
+``` {.small}
 GET /redfish/v1/Systems/{id}/EthernetInterfaces/{id}
 ```
 
 The response message contains the following fragment. The fragment only contains the properties specified in the Server profile.  Since the EthernetInterface resource may get new properties during in Redfish schema update release, a snapshot is provided in the appendix.
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/1",
     "Status": {
@@ -472,7 +461,7 @@ The response message contains the following fragment. The fragment only contains
     },
     "InterfaceEnabled": true,
     "MACAddress": "1E:C3:DE:6F:1E:24",
-   "LinkStatus": "Linkup",
+    "LinkStatus": "Linkup",
     "SpeedMbps": 100,
     "HostName": "MyHostName",
     "FQDN": "MyHostName.MyDomainName.com",
@@ -484,7 +473,7 @@ The response message contains the following fragment. The fragment only contains
             "AddressOrigin": "Static",
             "Gateway": "192.168.0.1"
         }
-  ],
+    ],
     "@Redfish.Settings": {
         "@odata.type": "#Settings.v1_0_0.Settings",
         "SettingsObject": {
@@ -498,21 +487,21 @@ The response message contains the following fragment. The fragment only contains
 
 The status of an Ethernet interface is obtained by retrieving the EthernetInterface resource.
 
-```
+``` {.small}
 GET /redfish/v1/System/{id}/EthernetInterfaces/{id}
 ```
 
 The response message contains the following fragment.
 
-```
+``` {.small}
 {
- "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/1",
-  "Status": {
-  "State": "Enabled",
-  "Health": "OK"
-  },
- "InterfaceEnabled": true,
- "LinkStatus": "Linkup"
+    "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/1",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "InterfaceEnabled": true,
+    "LinkStatus": "Linkup"
 }
 ```
 
@@ -520,13 +509,13 @@ The response message contains the following fragment.
 
 The IPv4 address are obtained by retrieving the EthernetInterface resource.
 
-```
+``` {.small}
 GET /redfish/v1/System/{id}/EthernetInterfaces/{id}
 ```
 
 The response message contains the following fragment.
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/1",
     "IPv4Addresses": [
@@ -536,7 +525,7 @@ The response message contains the following fragment.
             "AddressOrigin": "Static",
             "Gateway": "192.168.0.1"
         }
-  ]
+    ]
 }
 ```
 
@@ -544,7 +533,7 @@ The response message contains the following fragment.
 
 The IPv4 address is set by modifying the Settings resource which is subordinate to the EthernetInterface resource.  In the fragment below, the Redfish.Settings property indicates the location of the settings resource as being subordinate.  A HTTP POST to the path will apply the values of the settings resource.
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/1",
     "@Redfish.Settings": {
@@ -557,23 +546,23 @@ The IPv4 address is set by modifying the Settings resource which is subordinate 
 
 The Settings resource, itself, represents the future intended state of a resource.  The Settings resource contains a subset of properties of the EthernetInterface resource. The Settings resource may contain a Redfish.SettingsApplyTime to indicate when the settings shall be applied.
 
-```
+``` {.small}
 {
-  "@Redfish.SettingsApplyTime": ".."
-  "IPv4Addresses": [
+    "@Redfish.SettingsApplyTime": ".."
+    "IPv4Addresses": [
         {
             "Address": "192.170.0.15",
             "SubnetMask": "255.255.252.0",
             "AddressOrigin": "Static",
             "Gateway": "192.170.0.1"
         }
-  ]
+    ]
 }
 ```
 
 Once the properties within the settings resource have the desired values, a POST to the settings resource applies the settings.
 
-```
+``` {.small}
 POST /redfish/v1/Systems/{id}/EthernetInterfaces/{id}/SD
 ```
 
@@ -581,22 +570,22 @@ POST /redfish/v1/Systems/{id}/EthernetInterfaces/{id}/SD
 
 The boot information is obtained by retrieving the System resource.
 
-```
+``` {.small}
 GET /redfish/v1/Systems/{id}
 ```
 
 The response message contains the following fragment.
 
-```
+``` {.small}
 {
- "@odata.id": "/redfish/v1/Systems/1",
-  "Boot": {
-  "AliasBootOrder": [ "Hdd", "CD" ],
-  "BootSourceOverrideEnabled": "Once",
-  "BootSourceOverrideMode": "UEFI",
-  "BootSourceOverrideTarget": "Usb",
-  "UefiTargetBootSourceOverride": ""
-  }
+    "@odata.id": "/redfish/v1/Systems/1",
+    "Boot": {
+        "AliasBootOrder": [ "Hdd", "CD" ],
+        "BootSourceOverrideEnabled": "Once",
+        "BootSourceOverrideMode": "UEFI",
+        "BootSourceOverrideTarget": "Usb",
+        "UefiTargetBootSourceOverride": ""
+    }
 }
 ```
 
@@ -604,7 +593,7 @@ The response message contains the following fragment.
 
 The boot order is set by modifying the System resource.
 
-```
+``` {.small}
 PATCH /redfish/v1/Systems/{id}
 ```
 
@@ -614,10 +603,10 @@ The PATCH request includes the following message.
 
 This message sets the boot order to the hard disk (Hdd), then the USB fob (Usb).
 
-```
+``` {.small}
 {
     "Boot": {
- "AliasBootOrder": [ "Hdd", "Usb" ]
+        "AliasBootOrder": [ "Hdd", "Usb" ]
     }
 }
 ```
@@ -626,11 +615,11 @@ This message sets the boot order to the hard disk (Hdd), then the USB fob (Usb).
 
 This message sets the boot order to boot from the device specified as the UEFI target.
 
-```
+``` {.small}
 {
-  "Boot": {
-  "AliasBootOrder": [ "UefiTarget" ]
-  "UefiTargetBootSourceOverride": "<UEFI device path>"
+    "Boot": {
+        "AliasBootOrder": [ "UefiTarget" ]
+        "UefiTargetBootSourceOverride": "<UEFI device path>"
     }
 }
 ```
@@ -639,11 +628,11 @@ This message sets the boot order to boot from the device specified as the UEFI t
 
 This message sets the boot order to boot from an UEFI HTTP network location.
 
-```
+``` {.small}
 {
-  "Boot": {
-  "AliasBootOrder": [ "UefiHttp" ],
-  "HttpBootUri": "<URI bootpath"
+    "Boot": {
+        "AliasBootOrder": [ "UefiHttp" ],
+        "HttpBootUri": "<URI bootpath"
     }
 }
 ```
@@ -652,12 +641,12 @@ This message sets the boot order to boot from an UEFI HTTP network location.
 
 The following message instructs the system to boot once from the USB in UEFI BIOS boot mode.
 
-```
+``` {.small}
 {
     "Boot": {
         "BootSourceOverrideEnabled": "Once",
         "BootSourceOverrideMode": "Legacy",
-        "BootSourceOverrideTarget": "Usb",
+        "BootSourceOverrideTarget": "Usb"
     }
 }
 ```
@@ -666,17 +655,17 @@ The following message instructs the system to boot once from the USB in UEFI BIO
 
 The System's log is obtained retrieving the Log resource which represent the system log.
 
-```
+``` {.small}
 GET /redfish/v1/Systems/CS-1/LogServices/Log
 ```
 
 The response message contains the following fragment. The Entries resource contains the entries of the log.
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/Systems/CS-1/LogServices/Log",
     "Name": "System Log",
- . . .
+    . . .
     "Entries": {
         "@odata.id": "/redfish/v1/Systems/CS-1/LogServices/Log/Entries"
     }
@@ -687,13 +676,13 @@ The response message contains the following fragment. The Entries resource conta
 
 The entries of a system log are obtained by retrieving each entry of the log.
 
-```
+``` {.small}
 GET /redfish/v1/Systems/CS-1/LogService/Log/Entries
 ```
 
 The following fragment is
 
-```
+``` {.small}
 {
     "@odata.id": "/redfish/v1/Systems/1/LogServices/Log1/Entries",
     "Members@odata.count": 2,
@@ -734,51 +723,53 @@ The following fragment is
 
 A system log entry is obtained by retrieving a specific entry of the log.
 
-```
+``` {.small}
 GET /redfish/v1/Systems/CS-1/LogService/Log/Entries/1
 ```
 
 The following fragment is
 
-```
+``` {.small}
 {
- "@odata.id": "/redfish/v1/Systems/1/LogServices/Log1/Entries/1",
- "EntryType": "SEL",
- "Severity": "Critical",
- "Created": "2012-03-07T14:44:00Z",
- "EntryCode": "Upper Critical - going high",
- "SensorType": "Temperature",
- "SensorNumber": 1,
- "Message": "Temperature threshold exceeded",
- "MessageId": "0x592A28",
- "Links": {
-  "OriginOfCondition": { "@odata.id": "/redfish/v1/Chassis/1/Thermal" }
- }
+    "@odata.id": "/redfish/v1/Systems/1/LogServices/Log1/Entries/1",
+    "EntryType": "SEL",
+    "Severity": "Critical",
+    "Created": "2012-03-07T14:44:00Z",
+    "EntryCode": "Upper Critical - going high",
+    "SensorType": "Temperature",
+    "SensorNumber": 1,
+    "Message": "Temperature threshold exceeded",
+    "MessageId": "0x592A28",
+    "Links": {
+        "OriginOfCondition": { "@odata.id": "/redfish/v1/Chassis/1/Thermal" }
+    }
 }
 ```
 
-## Clear the system log
+## Clear system log
 
 The system log is cleared by POST'ing to the ClearLog action for
 
-```
+``` {.small}
 POST /redfish/v1/Systems/CS-1/LogService/Log/Actions/LogService.ClearLog
 ```
 
 # References
 
-\[1] Usage Guide and Requirements for the OCP Baseline Hardware Management Profile v1.0.1
+[1] [Usage Guide for Baseline Hardware Management v1.1](https://www.opencompute.org/documents/usageguide-baseline-1-1-0-final-pdf)
 
-\[2] "Redfish API Specification"
+[5] [OCP Server Hardware Management Profile v1.1 (json)](https://github.com/opencomputeproject/OCP-Profiles/blob/master/Server/OCPServerHardwareManagement.v1_1_0.json)
 
-*[https://www.dmtf.org/dsp/DSP0266](https://www.dmtf.org/dsp/DSP0266)*
+[6] [OCP Baseline Hardware Management Profile v1.1 (json)](https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1_0.json)
+
+* <a id="dsp0266"/>DMTF DSP0266, *Redfish Specification*: [https://www.dmtf.org/dsp/DSP0266](https://www.dmtf.org/dsp/DSP0266)
+* <a id="dsp0268"/>DMTF DSP0268, *Redfish Data Model Specification*: [https://www.dmtf.org/dsp/DSP0268](#dsp0268)
+* <a id="dsp0272"/>DMTF DSP0272, *Redfish Interoperability Profiles Specification*: [https://www.dmtf.org/dsp/DSP0272](https://www.dmtf.org/dsp/DSP0272)
+* <a id="interop-validator"/>Redfish Interop Validator: [https://github.com/DMTF/Redfish-Interop-Validator](https://github.com/DMTF/Redfish-Interop-Validator)
 
 # Revision 
 
-
--------------  ----------  ----------------------------------------
-Revision       Date        Description
-1.0.0          11/16/2020  Initial draft
-1.0.0 draft 2  1/18/2021   Use same format as Baseline Usage Guide.
--------------  ----------  ----------------------------------------
-
+| Revision/Version | Date | Description |
+|----|----|----|
+| 1.0.0 | 11/16/2020 | Intial Release |
+| 1.1.0 | 5/4/2026  | Reference Baseline Hardware Management v1.1.  |
