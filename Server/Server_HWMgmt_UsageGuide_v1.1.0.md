@@ -33,9 +33,9 @@ This document desribes the manageability usages that are enabled by an implement
 
 # Requirements
 
-The required Redfish data model elements are specified in an OCP Profile document. An OCP Profile Is a document which conforms to the Redfish Interoperability Profile Specification [7].
+The required Redfish data model elements are specified in an OCP profile document.  An OCP profile is a document that conforms to the [Redfish Interoperability Profile Specification](#dsp0270).
 
-An OCP Profile can be read by the Redfish Interop Validator [4]. The validator autogenerates, executes the tests against an implementation, and generates a test report.
+An OCP profile can be read by the [Redfish Interop Validator](#interop-validator).  The validator autogenerates, executes the tests against an implementation, and generates a test report.
 
 # Capabilities
 
@@ -758,17 +758,14 @@ POST /redfish/v1/Systems/CS-1/LogService/Log/Actions/LogService.ClearLog
 
 [1] [Usage Guide for Baseline Hardware Management v1.1](https://www.opencompute.org/documents/usageguide-baseline-1-1-0-final-pdf)
 
-[2] [Redfish API Specification (DSP0266)](https://www.dmtf.org/dsp/DSP0266)
-
-[3] [Redfish Data Model Specification (DSP0268)](https://www.dmtf.org/dsp/DSP0268)
-
-[4] [Redfish Interop Validator](https://github.com/DMTF/Redfish-Interop-Validator)
-
 [5] [OCP Server Hardware Management Profile v1.1 (json)](https://github.com/opencomputeproject/OCP-Profiles/blob/master/Server/OCPServerHardwareManagement.v1_1_0.json)
 
 [6] [OCP Baseline Hardware Management Profile v1.1 (json)](https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1_0.json)
 
-[7] [Redfish Interoperability Profile Specification (DSP0272)](https://www.dmtf.org/dsp/DSP0272)
+* <a id="dsp0266"/>DMTF DSP0266, *Redfish Specification*: [https://www.dmtf.org/dsp/DSP0266](https://www.dmtf.org/dsp/DSP0266)
+* <a id="dsp0268"/>DMTF DSP0268, *Redfish Data Model Specification*: [https://www.dmtf.org/dsp/DSP0268](#dsp0268)
+* <a id="dsp0270"/>DMTF DSP0270, *Redfish Interoperability Profiles Specification*: [https://www.dmtf.org/dsp/DSP0270](https://www.dmtf.org/dsp/DSP0270)
+* <a id="interop-validator"/>Redfish Interop Validator: [https://github.com/DMTF/Redfish-Interop-Validator](https://github.com/DMTF/Redfish-Interop-Validator)
 
 # Revision 
 
