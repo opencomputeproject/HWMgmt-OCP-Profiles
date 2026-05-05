@@ -14,36 +14,23 @@ NOTWITHSTANDING THE FOREGOING LICENSES, THIS SPECIFICATION IS PROVIDED BY OCP "A
 
 # Scope
 
-This document contains requirements and provides the usage examples for the OCP Power Shelf API v1.0.0.
+This document desribes the manageability usages that are enabled by an implementation which conforms to the OCP Power Shelf API v1.0.
 
 # Requirements
 
-As a Redfish-based interface, the required Redfish interface model elements are specified in a profile document.
-For the OCP Power Shelf API v1.0.0, the profile is located at: https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/OCPPowerShelf.v1_0_0.json
+The required Redfish data model elements are specified in an OCP profile document.
+An OCP profile is a document that conforms to the [Redfish Interoperability Profile Specification](#dsp0272).
 
-The [Redfish Interop Validator](#interop-validator) is an open-source conformance test that reads the profile, executes the tests against an implementation, and generates a test report in text or HTML format.
+An OCP profile can be read by the [Redfish Interop Validator](#interop-validator).
+The validator autogenerates, executes the tests against an implementation, and generates a test report.
 
-```
-> rf_interop_validator -u user -p password -r host:port profileName
-```
-
-The OCP Power Shelf v1.0.0 profile extends from the OCP Service Baseline v1.0.0 profile.
-This extension is specified directly in the profile.
-This means that the specification requires conformance to the OCP Service Baseline profile in addition to any requirements specified in the OCP Power Shelf profile.
-
-```
-"RequiredProfiles": {
-    "OCPBaselineRedfishService": {
-        "MinVersion": "1.0.0"
-    }
-},
-```
+The OCP Power Shelf API v1.0 is defined by the [OCP Power Shelf profile](#ocp-power-shelf-profile).
 
 # Capabilities
 
-The following use cases are enabled by conformance to this OCP Power Shelf profile.
-The OCP Power Shelf profile is extended from the OCP Service Baseline profile.
-For capabilities specified in the the OCP Service Baseline profile, see the "OCP Service Baseline Usage Guide".
+The following use cases are enabled by conformance to the [OCP Power Shelf profile](#ocp-power-shelf-profile).
+The OCP Power Shelf profile is extended from the [OCP Service Baseline profile](#ocp-service-baseline-profile).
+For capabilities specified in the the OCP Service Baseline profile, see the [OCP Service Baseline Usage Guide](#ocp-service-baseline-guide).
 
 The following table lists the capabilities prescribed in the OCP Power Shelf profile.
 
@@ -591,7 +578,10 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1
 
 # References
 
+* <a id="ocp-service-baseline-guide"/>OCP Service Baseline Usage Guide v1.0.0: [https://www.opencompute.org/documents/usageguide-servicebaseline-1-0-0-final-pdf](https://www.opencompute.org/documents/usageguide-servicebaseline-1-0-0-final-pdf)
+* <a id="ocp-service-baseline-profile"/>OCP Service Baseline v1.0.0: [https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/OCPServiceBaseline.v1_0_0.json](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/OCPServiceBaseline.v1_0_0.json)
+* <a id="ocp-power-shelf-profile"/>OCP Power Shelf v1.0.0: [https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/OCPPowerShelf.v1_0_0.json](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles/blob/master/OCPPowerShelf.v1_0_0.json)
 * <a id="dsp0266"/>DMTF DSP0266, *Redfish Specification*: [https://www.dmtf.org/dsp/DSP0266](https://www.dmtf.org/dsp/DSP0266)
 * <a id="dsp0268"/>DMTF DSP0268, *Redfish Data Model Specification*: [https://www.dmtf.org/dsp/DSP0268](#dsp0268)
-* <a id="dsp0270"/>DMTF DSP0270, *Redfish Interoperability Profiles Specification*: [https://www.dmtf.org/dsp/DSP0270](https://www.dmtf.org/dsp/DSP0270)
+* <a id="dsp0270"/>DMTF DSP0272, *Redfish Interoperability Profiles Specification*: [https://www.dmtf.org/dsp/DSP0272](https://www.dmtf.org/dsp/DSP0272)
 * <a id="interop-validator"/>Redfish Interop Validator: [https://github.com/DMTF/Redfish-Interop-Validator](https://github.com/DMTF/Redfish-Interop-Validator)
