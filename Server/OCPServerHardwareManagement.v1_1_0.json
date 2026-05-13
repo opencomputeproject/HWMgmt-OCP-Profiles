@@ -15,6 +15,9 @@
 		"Chassis": {
 			"MinVersion": "1.0.0",
 			"PropertyRequirements": {
+				"EnvironmentMetrics": {
+					"ReadRequirement": "IfImplemented"
+				},
 				"Links": {
 					"PropertyRequirements": {
 						"ComputerSystems": {}
@@ -28,11 +31,11 @@
               				"ReadRequirement": "Mandatory",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
-              				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+              				"CompareValues": ["RackMount", "Sled", "Drawer"]
             			}
           			]
         		},
-				"Power": {
+				"ThermalSubsystem": {
 					"ReadRequirement": "Recommended",
           			"ConditionalRequirements": [
             			{
@@ -40,13 +43,36 @@
               				"ReadRequirement": "Mandatory",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
-              				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+              				"CompareValues": ["RackMount", "Sled", "Drawer"]
             			}
           			]
-				}
-      		}
-
-		},
+                },
+                "Power": {
+                    "ReadRequirement": "Recommended",
+                    "ConditionalRequirements": [
+                        {
+                            "Purpose": "Required if ChassisType are specific values",
+                            "ReadRequirement": "Mandatory",
+                            "CompareType": "AnyOf",
+                            "CompareProperty": "ChassisType",
+                            "CompareValues": ["RackMount", "Sled", "Drawer"]
+                        }
+                    ]
+                },
+                "PowerSubsystem": {
+                    "ReadRequirement": "Recommended",
+                    "ConditionalRequirements": [
+                        {
+                            "Purpose": "Required if ChassisType are specific values",
+                            "ReadRequirement": "Mandatory",
+                            "CompareType": "AnyOf",
+                            "CompareProperty": "ChassisType",
+                            "CompareValues": ["RackMount", "Sled", "Drawer"]
+                        }
+                    ]
+                }
+            }
+        },
 		"ComputerSystem": {
 			"MinVersion": "1.0.0",
 			"PropertyRequirements": {
@@ -129,12 +155,18 @@
 					"ReadRequirement": "Recommended"
 				},
 				"SerialConsole": {
+<<<<<<< server1_1_0
+					"ReadRequirement": "Recommended",
+=======
 					"ReadRequirement": "IfImplemented",
+>>>>>>> master
 					"Purpose": "SSH or IPMI-based serial remote console is required.",
 					"PropertyRequirements": {
-						"ConnectTypesSupported": {
-							"Values": [ "SSH", "IPMI"],
-							"Comparison": "AnyOf"
+						"SSH": {
+                            "ReadRequirement": "IfImplemented"
+                        },
+                        "IPMI": {
+							"ReadRequirement": "IfImplemented"
 						}
 					}
 				},
@@ -165,6 +197,13 @@
 				}
 			}
 		},
+		"EnvironmentMetrics": {
+			"ReadRequirement": "IfImplemented",
+			"PropertyRequirements": {
+				"PowerWatts": {},
+				"PowerLimitWatts": {}
+			}
+		}
 		"EthernetInterface": {
 			"MinVersion": "1.1.0",
 			"ReadRequirement": "Recommended",
@@ -193,7 +232,7 @@
 			}
 		},
 		"Power": {
-			"ReadRequirement": "Mandatory",
+			"ReadRequirement": "IfImplemented",
 			"PropertyRequirements": {
 				"PowerControl": {
 					"PropertyRequirements": {
@@ -209,11 +248,17 @@
 				}
 			}
 		},
-		"Thermal": {
+		"PowerSubsystem": {
+            "PropertyRequirements": {
+                "CapacityWatts": {}
+			}
+		},
+        "Thermal": {
 			"MinVersion": "1.1.0",
+            "ReadRequirement": "IfImplemented",
 			"PropertyRequirements": {
 				"Temperatures": {
-					"ReadRequirement": "Mandatory",
+					"ReadRequirement": "IfImplemented",
 					"MinCount": 3,
 					"PropertyRequirements": {
 						"ReadingCelsius": {},
@@ -248,7 +293,23 @@
 				}
 			}
 		},
-		"ServiceRoot": {
+		"ThermalMetrics": {
+            "ReadRequirement": "IfImplemented",
+			"PropertyRequirements": {
+				"TemperatureSummaryCelsius": {
+					"PropertyRequirements": {
+						"Exhaust": {}
+					}
+				}
+			}
+		},
+		"ThermalSubsystem": {
+			"ReadRequirement": "IfImplemented",
+			"PropertyRequirements": {
+				"ThermalMetrics": {}
+			}
+		},
+        "ServiceRoot": {
 			"PropertyRequirements": {
 				"Systems": {}
 			}
