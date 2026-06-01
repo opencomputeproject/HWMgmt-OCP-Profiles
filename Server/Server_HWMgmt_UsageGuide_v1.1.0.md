@@ -6,8 +6,8 @@ supersedes: 1.0.0
 status: draft
 released: true
 class: info
-date: 2026-04-20
-copyright: 2023-2026
+date: 2026-05-4
+copyright: 2020-2026
 paragraph_numbering: no
 bibliography: bibliography.yaml
 header-includes: |
@@ -20,30 +20,59 @@ header-includes: |
 
 ---
 
+# Version History 
+
+| **Date**   | **Version** | **Author** | **Description** |
+| :---       | :---:       | :---:      | :--- |
+| 11/16/2020 | 1.0.0       | John Leung | Initial Release |
+| 5/4/2026   | 1.1.0       | John Leung | Change Baseline Hardware Management profile reference from v1.0 to v1.1  |.
+
 # License
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike
-4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 
 ![](images/image2.png)
 
-# Scope
+NOTWITHSTANDING THE FOREGOING LICENSES, THIS SPECIFICATION IS PROVIDED BY OCP "AS IS" AND OCP EXPRESSLY DISCLAIMS ANY WARRANTIES (EXPRESS, IMPLIED, OR OTHERWISE), INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, FITNESS FOR A PARTICULAR PURPOSE, OR TITLE, RELATED TO THE SPECIFICATION. NOTICE IS HEREBY GIVEN, THAT OTHER RIGHTS NOT GRANTED AS SET FORTH ABOVE, INCLUDING WITHOUT LIMITATION, RIGHTS OF THIRD PARTIES WHO DID NOT EXECUTE THE ABOVE LICENSES, MAY BE IMPLICATED BY THE IMPLEMENTATION OF OR COMPLIANCE WITH THIS SPECIFICATION. OCP IS NOT RESPONSIBLE FOR IDENTIFYING RIGHTS FOR WHICH A LICENSE MAY BE REQUIRED IN ORDER TO IMPLEMENT THIS SPECIFICATION. THE ENTIRE RISK AS TO IMPLEMENTING OR OTHERWISE USING THE SPECIFICATION IS ASSUMED BY YOU. IN NO EVENT WILL OCP BE LIABLE TO YOU FOR ANY MONETARY DAMAGES WITH RESPECT TO ANY CLAIMS RELATED TO, OR ARISING OUT OF YOUR USE OF THIS SPECIFICATION, INCLUDING BUT NOT LIMITED TO ANY LIABILITY FOR LOST PROFITS OR ANY CONSEQUENTIAL, INCIDENTAL, INDIRECT, SPECIAL OR PUNITIVE DAMAGES OF ANY CHARACTER FROM ANY CAUSES OF ACTION OF ANY KIND WITH RESPECT TO THIS SPECIFICATION, WHETHER BASED ON BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, AND EVEN IF OCP HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-This document desribes the manageability usages that are enabled by an implementation which conforms to the Server Hardware Management Profile v1.1.
+# Introduction
 
-# Requirements
+This document describes the manageability tasks that can be performed on a platform which is conformant to the [Server Hardware Management Profile v1.1](https://github.com/opencomputeproject/OCP-Profiles/blob/master/Server/OCPServerHardwareManagement.v1_1_0.json) [4].
 
-The required Redfish data model elements are specified in an OCP profile document.  An OCP profile is a document that conforms to the [Redfish Interoperability Profile Specification](#dsp0272).
+The document shows how the Redfish interface is used to accomplish these tasks. This includes examples of the interaction across the Redfish interface.
 
-An OCP profile can be read by the [Redfish Interop Validator](#interop-validator).  The validator autogenerates, executes the tests against an implementation, and generates a test report.
+The document references the OCP Profile as the normative form of the requirements.
 
-# Capabilities
+# Compliance to Open Compute Project Tenets
 
-The Server Hardware Management profile v1.1 is extended from the Baseline Hardware Management profile v1.1 [6]. 
+## Openness
+The usage guide and profile were developed on a public OCP GitHub repository. An open-source validator exists for validating conformance of an implementation to the profile.
 
-For the capabilities enabled by conformance to the OCP Baseline Hardware profile see the "Usage Guide for Baseline Hardware Management v1.1" [1].
+## Efficiency
+A common manageability interface reduces the amount of client-side code required to be written, and enables the remote client to be used with various conformant products.
 
-The following table lists the capabilities enabled by conformance to the extension in the Server Hardware Management profile v1.1 [5].
+## Impact
+Manageability standards enable the interchange of interoperable products. The Server Hardware Management profile prescribes the common manageability behavior of OCP servers.
+
+## Scale
+Redfish is one of the scalable interfaces for managing platforms out-of-band used on OCP platforms.
+
+## Sustainability
+No impact.
+
+# Management Tasks
+
+OCP's out-of-band platform manageability interface is based on Redfish.  Redfish is an international recognized standard, specified by [Redfish Specification](https://www.dmtf.org/dsp/DSP0266) [1] and the [Redfish Data Model Specification](https://www.dmtf.org/dsp/DSP0268) [2].
+
+As a Redfish interface, the manageability requirements on the Redfish model elements can be normatively specified in a profile document.  The syntax of the profile document is specified in the [Redfish Interoperability Profile Specification](https://www.dmtf.org/dsp/DSP0272) [5]. Issues with the profile can be filed on the [OCP Profile repository](https://github.com/opencomputeproject/HWMgmt-OCP-Profiles).
+
+The profile document can be read by the [Redfish Interop Validator](https://github.com/DMTF/Redfish-Interop-Validator) [3] to test the conformance of an implementation. The validator will auto-generate tests, execute the tests, and create a test report.  Issues with the validator can be filed in the repository.
+
+The [OCP Server Hardware Management Profile v1.1](https://github.com/opencomputeproject/OCP-Profiles/blob/master/Server/OCPServerHardwareManagement.v1_1_0.json) [4] is extended from the [Baseline Hardware Management Profile v1.1](https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1.json) [5]. 
+
+For the capabilities enabled by the OCP Baseline Hardware profile see the [Usage Guide for Baseline Hardware Management v1.1](https://www.opencompute.org/documents/usageguide-baseline-1-1-0-final-pdf) [6].
+
+The following table lists the capabilities enabled by conformance to the extension in the Server Hardware Management profile v1.1.
 
 | **Use Case**        | **Management Task**                                       | **Requirement** |
 | :---                | :-----------                                              | :---	|
@@ -729,20 +758,16 @@ POST /redfish/v1/Systems/CS-1/LogService/Log/Actions/LogService.ClearLog
 
 # References
 
-[1] [Usage Guide for Baseline Hardware Management v1.1](https://www.opencompute.org/documents/usageguide-baseline-1-1-0-final-pdf)
+\[1\] "[Redfish Specification](https://www.dmtf.org/dsp/DSP0266)"
 
-[5] [OCP Server Hardware Management Profile v1.1 (json)](https://github.com/opencomputeproject/OCP-Profiles/blob/master/Server/OCPServerHardwareManagement.v1_1_0.json)
+\[2\] "[Redfish Data Model Specification](https://www.dmtf.org/dsp/DSP0268)"
 
-[6] [OCP Baseline Hardware Management Profile v1.1 (json)](https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1_0.json)
+\[3\] "[Redfish Interop Validator](https://github.com/DMTF/Redfish-Interop-Validator)"
 
-* <a id="dsp0266"/>DMTF DSP0266, *Redfish Specification*: [https://www.dmtf.org/dsp/DSP0266](https://www.dmtf.org/dsp/DSP0266)
-* <a id="dsp0268"/>DMTF DSP0268, *Redfish Data Model Specification*: [https://www.dmtf.org/dsp/DSP0268](#dsp0268)
-* <a id="dsp0272"/>DMTF DSP0272, *Redfish Interoperability Profiles Specification*: [https://www.dmtf.org/dsp/DSP0272](https://www.dmtf.org/dsp/DSP0272)
-* <a id="interop-validator"/>Redfish Interop Validator: [https://github.com/DMTF/Redfish-Interop-Validator](https://github.com/DMTF/Redfish-Interop-Validator)
+\[4\] "[OCP Server Hardware Management Profile v1.1 (json)](https://github.com/opencomputeproject/OCP-Profiles/blob/master/Server/OCPServerHardwareManagement.v1_1_0.json)"
 
-# Revision 
+\[5\] "[Redfish Interoperability Profiles Specification](https://www.dmtf.org/dsp/DSP0272)"
 
-| Revision/Version | Date | Description |
-|----|----|----|
-| 1.0.0 | 11/16/2020 | Intial Release |
-| 1.1.0 | 5/4/2026  | Reference Baseline Hardware Management v1.1.  |
+\[5\] "[OCP Baseline v1.1 Profile](https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1.json)
+
+\[6\] "[OCP Usage Guide for Baseline Hardware Management v1.1](https://www.opencompute.org/documents/usageguide-baseline-1-1-0-final-pdf)"
