@@ -132,10 +132,12 @@
 					"ReadRequirement": "IfImplemented",
 					"Purpose": "SSH or IPMI-based serial remote console is required.",
 					"PropertyRequirements": {
-						"ConnectTypesSupported": {
-							"Values": [ "SSH", "IPMI"],
-							"Comparison": "AnyOf"
-						}
+						"SSH": {
+                            "ReadRequirement": "IfImplemented"
+                        },
+                        "IPMI": {
+                            "ReadRequirement": "IfImplemented"
+                        }
 					}
 				},
 				"Links": {
