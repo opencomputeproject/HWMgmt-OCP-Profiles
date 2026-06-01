@@ -271,14 +271,24 @@
 				"UseCaseKeyValues": ["BMC", "RackManager", "EnclosureManager"],
 				"ReadRequirement": "IfImplemented",
 				"PropertyRequirements": {
-				"ManagerType": {},
+				    "ManagerType": {},
 					"UUID": {},
 					"Status": {},
 					"FirmwareVersion": {},
 					"NetworkProtocol": {},
 					"EthernetInterfaces": {},
 					"LogServices": {},
-					"Links": {
+					"SerialConsole": {
+					    "ReadRequirement": "IfImplemented",
+					    "Purpose": "The SerialConsole property can be here for backward compatiability.",
+					    "PropertyRequirements": {
+						    "ConnectTypesSupported": {
+							    "Values": [ "SSH", "IPMI"],
+							    "Comparison": "AnyOf"
+						    }
+					    }
+				    },
+                    "Links": {
 						"PropertyRequirements": {
 							"ManagerForServers": {
 								"ReadRequirement": "IfImplemented"
