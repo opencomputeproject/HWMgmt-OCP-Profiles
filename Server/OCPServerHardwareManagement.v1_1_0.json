@@ -91,7 +91,8 @@
 				"UUID": {},
 				"IndicatorLED": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
+					"ReplacedByProperty": "LocationIndicatorActive",
+                    "ConditionalRequirements": [{
 						"Purpose": "Physical Systems must have a writable Indicator LED",
 						"CompareProperty": "SystemType",
 						"CompareType": "AnyOf",
@@ -100,6 +101,18 @@
 						"WriteRequirement": "Mandatory"
 					}]
 				},
+                "LocationIndicatorActive": {
+                    "ReadRequirement": "Recommended",
+                    "ReplacesProperty": "IndicatorLED",
+                    "ConditionalRequirements": [{
+						"Purpose": "Physical Systems must have a writable Indicator LED",
+						"CompareProperty": "SystemType",
+						"CompareType": "AnyOf",
+						"CompareValues": ["Physical"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}]
+                },
 				"Status": {
 					"PropertyRequirements": {
 						"State": {},
