@@ -39,38 +39,11 @@ An OCP Profile can be read by the Redfish Interop Validator [4]. The validator a
 
 # Capabilities
 
-The following use cases are enabled by conformance to this Server Hardware Management profile [5].
+The Server Hardware Management profile v1.1 is extended from the Baseline Hardware Management profile v1.1 [6]. 
 
-The Server Hardware Management profile is extended from the Baseline Hardware Management profile [6]. 
+For the capabilities enabled by conformance to the OCP Baseline Hardware profile see the "Usage Guide for Baseline Hardware Management v1.1" [1].
 
-The following table lists the usages enabled by conformance to the Baseline Hardware Management profile. These usages are described in the "Usage Guide for Baseline Hardware Management v1.1" [1].
-
-| **Use Case**          | **Management Task**        | **Requirement** |
-| :---                  | :-----------               | :---	|
-| Account Management    | Get accounts               | Mandatory |
-| Service Management    | Get sessions               | Mandatory |
-| Hardware Inventory    | Get FRU info               | Mandatory |
-|                       | Get and Set the Asset Tag  | Recommended |
-| Hardware Location     | Get location LED           | Recommended |
-|                       | Set location LED           | Recommended |
-| Status                | Get Chassis status         | Mandatory |
-| Power                 | Get power state            | If implemented, mandatory |
-|                       | Get power usage            | Recommended |
-|                       | Get power limit            | Recommended |
-| Temperature           | Get temperature            | If implemented, mandatory |
-|                       | Get temperature thresholds | If implemented, recommended |
-| Cooling               | Get fan speeds             | If implemented, mandatory |
-|                       | Get fan redundancy         | If implemented, recommended |
-| Log                   | Get log entry              | Mandatory |
-|                       | Clear system log           | Recommended |
-| Management Controller | Get firmware version       | Mandatory |
-|                       | Get controller status      | Mandatory |
-|                       | Get network info           | Mandatory |
-|                       | Reset controller           | Mandatory |
-
-: Baseline Capabilities
-
-The following table lists the usage enabled by conformance to the Server Hardware Management Profile [5].
+The following table lists the capabilities enabled by conformance to the extension in the Server Hardware Management profile v1.1 [5].
 
 | **Use Case**        | **Management Task**                                       | **Requirement** |
 | :---                | :-----------                                              | :---	|
