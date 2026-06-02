@@ -167,10 +167,22 @@
 					"Purpose": "SSH or IPMI-based serial remote console is required.",
 					"PropertyRequirements": {
 						"SSH": {
-                            "ReadRequirement": "IfImplemented"
+                            "ReadRequirement": "Recommended"
+                            "ConditionalRequirements": [{
+                                "Purpose": "Either SSH or IPMI must be supported.",
+                                "CompareProperty": "IPMI",
+                                "CompareType": "Absent",
+                                "ReadRequirement": "Mandatory"
+                            }]
                         },
                         "IPMI": {
-                            "ReadRequirement": "IfImplemented"
+                            "ReadRequirement": "Recommended"
+                            "ConditionalRequirements": [{
+                                "Purpose": "Either SSH or IPMI must be supported.",
+                                "CompareProperty": "SSH",
+                                "CompareType": "Absent",
+                                "ReadRequirement": "Mandatory"
+                            }]
                         }
 					}
 				},
