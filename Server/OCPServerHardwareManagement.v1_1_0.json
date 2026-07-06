@@ -28,7 +28,7 @@
           			"ConditionalRequirements": [
             			{
               				"Purpose": "Required if ChassisType are specific values",
-              				"ReadRequirement": "Mandatory",
+              				"ReadRequirement": "Recommended",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
               				"CompareValues": ["RackMount", "Sled", "Drawer"]
@@ -40,7 +40,7 @@
           			"ConditionalRequirements": [
             			{
               				"Purpose": "Required if ChassisType are specific values",
-              				"ReadRequirement": "Mandatory",
+              				"ReadRequirement": "Recommended",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
               				"CompareValues": ["RackMount", "Sled", "Drawer"]
@@ -117,7 +117,8 @@
 				"UUID": {},
 				"IndicatorLED": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
+					"ReplacedByProperty": "LocationIndicatorActive",
+                    "ConditionalRequirements": [{
 						"Purpose": "Physical Systems must have a writable Indicator LED",
 						"CompareProperty": "SystemType",
 						"CompareType": "AnyOf",
@@ -126,6 +127,18 @@
 						"WriteRequirement": "Mandatory"
 					}]
 				},
+                "LocationIndicatorActive": {
+                    "ReadRequirement": "Recommended",
+                    "ReplacesProperty": "IndicatorLED",
+                    "ConditionalRequirements": [{
+						"Purpose": "Physical Systems must have a writable Indicator LED",
+						"CompareProperty": "SystemType",
+						"CompareType": "AnyOf",
+						"CompareValues": ["Physical"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}]
+                },
 				"Status": {
 					"PropertyRequirements": {
 						"State": {},
@@ -155,19 +168,27 @@
 					"ReadRequirement": "Recommended"
 				},
 				"SerialConsole": {
-<<<<<<< server1_1_0
-					"ReadRequirement": "Recommended",
-=======
 					"ReadRequirement": "IfImplemented",
->>>>>>> master
 					"Purpose": "SSH or IPMI-based serial remote console is required.",
 					"PropertyRequirements": {
 						"SSH": {
-                            "ReadRequirement": "IfImplemented"
+                            "ReadRequirement": "Recommended"
+                            "ConditionalRequirements": [{
+                                "Purpose": "Either SSH or IPMI must be supported.",
+                                "CompareProperty": "IPMI",
+                                "CompareType": "Absent",
+                                "ReadRequirement": "Mandatory"
+                            }]
                         },
                         "IPMI": {
-							"ReadRequirement": "IfImplemented"
-						}
+                            "ReadRequirement": "Recommended"
+                            "ConditionalRequirements": [{
+                                "Purpose": "Either SSH or IPMI must be supported.",
+                                "CompareProperty": "SSH",
+                                "CompareType": "Absent",
+                                "ReadRequirement": "Mandatory"
+                            }]
+                        }
 					}
 				},
 				"Links": {

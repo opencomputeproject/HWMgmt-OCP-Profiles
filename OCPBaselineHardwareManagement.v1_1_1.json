@@ -271,24 +271,14 @@
 				"UseCaseKeyValues": ["BMC", "RackManager", "EnclosureManager"],
 				"ReadRequirement": "IfImplemented",
 				"PropertyRequirements": {
-				    "ManagerType": {},
+				"ManagerType": {},
 					"UUID": {},
 					"Status": {},
 					"FirmwareVersion": {},
 					"NetworkProtocol": {},
 					"EthernetInterfaces": {},
 					"LogServices": {},
-					"SerialConsole": {
-					    "ReadRequirement": "IfImplemented",
-					    "Purpose": "The SerialConsole property can be here for backward compatiability.",
-					    "PropertyRequirements": {
-						    "ConnectTypesSupported": {
-							    "Values": [ "SSH", "IPMI"],
-							    "Comparison": "AnyOf"
-						    }
-					    }
-				    },
-                    "Links": {
+					"Links": {
 						"PropertyRequirements": {
 							"ManagerForServers": {
 								"ReadRequirement": "IfImplemented"
@@ -343,9 +333,18 @@
 							"WriteRequirement": "Mandatory"
 						},
 						"Port": {},
-						"NotifyMulticastIntervalSeconds": {},
-						"NotifyIPv6Scope": {},
-						"NotifyTTL": {}
+                        "NotifyMulticastIntervalSeconds": {
+                            "ReadRequirement": "IfImplemented",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "NotifyIPv6Scope": {
+                            "ReadRequirement": "IfImplemented",
+                            "WriteRequirement": "Mandatory"
+                        },
+                        "NotifyTTL": {
+                            "ReadRequirement": "IfImplemented",
+                            "WriteRequirement": "Mandatory"
+                        }
 					}
 				}
 			}
@@ -445,7 +444,7 @@
 					"ReadRequirement": "IfImplemented",
 					"PropertyRequirements": {
 						"RedundancyType": {},
-						"MinNeededinGroup": {},
+						"MinNeededInGroup": {},
 						"MaxSupportedInGroup": {
 							"ReadRequirement": "Recommended"
 						},
