@@ -25,27 +25,48 @@
           			"ConditionalRequirements": [
             			{
               				"Purpose": "Required if ChassisType are specific values",
-              				"ReadRequirement": "Mandatory",
+              				"ReadRequirement": "Recommended",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
               				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
             			}
           			]
         		},
-				"Power": {
+                "ThermalSubsystem": {
 					"ReadRequirement": "Recommended",
           			"ConditionalRequirements": [
             			{
               				"Purpose": "Required if ChassisType are specific values",
-              				"ReadRequirement": "Mandatory",
+              				"ReadRequirement": "Recommended",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
               				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
             			}
           			]
-				}
-      		}
-
+        		},
+                "Power": {
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Recommended",
+              				"CompareType": "AnyOf",
+              				"CompareProperty": "ChassisType",
+              				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+            			}
+          			]
+				},
+                "PowerSubsystem": {
+			    	"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Recommended",
+              				"CompareType": "AnyOf",
+              				"CompareProperty": "ChassisType",
+              				"CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+            			}
+          			]
+                }
+			}
 		},
 		"ComputerSystem": {
 			"MinVersion": "1.0.0",
@@ -91,7 +112,8 @@
 				"UUID": {},
 				"IndicatorLED": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
+					"ReplacedByProperty": "LocationIndicatorActive",
+                    "ConditionalRequirements": [{
 						"Purpose": "Physical Systems must have a writable Indicator LED",
 						"CompareProperty": "SystemType",
 						"CompareType": "AnyOf",
@@ -100,6 +122,18 @@
 						"WriteRequirement": "Mandatory"
 					}]
 				},
+                "LocationIndicatorActive": {
+                    "ReadRequirement": "Recommended",
+                    "ReplacesProperty": "IndicatorLED",
+                    "ConditionalRequirements": [{
+						"Purpose": "Physical Systems must have a writable Indicator LED",
+						"CompareProperty": "SystemType",
+						"CompareType": "AnyOf",
+						"CompareValues": ["Physical"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}]
+                },
 				"Status": {
 					"PropertyRequirements": {
 						"State": {},
@@ -132,10 +166,24 @@
 					"ReadRequirement": "IfImplemented",
 					"Purpose": "SSH or IPMI-based serial remote console is required.",
 					"PropertyRequirements": {
-						"ConnectTypesSupported": {
-							"Values": [ "SSH", "IPMI"],
-							"Comparison": "AnyOf"
-						}
+						"SSH": {
+                            "ReadRequirement": "Recommended"
+                            "ConditionalRequirements": [{
+                                "Purpose": "Either SSH or IPMI must be supported.",
+                                "CompareProperty": "IPMI",
+                                "CompareType": "Absent",
+                                "ReadRequirement": "Mandatory"
+                            }]
+                        },
+                        "IPMI": {
+                            "ReadRequirement": "Recommended"
+                            "ConditionalRequirements": [{
+                                "Purpose": "Either SSH or IPMI must be supported.",
+                                "CompareProperty": "SSH",
+                                "CompareType": "Absent",
+                                "ReadRequirement": "Mandatory"
+                            }]
+                        }
 					}
 				},
 				"Links": {
