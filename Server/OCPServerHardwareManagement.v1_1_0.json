@@ -241,7 +241,7 @@
 			}
 		},
 		"Power": {
-			"ReadRequirement": "Mandatory",
+			"ReadRequirement": "IfImplemented",
 			"PropertyRequirements": {
 				"PowerControl": {
 					"PropertyRequirements": {
@@ -261,7 +261,7 @@
 			"MinVersion": "1.1.0",
 			"PropertyRequirements": {
 				"Temperatures": {
-					"ReadRequirement": "Mandatory",
+					"ReadRequirement": "IfImplemented",
 					"MinCount": 3,
 					"PropertyRequirements": {
 						"ReadingCelsius": {},
@@ -296,7 +296,29 @@
 				}
 			}
 		},
-		"ServiceRoot": {
+        "ThermalMetrics": {
+			"MinVersion": "1.1.0",
+			"PropertyRequirements": {
+				"TemperatureSummary": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"Intake": {},
+                        "Ambient": {}
+					}
+                }
+            }	
+		},
+        "EnvironmentMetrics": {
+			"ReadRequirement": "IfImplemented",
+        	"ConditionalRequirements": [{
+				"SubordinateToResource": ["System", "ProcessorCollection"],
+				"ReadRequirement": "Mandatory"
+			}],
+            "PropertyRequirements": {
+                "TemperatureCelsius": {}
+            }
+		},
+        "ServiceRoot": {
 			"PropertyRequirements": {
 				"Systems": {}
 			}
