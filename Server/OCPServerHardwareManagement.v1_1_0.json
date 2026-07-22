@@ -259,9 +259,9 @@
 		},
 		"Thermal": {
 			"MinVersion": "1.1.0",
-			"PropertyRequirements": {
+			"ReadRequirement": "IfImplemented",
+            "PropertyRequirements": {
 				"Temperatures": {
-					"ReadRequirement": "IfImplemented",
 					"MinCount": 3,
 					"PropertyRequirements": {
 						"ReadingCelsius": {},
