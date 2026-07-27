@@ -1,13 +1,13 @@
 ---
 project: Hardware Management
 title: Usage Guide for Rack Management
-version: 1.2.0
+version: 1.2.0 (draft)
 supersedes: 1.1.0
 status: draft
 released: true
 class: info
-date: 2025-10-20
-copyright: 2023-2025
+date: 2026-01-20
+copyright: 2023-2026
 paragraph_numbering: no
 bibliography: bibliography.yaml
 header-includes: |
@@ -182,6 +182,12 @@ The firmware can be updated with a pull or push method. The "Redfish Firmware Up
 
 The main process is for the firmware package to be delivered opaquely, and the Redfish Service interprets the firmware package to determine the components that are updated.
 The Targets property can be used to guide and constrain this behavior.
+
+## Constructing a system
+
+To construct a system, the CompositionService is used.
+There are three types of composition requests: specific, constrained, manifest.
+The [Redfish Composition White Paper](https://www.dmtf.org/dsp/DSP2050) describes each type of composition request.
 
 # Use Cases
 
@@ -827,8 +833,7 @@ The Targets property can specify the nodes, of interest.
 
 ## Push FW Update on Node
 
-To update the firmware on the node via the push method, the
-client invokes the following command.
+To update the firmware on the node via the push method, the client invokes the following command.
 
 ```
 POST /redfish/v1/UpdateService/upload
@@ -943,15 +948,14 @@ The POST command has no request message.
 
 ## Construct System with GPUs
 
-To construct a system with GPUs, the CompositionService is used. There are three types of composition requests (specific, constrained, manifest).  The following specifies the constrained to contruct a system with 8 GPUs, 2 CPUs, memory, storage and an Ethernet connection.
+To construct a system with GPUs using the constrained composition method, invoke the following command
 
-A system wit GPUs is obtained by invoking the follow command
 
-```
+``` {.small}
 POST /redfish/v1/Systems
 ```
 
-With the request message
+The POST command contains the following request body.  The request describe the requirement of the system - 8 GPUs, 2 CPUs, 32 Gb of memory, 32 Gb storage and an Ethernet connection. The system will be created in the 'power-on' state.  The BIOS version is also specified.
 
 ``` {.small}
 {
@@ -1001,7 +1005,7 @@ With the request message
     "SimpleStorage": {
         "Members" : [
             {
-                "@Redfish.RequestedCount": 6,
+                "@Redfish.RequestedCount": 1,
                 "Devices": [
                     {
                         "CapacityBytes": 322122547200
@@ -1030,7 +1034,7 @@ With the request message
 }
 ```
 
-The response
+The response message is returned. The constructed system appears a resource *NewSystem2*.
 
 ``` {.small}
 {
@@ -1068,13 +1072,15 @@ The response
 
 ## Get GPU health on system
 
-The health status of the GPUs is obtained with the following coming
+The health status of the GPUs is obtained with the following command.
 
-```
+``` {.small}
 Get /redfish/v1/Systems/NewSystem
 ```
 
-The following fragment will be returned if the health of the GPUs are normal
+Below, the response messages are shown for when the health of GPUs are normal and when the health of one or more of the GPUs is warning.
+
+The following fragment will be returned if the health of the GPUs is *Normal*.
 
 ``` {.small}
 {
@@ -1094,7 +1100,7 @@ The following fragment will be returned if the health of the GPUs are normal
 }
 ```
 
-The following fragment will be returned if the health of the GPUs are not normal, warning or fatal
+The following fragment will be returned if the health of one of the GPUs is *Warning*.  The *OriginOfCondition* properties specifies the resource which caused the warning.
 
 
 ```  {.small}
@@ -1122,9 +1128,12 @@ The following fragment will be returned if the health of the GPUs are not normal
 
 ## Set policy when GPU fails on a system
 
-When a composed system of GPU's has one or more GPU failures, a policy in the rack manager can define whether more GPU's can be added from another switch or the composition should de deconstructed so another rack or compute node can be built to meet the minimum required configuration.
+The example is based on a proposed [policy model](https://www.dmtf.org/sites/default/files/Policy_Model_Proposal_v10.pdf).  This section will be updated with Redfish as a general policy model.
 
-Redfish has no generic policy model. A [policy model](https://www.dmtf.org/sites/default/files/Policy_Model_Proposal_v10.pdf) has been proposed.  The proposal has the following policy resoure.
+Usage - To attach a policy for when a GPU failssystem of GPU's has one or more GPU failures, a policy in the rack manager can define whether more GPU's can be added from another switch or the composition should de deconstructed so another rack or compute node can be built to meet the minimum required configuration.
+
+To attach a rack-level policy for when a GPU within a system fails, invoke the following command.
+
 
 ``` {.small}
 {
@@ -1160,7 +1169,7 @@ To get a telemetry blob from a compute system component, the client invokes the 
    POST /redfish/v1/TelemetyService/Action.CollectTelemetryData
 ```
 
-The POST command contains the following request message. The message specifies that telemetry be collecgtion for processor "P1" of "Sys-1".  The telemetry data formatted is "ContosoAggregator2_0" as defined by the OEM.
+The POST command contains the following request message. The message specifies that telemetry blob be collected for processor *P1* of system *Sys-1*.  The data within the telemetry blob formatted in *ContosoAggregator* format, which is defined by the OEM.
 
 ``` {.small}
     {
@@ -1170,7 +1179,7 @@ The POST command contains the following request message. The message specifies t
     }
 ```
 
-The response contains the following fragment. The response either contains all the telemetry blob in *AdditionalData* property or the blob was placed in the resource "TelemetrySnapshot.1".
+The command response returns the following message. The message contains the *AdditionalData* property, which contains the telemetry blob.  The command has also created the *TelemetrySnapshot.1* resource.
 
 ```  {.small}
 {
@@ -1186,19 +1195,40 @@ The response contains the following fragment. The response either contains all t
 
 ## Stream Power Consumption of all platforms
 
-(To set up a new stream for power consumption with X second sampling time to all compute systems in a rack, the client invokes the following command(s).  Recommend to use the open socket method.)
+A telemetry stream is created by using Server-sent Events (SSE) of a Metric Report.  The SSE method is described in section 12.5 of the Redfish Specification [1].
 
-In the Redfish Forum, there are new proposal from streaming telemetry.  Currrently, streaming is accomplished by using Server-sent Events of the Metric Report.  This mechanism is described in section 12.5 of the Redfish Specification.
+This method involves
+1. Configuring the EventService to support MetricReportDefinitions as a filter
+2. Place a MetricReportDefinition resource in the metric report definitions collection.
 
-To use the mechanism, the Redfish Service's EventService should support MetricReportDefinition as a filter. Specifically, the property "SSEFilterPropertiesSupported.MetricReportDefinition" within the EventService resource has a value of 'true'.
+To configure the EventService to support MetricReportDefinitions as a filter, invoke the following command
 
-The following metric report definition resource is placed in the ./TelemetryService/MetricReportDefinitions collection resource.
+``` {.small}
+   PATCH /redfish/v1/EventService
+```
+
+The PATCH command contains the following request message.
+
+``` {.small}
+{
+    "SSEFilterPropertiesSupported.MetricReportDefinition" = true
+}
+```
+
+To place a MetricReportDefinition resource in the metric report definitions collection, invoke the following command
+
+``` {.small}
+   POST /redfish/v1/TelemetryService/MetricReportDefinitions/PowerPerNode
+```
+
+The POST command contains the following request message. The *WildCard* property specifies the substitution for the variable *TWild*, in the *MetricProperties* property.
+
 
 ``` {.small}
 {
     "@odata.type": "#MetricReportDefinition.v1_4_6.MetricReportDefinition",
-    "Id": "PlatformPowerUsage",
-    "Name": "Transmit platform power usage",
+    "Id": "PowerPerNode",
+    "Name": "Power Consumption for all platforms",
     "MetricReportDefinitionType": "Periodic",
     "MetricReportDefinitionEnabled": true,
     "Schedule": {
