@@ -1,14 +1,14 @@
 {
-	"SchemaDefinition": "RedfishInteroperabilityProfile.v1_0_0",
+	"SchemaDefinition": "RedfishInteroperabilityProfile.v2_0_0",
 	"ProfileName": "OCPBaselineHardwareManagement",
-	"ProfileVersion": "1.1.0",
+	"ProfileVersion": "2.0.0",
 	"Purpose": "Specifies the OCP baseline hardware management requirements for the Redfish interface on platforms.",
 	"OwningEntity": "Open Compute Project",
-	"ContactInfo": "hwpl@opencompute.org",
-	"Protocol": {
-		"MinVersion": "1.0",
-		"Discovery": "Recommended",
-		"HostInterface": "Recommended"
+	"ContactInfo": "File issue at repository - https://github.com/opencomputeproject/HWMgmt-OCP-Profiles",
+	"RequiredProfiles": {
+		"ServiceBaseline": {
+			"MinVersion": "1.0.0"
+		}
 	},
 	"Registries": {
 		"Base": {
@@ -25,11 +25,6 @@
 		}
 	},
 	"Resources": {
-		"AccountService": {
-			"PropertyRequirements": {
-				"Accounts": {}
-			}
-		},
 		"Chassis": {
 			"UseCases": [{
 				"UseCaseTitle": "The primary Chassis requirements",
@@ -509,12 +504,8 @@
 		},
 		"ServiceRoot": {
 			"PropertyRequirements": {
-				"AccountService": {},
 				"UUID": {},
-				"RedfishVersion": {},
-				"Chassis": {},
-				"Managers": {},
-				"SessionService": {}
+				"Chassis": {}
 			}
 		}
 	}
