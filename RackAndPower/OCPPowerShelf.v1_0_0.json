@@ -133,7 +133,9 @@
                 "TemperatureReadingsCelsius": {},
                 "TemperatureSummaryCelsius": {
                     "PropertyRequirements": {
-                        "Ambient": {},
+                        "Ambient": {
+                            "ReadRequirement": "IfImplemented"
+                        },
                         "Internal": {}
                     }
                 }
