@@ -155,10 +155,10 @@
 						"UefiTargetBootSourceOverride": {
 							"ReadRequirement": "Recommended",
 							"ConditionalRequirements": [{
-								"Purpose": "If UEFI mode is selected, must allow for UEFI target.",
-								"CompareProperty": "BootSourceOverrideMode",
+								"Purpose": "If UefiTarget mode is selected, must allow for UEFI target.",
+								"CompareProperty": "BootSourceOverrideTarget",
 								"CompareType": "Equal",
-								"CompareValues": ["UEFI"],
+								"CompareValues": ["UefiTarget"],
 								"ReadRequirement": "Mandatory"
 							}]
 						}
@@ -172,7 +172,7 @@
 					"Purpose": "SSH or IPMI-based serial remote console is required.",
 					"PropertyRequirements": {
 						"SSH": {
-                            "ReadRequirement": "Recommended"
+                            "ReadRequirement": "Recommended",
                             "ConditionalRequirements": [{
                                 "Purpose": "Either SSH or IPMI must be supported.",
                                 "CompareProperty": "IPMI",
@@ -181,7 +181,7 @@
                             }]
                         },
                         "IPMI": {
-                            "ReadRequirement": "Recommended"
+                            "ReadRequirement": "Recommended",
                             "ConditionalRequirements": [{
                                 "Purpose": "Either SSH or IPMI must be supported.",
                                 "CompareProperty": "SSH",
@@ -224,7 +224,7 @@
 				"PowerWatts": {},
 				"PowerLimitWatts": {}
 			}
-		}
+		},
 		"EthernetInterface": {
 			"MinVersion": "1.1.0",
 			"ReadRequirement": "Recommended",
