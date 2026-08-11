@@ -33,7 +33,8 @@
               				"CompareProperty": "ChassisType",
               				"CompareValues": ["RackMount", "Sled", "Drawer"]
             			}
-          			]
+          			],
+                    "ReplacedByProperty": "ThermalSubsystem"
         		},
 				"ThermalSubsystem": {
 					"ReadRequirement": "Recommended",
@@ -45,7 +46,8 @@
               				"CompareProperty": "ChassisType",
               				"CompareValues": ["RackMount", "Sled", "Drawer"]
             			}
-          			]
+          			],
+                    "ReplacesProperty": "Thermal"
                 },
                 "Power": {
                     "ReadRequirement": "Recommended",
@@ -57,7 +59,8 @@
                             "CompareProperty": "ChassisType",
                             "CompareValues": ["RackMount", "Sled", "Drawer"]
                         }
-                    ]
+                    ],
+                    "ReplacedByProperty": "PowerSubsystem"
                 },
                 "PowerSubsystem": {
                     "ReadRequirement": "Recommended",
@@ -69,7 +72,8 @@
                             "CompareProperty": "ChassisType",
                             "CompareValues": ["RackMount", "Sled", "Drawer"]
                         }
-                    ]
+                    ],
+                    "ReplacesProperty": "Power"
                 }
             }
         },
@@ -314,21 +318,27 @@
 				}
 			}
 		},
-		"ThermalMetrics": {
-            "ReadRequirement": "IfImplemented",
+        "ThermalMetrics": {
+			"MinVersion": "1.1.0",
 			"PropertyRequirements": {
-				"TemperatureSummaryCelsius": {
+				"TemperatureSummary": {
+					"ReadRequirement": "IfImplemented",
 					"PropertyRequirements": {
-						"Exhaust": {}
+						"Intake": {},
+                        "Ambient": {}
 					}
-				}
-			}
+                }
+            }	
 		},
-		"ThermalSubsystem": {
+        "EnvironmentMetrics": {
 			"ReadRequirement": "IfImplemented",
-			"PropertyRequirements": {
-				"ThermalMetrics": {}
-			}
+        	"ConditionalRequirements": [{
+				"SubordinateToResource": ["ComputerSystem", "ProcessorCollection", "Processor"],
+				"ReadRequirement": "Mandatory"
+			}],
+            "PropertyRequirements": {
+                "TemperatureCelsius": {}
+            }
 		},
         "ServiceRoot": {
 			"PropertyRequirements": {
