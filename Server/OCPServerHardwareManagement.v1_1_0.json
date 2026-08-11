@@ -311,7 +311,7 @@
         "EnvironmentMetrics": {
 			"ReadRequirement": "IfImplemented",
         	"ConditionalRequirements": [{
-				"SubordinateToResource": ["System", "ProcessorCollection"],
+				"SubordinateToResource": ["ComputerSystem", "ProcessorCollection", "Processor"],
 				"ReadRequirement": "Mandatory"
 			}],
             "PropertyRequirements": {
