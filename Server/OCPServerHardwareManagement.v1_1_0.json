@@ -222,13 +222,42 @@
 				}
 			}
 		},
-		"EnvironmentMetrics": {
-			"ReadRequirement": "IfImplemented",
-			"PropertyRequirements": {
-				"PowerWatts": {},
-				"PowerLimitWatts": {}
-			}
-		},
+        "EnvironmentMetrics": {
+            "UseCases": [
+                {
+                    "UseCaseTitle": "Chassis Environment Metrics",
+                    "UseCaseType": "ChassisType",
+                    "UseCaseKeyValues": [ "RackMount", "Sled", "Drawer" ],
+                    "URIs": [
+                        "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics"
+                    ],
+                    "PropertyRequirements": {
+                        "TemperatureCelsius": {
+                            "ReadRequirement": "IfImplemented"
+                        },
+                        "PowerWatts": {
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
+                        },
+				        "PowerLimitWatts": {
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
+                        } 
+                    }
+                },
+                {
+                    "UseCaseTitle": "Processor Environment Metrics",
+                    "URIs": [
+                        "/redfish/v1/Systems/{ComputeSystemId}/Processors/{ProcessorId}/EnvironmentMetrics"
+                    ],
+                    "PropertyRequirements": {
+                        "TemperatureCelsius": {}
+                    }
+                }
+            ]
+        },
 		"EthernetInterface": {
 			"MinVersion": "1.1.0",
 			"ReadRequirement": "Recommended",
@@ -318,10 +347,16 @@
 				}
 			}
 		},
+        "ThermalSubsystem": {
+			"MinVersion": "1.1.0",
+			"PropertyRequirements": {
+				"ThermalMetrics": {}
+            }	
+		},
         "ThermalMetrics": {
 			"MinVersion": "1.1.0",
 			"PropertyRequirements": {
-				"TemperatureSummary": {
+				"TemperatureSummaryCelsius": {
 					"ReadRequirement": "IfImplemented",
 					"PropertyRequirements": {
 						"Intake": {},
@@ -329,16 +364,6 @@
 					}
                 }
             }	
-		},
-        "EnvironmentMetrics": {
-			"ReadRequirement": "IfImplemented",
-        	"ConditionalRequirements": [{
-				"SubordinateToResource": ["ComputerSystem", "ProcessorCollection", "Processor"],
-				"ReadRequirement": "Mandatory"
-			}],
-            "PropertyRequirements": {
-                "TemperatureCelsius": {}
-            }
 		},
         "ServiceRoot": {
 			"PropertyRequirements": {
