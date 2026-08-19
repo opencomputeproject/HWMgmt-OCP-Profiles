@@ -1,8 +1,8 @@
 {
-  "SchemaDefinition": "RedfishInteroperabilityProfile.v1_4_1",
-  "ProfileName": "OCPImmersionCoolingController",
+  "SchemaDefinition": "RedfishInteroperabilityProfile.v1_10_0",
+  "ProfileName": "OCPImmersionCoolingBaseline",
   "ProfileVersion": "0.0.1",
-  "Purpose": "Profile for the OCP Immersion Cooling Controller.",
+  "Purpose": "Profile for the OCP Immersion Cooling Baseline.",
   "OwningEntity": "Open Compute Project",
   "ContactInfo": "redfish@opencompute.org",
   "RequiredProfiles": {
@@ -57,9 +57,6 @@
         "Location": {
           "ReadRequirement": "Mandatory"
         },
-        "CoolingUnitMode": {
-          "ReadRequirement": "Mandatory"
-        },
         "Links": {
           "ReadRequirement": "Recommended"
         },
@@ -85,7 +82,7 @@
           }
         }
       },
-      "Actions": {
+      "ActionRequirements": {
         "SetMode": {
           "ReadRequirement": "Mandatory",
           "Purpose": "Turn the immersion tank cooling functions off (disable), implies that ITE power is shutdown as well",
@@ -130,16 +127,14 @@
         },
         "ControlType": {
           "Purpose": "Supported Control Types",
-          "ReadRequirement": "Recommended",
-          "WriteRequirement": "Recommended"
+          "ReadRequirement": "Recommended"
         },
         "DeadBand": {
           "ReadRequirement": "Recommended",
           "WriteRequirement": "Recommended"
         },
         "Description": {
-          "ReadRequirement": "Recommended",
-          "WriteRequirement": "Recommended"
+          "ReadRequirement": "Recommended"
         },
         "Id": {},
         "Increment": {
@@ -150,17 +145,14 @@
           "WriteRequirement": "Recommended"
         },
         "Name": {
-          "ReadRequirement": "Recommended",
-          "WriteRequirement": "Recommended"          
-        },        
+          "ReadRequirement": "Recommended"
+        },
         "ControlMode": {},
         "PhysicalContext": {
-          "ReadRequirement": "Recommended",
-          "WriteRequirement": "Recommended"
+          "ReadRequirement": "Recommended"
         },
         "PhysicalSubContext": {
-          "ReadRequirement": "Recommended",
-          "WriteRequirement": "Recommended"
+          "ReadRequirement": "Recommended"
         },
         "Sensor": {
           "ReadRequirement": "Recommended"
@@ -169,24 +161,19 @@
           "ReadRequirement": "Mandatory",
           "WriteRequirement": "Mandatory"
         },
-        "SetPointRangeMax": {
+        "AllowableMax": {
           "ReadRequirement": "Recommended"
         },
-        "SetPointRangeMin": {
+        "AllowableMin": {
           "ReadRequirement": "Recommended"
         },
         "SetPointUnits": {
-          "ReadRequirement": "Recommended",
-          "WriteRequirement": "Recommended"
-        },
-        "SetPointUpdateTime": {
-          "ReadRequirement": "Recommended",
-          "WriteRequirement": "Recommended"
-        },
-        "Status": {
           "ReadRequirement": "Recommended"
         },
-        "Links": {
+        "SetPointUpdateTime": {
+          "ReadRequirement": "Recommended"
+        },
+        "Status": {
           "ReadRequirement": "Recommended"
         }
       }
@@ -202,7 +189,6 @@
       "MinVersion": "1.5.0",
       "Purpose": "Required Temperature Sensors",
       "ReadRequirement": "Mandatory",
-      "MinCount": 2,
       "PropertyRequirements": {
         "Name": {
           "ReadRequirement": "Mandatory"
@@ -210,9 +196,10 @@
       }
     },
     "SensorCollection": {
+      "Purpose": "At least two temperature sensors are required",
       "PropertyRequirements": {
         "Members": {
-          "MinCount": 1
+          "MinCount": 2
         }
       }
     },
@@ -222,16 +209,13 @@
       "ReadRequirement": "Recommended",
       "PropertyRequirements": {
         "FacilityType": {
-          "ReadRequirement": "IfImplemented",
-          "WriteRequirement": "Recommended"
+          "ReadRequirement": "IfImplemented"
         },
         "AmbientMetrics": {
-          "ReadRequirement": "Recommended",
-          "WriteRequirement": "Recommended"
+          "ReadRequirement": "Recommended"
         },
         "Description": {
-          "ReadRequirement": "Recommended",
-          "WriteRequirement": "Recommended"
+          "ReadRequirement": "Recommended"
         },
         "Links": {
           "ReadRequirement": "Recommended",
@@ -242,10 +226,6 @@
           "WriteRequirement": "Recommended"
         },
         "Status": {
-          "ReadRequirement": "Recommended",
-          "WriteRequirement": "Recommended"
-        },
-        "CoolingDomains": {
           "ReadRequirement": "Recommended",
           "WriteRequirement": "Recommended"
         }
@@ -327,6 +307,7 @@
         },
         "Pump": {
             "ReadRequirement": "IfImplemented",
+            "MinVersion": "1.2.0",
             "URIs": [
                 "/redfish/v1/ThermalEquipment/ImmersionUnits/{CoolingUnitId}/Pumps/{PumpId}"
             ],
@@ -354,7 +335,6 @@
                 },
                 "PumpSpeedPercent": {},
                 "PumpType": {},
-                "PumpMode": {},
                 "ServiceHours": {
                     "ReadRequirement": "Recommended"
                 },
@@ -365,7 +345,7 @@
                     }
                 }
             },
-            "Actions": {
+            "ActionRequirements": {
               "SetMode": {
                 "ReadRequirement": "Mandatory",
                 "Purpose": "Turn the immersion tank pump functions off (disable), implies that ITE power is shutdown as well",
