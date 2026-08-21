@@ -33,7 +33,8 @@
               				"CompareProperty": "ChassisType",
               				"CompareValues": ["RackMount", "Sled", "Drawer"]
             			}
-          			]
+          			],
+                    "ReplacedByProperty": "ThermalSubsystem"
         		},
 				"ThermalSubsystem": {
 					"ReadRequirement": "Recommended",
@@ -45,7 +46,8 @@
               				"CompareProperty": "ChassisType",
               				"CompareValues": ["RackMount", "Sled", "Drawer"]
             			}
-          			]
+          			],
+                    "ReplacesProperty": "Thermal"
                 },
                 "Power": {
                     "ReadRequirement": "Recommended",
@@ -57,7 +59,8 @@
                             "CompareProperty": "ChassisType",
                             "CompareValues": ["RackMount", "Sled", "Drawer"]
                         }
-                    ]
+                    ],
+                    "ReplacedByProperty": "PowerSubsystem"
                 },
                 "PowerSubsystem": {
                     "ReadRequirement": "Recommended",
@@ -69,7 +72,8 @@
                             "CompareProperty": "ChassisType",
                             "CompareValues": ["RackMount", "Sled", "Drawer"]
                         }
-                    ]
+                    ],
+                    "ReplacesProperty": "Power"
                 }
             }
         },
@@ -218,13 +222,42 @@
 				}
 			}
 		},
-		"EnvironmentMetrics": {
-			"ReadRequirement": "IfImplemented",
-			"PropertyRequirements": {
-				"PowerWatts": {},
-				"PowerLimitWatts": {}
-			}
-		},
+        "EnvironmentMetrics": {
+            "UseCases": [
+                {
+                    "UseCaseTitle": "Chassis Environment Metrics",
+                    "UseCaseType": "ChassisType",
+                    "UseCaseKeyValues": [ "RackMount", "Sled", "Drawer" ],
+                    "URIs": [
+                        "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics"
+                    ],
+                    "PropertyRequirements": {
+                        "TemperatureCelsius": {
+                            "ReadRequirement": "IfImplemented"
+                        },
+                        "PowerWatts": {
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
+                        },
+				        "PowerLimitWatts": {
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
+                        } 
+                    }
+                },
+                {
+                    "UseCaseTitle": "Processor Environment Metrics",
+                    "URIs": [
+                        "/redfish/v1/Systems/{ComputeSystemId}/Processors/{ProcessorId}/EnvironmentMetrics"
+                    ],
+                    "PropertyRequirements": {
+                        "TemperatureCelsius": {}
+                    }
+                }
+            ]
+        },
 		"EthernetInterface": {
 			"MinVersion": "1.1.0",
 			"ReadRequirement": "Recommended",
@@ -314,21 +347,23 @@
 				}
 			}
 		},
-		"ThermalMetrics": {
-            "ReadRequirement": "IfImplemented",
-			"PropertyRequirements": {
-				"TemperatureSummaryCelsius": {
-					"PropertyRequirements": {
-						"Exhaust": {}
-					}
-				}
-			}
-		},
-		"ThermalSubsystem": {
-			"ReadRequirement": "IfImplemented",
+        "ThermalSubsystem": {
+			"MinVersion": "1.1.0",
 			"PropertyRequirements": {
 				"ThermalMetrics": {}
-			}
+            }	
+		},
+        "ThermalMetrics": {
+			"MinVersion": "1.1.0",
+			"PropertyRequirements": {
+				"TemperatureSummaryCelsius": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"Intake": {},
+                        "Ambient": {}
+					}
+                }
+            }	
 		},
         "ServiceRoot": {
 			"PropertyRequirements": {
