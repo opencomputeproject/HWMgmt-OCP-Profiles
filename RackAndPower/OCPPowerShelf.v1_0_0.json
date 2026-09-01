@@ -607,7 +607,7 @@
             "Purpose": "Outlets are required to be modeled if the power shelf implements simple utility outlets.  This allows a user to discover their presence.  Measurements are only required if the power shelf implements monitoring capabilities.",
             "ReadRequirement": "IfImplemented",
             "URIs": [
-                "/redfish/v1/PowerEquipment/RackPDUs/{PowerDistributionId}/Outlets/{OutletId}"
+                "/redfish/v1/PowerEquipment/PowerShelves/{PowerDistributionId}/Outlets/{OutletId}"
             ],
             "PropertyRequirements": {
                 "CurrentAmps": {
