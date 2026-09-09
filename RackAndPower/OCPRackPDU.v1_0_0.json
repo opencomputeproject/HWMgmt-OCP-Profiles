@@ -458,7 +458,7 @@
                         "Branch",
                         "Bus"
                     ],
-                    "UseCaseComparison": "AnyOf",
+                    "UseCaseComparison": "Equal",
                     "ReadRequirement": "Mandatory",
                     "Purpose": "Output circuits are required to provide mapping to outlets.  Measurements are only required if the PDU implements monitoring capabilities.",
                     "URIs": [
