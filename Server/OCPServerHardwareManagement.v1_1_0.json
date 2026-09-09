@@ -227,6 +227,7 @@
                 {
                     "UseCaseTitle": "Chassis Environment Metrics",
                     "UseCaseType": "ChassisType",
+                    "UseCaseComparison": "Equal",
                     "UseCaseKeyValues": [ "RackMount", "Sled", "Drawer" ],
                     "URIs": [
                         "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics"
