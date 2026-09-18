@@ -151,7 +151,7 @@
                     }
                 },
                 "TemperatureCelsius": {
-                    "ReadRequirement": "IfImplemented"
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Reading": {},
                         "DataSourceUri": {
@@ -809,7 +809,7 @@
             ],
             "PropertyRequirements": {
                 "AmbientTemperatureCelsius": {
-                    "ReadRequirement": "IfImplemented"
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Reading": {},
                         "DataSourceUri": {
@@ -835,7 +835,7 @@
                     }
                 },
                 "TemperatureCelsius": {
-                    "ReadRequirement": "IfImplemented"
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Reading": {},
                         "DataSourceUri": {
