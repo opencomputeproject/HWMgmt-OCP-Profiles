@@ -153,7 +153,7 @@
                     }
                 },
                 "TemperatureCelsius": {
-                    "ReadRequirement": "IfImplemented"
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Reading": {},
                         "DataSourceUri": {
@@ -806,14 +806,14 @@
                     "ReadRequirement": "Recommended"
                 }
             }
-        }
+        },
         "EnvironmentMetrics": {
             "URIs": [
                 "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics"
             ],
             "PropertyRequirements": {
                 "AmbientTemperatureCelsius": {
-                    "ReadRequirement": "IfImplemented"
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Reading": {},
                         "DataSourceUri": {
@@ -839,7 +839,7 @@
                     }
                 },
                 "TemperatureCelsius": {
-                    "ReadRequirement": "IfImplemented"
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Reading": {},
                         "DataSourceUri": {
