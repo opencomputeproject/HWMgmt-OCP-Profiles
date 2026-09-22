@@ -226,6 +226,7 @@
             "UseCases": [
                 {
                     "UseCaseTitle": "Chassis Environment Metrics",
+                    "ReadRequirement": "IfImplemented",
                     "UseCaseType": "ChassisType",
                     "UseCaseComparison": "Equal",
                     "UseCaseKeyValues": [ "RackMount", "Sled", "Drawer" ],
