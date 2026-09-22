@@ -135,7 +135,7 @@
                         "StandAlone",
                         "Rack"
                     ],
-                    "UseCaseComparison": "AnyOf",
+                    "UseCaseComparison": "Equal",
                     "PropertyRequirements": {
                         "Manufacturer": {},
                         "Model": {},
