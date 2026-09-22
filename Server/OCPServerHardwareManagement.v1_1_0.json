@@ -226,7 +226,7 @@
             "UseCases": [
                 {
                     "UseCaseTitle": "Chassis Environment Metrics",
-                    "ReadRequirement": "IfImplemented"
+                    "ReadRequirement": "IfImplemented",
                     "UseCaseType": "ChassisType",
                     "UseCaseKeyValues": [ "RackMount", "Sled", "Drawer" ],
                     "URIs": [
