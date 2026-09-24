@@ -1,13 +1,13 @@
 ---
 project: Hardware Management
 title: Usage Guide for Rack Management
-version: 1.2.0
+version: 1.2.0 (draft)
 supersedes: 1.1.0
 status: draft
 released: true
 class: info
-date: 2025-10-20
-copyright: 2023-2025
+date: 2026-01-20
+copyright: 2023-2026
 paragraph_numbering: no
 bibliography: bibliography.yaml
 header-includes: |
@@ -114,15 +114,15 @@ capabilities.
 |                     | [Reset a persistent group of nodes](#reset-a-persistent-group-of-nodes)      | Mandatory |
 |                     | [Create a persistent group of nodes](#create-a-persistent-group-of-nodes) | Mandatory |
 |                     | [Set boot order of aggregate to default](#set-boot-order-of-aggregate-to-default) | Mandatory |
-| Composability       | [Construct a system with GPU's](#construct-system-with-gpus)     | Recommended |
-|                     | [Get Health of GPU's from composed compute system](#gpu_health_composed_system) | Recommended |
-|                     | [Set policy when a GPU in a composed system fails](#policy_composed_system_gpu_failure) | Recommended |
-| Telemetry           | [Get telemetry blob from a compute system device](#get_telemetry_blob_compute_system) | Recommended |
-|                     | [Stream_Power_Consumption_All_Compute_Systems](#stream_power_consumption_compute_system) | Recommended |
+| Composability       | [Construct a system with GPUs](#construct-system-with-gpus)     | Recommended |
+|                     | [Get GPU Health on system](#get-gpu-health-on-system) | Recommended |
+|                     | [Set policy when GPU fails on a system](#set-policy-when-gpu-fails-on-a-system) | Recommended |
+| Telemetry           | [Get telemetry blob from a system component](#get-telemetry-blob-from-a-system-component) | Recommended |
+|                     | [Stream Power Consumption of all platforms](#stream-power-consumption-of-all-platforms) | Recommended |
 | Authorization       | [Get certificate from node](#get-certificate-from-node)          | Mandatory |
 |                     | [Place certificate on node](#place-certificate-on-node)          | Mandatory |
 |                     | [Place token on node](#place-token-on-node)                      | Mandatory |
-|                     | [Place certificat on rack manager](#place-token-on-rack-manager) | Mandatory |
+|                     | [Place certificate on rack manager](#place-certificate-on-rack-manager) | Mandatory |
 |                     | [Place token on rack manager](#place-token-on-rack-manager)      | Mandatory |
 |                     | [Place manifest on rack manager](#place-manifest-on-rack-manager) | Mandatory |
 
@@ -182,6 +182,12 @@ The firmware can be updated with a pull or push method. The "Redfish Firmware Up
 
 The main process is for the firmware package to be delivered opaquely, and the Redfish Service interprets the firmware package to determine the components that are updated.
 The Targets property can be used to guide and constrain this behavior.
+
+## Constructing a system
+
+To construct a system, the CompositionService is used.
+There are three types of composition requests: specific, constrained, manifest.
+The [Redfish Composition White Paper](https://www.dmtf.org/dsp/DSP2050) describes each type of composition request.
 
 # Use Cases
 
@@ -806,7 +812,7 @@ The Target property can specify the components, of interest.
 
 The Target property can specify the node, of interest.
 
-```
+```  {.small}
 {
   "Targets": \[
     "/redfish/v1/systems/CS-3"
@@ -816,7 +822,7 @@ The Target property can specify the node, of interest.
 
 The Targets property can specify the nodes, of interest.
 
-```
+``` {.small}
 {
   "Target": \[
     "/redfish/v1/systems/CS-1",
@@ -827,8 +833,7 @@ The Targets property can specify the nodes, of interest.
 
 ## Push FW Update on Node
 
-To update the firmware on the node via the push method, the
-client invokes the following command.
+To update the firmware on the node via the push method, the client invokes the following command.
 
 ```
 POST /redfish/v1/UpdateService/upload
@@ -836,7 +841,7 @@ POST /redfish/v1/UpdateService/upload
 
 The POST command includes the following multi-part message
 
-```
+``` {.small}
 Content-Type: multipart/form-data;
 boundary=---------------------------d74496d66958873e
 Content-Length:
@@ -873,7 +878,7 @@ The POST request shall contain a request body. The contents of the request body 
 \@Reddfish.ActionInfo property. The TargetURIs property specifies the group to be used.
 After the group is used, it is forgotten.
 
-```
+``` {.small}
 {
   "BatchSize": 10,
   "DelayBetweenBatchesInSeconds": 15,
@@ -898,7 +903,7 @@ The POST command contains a request body.
 The ResetType property specifies what type of reset to perform and is mandatory.
 The BatchSize and DelayBetweenBatechesInSeconds specifies that the reset be done in batches, instead of all at the same time.
 
-```
+``` {.small}
 {
   "BatchSize": 10,
   "DelayBetweenBatchesInSeconds": 15,
@@ -918,7 +923,7 @@ POST /redfish/v1/AggregationService/Aggregates/Agg1
 
 The response contains the following fragment. The Elements property contains the members of the group. The Actions property contains the actions that can be performed on the aggregate. An action is invoked by POST'ing to the URI value of the Target property with a request body containing the properties described in the ActionInfo resource.
 
-```
+``` {.small}
 {
   "@odata.id": "/redfish/v1/AggregationService/Aggregates/Agg1",
   "Id": "Agg1",
@@ -941,27 +946,232 @@ POST /redfish/v1/AggregationService/Aggregates/Agg1/Actions/Aggregate.SetDefault
 
 The POST command has no request message.
 
-## Get Health of GPU's from composed compute system
+## Construct System with GPUs
 
-To get the health of all GPU's attached to a specific node, the client invoke a Redfish command or RedPath command
+To construct a system with GPUs using the constrained composition method, invoke the following command
 
-    Redfish
 
-    Redpath: (/Systems[*]/Processors[ProcessorType=GPU])
+``` {.small}
+POST /redfish/v1/Systems
+```
 
-## Set policy when a GPU in a composed system fails
+The POST command contains the following request body.  The request describe the requirement of the system - 8 GPUs, 2 CPUs, 32 Gb of memory, 32 Gb storage and an Ethernet connection. The system will be created in the 'power-on' state.  The BIOS version is also specified.
 
-When a composed system of GPU's has one or more GPU failures, a policy in the rack manager can define whether more GPU's can be added from another switch or the composition should de deconstructed so another rack or compute node can be built to meet the minimum required configuration.
+``` {.small}
+{
+    "Name": "Computer System with GPUs",
+    "@Redfish.ZoneAffinity": "1",
+    "PowerState": "On",
+    "BiosVersion": "P79 v1.00 (09/20/2013)",
+    "Processors": {
+        "Members": [
+            {
+                "@Redfish.RequestedCount": 8,
+                "@Redfish.AllowOverprovisioning": false,
+                "ProcessorType": "GPU",
+                "ProcessorArchitecture": "?",
+                "InstructionSet": "?",
+                "MaxSpeedMHz": ?,
+            }
 
-## Get telemetry blob from a compute system device
+            {
+                "@Redfish.RequestedCount": 2,
+                "@Redfish.AllowOverprovisioning": true,
+                "ProcessorType": "CPU",
+                "ProcessorArchitecture": "x86",
+                "InstructionSet": "x86-64",
+                "MaxSpeedMHz": 3700,
+                "TotalCores": 2,
+                "TotalThreads": 4
+            }
+        ]
+    },
+    "Memory": {
+        "Members": [
+            {
+                "@Redfish.RequestedCount": 4,
+                "MaxTDPMilliWatts": [ 12000 ],
+                "CapacityMiB": 8192,
+                "DataWidthBits": 64,
+                "BusWidthBits": 72,
+                "ErrorCorrection": "MultiBitECC",
+                "MemoryType": "DRAM",
+                "MemoryDeviceType": "DDR4",
+                "BaseModuleType": "RDIMM",
+                "MemoryMedia": [ "DRAM" ]
+            }
+        ]
+    },
+    "SimpleStorage": {
+        "Members" : [
+            {
+                "@Redfish.RequestedCount": 1,
+                "Devices": [
+                    {
+                        "CapacityBytes": 322122547200
+                    }
+                ]
+            }
+        ]
+    },
+    "EthernetInterfaces": {
+        "Members": [
+            {
+                "@Redfish.RequestedCount": 1,
+                "SpeedMbps": 1000,
+                "FullDuplex": true,
+                "NameServers": [ "names.redfishspecification.org" ],
+                "IPv4Addresses": [
+                    {
+                        "SubnetMask": "255.255.252.0",
+                        "AddressOrigin": "Dynamic",
+                        "Gateway": "192.168.0.1"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
 
-To get a telemetry blob from a compute system, the client invokes the following command to request that data be collected
+The response message is returned. The constructed system appears a resource *NewSystem2*.
 
-   POST /redfish/v1/TelemetyService/Action.CollectTelemetryData
+``` {.small}
+{
+    "@odata.id": "/redfish/v1/Systems/NewSystem2",
+    "@odata.type": "#ComputerSystem.v1_20_1.ComputerSystem",
+    "Id": "NewSystem",
+    "Name": "Sample Composed System",
+    "PowerState": "On",
+    "BiosVersion": "P79 v1.00 (09/20/2013)",
+    "Processors": {
+        "@odata.id": "/redfish/v1/Systems/NewSystem2/Processors",
+        },
+    "Memory": {
+        "@odata.id": "/redfish/v1/Systems/NewSystem2/Memory",
+    },
+    "SimpleStorage": {
+        "@odata.id": "/redfish/v1/Systems/NewSystem2/SimpleStorage",
+    },
+    "EthernetInterfaces": {
+        "@odata.id": "/redfish/v1/Systems/NewSystem2/EthernetInterfaces",
+    },
+    "Links": {
+        "ResourceBlocks": [
+            {
+                "@odata.id": "/redfish/v1/CompositionService/ResourceBlocks/ComputeBlock0"
+            },
+            {
+                "@odata.id": "/redfish/v1/CompositionService/ResourceBlocks/DriveBlock2"
+            }
+        ]
+    },
+    <Other ComputerSystem properties>
+}
+```
 
-The POST command contains the following request message. The message specifies that telemetry be collecgtion for processor "P1" of "Sys-1".  The telemetry data formatted is "ContosoAggregator2_0" as defined by the OEM.
+## Get GPU health on system
+
+The health status of the GPUs is obtained with the following command.
+
+``` {.small}
+Get /redfish/v1/Systems/NewSystem
+```
+
+Below, the response messages are shown for when the health of GPUs are normal and when the health of one or more of the GPUs is warning.
+
+The following fragment will be returned if the health of the GPUs is *Normal*.
+
+``` {.small}
+{
+    "Status": {
+        "State": "Enabled",
+        "Health": "Normal",
+        "HealthRollup": "Normal",
+        "Conditions": [
+            {
+                "MessageId": "GPU.1.0.StatusNormal",
+                "TimeStamp": "2025-11-08T12:25:00-05:00 ",
+                "Message": "GPUs are operating normally.",
+                "MessageSeverity": "Normal",            
+            }
+        ]
+    }
+}
+```
+
+The following fragment will be returned if the health of one of the GPUs is *Warning*.  The *OriginOfCondition* properties specifies the resource which caused the warning.
+
+
+```  {.small}
+{
+    "Status": {
+        "State": "Enabled",
+        "Health": "Warning",
+        "HealthRollup": "Warning",
+        "Conditions": [
+            {
+                "MessageId": "GPU.1.0.StatusWarning",
+                "TimeStamp": "2020-11-08T12:25:00-05:00 ",
+                "Message": "GPUs have a warning status.",
+                "MessageSeverity": "Warning",
+                "OriginOfCondition": {
+                    "@odata.id": "/redfish/v1/Systems/NewSystem/Processors/1"
+                },
+                "Message": "One or more conditions exist in a related resource. See the OriginOfCondition property.",
+                "MessageSeverity": "Warning"
+            }
+        ]
+    }
+}
+```
+
+## Set policy when GPU fails on a system
+
+The example is based on a proposed [policy model](https://www.dmtf.org/sites/default/files/Policy_Model_Proposal_v10.pdf).  This section will be updated with Redfish as a general policy model.
+
+Usage - To attach a policy for when a GPU failssystem of GPU's has one or more GPU failures, a policy in the rack manager can define whether more GPU's can be added from another switch or the composition should de deconstructed so another rack or compute node can be built to meet the minimum required configuration.
+
+To attach a rack-level policy for when a GPU within a system fails, invoke the following command.
+
+
+``` {.small}
+{
+    "Name": "Policy for GPU failure",
+    "Id": "GPUFailurePolicy",
+    "PolicyEnabled": true,
+    "PolicyTriggered": false,
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "PolicyConditions": [
+        {
+			"PolicyConditionType": "Property",
+            "Sensor": "/redfish/v1/System/NewSystem/Status.Health",
+            "Threshold": "Fatal"
+        }
+    ],
+    "PolicyReactions": [
+        { },
+        {
+            "CommonReaction": "SendEvent"
+        }
+    ]
+}
+```
+
+## Get telemetry blob from a system component
+
+To get a telemetry blob from a compute system component, the client invokes the following command to request that data be collected
 
 ```
+   POST /redfish/v1/TelemetyService/Action.CollectTelemetryData
+```
+
+The POST command contains the following request message. The message specifies that telemetry blob be collected for processor *P1* of system *Sys-1*.  The data within the telemetry blob formatted in *ContosoAggregator* format, which is defined by the OEM.
+
+``` {.small}
     {
         "TelemetryDataType": "OEM",
         "OEMTelemetryDataType": "ContosoAggregator",
@@ -969,9 +1179,9 @@ The POST command contains the following request message. The message specifies t
     }
 ```
 
-The response contains the following fragment. The response either contains all the telemetry blob in *AdditionalData* property or the blob was placed in the resource "TelemetrySnapshot.1".
+The command response returns the following message. The message contains the *AdditionalData* property, which contains the telemetry blob.  The command has also created the *TelemetrySnapshot.1* resource.
 
-```
+```  {.small}
 {
     "@odata.type": "#TelemetryData.v1_0_0.TelemetryData",
     "Name": "TelemetrySnapshot.1", 
@@ -983,11 +1193,60 @@ The response contains the following fragment. The response either contains all t
 }
 ```
 
-## Stream_Power_Consumption_All_Compute_Systems
+## Stream Power Consumption of all platforms
 
-To set up a new stream for power consumption with X second sampling time to all compute systems in a rack, the client invokes the following command(s).  Recommend to use the open socket method.
+A telemetry stream is created by using Server-sent Events (SSE) of a Metric Report.  The SSE method is described in section 12.5 of the Redfish Specification [1].
 
-   PATCH /redfish/v1
+This method involves
+1. Configuring the EventService to support MetricReportDefinitions as a filter
+2. Place a MetricReportDefinition resource in the metric report definitions collection.
+
+To configure the EventService to support MetricReportDefinitions as a filter, invoke the following command
+
+``` {.small}
+   PATCH /redfish/v1/EventService
+```
+
+The PATCH command contains the following request message.
+
+``` {.small}
+{
+    "SSEFilterPropertiesSupported.MetricReportDefinition" = true
+}
+```
+
+To place a MetricReportDefinition resource in the metric report definitions collection, invoke the following command
+
+``` {.small}
+   POST /redfish/v1/TelemetryService/MetricReportDefinitions/PowerPerNode
+```
+
+The POST command contains the following request message. The *WildCard* property specifies the substitution for the variable *TWild*, in the *MetricProperties* property.
+
+
+``` {.small}
+{
+    "@odata.type": "#MetricReportDefinition.v1_4_6.MetricReportDefinition",
+    "Id": "PowerPerNode",
+    "Name": "Power Consumption for all platforms",
+    "MetricReportDefinitionType": "Periodic",
+    "MetricReportDefinitionEnabled": true,
+    "Schedule": {
+        "RecurrenceInterval": "PT1H"
+    },
+    "ReportActions": [ "RedfishEvent" ],
+    "Status": { "State": "Enabled" },
+    "Wildcards": [
+        {
+            "Name": "TWild",
+            "Values": [ "*" ]
+        }
+    ],
+    "MetricProperties": [
+        "/redfish/v1/Chassis/{TWild}/EnvironmentMetrics#/PowerWatts/Reading"
+    ]
+}
+```
 
 ## Authorization between rack manager and manage node
 
@@ -1005,7 +1264,7 @@ GET /redfish/v1/Systems/Node-1/Certificates/Cert-1
 
 The response contains the following fragment.
 
-```
+``` {.small}
 {
   "@odata.id": "/redfish/v1/Systems/Node-1/Certificates/Cert-1",
   "Id": "Cert-1",
@@ -1049,7 +1308,7 @@ POST /redfish/v1/Systems/{id}/Certificates/SystemID
 The response contains the following fragment. The KeyUsage property
 shall have the value(s) ??.
 
-```
+``` {.small}
 {
   "@odata.id": "/redfish/v1/System/1/Certificates/SystemID",
   "@odata.type": "#Certificate.v1_1_0.Certificate",
@@ -1085,7 +1344,7 @@ POST /redfish/v1/Systems/{id}/Certificates/Token
 The response contains the following fragment. The KeyUsage property
 shall have the value(s) ??.
 
-```
+``` {.small}
 {
   "@odata.id": "/redfish/v1/System/1/Certificates/Token",
   "@odata.type": "#Certificate.v1_1_0.Certificate",
@@ -1122,7 +1381,7 @@ Where \<RackManager\> is the member in which the "ManagerType" property has the 
 
 The response contains the following fragment. The KeyUsage property shall have the value KeyCertSign.
 
-```
+``` {.small}
 {
   "@odata.id": "/redfish/v1/\<RackManager\>/1/Certificates/Token",
   "@odata.type": "#Certificate.v1_1_0.Certificate",
@@ -1161,7 +1420,7 @@ has the value "RackManager".
 The response contains the following fragment. The KeyUsage property
 shall have the value(s) ??.
 
-```
+``` {.small}
 {
   "@odata.id": "/redfish/v1/\<RackManager\>/1/Certificates/Token",
   "@odata.type": "#Certificate.v1_1_0.Certificate",
@@ -1197,7 +1456,7 @@ POST /redfish/v1/Managers/rmc/ManageabilityManifest
 
 The request contains the following fragment.
 
-```
+``` {.small}
 {
   "@odata.id": "/redfish/v1/Managers/rmc/ManageabilityManifest",
   "@odata.type": "#ManageabilityManifest.v1_0_0.ManageabilityManifest",
@@ -1445,6 +1704,6 @@ Reason for Classification
 
 | Revision/Version | Date | Description |
 |----|----|----|
-| 1.0.0 | 6/14/2021 | Released June 2021 |
+| 1.0.0 | 6/14/2021 | Released |
 | 1.1.0 | 5/26/2023 | Released |
-| 1.2   | 3/20/2025 | Draft    |
+| 1.2.0 | 1/20/2026 | Draft    |
