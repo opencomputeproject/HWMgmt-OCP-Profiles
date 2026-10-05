@@ -317,7 +317,7 @@ The response message contains the following fragment.
 
 	{
 		"ThermalMetric": {
-			"TemperatureSummayCelsius": {
+			"TemperatureSummaryCelsius": {
 				"Exhaust": 21
 			}
 		}
@@ -345,7 +345,7 @@ The ReadingCelsius property contains the temperature.
 
 The temperature thresholds are obtained from the Thermal resource which is subordinate to Chassis resource.
 
-	GET /redfish/v1/Chassis/Chassis_1/Thermal
+	GET /redfish/v1/Chassis/Ch-1/Thermal
 
 The response message contains the following fragment.
 The threshold properties are optional.
