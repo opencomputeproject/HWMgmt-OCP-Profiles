@@ -1,0 +1,250 @@
+<mxfile host="Electron" agent="drawio-mcp/1.0" compressed="false">
+  <diagram name="OCPImmersionCoolingBaseline-Resources" id="f691701629b6">
+    <mxGraphModel dx="1414" dy="961" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;Circuit&lt;/b&gt;&lt;br&gt;MinVersion 1.4.0" vertex="1">
+          <mxGeometry height="60" width="260" x="360" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="3PvkpLzHzl7r9axGdwc2-46" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;noEdgeStyle=1;orthogonal=1;" target="4" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1364" y="510" />
+              <mxPoint x="1440" y="417.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;b&gt;CoolingUnit.SetMode&lt;/b&gt;&lt;br&gt;Mode: Enabled, Disabled" vertex="1">
+          <mxGeometry height="60" width="280" x="1072" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;b&gt;ControlCollection&lt;/b&gt;&lt;br&gt;Members ≥ 1" vertex="1">
+          <mxGeometry height="60" width="280" x="1452" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;Control&lt;/b&gt;&lt;br&gt;v1.6.0 · SetPoint RW · SetPointAccuracy" vertex="1">
+          <mxGeometry height="60" width="340" x="1832" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;b&gt;PrimaryCoolantConnectors&lt;/b&gt;&lt;br&gt;CoolantConnectorCollection" vertex="1">
+          <mxGeometry height="60" width="280" x="1072" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" value="&lt;b&gt;Pump&lt;/b&gt;&lt;br&gt;IfImplemented - MinVersion 1.2.0" vertex="1">
+          <mxGeometry height="60" width="276" x="1454" y="181.875" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;Sensor&lt;/b&gt;&lt;br&gt;MinVersion 1.5.0 - Temperature" vertex="1">
+          <mxGeometry height="60" width="276" x="1454" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;CoolantConnector&lt;/b&gt;&lt;br&gt;Coolant / flow / temp / pressure" vertex="1">
+          <mxGeometry height="60" width="276" x="1454" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;b&gt;Pump.SetMode&lt;/b&gt;&lt;br&gt;Mode: Enabled, Disabled" vertex="1">
+          <mxGeometry height="60" width="220" x="1832" y="181.875" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;b&gt;SecondaryCoolantConnectors&lt;/b&gt;&lt;br&gt;CoolantConnectorCollection" vertex="1">
+          <mxGeometry height="60" width="280" x="1072" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;b&gt;ImmersionUnits&lt;/b&gt;&lt;br&gt;CoolingUnitCollection" vertex="1">
+          <mxGeometry height="60" width="188" x="396" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;b&gt;Pumps&lt;/b&gt;&lt;br&gt;PumpCollection" vertex="1">
+          <mxGeometry height="60" width="280" x="1072" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;b&gt;SensorCollection&lt;/b&gt;&lt;br&gt;Members ≥ 2" vertex="1">
+          <mxGeometry height="60" width="280" x="1072" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;b&gt;Filters&lt;/b&gt;&lt;br&gt;FilterCollection - IfImplemented" vertex="1">
+          <mxGeometry height="60" width="280" x="1072" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;ThermalEquipment&lt;/b&gt;&lt;br&gt;/redfish/v1/ThermalEquipment" vertex="1">
+          <mxGeometry height="60" width="260" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;b&gt;Reservoirs&lt;/b&gt;&lt;br&gt;ReservoirCollection - IfImplemented" vertex="1">
+          <mxGeometry height="60" width="280" x="1072" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" value="&lt;b&gt;Filter&lt;/b&gt;&lt;br&gt;IfImplemented" vertex="1">
+          <mxGeometry height="60" width="276" x="1454" y="277.5" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;b&gt;Facility&lt;/b&gt;&lt;br&gt;MinVersion 1.4.0 - Recommended" vertex="1">
+          <mxGeometry height="60" width="260" x="360" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;CoolingUnit&lt;/b&gt;&lt;br&gt;v1.2.0 · EquipmentType = ImmersionUnit" vertex="1">
+          <mxGeometry height="60" width="300" x="700" y="306.8181818181818" as="geometry" />
+        </mxCell>
+        <mxCell id="21" edge="1" parent="1" source="16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="12" value="ImmersionUnits">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="272" y="315" />
+              <mxPoint x="348" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" edge="1" parent="1" source="12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="20" value="Members">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="632" y="315" />
+              <mxPoint x="706" y="336.8181818181818" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="23" edge="1" parent="1" source="20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="6" value="PrimaryCoolantConnectors">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="984" y="314.9431818181818" />
+              <mxPoint x="1060" y="30" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" edge="1" parent="1" source="20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="11" value="SecondaryCoolantConnectors">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="986" y="321.1931818181818" />
+              <mxPoint x="1060" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" edge="1" parent="1" source="6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="9" value="Members">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1364" y="30" />
+              <mxPoint x="1440" y="62.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" edge="1" parent="1" source="11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="9" value="Members">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1364" y="120" />
+              <mxPoint x="1440" y="87.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="27" edge="1" parent="1" source="20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="13" value="Pumps">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="988" y="327.4431818181818" />
+              <mxPoint x="1060" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" edge="1" parent="1" source="13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="7" value="Members">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1364" y="210" />
+              <mxPoint x="1440" y="211.875" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="29" edge="1" parent="1" source="20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="15" value="Filters">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="990" y="333.6931818181818" />
+              <mxPoint x="1060" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" source="15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="18" value="Members">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1364" y="300" />
+              <mxPoint x="1440" y="307.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" source="20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="17" value="Reservoirs">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="990" y="339.9431818181818" />
+              <mxPoint x="1060" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" edge="1" parent="1" source="20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="4" value="controls">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="988" y="346.1931818181818" />
+              <mxPoint x="1022" y="450" />
+              <mxPoint x="1402" y="450" />
+              <mxPoint x="1440" y="392.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="5" value="Members">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1744" y="405" />
+              <mxPoint x="1820" y="405" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" edge="1" parent="1" source="20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="14" value="sensors">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="984" y="358.6931818181818" />
+              <mxPoint x="1060" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" edge="1" parent="1" source="14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="8" value="Members">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1364" y="600" />
+              <mxPoint x="1440" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="36" edge="1" parent="1" source="20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="3" value="Actions">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="986" y="352.4431818181818" />
+              <mxPoint x="1060" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" edge="1" parent="1" source="7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="10" value="Actions">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1744" y="211.875" />
+              <mxPoint x="1820" y="211.875" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="38" edge="1" parent="1" source="19" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="20" value="contains">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="632" y="405" />
+              <mxPoint x="708" y="353.4848484848485" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="39" edge="1" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;noEdgeStyle=1;orthogonal=1;" target="20" value="power feed">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="632" y="225" />
+              <mxPoint x="708" y="320.1515151515151" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="40" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;fontStyle=1;" value="OCP Immersion Cooling Baseline v0.0.1 - Redfish Resource Model" vertex="1">
+          <mxGeometry height="30" width="400" x="115" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="1" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#ffffff;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;strokeColor=#666666;html=1;" value="Legend" vertex="1">
+          <mxGeometry height="156" width="200" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="42" parent="41" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;" value="Resource - Mandatory" vertex="1">
+          <mxGeometry height="26" width="200" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="43" parent="41" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#ffe6cc;strokeColor=#d79b00;html=1;" value="Resource collection" vertex="1">
+          <mxGeometry height="26" width="200" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="44" parent="41" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#f5f5f5;strokeColor=#666666;html=1;" value="Resource - IfImplemented" vertex="1">
+          <mxGeometry height="26" width="200" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="45" parent="41" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#fff2cc;strokeColor=#d6b656;html=1;" value="Resource - Recommended" vertex="1">
+          <mxGeometry height="26" width="200" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="46" parent="41" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#d5e8d4;strokeColor=#82b366;html=1;" value="Action" vertex="1">
+          <mxGeometry height="26" width="200" y="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
