@@ -1,0 +1,31 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#PCIeFunction.PCIeFunction",
+    "@odata.type": "#PCIeFunction.v1_3_0.PCIeFunction",
+    "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000/PCIeFunctions/1",
+    "@odata.etag": "W/\"2D186009\"",
+    "Id": "1",
+    "Name": "PCIe Function 1",
+    "FunctionType": "Physical",
+    "DeviceClass": "NetworkController",
+    "FunctionId": 1,
+    "DeviceId": "0x1801",
+    "VendorId": "0x1AB4",
+    "ClassCode": "0x020000",
+    "RevisionId": "0x11",
+    "SubsystemId": "0x1598",
+    "SubsystemVendorId": "0x1AB4",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Links": {
+        "NetworkDeviceFunctions": [
+            {
+                "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1"
+            }
+        ],
+        "PCIeDevice": {
+            "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE07A000"
+        }
+    }
+}

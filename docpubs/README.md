@@ -1,3 +1,3 @@
 # Overview
 
-The use of this folder is described in ./docs-to-convert/docs/HowToPublish.
+The use of the files in this folder are described in ./docs-to-convert/ExampleDocs/docs/HowToPublish.md.

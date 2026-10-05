@@ -1,0 +1,15 @@
+{
+    "@odata.etag": "W/\"BF340009\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports",
+    "@odata.type": "#PortCollection.PortCollection",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/0"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/1"
+		}
+    ],
+    "Members@odata.count": 4,
+    "Name": "Ports"
+}

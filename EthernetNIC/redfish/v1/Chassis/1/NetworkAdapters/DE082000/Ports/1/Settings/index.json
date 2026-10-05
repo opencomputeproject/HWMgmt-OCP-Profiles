@@ -1,0 +1,10 @@
+{
+    "@odata.etag": "W/\"4D002DE1\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/1/Settings",
+    "@odata.type": "#Port.v1_10_0.Port",
+    "Id": "Settings",
+    "Ethernet": {
+        "LLDPEnabled": false
+    },
+    "Name": "E810 Port Pending Setting"
+}

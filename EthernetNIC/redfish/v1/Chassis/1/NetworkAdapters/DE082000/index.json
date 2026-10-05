@@ -1,0 +1,95 @@
+{
+    "@odata.etag": "W/\"61D94ABE\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000",
+    "@odata.type": "#NetworkAdapter.v1_9_0.NetworkAdapter",
+    "Id": "DE082000",
+    "@Redfish.Settings": {
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Settings"
+        },
+        "@odata.type": "#Settings.v1_3_3.Settings",
+        "SupportedApplyTimes": [
+            "OnReset"
+        ]
+    },
+    "Actions": {
+        "#NetworkAdapter.ResetSettingsToDefault": {
+            "target": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Actions/NetworkAdapter.ResetSettingsToDefault",
+            "title": "#NetworkAdapter.ResetSettingsToDefault"
+        }
+    },
+    "Controllers": [
+        {
+            "ControllerCapabilities": {
+                "DataCenterBridging": {
+                    "Capable": true
+                },
+                "NetworkDeviceFunctionCount": 4,
+                "NetworkPortCount": 4,
+                "VirtualizationOffload": {
+                    "SRIOV": {
+                        "SRIOVVEPACapable": true
+                    },
+                    "VirtualFunction": {
+                        "DeviceMaxCount": 256,
+                        "MinAssignmentGroupSize": 1,
+                        "NetworkPortMaxCount": 256
+                    }
+                },
+                "NPAR": {
+                    "NparCapable": false
+                }
+            },
+            "FirmwarePackageVersion": "4.50 (0x8001D8BB)",
+            "Links": {
+                "NetworkDeviceFunctions": [
+                    {
+                        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/0"
+                    },
+                    {
+                        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/1"
+                    }
+                ],
+                "Ports": [
+                    {
+                        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/0"
+                    },
+                    {
+                        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports/1"
+                    }
+                ],
+                "Ports@odata.count": 4,
+                "PCIeDevices": [
+                    {
+                        "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE082000"
+                    }
+                ]
+            },
+            "PCIeInterface": {
+                "LanesInUse": 16,
+                "MaxLanes": 16,
+                "MaxPCIeType": "Gen4",
+                "PCIeType": "Gen4"
+            }
+        }
+    ],
+    "LLDPEnabled": true,
+	"Manufacturer": "Contoso",
+    "Model": "Contoso 2b",
+    "SKU": "Contoso 2b function adapter",
+    "SerialNumber": "LMNOP4279b",
+    "PartNumber": "ABCDEFG2b",	
+    "NetworkDeviceFunctions": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions"
+    },
+    "Ports": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Ports"
+    },
+    "Metrics": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Metrics"
+    },
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    }
+}

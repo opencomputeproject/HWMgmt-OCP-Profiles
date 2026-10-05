@@ -1,0 +1,16 @@
+{
+    "@odata.type": "#NetworkDeviceFunctionMetrics.v1_1_0.NetworkDeviceFunctionMetrics",
+    "Id": "Metrics",
+    "Name": "Network Device Function 1 Metrics",
+    "RXBytes": 286683,
+    "RXFrames": 1867,
+    "RXUnicastFrames": 0,
+    "RXMulticastFrames": 1,
+    "TXBytes": 0,
+    "TXFrames": 0,
+    "TXUnicastFrames": 0,
+    "TXMulticastFrames": 0,
+    "@odata.context": "/redfish/v1/$metadata#NetworkDeviceFunctionMetrics.NetworkDeviceFunctionMetrics",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1/Metrics",
+    "@odata.etag": "W/\"7BD1348E\""	
+}

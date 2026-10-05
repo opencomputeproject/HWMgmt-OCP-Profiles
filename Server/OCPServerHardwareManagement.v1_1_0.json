@@ -1,20 +1,23 @@
 {
 	"SchemaDefinition": "RedfishInteroperabilityProfile.v1_4_0",
 	"ProfileName": "OCPServerHardwareManagement",
-	"ProfileVersion": "1.0.1",
+	"ProfileVersion": "1.1.0",
 	"Purpose": "Specifies the OCP management requirements for the Redfish interface on OCP Server platforms",
 	"OwningEntity": "Open Compute Project",
 	"ContactInfo": "OCP-Server@OCP-All.groups.io",
 	"License": "Creative Common Attribution-ShareAlike 4.0 International License",
 	"RequiredProfiles": {
 		"OCPBaselineHardwareManagement": {
-			"MinVersion": "1.0.1"
+			"MinVersion": "1.1.0"
 		}
 	},
 	"Resources": {
 		"Chassis": {
 			"MinVersion": "1.0.0",
 			"PropertyRequirements": {
+				"EnvironmentMetrics": {
+					"ReadRequirement": "IfImplemented"
+				},
 				"Links": {
 					"PropertyRequirements": {
 						"ComputerSystems": {}
@@ -22,30 +25,58 @@
 				},
 				"Thermal": {
 					"ReadRequirement": "Recommended",
-          "ConditionalRequirements": [
-            {
-              "Purpose": "Required if ChassisType are specific values",
-              "ReadRequirement": "Mandatory",
-              "CompareType": "AnyOf",
-              "CompareProperty": "ChassisType",
-              "CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
-            }
-          ]
-        },
-				"Power": {
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Recommended",
+              				"CompareType": "AnyOf",
+              				"CompareProperty": "ChassisType",
+              				"CompareValues": ["RackMount", "Sled", "Drawer"]
+            			}
+          			],
+                    "ReplacedByProperty": "ThermalSubsystem"
+        		},
+				"ThermalSubsystem": {
 					"ReadRequirement": "Recommended",
-          "ConditionalRequirements": [
-            {
-              "Purpose": "Required if ChassisType are specific values",
-              "ReadRequirement": "Mandatory",
-              "CompareType": "AnyOf",
-              "CompareProperty": "ChassisType",
-              "CompareValues": ["RackMount", "Tray", "Sled", "Drawer"]
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Recommended",
+              				"CompareType": "AnyOf",
+              				"CompareProperty": "ChassisType",
+              				"CompareValues": ["RackMount", "Sled", "Drawer"]
+            			}
+          			],
+                    "ReplacesProperty": "Thermal"
+                },
+                "Power": {
+                    "ReadRequirement": "Recommended",
+                    "ConditionalRequirements": [
+                        {
+                            "Purpose": "Required if ChassisType are specific values",
+                            "ReadRequirement": "Mandatory",
+                            "CompareType": "AnyOf",
+                            "CompareProperty": "ChassisType",
+                            "CompareValues": ["RackMount", "Sled", "Drawer"]
+                        }
+                    ],
+                    "ReplacedByProperty": "PowerSubsystem"
+                },
+                "PowerSubsystem": {
+                    "ReadRequirement": "Recommended",
+                    "ConditionalRequirements": [
+                        {
+                            "Purpose": "Required if ChassisType are specific values",
+                            "ReadRequirement": "Mandatory",
+                            "CompareType": "AnyOf",
+                            "CompareProperty": "ChassisType",
+                            "CompareValues": ["RackMount", "Sled", "Drawer"]
+                        }
+                    ],
+                    "ReplacesProperty": "Power"
+                }
             }
-          ]
-			  }
-      }
-		},
+        },
 		"ComputerSystem": {
 			"MinVersion": "1.0.0",
 			"PropertyRequirements": {
@@ -90,7 +121,8 @@
 				"UUID": {},
 				"IndicatorLED": {
 					"ReadRequirement": "Recommended",
-					"ConditionalRequirements": [{
+					"ReplacedByProperty": "LocationIndicatorActive",
+                    "ConditionalRequirements": [{
 						"Purpose": "Physical Systems must have a writable Indicator LED",
 						"CompareProperty": "SystemType",
 						"CompareType": "AnyOf",
@@ -99,6 +131,18 @@
 						"WriteRequirement": "Mandatory"
 					}]
 				},
+                "LocationIndicatorActive": {
+                    "ReadRequirement": "Recommended",
+                    "ReplacesProperty": "IndicatorLED",
+                    "ConditionalRequirements": [{
+						"Purpose": "Physical Systems must have a writable Indicator LED",
+						"CompareProperty": "SystemType",
+						"CompareType": "AnyOf",
+						"CompareValues": ["Physical"],
+						"ReadRequirement": "Mandatory",
+						"WriteRequirement": "Mandatory"
+					}]
+                },
 				"Status": {
 					"PropertyRequirements": {
 						"State": {},
@@ -115,10 +159,10 @@
 						"UefiTargetBootSourceOverride": {
 							"ReadRequirement": "Recommended",
 							"ConditionalRequirements": [{
-								"Purpose": "If UEFI mode is selected, must allow for UEFI target.",
-								"CompareProperty": "BootSourceOverrideMode",
+								"Purpose": "If UefiTarget mode is selected, must allow for UEFI target.",
+								"CompareProperty": "BootSourceOverrideTarget",
 								"CompareType": "Equal",
-								"CompareValues": ["UEFI"],
+								"CompareValues": ["UefiTarget"],
 								"ReadRequirement": "Mandatory"
 							}]
 						}
@@ -126,6 +170,30 @@
 				},
 				"LogServices": {
 					"ReadRequirement": "Recommended"
+				},
+				"SerialConsole": {
+					"ReadRequirement": "IfImplemented",
+					"Purpose": "SSH or IPMI-based serial remote console is required.",
+					"PropertyRequirements": {
+						"SSH": {
+                            "ReadRequirement": "Recommended",
+                            "ConditionalRequirements": [{
+                                "Purpose": "Either SSH or IPMI must be supported.",
+                                "CompareProperty": "IPMI",
+                                "CompareType": "Absent",
+                                "ReadRequirement": "Mandatory"
+                            }]
+                        },
+                        "IPMI": {
+                            "ReadRequirement": "Recommended",
+                            "ConditionalRequirements": [{
+                                "Purpose": "Either SSH or IPMI must be supported.",
+                                "CompareProperty": "SSH",
+                                "CompareType": "Absent",
+                                "ReadRequirement": "Mandatory"
+                            }]
+                        }
+					}
 				},
 				"Links": {
 					"PropertyRequirements": {
@@ -154,6 +222,43 @@
 				}
 			}
 		},
+        "EnvironmentMetrics": {
+            "UseCases": [
+                {
+                    "UseCaseTitle": "Chassis Environment Metrics",
+                    "UseCaseType": "ChassisType",
+                    "UseCaseComparison": "Equal",
+                    "UseCaseKeyValues": [ "RackMount", "Sled", "Drawer" ],
+                    "URIs": [
+                        "/redfish/v1/Chassis/{ChassisId}/EnvironmentMetrics"
+                    ],
+                    "PropertyRequirements": {
+                        "TemperatureCelsius": {
+                            "ReadRequirement": "IfImplemented"
+                        },
+                        "PowerWatts": {
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
+                        },
+				        "PowerLimitWatts": {
+                            "PropertyRequirements": {
+                                "Reading": {}
+                            }
+                        } 
+                    }
+                },
+                {
+                    "UseCaseTitle": "Processor Environment Metrics",
+                    "URIs": [
+                        "/redfish/v1/Systems/{ComputeSystemId}/Processors/{ProcessorId}/EnvironmentMetrics"
+                    ],
+                    "PropertyRequirements": {
+                        "TemperatureCelsius": {}
+                    }
+                }
+            ]
+        },
 		"EthernetInterface": {
 			"MinVersion": "1.1.0",
 			"ReadRequirement": "Recommended",
@@ -181,22 +286,8 @@
 				}
 			}
 		},
-		"Manager": {
-			"PropertyRequirements": {
-				"SerialConsole": {
-					"ReadRequirement": "Mandatory",
-					"Purpose": "SSH or IPMI-based serial remote console is required.",
-					"PropertyRequirements": {
-						"ConnectTypesSupported": {
-							"Values": [ "SSH", "IPMI"],
-							"Comparison": "AnyOf"
-						}
-					}
-				}
-			}
-		},
 		"Power": {
-			"ReadRequirement": "Mandatory",
+			"ReadRequirement": "IfImplemented",
 			"PropertyRequirements": {
 				"PowerControl": {
 					"PropertyRequirements": {
@@ -212,11 +303,17 @@
 				}
 			}
 		},
-		"Thermal": {
+		"PowerSubsystem": {
+            "PropertyRequirements": {
+                "CapacityWatts": {}
+			}
+		},
+        "Thermal": {
 			"MinVersion": "1.1.0",
+            "ReadRequirement": "IfImplemented",
 			"PropertyRequirements": {
 				"Temperatures": {
-					"ReadRequirement": "Mandatory",
+					"ReadRequirement": "IfImplemented",
 					"MinCount": 3,
 					"PropertyRequirements": {
 						"ReadingCelsius": {},
@@ -251,7 +348,25 @@
 				}
 			}
 		},
-		"ServiceRoot": {
+        "ThermalSubsystem": {
+			"MinVersion": "1.1.0",
+			"PropertyRequirements": {
+				"ThermalMetrics": {}
+            }	
+		},
+        "ThermalMetrics": {
+			"MinVersion": "1.1.0",
+			"PropertyRequirements": {
+				"TemperatureSummaryCelsius": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"Intake": {},
+                        "Ambient": {}
+					}
+                }
+            }	
+		},
+        "ServiceRoot": {
 			"PropertyRequirements": {
 				"Systems": {}
 			}

@@ -1,0 +1,7 @@
+{
+    "@odata.etag": "W/\"67F7F004\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/NetworkDeviceFunctions/0/Settings",
+    "@odata.type": "#NetworkDeviceFunction.v1_9_0.NetworkDeviceFunction",
+    "Id": "Settings",
+    "Name": "NetworkDeviceFunction Pending Setting"
+}

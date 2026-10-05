@@ -1,0 +1,120 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#Port.Port",
+    "@odata.type": "#Port.v1_6_0.Port",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/2",
+    "@odata.etag": "W/\"C183C29B\"",
+    "@Redfish.Settings": {
+        "@odata.type": "#Settings.v1_3_3.Settings",
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/2/Settings"
+        },
+        "SupportedApplyTimes": [
+            "OnReset"
+        ]
+    },
+    "Id": "2",
+    "Name": "Ethernet Port 2",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Metrics": {
+        "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/2/Metrics"
+    },
+    "PortId": "2",
+    "PortProtocol": "Ethernet",
+    "PortType": "BidirectionalPort",
+    "Enabled": true,
+    "Ethernet": {
+        "SupportedEthernetCapabilities": [
+            "WakeOnLAN"
+        ],
+        "AssociatedMACAddresses": [
+            "9c:dc:71:c3:bb:0b",
+            "9c:dc:71:c3:bb:0f",
+            "9c:dc:71:c3:bb:13",
+            "9c:dc:71:c3:bb:17"
+        ],
+        "FlowControlConfiguration": "None",
+        "FlowControlStatus": "None",
+        "WakeOnLANEnabled": true,
+        "LLDPEnabled": true,
+        "LLDPReceive": {
+            "ChassisId": "",
+            "ChassisIdSubtype": "NotTransmitted",
+            "ManagementAddressIPv4": "",
+            "ManagementAddressIPv6": "",
+            "ManagementAddressMAC": "",
+            "ManagementVlanId": 4095,
+            "PortId": "",
+            "PortIdSubtype": "NotTransmitted"
+        },
+        "LLDPTransmit": {
+            "ChassisId": "9c:dc:71:c3:bb:17",
+            "ChassisIdSubtype": "MacAddr",
+            "ManagementAddressIPv4": "",
+            "ManagementAddressIPv6": "",
+            "ManagementAddressMAC": "9c:dc:71:c3:bb:17",
+            "ManagementVlanId": 4095,
+            "PortId": "9C:DC:71:C3:BB:17",
+            "PortIdSubtype": "MacAddr"
+        }
+    },
+    "LinkConfiguration": [
+        {
+            "AutoSpeedNegotiationCapable": true,
+            "AutoSpeedNegotiationEnabled": true,
+            "CapableLinkSpeedGbps": [
+                25.0,
+                10.0
+            ],
+            "ConfiguredNetworkLinks": [
+                {
+                    "ConfiguredLinkSpeedGbps": 25.0,
+                    "ConfiguredWidth": 1
+                },
+                {
+                    "ConfiguredLinkSpeedGbps": 10.0,
+                    "ConfiguredWidth": 1
+                }
+            ]
+        }
+    ],
+    "LinkNetworkTechnology": "Ethernet",
+    "MaxFrameSize": 9622,
+    "MaxSpeedGbps": 25.0,
+    "Width": 1,
+    "InterfaceEnabled": true,
+    "SignalDetected": false,
+    "LinkState": "Enabled",
+    "LinkStatus": "NoLink",
+    "LinkTransitionIndicator": 0,
+    "CurrentSpeedGbps": 0.0,
+    "ActiveWidth": 0,
+    "SFP": {
+        "SupportedSFPTypes": [
+            "SFP",
+            "SFPPlus",
+            "SFP28"
+        ],
+        "Status": {
+            "State": "Absent"
+        }
+    },
+    "Actions": {
+        "#Port.Reset": {
+            "target": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/2/Actions/Port.Reset",
+            "ResetType@Redfish.AllowableValues": [
+                "ForceRestart",
+                "ForceOn",
+                "ForceOff"
+            ],
+            "@Redfish.OperationApplyTimeSupport": {
+                "@odata.type": "#Settings.v1_3_3.OperationApplyTimeSupport",
+                "SupportedValues": [
+                    "Immediate"
+                ]
+            }
+        }
+    }
+}

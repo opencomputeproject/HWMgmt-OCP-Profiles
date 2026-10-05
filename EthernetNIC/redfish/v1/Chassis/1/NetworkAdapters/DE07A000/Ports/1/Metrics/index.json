@@ -1,0 +1,43 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#PortMetrics.PortMetrics",
+    "@odata.type": "#PortMetrics.v1_2_0.PortMetrics",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1/Metrics",
+    "@odata.etag": "W/\"4E6105EA\"",
+    "Id": "Metrics",
+    "Name": "Ethernet Port 1 Metrics",
+    "Networking": {
+        "RXFrames": 8519,
+        "RXUnicastFrames": 9,
+        "RXMulticastFrames": 6467,
+        "RXBroadcastFrames": 2043,
+        "RXPFCFrames": 0,
+        "RXDiscards": 0,
+        "RXFalseCarrierErrors": 0,
+        "RXFCSErrors": 0,
+        "RXFrameAlignmentErrors": 0,
+        "RXOversizeFrames": 0,
+        "RXUndersizeFrames": 0,
+        "TXFrames": 69,
+        "TXUnicastFrames": 0,
+        "TXMulticastFrames": 69,
+        "TXBroadcastFrames": 0,
+        "TXPFCFrames": 0,
+        "TXDiscards": 0,
+        "TXExcessiveCollisions": 0,
+        "TXLateCollisions": 0,
+        "TXMultipleCollisions": 0,
+        "TXSingleCollisions": 0
+    },
+    "RXBytes": 1401596,
+    "RXErrors": 169,
+    "TXBytes": 12179,
+    "TXErrors": 0,
+    "Transceivers": [
+        {
+            "RXInputPowerMilliWatts": 6985.0,
+            "SupplyVoltage": 52096.0,
+            "TXBiasCurrentMilliAmps": 3375.0,
+            "TXOutputPowerMilliWatts": 7108.0
+        }
+    ]
+}

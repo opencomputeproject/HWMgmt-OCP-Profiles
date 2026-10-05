@@ -1,0 +1,20 @@
+{
+    "@odata.etag": "W/\"E6624F75\"",
+    "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices/DE082000/PCIeFunctions/0",
+    "@odata.type": "#PCIeFunction.v1_5_0.PCIeFunction",
+    "Id": "0",
+    "ClassCode": "0x020000",
+    "DeviceClass": "NetworkController",
+    "DeviceId": "0x1593",
+    "FunctionId": 0,
+    "FunctionType": "Physical",
+    "Name": "PCIeFunction 0",
+    "RevisionId": "0x02",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "SubsystemId": "0x000E",
+    "SubsystemVendorId": "0x1AB4",
+    "VendorId": "0x1AB4"
+}

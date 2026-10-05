@@ -1,0 +1,33 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#EthernetInterface.EthernetInterface",
+    "@odata.etag": "W/\"C4D4ADE7\"",
+    "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/5",
+    "@odata.type": "#EthernetInterface.v1_4_1.EthernetInterface",
+    "Id": "5",
+    "FullDuplex": false,
+    "IPv4Addresses": [],
+    "IPv4StaticAddresses": [],
+    "IPv6AddressPolicyTable": [],
+    "IPv6Addresses": [],
+    "IPv6StaticAddresses": [],
+    "IPv6StaticDefaultGateways": [],
+    "InterfaceEnabled": null,
+    "LinkStatus": "LinkUp",
+    "MACAddress": "9c:dc:71:c3:bb:0a",
+    "Name": "",
+    "NameServers": [],
+    "SpeedMbps": null,
+    "StaticNameServers": [],
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "Links": {
+        "NetworkDeviceFunctions": [
+            {
+                "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/1"
+            }
+        ]
+    },
+    "UefiDevicePath": "PciRoot(0x3)/Pci(0x1,0x1)/Pci(0x0,0x0)"
+}

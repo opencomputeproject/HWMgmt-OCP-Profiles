@@ -1,0 +1,16 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#PortCollection.PortCollection",
+    "@odata.type": "#PortCollection.PortCollection",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports",
+    "@odata.etag": "W/\"A4DA750C\"",
+    "Name": "Ethernet Port Collection",
+    "Members@odata.count": 2,
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/1"
+        },
+        {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/2"
+        }
+    ]
+}

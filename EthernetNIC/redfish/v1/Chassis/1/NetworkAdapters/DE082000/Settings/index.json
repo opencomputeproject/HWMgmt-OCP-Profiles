@@ -1,0 +1,8 @@
+{
+    "@odata.etag": "W/\"77880D60\"",
+    "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE082000/Settings",
+    "@odata.type": "#NetworkAdapter.v1_9_0.NetworkAdapter",
+    "Id": "Settings",
+    "LLDPEnabled": true,
+    "Name": "E810 Network Adapter Current Setting"
+}
