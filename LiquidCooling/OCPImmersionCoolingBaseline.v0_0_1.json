@@ -6,7 +6,7 @@
   "OwningEntity": "Open Compute Project",
   "ContactInfo": "redfish@opencompute.org",
   "RequiredProfiles": {
-    "OCPCoolantDistributionUnit": {
+    "OCPCoolantDistributionUnit": {      
       "MinVersion": "1.0.0"
     }
   },
@@ -20,6 +20,7 @@
       }
     },
     "CoolingUnit": {
+      "MinVersion": "1.2.0",
       "URIs": [
         "/redfish/v1/ThermalEquipment/ImmersionUnits/{CoolingUnitId}"
       ],
@@ -88,7 +89,11 @@
           "Purpose": "Turn the immersion tank cooling functions off (disable), implies that ITE power is shutdown as well",
           "Parameters": {
             "Mode": {
-              "ReadRequirement": "Mandatory"
+              "ReadRequirement": "Mandatory",
+              "ParameterValues": [
+                "Enabled",
+                "Disabled"
+              ]
             }
           }
         }
@@ -98,7 +103,7 @@
       "MinVersion": "1.6.0",
       "Purpose": "To control the Cooling Unit resource",
       "PropertyRequirements": {
-        "Accuracy": {
+        "SetPointAccuracy": {
           "ReadRequirement": "Recommended"
         },
         "Actions": {
@@ -351,7 +356,11 @@
                 "Purpose": "Turn the immersion tank pump functions off (disable), implies that ITE power is shutdown as well",
                 "Parameters": {
                   "Mode": {
-                    "ReadRequirement": "Mandatory"
+                    "ReadRequirement": "Mandatory",
+                    "ParameterValues": [
+                      "Enabled",
+                      "Disabled"
+                    ]
                   }
                 }
               }
