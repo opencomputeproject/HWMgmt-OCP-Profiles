@@ -360,7 +360,7 @@
 					"ReadRequirement": "IfImplemented",
 					"PropertyRequirements": {
 						"Intake": {},
-                        "Ambient": {}
+                        "Internal": {}
 					}
                 }
             }	
