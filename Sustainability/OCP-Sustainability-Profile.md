@@ -15,13 +15,13 @@
 
    - [Product location data](#product-location-data)
 
-- [Sustainability Profile Reference Guide](#sustainability-profile-reference-guide)
+- [Appendix A: Sustainability Profile Reference Guide](#appendix-a%3A-sustainability-profile-reference-guide)
 
    - [Using the reference guide](#using-the-reference-guide)
 
-   - [Chassis 1.25.1 (General)](#chassis-1.25.1-%28general%29)
+   - [Chassis 1.26.0 (General)](#chassis-1.26.0-%28general%29)
 
-   - [Chassis 1.25.1 (Product-level)](#chassis-1.25.1-%28product-level%29)
+   - [Chassis 1.26.0 (Product-level)](#chassis-1.26.0-%28product-level%29)
 
    - [EnvironmentMetrics 1.3.2 (Chassis)](#environmentmetrics-1.3.2-%28chassis%29)
 
@@ -31,7 +31,7 @@
 
    - [PowerSupplyMetrics 1.1.2](#powersupplymetrics-1.1.2)
 
-   - [Sensor 1.10.0](#sensor-1.10.0)
+   - [Sensor 1.10.1](#sensor-1.10.1)
 
 - [Redfish documentation generator](#redfish-documentation-generator)
 
@@ -42,9 +42,9 @@
 
 This document contains the Redfish interface requirements for reporting Sustainability data. It is intended to apply to any product or device not directly involved with the power distribution infrastructure.  Power distribution products report power and energy using equivalent Redfish resources and properties, which are located in a separate portion of the data model.  Therefore, sustainability reporting requirements for those products are covered by their product-specific profiles.
 
-Profile source: OCP-PDU-Profile.json
+Profile source: OCP-Sustainability-Profile.json
 
-Direct feedback to: jeff.autor@hpe.com
+Direct feedback to: jeff.autor@ocproject.net
 
 
 # <a name="sustainability-use-cases"></a>Sustainability Use Cases
@@ -129,9 +129,7 @@ Example Location and PhysicalAddress portions of a Chassis instance:
 }
 ```
 
-
-
-# <a name="sustainability-profile-reference-guide"></a>Sustainability Profile Reference Guide
+# <a name="appendix-a%3A-sustainability-profile-reference-guide"></a>Appendix A: Sustainability Profile Reference Guide
 
 To produce this guide, DMTF's [Redfish Documentation Generator](#redfish-documentation-generator) merges DMTF's Redfish Schema bundle (DSP8010) contents with supplemental text.
 
@@ -159,7 +157,7 @@ The property-level details include:
 | Description | <p>The normative description of the property, as copied directly from the schema <code>LongDescription</code> definition.</p> |
 
 
-## <a name="chassis-1.25.1-%28general%29"></a>Chassis 1.25.1 (General)
+## <a name="chassis-1.26.0-%28general%29"></a>Chassis 1.26.0 (General)
 
 ### Description
 
@@ -221,7 +219,7 @@ This UseCase may be found at the following URIs:
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLimitWatts** *(v1.1+)* {} | object | *Mandatory (Read)* | Power limit (W). See the *Control.v1_5_1* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLimitWatts** *(v1.1+)* {} | object | *Mandatory (Read)* | Power limit (W). See the *Control.v1_6_0* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLoadPercent** *(v1.1+)* { | object<br>(excerpt) | *Mandatory (Read)* | The power load (percent) for this device. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
@@ -289,24 +287,25 @@ The area or device to which this sensor measurement applies.
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
 | Accelerator | An accelerator. |  |
-| ACInput | An AC input. |  |
-| ACMaintenanceBypassInput | An AC maintenance bypass input. |  |
-| ACOutput | An AC output. |  |
-| ACStaticBypassInput | An AC static bypass input. |  |
-| ACUtilityInput | An AC utility input. |  |
+| ACInput | An AC electrical input or input-related circuit. |  |
+| ACMaintenanceBypassInput | An AC electrical maintenance bypass input. |  |
+| ACOutput | An AC electrical output or output-related circuit. |  |
+| ACStaticBypassInput | An AC electrical static bypass input. |  |
+| ACUtilityInput | An AC electrical utility input. |  |
 | ASIC | An ASIC device, such as a networking chip or chipset component. |  |
 | Back | The back of the chassis. |  |
 | Backplane | A backplane within the chassis. |  |
 | Battery | A battery. |  |
 | Board | A circuit board. |  |
 | Chassis | The entire chassis. |  |
-| ComputeBay | Within a compute bay. |  |
+| ComputeBay | A compute bay. |  |
 | CoolingSubsystem | The entire cooling, or air and liquid, subsystem. |  |
 | CPU | A processor (CPU). |  |
 | CPUSubsystem | The entire processor (CPU) subsystem. |  |
-| DCBus | A DC bus. |  |
+| DCBus | A DC electrical bus. |  |
 | Exhaust | The air exhaust point or points or region of the chassis. |  |
-| ExpansionBay | Within an expansion bay. |  |
+| ExpansionBay | An expansion bay. |  |
+| ExpansionSubsystem | A group of expansion bays. |  |
 | Fan | A fan. |  |
 | Filter | A filter. |  |
 | FPGA | An FPGA. |  |
@@ -321,17 +320,19 @@ The area or device to which this sensor measurement applies.
 | Memory | A memory device. |  |
 | MemorySubsystem | The entire memory subsystem. |  |
 | Motor | A motor. |  |
-| NetworkBay | Within a networking bay. |  |
+| NetworkBay | A networking bay. |  |
 | NetworkingDevice | A networking device. |  |
+| PowerOutlet | An electrical outlet. |  |
 | PowerSubsystem | The entire power subsystem. |  |
 | PowerSupply | A power supply. |  |
-| PowerSupplyBay | Within a power supply bay. |  |
+| PowerSupplyBay | A power supply bay. |  |
 | Pump | A pump. |  |
 | Rectifier | A rectifier device. |  |
 | Reservoir | A reservoir. |  |
 | Room | The room. |  |
-| StorageBay | Within a storage bay. |  |
+| StorageBay | A storage bay. |  |
 | StorageDevice | A storage device. |  |
+| StorageSubsystem | A storage subsystem. |  |
 | Switch | A switch device. |  |
 | SystemBoard | The system board (PCB). |  |
 | Transceiver | A transceiver. |  |
@@ -354,7 +355,7 @@ The usage or location within a device to which this sensor measurement applies.
 
 ```json
 {
-    "@odata.type": "#Chassis.v1_25_1.Chassis",
+    "@odata.type": "#Chassis.v1_26_0.Chassis",
     "Id": "1U",
     "Name": "Computer System Chassis",
     "ChassisType": "RackMount",
@@ -418,7 +419,7 @@ The usage or location within a device to which this sensor measurement applies.
 
 
 
-## <a name="chassis-1.25.1-%28product-level%29"></a>Chassis 1.25.1 (Product-level)
+## <a name="chassis-1.26.0-%28product-level%29"></a>Chassis 1.26.0 (Product-level)
 
 ### Description
 
@@ -486,7 +487,7 @@ This UseCase may be found at the following URIs:
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLimitWatts** *(v1.1+)* {} | object | *Mandatory (Read)* | Power limit (W). See the *Control.v1_5_1* schema for details on this property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLimitWatts** *(v1.1+)* {} | object | *Mandatory (Read)* | Power limit (W). See the *Control.v1_6_0* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerLoadPercent** *(v1.1+)* { | object<br>(excerpt) | *Mandatory (Read)* | The power load (percent) for this device. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DataSourceUri** | string<br>(URI) | *Mandatory (Read-only)* | The link to the resource that provides the data for this sensor. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
@@ -554,24 +555,25 @@ The area or device to which this sensor measurement applies.
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
 | Accelerator | An accelerator. |  |
-| ACInput | An AC input. |  |
-| ACMaintenanceBypassInput | An AC maintenance bypass input. |  |
-| ACOutput | An AC output. |  |
-| ACStaticBypassInput | An AC static bypass input. |  |
-| ACUtilityInput | An AC utility input. |  |
+| ACInput | An AC electrical input or input-related circuit. |  |
+| ACMaintenanceBypassInput | An AC electrical maintenance bypass input. |  |
+| ACOutput | An AC electrical output or output-related circuit. |  |
+| ACStaticBypassInput | An AC electrical static bypass input. |  |
+| ACUtilityInput | An AC electrical utility input. |  |
 | ASIC | An ASIC device, such as a networking chip or chipset component. |  |
 | Back | The back of the chassis. |  |
 | Backplane | A backplane within the chassis. |  |
 | Battery | A battery. |  |
 | Board | A circuit board. |  |
 | Chassis | The entire chassis. |  |
-| ComputeBay | Within a compute bay. |  |
+| ComputeBay | A compute bay. |  |
 | CoolingSubsystem | The entire cooling, or air and liquid, subsystem. |  |
 | CPU | A processor (CPU). |  |
 | CPUSubsystem | The entire processor (CPU) subsystem. |  |
-| DCBus | A DC bus. |  |
+| DCBus | A DC electrical bus. |  |
 | Exhaust | The air exhaust point or points or region of the chassis. |  |
-| ExpansionBay | Within an expansion bay. |  |
+| ExpansionBay | An expansion bay. |  |
+| ExpansionSubsystem | A group of expansion bays. |  |
 | Fan | A fan. |  |
 | Filter | A filter. |  |
 | FPGA | An FPGA. |  |
@@ -586,17 +588,19 @@ The area or device to which this sensor measurement applies.
 | Memory | A memory device. |  |
 | MemorySubsystem | The entire memory subsystem. |  |
 | Motor | A motor. |  |
-| NetworkBay | Within a networking bay. |  |
+| NetworkBay | A networking bay. |  |
 | NetworkingDevice | A networking device. |  |
+| PowerOutlet | An electrical outlet. |  |
 | PowerSubsystem | The entire power subsystem. |  |
 | PowerSupply | A power supply. |  |
-| PowerSupplyBay | Within a power supply bay. |  |
+| PowerSupplyBay | A power supply bay. |  |
 | Pump | A pump. |  |
 | Rectifier | A rectifier device. |  |
 | Reservoir | A reservoir. |  |
 | Room | The room. |  |
-| StorageBay | Within a storage bay. |  |
+| StorageBay | A storage bay. |  |
 | StorageDevice | A storage device. |  |
+| StorageSubsystem | A storage subsystem. |  |
 | Switch | A switch device. |  |
 | SystemBoard | The system board (PCB). |  |
 | Transceiver | A transceiver. |  |
@@ -619,7 +623,7 @@ The usage or location within a device to which this sensor measurement applies.
 
 ```json
 {
-    "@odata.type": "#Chassis.v1_25_1.Chassis",
+    "@odata.type": "#Chassis.v1_26_0.Chassis",
     "Id": "1U",
     "Name": "Computer System Chassis",
     "ChassisType": "RackMount",
@@ -982,7 +986,7 @@ For energy efficiency metrics, the losses from AC-DC or DC-DC power conversion l
 
 
 
-## <a name="sensor-1.10.0"></a>Sensor 1.10.0
+## <a name="sensor-1.10.1"></a>Sensor 1.10.1
 
 |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -1066,7 +1070,7 @@ The type of sensor.
 
 ```json
 {
-    "@odata.type": "#Sensor.v1_9_0.Sensor",
+    "@odata.type": "#Sensor.v1_10_1.Sensor",
     "Id": "CabinetTemp",
     "Name": "Rack Temperature",
     "ReadingType": "Temperature",

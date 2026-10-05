@@ -15,9 +15,9 @@ The Redfish Interop Validator is an open-source conformance test that reads the 
 
 The Redfish Interop Validator is located at https://github.com/DMTF/Redfish-Interop-Validator.
 
-The OCP Liquid Cooling Baseline v1.0.0 profile extends from the OCP Baseline Redfish Service v1.0.0 profile.
+The OCP Liquid Cooling Baseline v1.0.0 profile extends from the OCP Service Baseline v1.0.0 profile.
 This extension is specified directly in the profile.
-This means that the specification requires conformance to the OCP Baseline Redfish Service profile in addition to any requirements specified in the OCP Liquid Cooling Baseline profile.
+This means that the specification requires conformance to the OCP Service Baseline profile in addition to any requirements specified in the OCP Liquid Cooling Baseline profile.
 
 ```
 "RequiredProfiles": {
@@ -30,8 +30,8 @@ This means that the specification requires conformance to the OCP Baseline Redfi
 # Capabilities
 
 The following use cases are enabled by conformance to this OCP Liquid Cooling Baseline profile.
-The OCP Liquid Cooling Baseline profile is extended from the OCP Baseline Redfish Service profile.
-For capabilities specified in the the OCP Baseline Redfish Service profile, see the "OCP Baseline Redfish Service Specification".
+The OCP Liquid Cooling Baseline profile is extended from the OCP Service Baseline profile.
+For capabilities specified in the the OCP Service Baseline profile, see the "OCP Service Baseline Usage Guide".
 
 The following table lists the capabilities prescribed in the OCP Liquid Cooling Baseline profile.
 
@@ -42,7 +42,7 @@ The following table lists the capabilities prescribed in the OCP Liquid Cooling 
 | Temperature    | [Get temperatures](#get-temperatures)                     | If implemented, mandatory |
 |                | [Get fan info](#get-fan-info)                             | If implemented, mandatory |
 |                | [Get fan redundancy info](#get-fan-redundancy-info)       | If implemented, mandatory |
-| Power          | [Get power usage](#get-power-usage)                       | Mandatory |
+| Power          | [Get power usage](#get-power-usage)                       | If implemented, mandatory |
 | Leak Detection | [Get leak detection summary](#get-leak-detection-summary) | Mandatory |
 |                | [Get leak detector info](#get-leak-detector-info)         | Mandatory |
 
@@ -115,7 +115,6 @@ GET /redfish/v1/ThermalEquipment/CDUs/1
     "Model": "LCOOL6000",
     "SerialNumber": "489609023",
     "PartNumber": "329-23489-3498-0A",
-    "UUID": "5ee175f7-7d0a-4775-a616-c5afd324dc55",
     "Status": {
         "State": "Enabled",
         "Health": "OK"
@@ -371,7 +370,7 @@ For the full schema definition, see the `LeakDetector` section of the reference 
 
 # References
 
-\[1\] OCP Baseline Redfish Service Profile v1.0.0
+\[1\] OCP Service Baseline Profile v1.0.0
 
 \[2\] "Redfish Specification" - [*https://www.dmtf.org/dsp/DSP0266*](https://www.dmtf.org/dsp/DSP0266)
 

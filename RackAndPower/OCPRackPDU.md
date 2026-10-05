@@ -26,39 +26,39 @@
 
    - [Firmware update](#firmware-update)
 
-- [Rack PDU Profile Reference Guide](#rack-pdu-profile-reference-guide)
+- [Appendix A: Rack PDU Profile Reference Guide](#appendix-a%3A-rack-pdu-profile-reference-guide)
 
    - [Using the reference guide](#using-the-reference-guide)
 
-   - [AccountService 1.15.1](#accountservice-1.15.1)
+   - [AccountService 1.17.0](#accountservice-1.17.0)
 
-   - [Certificate 1.8.3](#certificate-1.8.3)
+   - [Certificate 1.9.0](#certificate-1.9.0)
 
-   - [CertificateService 1.0.5](#certificateservice-1.0.5)
+   - [CertificateService 1.0.6](#certificateservice-1.0.6)
 
-   - [Chassis 1.25.1](#chassis-1.25.1)
+   - [Chassis 1.26.0](#chassis-1.26.0)
 
    - [Circuit 1.8.1 (AC Mains)](#circuit-1.8.1-%28ac-mains%29)
 
    - [Circuit 1.8.1 (Branches)](#circuit-1.8.1-%28branches%29)
 
-   - [EthernetInterface 1.12.2](#ethernetinterface-1.12.2)
+   - [EthernetInterface 1.12.3](#ethernetinterface-1.12.3)
 
-   - [EventDestination 1.14.1](#eventdestination-1.14.1)
+   - [EventDestination 1.15.1](#eventdestination-1.15.1)
 
-   - [EventService 1.10.2](#eventservice-1.10.2)
+   - [EventService 1.10.3](#eventservice-1.10.3)
 
    - [License 1.1.3](#license-1.1.3)
 
    - [LicenseService 1.1.2](#licenseservice-1.1.2)
 
-   - [LogEntry 1.16.2](#logentry-1.16.2)
+   - [LogEntry 1.17.0](#logentry-1.17.0)
 
    - [LogService 1.7.0](#logservice-1.7.0)
 
-   - [Manager 1.19.1](#manager-1.19.1)
+   - [Manager 1.20.0](#manager-1.20.0)
 
-   - [ManagerAccount 1.12.1](#manageraccount-1.12.1)
+   - [ManagerAccount 1.13.0](#manageraccount-1.13.0)
 
    - [ManagerNetworkProtocol 1.10.1](#managernetworkprotocol-1.10.1)
 
@@ -74,17 +74,17 @@
 
    - [RegisteredClient 1.1.2](#registeredclient-1.1.2)
 
-   - [Role 1.3.2](#role-1.3.2)
+   - [Role 1.3.3](#role-1.3.3)
 
-   - [Sensor 1.10.0](#sensor-1.10.0)
+   - [Sensor 1.10.1](#sensor-1.10.1)
 
    - [ServiceConditions 1.0.1](#serviceconditions-1.0.1)
 
    - [ServiceRoot 1.17.0](#serviceroot-1.17.0)
 
-   - [Session 1.7.2](#session-1.7.2)
+   - [Session 1.8.0](#session-1.8.0)
 
-   - [SessionService 1.1.9](#sessionservice-1.1.9)
+   - [SessionService 1.2.0](#sessionservice-1.2.0)
 
    - [SoftwareInventory 1.10.2](#softwareinventory-1.10.2)
 
@@ -92,7 +92,7 @@
 
    - [TaskService 1.2.1](#taskservice-1.2.1)
 
-   - [UpdateService 1.14.0](#updateservice-1.14.0)
+   - [UpdateService 1.15.0](#updateservice-1.15.0)
 
 - [Redfish documentation generator](#redfish-documentation-generator)
 
@@ -502,7 +502,7 @@ The ability to update device firmware using industry standard protocols and util
 }
 ```
 
-# <a name="rack-pdu-profile-reference-guide"></a>Rack PDU Profile Reference Guide
+# <a name="appendix-a%3A-rack-pdu-profile-reference-guide"></a>Appendix A: Rack PDU Profile Reference Guide
 
 To produce this guide, DMTF's [Redfish Documentation Generator](#redfish-documentation-generator) merges DMTF's Redfish Schema bundle (DSP8010) contents with supplemental text.
 
@@ -530,12 +530,12 @@ The property-level details include:
 | Description | <p>The normative description of the property, as copied directly from the schema <code>LongDescription</code> definition.</p> |
 
 
-## <a name="accountservice-1.15.1"></a>AccountService 1.15.1
+## <a name="accountservice-1.17.0"></a>AccountService 1.17.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *...* |
-| **Release** | 2023.3 | 2023.2 | 2023.1 | 2022.3 | 2022.1 | 2021.2 | 2021.1 | 2020.4 | 2019.4 | 2019.2 | 2019.1 | ... |
+| **Version** | *v1.17* | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *...* |
+| **Release** | 2024.4 | 2024.3 | 2023.3 | 2023.2 | 2023.1 | 2022.3 | 2022.1 | 2021.2 | 2021.1 | 2020.4 | 2019.4 | ... |
 
 ### URIs
 
@@ -561,6 +561,8 @@ The property-level details include:
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRoleMapping** *(v1.3+)* [ { | array | *Mandatory (Read)* | The mapping rules to convert the external account providers account information to the local Redfish role. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalAccountTypes** *(v1.16+)* [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The list of local services in the manager that the remote user or group is allowed to access. *For the possible property values, see LocalAccountTypes in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalOEMAccountTypes** *(v1.16+)* [ ] | array (string, null) | *Mandatory (Read)* | The OEM account types for the remote user or group. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalRole** *(v1.3+)* | string | *Mandatory (Read)* | The name of the local Redfish role to which to map the remote user or group. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MFABypass** *(v1.12+)* { | object | *Mandatory (Read)* | The multi-factor authentication bypass settings. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BypassTypes** *(v1.12+)* [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The types of multi-factor authentication this account or role mapping is allowed to bypass. *For the possible property values, see BypassTypes in Property details.* |
@@ -602,12 +604,29 @@ The types of multi-factor authentication this account or role mapping is allowed
 | OEM | Bypass OEM-defined multi-factor authentication. |  |
 | OneTimePasscode | Bypass one-time passcode authentication. |  |
 | SecurID | Bypass RSA SecurID. |  |
+| TimeBasedOneTimePassword | Bypass Time-based One-Time Password (TOTP) authentication. |  |
 
 #### idRef
 
 |     |     |     |     |
 | :--- | :--- | :--- | :---------------------------------------- |
 | **@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+#### LocalAccountTypes
+
+The list of local services in the manager that the remote user or group is allowed to access.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| HostConsole | Allow access to the host's console, which could be connected through Telnet, SSH, or another protocol. |  |
+| IPMI | Allow access to the Intelligent Platform Management Interface service. |  |
+| KVMIP | Allow access to a Keyboard-Video-Mouse over IP session. |  |
+| ManagerConsole | Allow access to the manager's console, which could be connected through Telnet, SSH, SM CLP, or another protocol. |  |
+| OEM | OEM account type.  See the `OEMAccountTypes` property. |  |
+| Redfish | Allow access to the Redfish service. |  |
+| SNMP | Allow access to SNMP services. |  |
+| VirtualMedia | Allow access to control virtual media. |  |
+| WebUI | Allow access to a web user interface session, such as a graphical interface or another web-based protocol. |  |
+
 #### Mode
 
 The mode of operation for token validation.
@@ -638,7 +657,7 @@ The account types supported by the service.
 
 ```json
 {
-    "@odata.type": "#AccountService.v1_15_1.AccountService",
+    "@odata.type": "#AccountService.v1_17_0.AccountService",
     "Id": "AccountService",
     "Name": "Account Service",
     "Description": "Local Manager Account Service",
@@ -741,12 +760,12 @@ The account types supported by the service.
 
 
 
-## <a name="certificate-1.8.3"></a>Certificate 1.8.3
+## <a name="certificate-1.9.0"></a>Certificate 1.9.0
 
-|     |     |     |     |     |     |     |     |     |     |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
-| **Release** | 2023.2 | 2023.1 | 2022.1 | 2021.3 | 2021.2 | 2021.1 | 2020.1 | 2019.1 | 2018.3 |
+|     |     |     |     |     |     |     |     |     |     |     |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Version** | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
+| **Release** | 2024.3 | 2023.2 | 2023.1 | 2022.1 | 2021.3 | 2021.2 | 2021.1 | 2020.1 | 2019.1 | 2018.3 |
 
 ### URIs
 
@@ -763,7 +782,7 @@ The account types supported by the service.
 
 ```json
 {
-    "@odata.type": "#Certificate.v1_8_2.Certificate",
+    "@odata.type": "#Certificate.v1_9_0.Certificate",
     "Id": "1",
     "Name": "HTTPS Certificate",
     "CertificateString": "-----BEGIN CERTIFICATE-----\nMIIFsTCC [*truncated*] GXG5zljlu\n-----END CERTIFICATE-----",
@@ -800,7 +819,7 @@ The account types supported by the service.
 
 
 
-## <a name="certificateservice-1.0.5"></a>CertificateService 1.0.5
+## <a name="certificateservice-1.0.6"></a>CertificateService 1.0.6
 
 |     |     |
 | :--- | :--- |
@@ -996,7 +1015,7 @@ The usage of the key contained in the certificate.
 
 ```json
 {
-    "@odata.type": "#CertificateService.v1_0_5.CertificateService",
+    "@odata.type": "#CertificateService.v1_0_6.CertificateService",
     "Id": "CertificateService",
     "Name": "Certificate Service",
     "Actions": {
@@ -1018,12 +1037,12 @@ The usage of the key contained in the certificate.
 
 
 
-## <a name="chassis-1.25.1"></a>Chassis 1.25.1
+## <a name="chassis-1.26.0"></a>Chassis 1.26.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.25* | *v1.24* | *v1.23* | *v1.22* | *v1.21* | *v1.20* | *v1.19* | *v1.18* | *v1.17* | *v1.16* | *v1.15* | *...* |
-| **Release** | 2023.3 | 2023.2 | 2023.1 | 2022.3 | 2022.2 | 2022.1 | 2021.4 | 2021.3 | 2021.2 | 2021.1 | 2020.4 | ... |
+| **Version** | *v1.26* | *v1.25* | *v1.24* | *v1.23* | *v1.22* | *v1.21* | *v1.20* | *v1.19* | *v1.18* | *v1.17* | *v1.16* | *...* |
+| **Release** | 2024.4 | 2023.3 | 2023.2 | 2023.1 | 2022.3 | 2022.2 | 2022.1 | 2021.4 | 2021.3 | 2021.2 | 2021.1 | ... |
 
 ### URIs
 
@@ -1036,16 +1055,16 @@ The usage of the key contained in the certificate.
 | :--- | :--- | :--- | :--------------------- |
 | **AssetTag** | string | *Recommended (Read),Mandatory (Read/Write)* | The user-assigned asset tag of this chassis. |
 | **ChassisType** | string<br>(enum) | *Mandatory (Read-only)* | The type of physical form factor of the chassis. *For the possible property values, see ChassisType in Property details.* |
-| **HeightMm** *(v1.4+)* | number<br>(mm) | *Recommended (Read-only)* | The height of the chassis. **For rack-mounted PDUs which consume 'U' spaces in the rack.** |
+| **HeightMm** *(v1.4+)* | number<br>(mm) | *Recommended (Read-only)* | The height of the chassis. **For rack-mounted PDUs that consume 'U' spaces in the rack.** |
 | **Links** { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ContainedBy** { | object | *Supported (Read)* | The link to the chassis that contains this chassis. **Provide user ability to show rack containment.** |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ContainedBy** { | object | *Recommended (Read)* | The link to the chassis that contains this chassis. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Facility** *(v1.11+)* { | object | *Recommended (Read)* | The link to the facility that contains this chassis. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Recommended (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagedBy** [ { | array | *Supported (Read-only)* | An array of links to the managers responsible for managing this chassis. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Recommended (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagedBy** [ { | array | *Mandatory (Read-only)* | An array of links to the managers responsible for managing this chassis. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerDistribution** *(v1.20+)* { | object | *Mandatory (Read-only)* | A link to power distribution functionality contained in this chassis. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
@@ -1064,10 +1083,11 @@ The usage of the key contained in the certificate.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Row** *(v1.3+)* | string | *Recommended (Read),Mandatory (Read/Write)* | The name of the row. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | } |   |   |
-| **LocationIndicatorActive** *(v1.14+)* | boolean | *Recommended (Read/Write)* | An indicator allowing an operator to physically locate this resource. |
+| **LocationIndicatorActive** *(v1.14+)* | boolean | *If Implemented (Read),Mandatory (Read/Write)* | An indicator allowing an operator to physically locate this resource. |
 | **Manufacturer** | string | *Mandatory (Read-only)* | The manufacturer of this chassis. |
 | **Model** | string | *Mandatory (Read-only)* | The model number of the chassis. |
-| **PartNumber** | string | *Recommended (Read-only)* | The part number of the chassis. |
+| **PartNumber** | string | *Mandatory (Read-only)* | The part number of the chassis. |
+| **PowerState** *(v1.0.1+)* | string<br>(enum) | *Mandatory (Read-only)* | The current power state of the chassis. *For the possible property values, see PowerState in Property details.* |
 | **Sensors** *(v1.9+)* { | object | *Mandatory (Read-only)* | The link to the collection of sensors located in the equipment and sub-components. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | } |   |   |
@@ -1077,7 +1097,7 @@ The usage of the key contained in the certificate.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**State** | string<br>(enum) | *Mandatory (Read-only)* | The state of the resource. *For the possible property values, see State in Property details.* |
 | } |   |   |
 | **UUID** *(v1.7+)* | string<br>(uuid) | *Mandatory (Read-only)* | The UUID for this chassis. |
-| **Version** *(v1.21+)* | string | *Mandatory (Read-only)* | The hardware version of this chassis. |
+| **Version** *(v1.21+)* | string | *Recommended (Read-only)* | The hardware version of this chassis. |
 
 ### Property details
 
@@ -1122,6 +1142,18 @@ The health state of this resource in the absence of its dependent resources.
 | OK | Normal. |  |
 | Warning | A condition requires attention. |  |
 
+#### PowerState
+
+The current power state of the chassis.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Off | The resource is powered off.  The components within the resource might continue to have AUX power. |  |
+| On | The resource is powered on. |  |
+| Paused | The resource is paused. |  |
+| PoweringOff | A temporary state between on and off.  The components within the resource can take time to process the power off action. |  |
+| PoweringOn | A temporary state between off and on.  The components within the resource can take time to process the power on action. |  |
+
 #### RackOffsetUnits
 
 The type of rack units in use.
@@ -1156,7 +1188,7 @@ The state of the resource.
 
 ```json
 {
-    "@odata.type": "#Chassis.v1_25_1.Chassis",
+    "@odata.type": "#Chassis.v1_26_0.Chassis",
     "Id": "1U",
     "Name": "Computer System Chassis",
     "ChassisType": "RackMount",
@@ -1243,7 +1275,6 @@ This UseCase is must exist at the following URIs:
 | :--- | :--- | :--- | :--------------------- |
 | **BreakerState** | string<br>(enum) | *If Implemented (Read-only)* | The state of the overcurrent protection device. *For the possible property values, see BreakerState in Property details.* |
 | **CircuitType** | string<br>(enum) | *Mandatory (Read-only)* | The type of circuit. *For the possible property values, see CircuitType in Property details.* |
-| **ConfigurationLocked** *(v1.5+)* | boolean | *Recommended (Read)* | Indicates whether the configuration is locked. |
 | **CurrentAmps** {} | object<br>(excerpt) | *Conditional Requirements (Read)* | The current (A) for this circuit. **Provide CurrentAmps or PolyPhaseCurrentAmps.** This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | **ElectricalContext** | string<br>(enum) | *Mandatory (Read-only)* | The combination of current-carrying conductors. *For the possible property values, see ElectricalContext in Property details.* |
 | **ElectricalSourceManagerURI** *(v1.4+)* | string<br>(URI) | *Recommended (Read),Mandatory (Read/Write)* | The URI of the management interface for the upstream electrical source connection for this circuit. |
@@ -1258,11 +1289,10 @@ This UseCase is must exist at the following URIs:
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | } |   |   |
-| **LocationIndicatorActive** *(v1.1+)* | boolean | *If Implemented (Read),Mandatory (Read/Write)* | An indicator allowing an operator to physically locate this resource. |
 | **NominalFrequencyHz** *(v1.8+)* | number | *Recommended (Read-only)* | The nominal frequency (Hz) for this circuit. |
 | **NominalVoltage** | string<br>(enum) | *Mandatory (Read-only)* | The nominal voltage for this circuit. *For the possible property values, see NominalVoltage in Property details.* |
 | **PhaseWiringType** | string<br>(enum) | *Mandatory (Read-only)* | The number of ungrounded current-carrying conductors (phases) and the total number of conductors (wires). *For the possible property values, see PhaseWiringType in Property details.* |
-| **PlugType** | string<br>(enum) | *Mandatory (Read-only)* | The type of plug according to NEMA, IEC, or regional standards. *For the possible property values, see PlugType in Property details.* |
+| **PlugType** | string<br>(enum) | *Recommended (Read-only)* | The type of plug according to NEMA, IEC, or regional standards. *For the possible property values, see PlugType in Property details.* |
 | **PolyPhaseCurrentAmps** { | object | *Conditional Requirements (Read)* | The current readings for this circuit. **Provide CurrentAmps or PolyPhaseCurrentAmps.** |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Line1** {} | object<br>(excerpt) | *If Implemented (Read)* | Line 1 current (A). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Line2** {} | object<br>(excerpt) | *If Implemented (Read)* | Line 2 current (A). This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
@@ -1297,8 +1327,7 @@ This UseCase is must exist at the following URIs:
 | **PowerEnabled** | boolean | *Recommended (Read-only)* | Indicates if the circuit can be powered. |
 | **PowerLoadPercent** *(v1.3+)* {} | object<br>(excerpt) | *Recommended (Read)* | The power load (percent) for this circuit. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | **PowerState** | string<br>(enum) | *Mandatory (Read-only)* | The power state of the circuit. *For the possible property values, see PowerState in Property details.* |
-| **PowerStateInTransition** *(v1.5+)* | boolean | *Recommended (Read-only)* | Indicates whether the power state is undergoing a delayed transition. **Support for power on/off delay and staging.** |
-| **PowerWatts** {} | object<br>(excerpt) | *Recommended (Read)* | The power (W) for this circuit. **Total power must be reported for Mains circuits, recommended for Branches.** This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
+| **PowerWatts** {} | object<br>(excerpt) | *Mandatory (Read)* | The power (W) for this circuit. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | **RatedCurrentAmps** | number<br>(A) | *Mandatory (Read-only)* | The rated maximum current allowed for this circuit. |
 | **Status** { | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Health** | string<br>(enum) | *Mandatory (Read-only)* | The health state of this resource in the absence of its dependent resources. *For the possible property values, see Health in Property details.* |
@@ -1306,7 +1335,7 @@ This UseCase is must exist at the following URIs:
 | } |   |   |
 | **UnbalancedCurrentPercent** *(v1.5+)* {} | object<br>(excerpt) | *Recommended (Read)* | The current imbalance (percent) between phases. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | **UnbalancedVoltagePercent** *(v1.5+)* {} | object<br>(excerpt) | *Recommended (Read)* | The voltage imbalance (percent) between phases. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
-| **UserLabel** *(v1.4+)* | string | *Recommended (Read)* | A user-assigned label. **Provide user label capability for at least the Mains circuits.** |
+| **UserLabel** *(v1.4+)* | string | *Mandatory (Read/Write)* | A user-assigned label. |
 | **Voltage** {} | object<br>(excerpt) | *Conditional Requirements (Read)* | The voltage (V) for this circuit. **Provide Voltage or PolyPhaseVoltage.** This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | **VoltageType** | string<br>(enum) | *Mandatory (Read-only)* | The type of voltage applied to the circuit. *For the possible property values, see VoltageType in Property details.* |
 
@@ -1327,16 +1356,6 @@ This UseCase is must exist at the following URIs:
 |     |     |     |
 | :--- | :--- | :--- |
 | "Voltage" is Absent | Mandatory (Read) |                      |
-#### PowerWatts
-
-|     |     |     |
-| :--- | :--- | :--- |
-| "CircuitType" is Equal to "Mains" | Mandatory (Read) |                      |
-#### UserLabel
-
-|     |     |     |
-| :--- | :--- | :--- |
-| "CircuitType" is Equal to "Mains" | Mandatory (Read),Recommended (Read/Write) |                      |
 #### Voltage
 
 |     |     |     |
@@ -1670,7 +1689,7 @@ The type of voltage applied to the circuit.
 
 ```json
 {
-    "@odata.type": "#Circuit.v1_8_0.Circuit",
+    "@odata.type": "#Circuit.v1_8_1.Circuit",
     "Id": "A",
     "Name": "Branch Circuit A",
     "Status": {
@@ -1744,7 +1763,7 @@ The type of voltage applied to the circuit.
         "#Circuit.BreakerControl": {
             "target": "/redfish/v1/PowerEquipment/RackPDUs/1/Branches/A/Circuit.BreakerControl"
         },
-        "#Outlet.ResetMetrics": {
+        "#Circuit.ResetMetrics": {
             "target": "/redfish/v1/PowerEquipment/RackPDUs/1/Branches/A/Circuit.ResetMetrics"
         }
     },
@@ -1777,7 +1796,6 @@ This UseCase is must exist at the following URIs:
 | :--- | :--- | :--- | :--------------------- |
 | **BreakerState** | string<br>(enum) | *If Implemented (Read-only)* | The state of the overcurrent protection device. *For the possible property values, see BreakerState in Property details.* |
 | **CircuitType** | string<br>(enum) | *Mandatory (Read-only)* | The type of circuit. *For the possible property values, see CircuitType in Property details.* |
-| **ConfigurationLocked** *(v1.5+)* | boolean | *Recommended (Read)* | Indicates whether the configuration is locked. |
 | **CurrentAmps** {} | object<br>(excerpt) | *Recommended (Read)* | The current (A) for this circuit. **Provide CurrentAmps or PolyPhaseCurrentAmps.** This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
 | **ElectricalContext** | string<br>(enum) | *Mandatory (Read-only)* | The combination of current-carrying conductors. *For the possible property values, see ElectricalContext in Property details.* |
 | **EnergykWh** {} | object<br>(excerpt) | *Recommended (Read)* | The energy (kWh) for this circuit. This object is an excerpt of the *Sensor* resource located at the URI shown in DataSourceUri. |
@@ -2152,7 +2170,7 @@ The type of voltage applied to the circuit.
 
 ```json
 {
-    "@odata.type": "#Circuit.v1_8_0.Circuit",
+    "@odata.type": "#Circuit.v1_8_1.Circuit",
     "Id": "A",
     "Name": "Branch Circuit A",
     "Status": {
@@ -2226,7 +2244,7 @@ The type of voltage applied to the circuit.
         "#Circuit.BreakerControl": {
             "target": "/redfish/v1/PowerEquipment/RackPDUs/1/Branches/A/Circuit.BreakerControl"
         },
-        "#Outlet.ResetMetrics": {
+        "#Circuit.ResetMetrics": {
             "target": "/redfish/v1/PowerEquipment/RackPDUs/1/Branches/A/Circuit.ResetMetrics"
         }
     },
@@ -2236,7 +2254,7 @@ The type of voltage applied to the circuit.
 
 
 
-## <a name="ethernetinterface-1.12.2"></a>EthernetInterface 1.12.2
+## <a name="ethernetinterface-1.12.3"></a>EthernetInterface 1.12.3
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -2262,12 +2280,12 @@ The type of voltage applied to the circuit.
 | **HostName** | string | *Supported (Read)* | The DNS host name, without any domain information. |
 | **InterfaceEnabled** | boolean | *Mandatory (Read)* | An indication of whether this interface is enabled. |
 | **IPv4Addresses** [ { | array | *Mandatory (Read)* | The IPv4 addresses currently in use by this interface. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read/Write)* | The IPv4 address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read)* | The IPv4 address. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AddressOrigin** | string<br>(enum) | *Mandatory (Read-only)* | This indicates how the address was determined. *For the possible property values, see AddressOrigin in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Gateway** | string | *Mandatory (Read/Write)* | The IPv4 gateway for this address. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubnetMask** | string | *Mandatory (Read/Write)* | The IPv4 subnet mask. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Gateway** | string | *Mandatory (Read)* | The IPv4 gateway for this address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubnetMask** | string | *Mandatory (Read)* | The IPv4 subnet mask. |
 | } ] |   |   |
-| **IPv4StaticAddresses** *(v1.4+)* [ { | array | *Recommended (Read)* | The IPv4 static addresses assigned to this interface.  See `IPv4Addresses` for the addresses in use by this interface. |
+| **IPv4StaticAddresses** *(v1.4+)* [ { | array | *If Implemented (Read)* | The IPv4 static addresses assigned to this interface.  See `IPv4Addresses` for the addresses in use by this interface. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read/Write)* | The IPv4 address. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Gateway** | string | *Mandatory (Read/Write)* | The IPv4 gateway for this address. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SubnetMask** | string | *Mandatory (Read/Write)* | The IPv4 subnet mask. |
@@ -2283,15 +2301,13 @@ The type of voltage applied to the circuit.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Precedence** | integer | *Mandatory (Read)* | The IPv6 precedence, as defined in RFC6724, section 2.1. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Prefix** | string | *Mandatory (Read)* | The IPv6 address prefix, as defined in RFC6724, section 2.1. |
 | } ] |   |   |
-| **IPv6StaticAddresses** [ { | array | *Recommended (Read)* | The IPv6 static addresses assigned to this interface.  See `IPv6Addresses` for the addresses in use by this interface. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read)* | A valid IPv6 address. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrefixLength** | integer | *Mandatory (Read)* | The prefix length, in bits, of this IPv6 address. |
+| **IPv6StaticAddresses** [ { | array | *If Implemented (Read)* | The IPv6 static addresses assigned to this interface.  See `IPv6Addresses` for the addresses in use by this interface. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** | string | *Mandatory (Read/Write)* | A valid IPv6 address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrefixLength** | integer | *Mandatory (Read/Write)* | The prefix length, in bits, of this IPv6 address. |
 | } ] |   |   |
 | **IPv6StaticDefaultGateways** *(v1.4+)* [ { | array | *Recommended (Read)* | The IPv6 static default gateways for this interface. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** *(v1.1+)* | string | *Mandatory (Read)* | A valid IPv6 address. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.1+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrefixLength** *(v1.1+)* | integer | *Mandatory (Read)* | The IPv6 network prefix length, in bits, for this address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Address** *(v1.1+)* | string | *Mandatory (Read/Write)* | A valid IPv6 address. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PrefixLength** *(v1.1+)* | integer | *Mandatory (Read/Write)* | The IPv6 network prefix length, in bits, for this address. |
 | } ] |   |   |
 | **LinkStatus** *(v1.1+)* | string<br>(enum) | *Mandatory (Read-only)* | The link status of this interface, or port. *For the possible property values, see LinkStatus in Property details.* |
 | **MACAddress** | string | *Mandatory (Read)* | The currently configured MAC address of the interface, or logical port. |
@@ -2396,7 +2412,7 @@ The state of the resource.
 
 ```json
 {
-    "@odata.type": "#EthernetInterface.v1_12_1.EthernetInterface",
+    "@odata.type": "#EthernetInterface.v1_12_3.EthernetInterface",
     "Id": "1",
     "Name": "Ethernet Interface",
     "Description": "Manager NIC 1",
@@ -2511,12 +2527,12 @@ The state of the resource.
 
 
 
-## <a name="eventdestination-1.14.1"></a>EventDestination 1.14.1
+## <a name="eventdestination-1.15.1"></a>EventDestination 1.15.1
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *...* |
-| **Release** | 2023.3 | 2022.3 | 2022.1 | 2021.2 | 2020.4 | 2020.3 | 2020.1 | 2019.3 | 2019.2 | 2019.1 | 2018.2 | ... |
+| **Version** | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *...* |
+| **Release** | 2024.3 | 2023.3 | 2022.3 | 2022.1 | 2021.2 | 2020.4 | 2020.3 | 2020.1 | 2019.3 | 2019.2 | 2019.1 | ... |
 
 ### URIs
 
@@ -2538,8 +2554,8 @@ The state of the resource.
 | } ] |   |   |
 | **IncludeOriginOfCondition** *(v1.8+)* | boolean | *Recommended (Read-only)* | An indication of whether the events subscribed to will also include the entire resource or object referenced by the `OriginOfCondition` property in the event payload. |
 | **Protocol** | string<br>(enum) | *Mandatory (Read-only)* | The protocol type of the event connection. *For the possible property values, see Protocol in Property details.* |
-| **RegistryPrefixes** *(v1.4+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of prefixes for the message registries that contain the `MessageId` values that are sent to this event destination. |
-| **ResourceTypes** *(v1.4+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of resource type values (schema names) that correspond to the `OriginOfCondition`.  The version and full namespace should not be specified. |
+| **RegistryPrefixes** *(v1.4+)* [ ] | array (string, null) | *Recommended (Read-only)* | The list of prefixes for the message registries that contain the `MessageId` values that are sent to this event destination. |
+| **ResourceTypes** *(v1.4+)* [ ] | array (string, null) | *Recommended (Read-only)* | The list of resource type values (schema names) that correspond to the `OriginOfCondition`.  The version and full namespace should not be specified. |
 | **SubordinateResources** *(v1.4+)* | boolean | *Recommended (Read-only)* | An indication of whether the subscription is for events in the `OriginResources` array and its subordinate resources.  If `true` and the `OriginResources` array is specified, the subscription is for events in the `OriginResources` array and its subordinate resources.  Note that resources associated through the Links section are not considered subordinate.  If `false` and the `OriginResources` array is specified, the subscription is for events in the `OriginResources` array only.  If the `OriginResources` array is not present, this property has no relevance. |
 | **SubscriptionType** *(v1.3+)* | string<br>(enum) | *Mandatory (Read-only)* | The subscription type for events. *For the possible property values, see SubscriptionType in Property details.* |
 
@@ -2657,7 +2673,7 @@ The subscription type for events.
 
 ```json
 {
-    "@odata.type": "#EventDestination.v1_14_1.EventDestination",
+    "@odata.type": "#EventDestination.v1_15_1.EventDestination",
     "Id": "1",
     "Name": "WebUser3 subscribes to all Redfish events",
     "Destination": "http://www.dnsname.com/Destination1",
@@ -2683,7 +2699,7 @@ The subscription type for events.
 
 
 
-## <a name="eventservice-1.10.2"></a>EventService 1.10.2
+## <a name="eventservice-1.10.3"></a>EventService 1.10.3
 
 |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -2699,8 +2715,8 @@ The subscription type for events.
 
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
-| **ExcludeMessageId** *(v1.8+)* | boolean | *Recommended (Read-only)* | An indication of whether the service supports filtering by the `ExcludeMessageIds` property. |
-| **ExcludeRegistryPrefix** *(v1.8+)* | boolean | *Recommended (Read-only)* | An indication of whether the service supports filtering by the `ExcludeRegistryPrefixes` property. |
+| **ExcludeMessageId** *(v1.8+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `ExcludeMessageIds` property. |
+| **ExcludeRegistryPrefix** *(v1.8+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports filtering by the `ExcludeRegistryPrefixes` property. |
 | **IncludeOriginOfConditionSupported** *(v1.6+)* | boolean | *Mandatory (Read-only)* | An indication of whether the service supports including the resource payload of the origin of condition in the event payload. |
 | **RegistryPrefixes** *(v1.2+)* [ ] | array (string, null) | *Recommended (Read-only)* | The list of the prefixes of the message registries that can be used for the `RegistryPrefixes` or `ExcludeRegistryPrefixes` properties on a subscription.  If this property is absent or contains an empty array, the service does not support registry prefix-based subscriptions. **PDU should support event subscriptions based on Power, SensorEvent, and Update messages.  Note that many PDU models should also support the Environmental registry if it offers temperature or humidity sensors (typically as accessories).** |
 | **ResourceTypes** *(v1.2+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The list of `@odata.type` values, or schema names, that can be specified in the `ResourceTypes` array in a subscription.  If this property is absent or contains an empty array, the service does not support resource type-based subscriptions. |
@@ -2815,7 +2831,7 @@ The severity for the event to add.
 
 ```json
 {
-    "@odata.type": "#EventService.v1_10_2.EventService",
+    "@odata.type": "#EventService.v1_10_3.EventService",
     "Id": "EventService",
     "Name": "Event Service",
     "Status": {
@@ -3097,23 +3113,16 @@ The network protocol that the license service uses to retrieve the license file 
 
 
 
-## <a name="logentry-1.16.2"></a>LogEntry 1.16.2
+## <a name="logentry-1.17.0"></a>LogEntry 1.17.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *...* |
-| **Release** | 2023.3 | 2023.1 | 2022.3 | 2022.2 | 2022.1 | 2021.4 | 2021.3 | 2021.1 | 2020.4 | 2020.3 | 2020.1 | ... |
+| **Version** | *v1.17* | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *...* |
+| **Release** | 2024.3 | 2023.3 | 2023.1 | 2022.3 | 2022.2 | 2022.1 | 2021.4 | 2021.3 | 2021.1 | 2020.4 | 2020.3 | ... |
 
 ### URIs
 
-/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;LogServices/&#8203;*{LogServiceId}*/&#8203;Entries/&#8203;*{LogEntryId}*<br>
-/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;PCIeDevices/&#8203;*{PCIeDeviceId}*/&#8203;CXLLogicalDevices/&#8203;*{CXLLogicalDeviceId}*/&#8203;DeviceLog/&#8203;Entries/&#8203;*{LogEntryId}*<br>
-/&#8203;redfish/&#8203;v1/&#8203;JobService/&#8203;Log/&#8203;Entries/&#8203;*{LogEntryId}*<br>
 /&#8203;redfish/&#8203;v1/&#8203;Managers/&#8203;*{ManagerId}*/&#8203;LogServices/&#8203;*{LogServiceId}*/&#8203;Entries/&#8203;*{LogEntryId}*<br>
-/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;LogServices/&#8203;*{LogServiceId}*/&#8203;Entries/&#8203;*{LogEntryId}*<br>
-/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;Memory/&#8203;*{MemoryId}*/&#8203;DeviceLog/&#8203;Entries/&#8203;*{LogEntryId}*<br>
-/&#8203;redfish/&#8203;v1/&#8203;TelemetryService/&#8203;LogService/&#8203;Entries/&#8203;*{LogEntryId}*<br>
-\* Note: Some URIs omitted for brevity, refer to schema for the complete list.<br>
 
 
 ### Properties
@@ -3155,7 +3164,7 @@ The severity of the log entry.
 
 ```json
 {
-    "@odata.type": "#LogEntry.v1_16_1.LogEntry",
+    "@odata.type": "#LogEntry.v1_17_0.LogEntry",
     "Id": "1",
     "Name": "Log Entry 1",
     "EntryType": "Event",
@@ -3187,14 +3196,7 @@ The severity of the log entry.
 
 ### URIs
 
-/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;LogServices/&#8203;*{LogServiceId}*<br>
-/&#8203;redfish/&#8203;v1/&#8203;Chassis/&#8203;*{ChassisId}*/&#8203;PCIeDevices/&#8203;*{PCIeDeviceId}*/&#8203;CXLLogicalDevices/&#8203;*{CXLLogicalDeviceId}*/&#8203;DeviceLog<br>
-/&#8203;redfish/&#8203;v1/&#8203;JobService/&#8203;Log<br>
 /&#8203;redfish/&#8203;v1/&#8203;Managers/&#8203;*{ManagerId}*/&#8203;LogServices/&#8203;*{LogServiceId}*<br>
-/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;LogServices/&#8203;*{LogServiceId}*<br>
-/&#8203;redfish/&#8203;v1/&#8203;Systems/&#8203;*{ComputerSystemId}*/&#8203;Memory/&#8203;*{MemoryId}*/&#8203;DeviceLog<br>
-/&#8203;redfish/&#8203;v1/&#8203;TelemetryService/&#8203;LogService<br>
-\* Note: Some URIs omitted for brevity, refer to schema for the complete list.<br>
 
 
 ### Properties
@@ -3202,7 +3204,7 @@ The severity of the log entry.
 |Property     |Type     |Attributes   |Notes     |
 | :--- | :--- | :--- | :--------------------- |
 | **DateTime** | string<br>(date-time) | *Mandatory (Read)* | The current date and time with UTC offset of the log service. |
-| **DateTimeLocalOffset** | string | *Mandatory (Read)* | The time offset from UTC that the `DateTime` property is in `+HH:MM` format. |
+| **DateTimeLocalOffset** | string | *Recommended (Read)* | The time offset from UTC that the `DateTime` property is in `+HH:MM` format. |
 | **Entries** { | object | *Mandatory (Read-only)* | The link to the log entry collection. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | } |   |   |
@@ -3304,12 +3306,12 @@ The purposes of the log.
 
 
 
-## <a name="manager-1.19.1"></a>Manager 1.19.1
+## <a name="manager-1.20.0"></a>Manager 1.20.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.19* | *v1.18* | *v1.17* | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *...* |
-| **Release** | 2023.3 | 2023.1 | 2022.3 | 2022.2 | 2022.1 | 2021.4 | 2021.2 | 2021.1 | 2020.4 | 2020.3 | 2020.2 | ... |
+| **Version** | *v1.20* | *v1.19* | *v1.18* | *v1.17* | *v1.16* | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *...* |
+| **Release** | 2024.4 | 2023.3 | 2023.1 | 2022.3 | 2022.2 | 2022.1 | 2021.4 | 2021.2 | 2021.1 | 2020.4 | 2020.3 | ... |
 
 ### URIs
 
@@ -3372,6 +3374,9 @@ The purposes of the log.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HotPluggable** *(v1.21+)* | boolean | *Mandatory (Read-only)* | An indication of whether this component can be inserted or removed while the equipment is in operation. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**IndicatorLED** *(deprecated v1.14)* | string<br>(enum) | *Mandatory (Read)* | The state of the indicator LED, which identifies the chassis. *For the possible property values, see IndicatorLED in Property details.* *Deprecated in v1.14 and later. This property has been deprecated in favor of the `LocationIndicatorActive` property.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LeakDetectors** *(v1.26+)* { | object | *Mandatory (Read-only)* | The link to the collection of leak detectors located in this chassis. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Links** { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Cables** *(v1.17+)* [ { | array | *Mandatory (Read-only)* | An array of links to the cables connected to this chassis. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
@@ -3881,12 +3886,13 @@ The type of reset.
 | ForceOff | Turn off the unit immediately (non-graceful shutdown). |  |
 | ForceOn | Turn on the unit immediately. |  |
 | ForceRestart | Shut down immediately and non-gracefully and restart the unit. | Mandatory |
+| FullPowerCycle | Full power cycle the unit.  Behaves like removing utility lines, followed by restoring utility lines to the resource. |  |
 | GracefulRestart | Shut down gracefully and restart the unit. |  |
 | GracefulShutdown | Shut down gracefully and power off. |  |
 | Nmi | Generate a diagnostic interrupt, which is usually an NMI on x86 systems, to stop normal operations, complete diagnostic actions, and, typically, halt the system. |  |
 | On | Turn on the unit. |  |
 | Pause | Pause execution on the unit but do not remove power.  This is typically a feature of virtual machine hypervisors. |  |
-| PowerCycle | Power cycle the unit.  Behaves like a full power removal, followed by a power restore to the resource. |  |
+| PowerCycle | Power cycle the unit.  Behaves like a power removal, followed by a power restore to the resource. |  |
 | PushPowerButton | Simulate the pressing of the physical power button on this unit. |  |
 | Resume | Resume execution on the paused unit.  This is typically a feature of virtual machine hypervisors. |  |
 | Suspend | Write the state of the unit to disk before powering off.  This allows for the state to be restored when powered back on. |  |
@@ -3927,7 +3933,7 @@ Indicates the thermal management path through the chassis.
 
 ```json
 {
-    "@odata.type": "#Manager.v1_19_1.Manager",
+    "@odata.type": "#Manager.v1_20_0.Manager",
     "Id": "BMC",
     "Name": "Manager",
     "ManagerType": "BMC",
@@ -3938,6 +3944,7 @@ Indicates the thermal management path through the chassis.
     "FirmwareVersion": "4.4.6521",
     "DateTime": "2015-03-13T04:14:33+06:00",
     "DateTimeLocalOffset": "+06:00",
+    "DateTimeSource": "NTP",
     "Status": {
         "State": "Enabled",
         "Health": "OK"
@@ -4006,12 +4013,12 @@ Indicates the thermal management path through the chassis.
 
 
 
-## <a name="manageraccount-1.12.1"></a>ManagerAccount 1.12.1
+## <a name="manageraccount-1.13.0"></a>ManagerAccount 1.13.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *...* |
-| **Release** | 2023.3 | 2023.2 | 2022.3 | 2022.1 | 2021.1 | 2020.4 | 2020.1 | 2019.4 | 2019.3 | 2019.1 | 2018.3 | ... |
+| **Version** | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *...* |
+| **Release** | 2024.3 | 2023.3 | 2023.2 | 2022.3 | 2022.1 | 2021.1 | 2020.4 | 2020.1 | 2019.4 | 2019.3 | 2019.1 | ... |
 
 ### URIs
 
@@ -4091,7 +4098,7 @@ The Redfish privileges for this role.
 
 ```json
 {
-    "@odata.type": "#ManagerAccount.v1_12_1.ManagerAccount",
+    "@odata.type": "#ManagerAccount.v1_13_0.ManagerAccount",
     "Id": "1",
     "Name": "User Account",
     "Description": "User Account",
@@ -4150,7 +4157,6 @@ The Redfish privileges for this role.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProtocolEnabled** | boolean | *Mandatory (Read)* | An indication of whether the protocol is enabled. |
 | } |   |   |
 | **NTP** *(v1.2+)* { | object | *If Implemented (Read)* | The settings for this manager's NTP protocol support. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkSuppliedServers** *(v1.9+)* [ ] | array (string, null) | *Mandatory (Read-only)* | The NTP servers supplied by other network protocols to this manager. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NTPServers** *(v1.2+)* [ ] | array (string, null) | *Mandatory (Read)* | Indicates to which user-supplied NTP servers this manager is subscribed. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Port** | integer | *Mandatory (Read)* | The protocol port. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ProtocolEnabled** | boolean | *Mandatory (Read)* | An indication of whether the protocol is enabled. |
@@ -4275,6 +4281,7 @@ The IPv6 scope for multicast NOTIFY messages for SSDP.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Context** *(v1.5+)* | string | *Mandatory (Read-only)* | A client-supplied string that is stored with the session. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CreatedTime** *(v1.4+)* | string<br>(date-time) | *Mandatory (Read-only)* | The date and time when the session was created. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ExpirationTime** *(v1.8+)* | string<br>(date-time) | *Mandatory (Read-only)* | The date and time when the session expires regardless of session activity. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Links** *(v1.7+)* { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
@@ -4304,6 +4311,9 @@ The IPv6 scope for multicast NOTIFY messages for SSDP.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Message** | string | *Mandatory (Read-only)* | The human-readable message for this condition. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MessageArgs** [ ] | array (string) | *Mandatory (Read-only)* | An array of message arguments that are substituted for the arguments in the message when looked up in the message registry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MessageId** | string | *Mandatory (Read-only)* | The identifier for the message. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.21+)* { | object | *Mandatory (Read)* | The OEM extension property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**(pattern)** {} | object | *Mandatory (Read)* | Property names follow regular expression pattern "^\[A\-Za\-z0\-9\_\]\+$" |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OriginOfCondition** { | object | *Mandatory (Read-only)* | A link to the resource or object that originated the condition. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
@@ -4311,6 +4321,8 @@ The IPv6 scope for multicast NOTIFY messages for SSDP.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ResolutionSteps** *(v1.18+)* [ { } ] | array (object) | *Mandatory (Read)* | The list of recommended steps to resolve the condition. See the *v1_0_1.v1_0_1* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Severity** | string<br>(enum) | *Mandatory (Read-only)* | The severity of the condition. *For the possible property values, see Severity in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Timestamp** | string<br>(date-time) | *Mandatory (Read-only)* | The time the condition occurred. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UserAuthenticationSource** *(v1.20+)* | string | *Mandatory (Read-only)* | The source of authentication for the username property associated with the condition. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.20+)* | string | *Mandatory (Read-only)* | The username of the account associated with the condition. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Health** | string<br>(enum) | *Mandatory (Read-only)* | The health state of this resource in the absence of its dependent resources. *For the possible property values, see Health in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HealthRollup** | string<br>(enum) | *Mandatory (Read-only)* | The overall health state from the view of this resource. *For the possible property values, see HealthRollup in Property details.* |
@@ -4726,7 +4738,7 @@ The type of voltage applied to the outlet.
 
 ```json
 {
-    "@odata.type": "#Outlet.v1_4_3.Outlet",
+    "@odata.type": "#Outlet.v1_4_4.Outlet",
     "Id": "A1",
     "Name": "Outlet A1, Branch Circuit A",
     "Status": {
@@ -4821,125 +4833,35 @@ The type of voltage applied to the outlet.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Chassis** [ { | array | *Mandatory (Read-only)* | An array of links to the chassis that contain this equipment. **Must provide a link to the Chassis resource that represents the physical location data and placement.** |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagedBy** [ { | array | *Recommended (Read-only)* | An array of links to the managers responsible for managing this equipment. **Provide link to the manager since one manager may be shared among several PDU instances** |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.context** | string<br>(URI) | *Mandatory (Read-only)* | The OData description of a payload. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagedBy** [ { | array | *Mandatory (Read-only)* | An array of links to the managers responsible for managing this equipment. **Provide link to the manager since one manager may be shared among several PDU instances** |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AdditionalFirmwareVersions** *(v1.15+)* { | object | *Mandatory (Read)* | The additional firmware versions of the manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Bootloader** *(v1.7+)* | string | *Mandatory (Read-only)* | The bootloader version contained in this software, such as U-Boot or UEFI. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Kernel** *(v1.7+)* | string | *Mandatory (Read-only)* | The kernel version contained in this software. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Microcode** *(v1.7+)* | string | *Mandatory (Read-only)* | The microcode version contained in this software, such as processor microcode. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.7+)* {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OSDistribution** *(v1.8+)* | string | *Mandatory (Read-only)* | The operating system name of this software. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AutoDSTEnabled** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether the manager is configured for automatic Daylight Saving Time (DST) adjustment. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Certificates** *(v1.13+)* {} | object | *Mandatory (Read-only)* | The link to a collection of certificates for device identity and attestation. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**CommandShell** { | object | *Mandatory (Read)* | The command shell service that this manager provides. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ConnectTypesSupported** [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | This property enumerates the command shell connection types that the implementation allows. *For the possible property values, see ConnectTypesSupported in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxConcurrentSessions** | integer | *Mandatory (Read-only)* | The maximum number of service sessions, regardless of protocol, that this manager can support. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEnabled** | boolean | *Mandatory (Read)* | An indication of whether the service is enabled for this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DateTime** | string<br>(date-time) | *Mandatory (Read)* | The current date and time with UTC offset of the manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DateTimeLocalOffset** | string | *Mandatory (Read)* | The time offset from UTC that the `DateTime` property is in `+HH:MM` format. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DaylightSavingTime** *(v1.19+)* { | object | *Mandatory (Read)* | The daylight saving time settings for this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EndDateTime** *(v1.19+)* | string<br>(date-time) | *Mandatory (Read)* | The end date and time with UTC offset of daylight saving time. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OffsetMinutes** *(v1.19+)* | integer | *Mandatory (Read)* | The daylight saving time offset in minutes. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**StartDateTime** *(v1.19+)* | string<br>(date-time) | *Mandatory (Read)* | The start date and time with UTC offset of daylight saving time. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TimeZoneName** *(v1.19+)* | string | *Mandatory (Read)* | The time zone of the manager when daylight saving time is in effect. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DedicatedNetworkPorts** *(v1.16+)* {} | object | *Mandatory (Read)* | The dedicated network ports of the manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EthernetInterfaces** {} | object | *Mandatory (Read-only)* | The link to a collection of NICs that this manager uses for network communication. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FirmwareVersion** | string | *Mandatory (Read-only)* | The firmware version of this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GraphicalConsole** { | object | *Mandatory (Read)* | The information about the graphical console service of this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ConnectTypesSupported** [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | This property enumerates the graphical console connection types that the implementation allows. *For the possible property values, see ConnectTypesSupported in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxConcurrentSessions** | integer | *Mandatory (Read-only)* | The maximum number of service sessions, regardless of protocol, that this manager can support. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEnabled** | boolean | *Mandatory (Read)* | An indication of whether the service is enabled for this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HostInterfaces** *(v1.3+)* {} | object | *Mandatory (Read-only)* | The link to a collection of host interfaces that this manager uses for local host communication.  Clients can find host interface configuration options and settings in this navigation property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LastResetTime** *(v1.9+)* | string<br>(date-time) | *Mandatory (Read-only)* | The date and time when the manager was last reset or rebooted. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Links** { | object | *Mandatory (Read)* | The links to other resources that are related to this resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ActiveSoftwareImage** *(v1.6+)* { | object | *Mandatory (Read)* | The link to the software inventory resource that represents the active firmware image for this manager. See the *SoftwareInventory* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read)* | Link to a SoftwareInventory resource. See the Links section and the *SoftwareInventory* schema for details. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagedBy** *(v1.9+)* [ { | array | *Mandatory (Read-only)* | The array of links to the managers responsible for managing this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to another Manager resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagedBy@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerForChassis** [ { | array | *Mandatory (Read-only)* | An array of links to the chassis this manager controls. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a Chassis resource. See the Links section and the *Chassis* schema for details. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerForChassis@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerForManagers** *(v1.9+)* [ { | array | *Mandatory (Read-only)* | An array of links to the managers that are managed by this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to another Manager resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerForManagers@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerForServers** [ { | array | *Mandatory (Read-only)* | An array of links to the systems that this manager controls. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerForServers@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerForSwitches** *(v1.4+)* [ { | array | *Mandatory (Read-only)* | An array of links to the switches that this manager controls. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerForSwitches@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerInChassis** *(v1.1+)* { | object | *Mandatory (Read-only)* | The link to the chassis where this manager is located. See the *Chassis* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a Chassis resource. See the Links section and the *Chassis* schema for details. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SelectedNetworkPort** *(v1.18+)* {} | object | *Mandatory (Read)* | The network port currently used by this manager.  This allows selection of shared or dedicated ports for managers that support one or the other.  For managers that always have their dedicated port enabled, this allows the selection of which shared port to use. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SoftwareImages** *(v1.6+)* [ { | array | *Mandatory (Read-only)* | The images that are associated with this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a SoftwareInventory resource. See the Links section and the *SoftwareInventory* schema for details. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SoftwareImages@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Location** *(v1.11+)* {} | object | *Mandatory (Read)* | The location of the manager. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocationIndicatorActive** *(v1.11+)* | boolean | *Mandatory (Read)* | An indicator allowing an operator to physically locate this resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LogServices** {} | object | *Mandatory (Read-only)* | The link to a collection of logs that the manager uses. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerDiagnosticData** *(v1.14+)* {} | object | *Mandatory (Read-only)* | The diagnostic data for this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ManagerType** | string<br>(enum) | *Mandatory (Read-only)* | The type of manager that this resource represents. *For the possible property values, see ManagerType in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Manufacturer** *(v1.7+)* | string | *Mandatory (Read-only)* | The manufacturer of this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Measurements** *(v1.13+, deprecated v1.14)* [ { | array | *Mandatory (Read)* | An array of DSP0274-defined measurement blocks. *Deprecated in v1.14 and later. This property has been deprecated in favor of the `ComponentIntegrity` resource.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a MeasurementBlock resource. See the Links section and the *SoftwareInventory* schema for details. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Model** | string | *Mandatory (Read-only)* | The model information of this manager, as defined by the manufacturer. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NetworkProtocol** { | object | *Mandatory (Read-only)* | The link to the network services and their settings that the manager controls. See the *ManagerNetworkProtocol* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a ManagerNetworkProtocol resource. See the Links section and the *ManagerNetworkProtocol* schema for details. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** {} | object | *Mandatory (Read)* | The OEM extension property. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PartNumber** *(v1.7+)* | string | *Mandatory (Read-only)* | The part number of the manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PowerState** *(v1.2+)* | string<br>(enum) | *Mandatory (Read-only)* | The current power state of the manager. *For the possible property values, see PowerState in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Redundancy** [ { | array | *Mandatory (Read)* | The redundancy information for the managers of this system. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Redundancy@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteAccountService** *(v1.5+)* { | object | *Mandatory (Read-only)* | The link to the account service resource for the remote manager that this resource represents. See the *AccountService* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string | *Mandatory (Read-only)* | Link to a AccountService resource. See the Links section and the *AccountService* schema for details. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRedfishServiceUri** *(v1.5+)* | string<br>(URI) | *Mandatory (Read-only)* | The URI of the Redfish service root for the remote manager that this resource represents. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecurityPolicy** *(v1.16+)* {} | object | *Mandatory (Read-only)* | The security policy settings for this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SerialConsole** *(deprecated v1.10)* { | object | *Mandatory (Read)* | The serial console service that this manager provides. *Deprecated in v1.10 and later. This property has been deprecated in favor of the `SerialConsole` property in the `ComputerSystem` resource.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ConnectTypesSupported** [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | This property enumerates the serial console connection types that the implementation allows. *For the possible property values, see ConnectTypesSupported in Property details.* |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxConcurrentSessions** | integer | *Mandatory (Read-only)* | The maximum number of service sessions, regardless of protocol, that this manager can support. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEnabled** | boolean | *Mandatory (Read)* | An indication of whether the service is enabled for this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SerialInterfaces** {} | object | *Mandatory (Read-only)* | The link to a collection of serial interfaces that this manager uses for serial and console communication. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SerialNumber** *(v1.7+)* | string | *Mandatory (Read-only)* | The serial number of the manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceEntryPointUUID** | string<br>(uuid) | *Mandatory (Read-only)* | The UUID of the Redfish service that is hosted by this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServiceIdentification** *(v1.15+)* | string | *Mandatory (Read)* | A product instance identifier displayed in the Redfish service root. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SharedNetworkPorts** *(v1.16+)* {} | object | *Mandatory (Read)* | The shared network ports of the manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SparePartNumber** *(v1.11+)* | string | *Mandatory (Read-only)* | The spare part number of the manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Status** {} | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. See the *Resource* schema for details on this property. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TimeZoneName** *(v1.10+)* | string | *Mandatory (Read)* | The time zone of the manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**USBPorts** *(v1.12+)* {} | object | *Mandatory (Read)* | The USB ports of the manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UUID** | string<br>(uuid) | *Mandatory (Read-only)* | The UUID for this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Version** *(v1.17+)* | string | *Mandatory (Read-only)* | The hardware version of this manager. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VirtualMedia** *(deprecated v1.10)* {} | object | *Mandatory (Read-only)* | The link to the virtual media services for this particular manager. *Deprecated in v1.10 and later. This property has been deprecated in favor of the `VirtualMedia` property in the `ComputerSystem` resource.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
 | } |   |   |
+| **Location** { | object | *Mandatory (Read)* | The location of the equipment. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Contacts** *(v1.7+)* [ { | array | *Recommended (Read),Mandatory (Read/Write)* | An array of contact information. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ContactName** *(v1.7+)* | string | *Mandatory (Read)* | Name of this contact. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EmailAddress** *(v1.7+)* | string | *Mandatory (Read)* | Email address for this contact. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PhoneNumber** *(v1.7+)* | string | *Mandatory (Read)* | Phone number for this contact. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Placement** *(v1.3+)* { | object | *Mandatory (Read)* | A place within the addressed location. **Allow user to specify the rack-level physical location of the PDU.** |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Rack** *(v1.3+)* | string | *Mandatory (Read/Write)* | The name of a rack location within a row. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RackOffset** *(v1.3+)* | integer | *Recommended (Read),Mandatory (Read/Write)* | The vertical location of the item, in terms of RackOffsetUnits. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RackOffsetUnits** *(v1.3+)* | string<br>(enum) | *Recommended (Read/Write)* | The type of rack units in use. *For the possible property values, see RackOffsetUnits in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Row** *(v1.3+)* | string | *Recommended (Read),Mandatory (Read/Write)* | The name of the row. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| } |   |   |
 | **Mains** {} | object | *Mandatory (Read-only)* | A link to the power input circuits for this equipment. |
+| **MainsRedundancy** *(v1.1+)* { | object | *If Implemented (Read)* | The redundancy information for the mains (input) circuits for this equipment. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GroupName** *(v1.5+)* | string | *Mandatory (Read-only)* | The name of the redundant group. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxSupportedInGroup** *(v1.4+)* | integer | *Mandatory (Read-only)* | The maximum number of devices supported in this redundancy group. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MinNeededInGroup** *(v1.4+)* | integer | *Mandatory (Read-only)* | The minimum number of devices needed for this group to be redundant. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RedundancyGroup** *(v1.4+)* [ { | array | *Mandatory (Read-only)* | The links to the devices included in this redundancy group. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ] |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RedundancyGroup@odata.count** | integer | *Mandatory (Read-only)* | The number of items in a collection. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RedundancyType** *(v1.4+)* | string<br>(enum) | *Mandatory (Read)* | The redundancy mode of the group. *For the possible property values, see RedundancyType in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Status** *(v1.4+)* {} | object | *Mandatory (Read)* | The status and health of the resource and its subordinate or dependent resources. See the *Resource* schema for details on this property. |
+| } |   |   |
 | **Manufacturer** | string | *Mandatory (Read-only)* | The manufacturer of this equipment. |
 | **Metrics** { | object | *Mandatory (Read-only)* | A link to the summary metrics for this equipment. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
@@ -4958,39 +4880,6 @@ The type of voltage applied to the outlet.
 | **Version** | string | *Recommended (Read-only)* | The hardware version of this equipment. |
 
 ### Property details
-
-#### ConnectTypesSupported
-
-##### In Links: ManagedBy: CommandShell:
-
-This property enumerates the command shell connection types that the implementation allows.
-
-| string | Description | Profile Specifies |
-| :--- | :------ | :--- |
-| IPMI | The controller supports a command shell connection through the IPMI Serial Over LAN (SOL) protocol. |  |
-| Oem | The controller supports a command shell connection through an OEM-specific protocol. |  |
-| SSH | The controller supports a command shell connection through the SSH protocol. |  |
-| Telnet | The controller supports a command shell connection through the Telnet protocol. |  |
-
-##### In Links: ManagedBy: GraphicalConsole:
-
-This property enumerates the graphical console connection types that the implementation allows.
-
-| string | Description | Profile Specifies |
-| :--- | :------ | :--- |
-| KVMIP | The controller supports a graphical console connection through a KVM-IP (redirection of Keyboard, Video, Mouse over IP) protocol. |  |
-| Oem | The controller supports a graphical console connection through an OEM-specific protocol. |  |
-
-##### In Links: ManagedBy: SerialConsole:
-
-This property enumerates the serial console connection types that the implementation allows.
-
-| string | Description | Profile Specifies |
-| :--- | :------ | :--- |
-| IPMI | The controller supports a serial console connection through the IPMI Serial Over LAN (SOL) protocol. |  |
-| Oem | The controller supports a serial console connection through an OEM-specific protocol. |  |
-| SSH | The controller supports a serial console connection through the SSH protocol. |  |
-| Telnet | The controller supports a serial console connection through the Telnet protocol. |  |
 
 #### EquipmentType
 
@@ -5022,30 +4911,26 @@ The health state of this resource in the absence of its dependent resources.
 |     |     |     |     |
 | :--- | :--- | :--- | :---------------------------------------- |
 | **@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
-#### ManagerType
+#### RackOffsetUnits
 
-The type of manager that this resource represents.
-
-| string | Description | Profile Specifies |
-| :--- | :------ | :--- |
-| AuxiliaryController | A controller that provides management functions for a particular subsystem or group of devices as part of a larger system. |  |
-| BMC | A controller that provides management functions for one or more computer systems.  Commonly known as a BMC (baseboard management controller).  Examples of this include a BMC dedicated to one system or a multi-host manager providing BMC capabilities to multiple systems. |  |
-| EnclosureManager | A controller that provides management functions for a chassis, group of devices, or group of systems with their own BMCs (baseboard management controllers).  An example of this is a manager that aggregates and orchestrates management functions across multiple BMCs in an enclosure. |  |
-| ManagementController | A controller that primarily monitors or manages the operation of a device or system. |  |
-| RackManager | A controller that provides management functions for a whole or part of a rack.  An example of this is a manager that aggregates and orchestrates management functions across multiple managers, such as enclosure managers and BMCs (baseboard management controllers), in a rack. |  |
-| Service *(v1.4+)* | A software-based service that provides management functions. |  |
-
-#### PowerState
-
-The current power state of the manager.
+The type of rack units in use.
 
 | string | Description | Profile Specifies |
 | :--- | :------ | :--- |
-| Off | The resource is powered off.  The components within the resource might continue to have AUX power. |  |
-| On | The resource is powered on. |  |
-| Paused | The resource is paused. |  |
-| PoweringOff | A temporary state between on and off.  The components within the resource can take time to process the power off action. |  |
-| PoweringOn | A temporary state between off and on.  The components within the resource can take time to process the power on action. |  |
+| EIA_310 | A rack unit that is equal to 1.75 in (44.45 mm). |  |
+| OpenU | A rack unit that is equal to 48 mm (1.89 in). |  |
+
+#### RedundancyType
+
+The redundancy mode of the group.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| Failover | Failure of one unit automatically causes a standby or offline unit in the redundancy set to take over its functions. |  |
+| NotRedundant | The subsystem is not configured in a redundancy mode, either due to configuration or the functionality has been disabled by the user. |  |
+| NPlusM | Multiple units are available and active such that normal operation will continue if one or more units fail. |  |
+| Sharing | Multiple units contribute or share such that operation will continue, but at a reduced capacity, if one or more units fail. |  |
+| Sparing | One or more spare units are available to take over the function of a failed unit, but takeover is not automatic. |  |
 
 #### State
 
@@ -5159,6 +5044,30 @@ The state of the resource.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ReactiveVAR** | number<br>(V.A) | *Mandatory (Read-only)* | The square root of the difference term of squared apparent VA and squared power (Reading) for a circuit, in VAR units. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Reading** | number | *Mandatory (Read-only)* | The sensor value. |
 | } |   |   |
+
+### Actions
+
+#### ResetMetrics
+
+
+**Description**
+
+
+This action resets the summary metrics related to this equipment.
+
+
+**Action URI**
+
+
+
+*{Base URI of target resource}*/Actions/PowerDistributionMetrics.ResetMetrics
+
+
+**Action parameters**
+
+
+This action takes no parameters.
+
 ### Example response
 
 
@@ -5312,7 +5221,7 @@ The type of registered client.
 
 
 
-## <a name="role-1.3.2"></a>Role 1.3.2
+## <a name="role-1.3.3"></a>Role 1.3.3
 
 |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- |
@@ -5358,7 +5267,7 @@ The Redfish privileges for this role.
 
 ```json
 {
-    "@odata.type": "#Role.v1_3_2.Role",
+    "@odata.type": "#Role.v1_3_3.Role",
     "Id": "Administrator",
     "Name": "User Role",
     "Description": "Admin User Role",
@@ -5380,7 +5289,7 @@ The Redfish privileges for this role.
 
 
 
-## <a name="sensor-1.10.0"></a>Sensor 1.10.0
+## <a name="sensor-1.10.1"></a>Sensor 1.10.1
 
 |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -5516,7 +5425,7 @@ The type of sensor.
 
 ```json
 {
-    "@odata.type": "#Sensor.v1_9_0.Sensor",
+    "@odata.type": "#Sensor.v1_10_1.Sensor",
     "Id": "CabinetTemp",
     "Name": "Rack Temperature",
     "ReadingType": "Temperature",
@@ -5576,6 +5485,9 @@ The type of sensor.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Message** | string | *Mandatory (Read-only)* | The human-readable message for this condition. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MessageArgs** [ ] | array (string) | *Mandatory (Read-only)* | An array of message arguments that are substituted for the arguments in the message when looked up in the message registry. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MessageId** | string | *Mandatory (Read-only)* | The identifier for the message. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Oem** *(v1.21+)* { | object | *Mandatory (Read)* | The OEM extension property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**(pattern)** {} | object | *Mandatory (Read)* | Property names follow regular expression pattern "^\[A\-Za\-z0\-9\_\]\+$" |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OriginOfCondition** { | object | *Mandatory (Read-only)* | A link to the resource or object that originated the condition. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
@@ -5583,6 +5495,8 @@ The type of sensor.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ResolutionSteps** *(v1.18+)* [ { } ] | array (object) | *Mandatory (Read)* | The list of recommended steps to resolve the condition. See the *v1_0_1.v1_0_1* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Severity** | string<br>(enum) | *Mandatory (Read-only)* | The severity of the condition. *For the possible property values, see Severity in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Timestamp** | string<br>(date-time) | *Mandatory (Read-only)* | The time the condition occurred. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UserAuthenticationSource** *(v1.20+)* | string | *Mandatory (Read-only)* | The source of authentication for the username property associated with the condition. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.20+)* | string | *Mandatory (Read-only)* | The username of the account associated with the condition. |
 | } ] |   |   |
 | **HealthRollup** | string<br>(enum) | *Mandatory (Read-only)* | The health roll-up for all resources. *For the possible property values, see HealthRollup in Property details.* |
 
@@ -5709,6 +5623,8 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the `Password` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Priority** *(v1.8+)* | integer | *Mandatory (Read)* | The authentication priority for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRoleMapping** *(v1.3+)* [ { | array | *Mandatory (Read)* | The mapping rules to convert the external account providers account information to the local Redfish role. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalAccountTypes** *(v1.16+)* [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The list of local services in the manager that the remote user or group is allowed to access. *For the possible property values, see LocalAccountTypes in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalOEMAccountTypes** *(v1.16+)* [ ] | array (string, null) | *Mandatory (Read)* | The OEM account types for the remote user or group. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalRole** *(v1.3+)* | string | *Mandatory (Read)* | The name of the local Redfish role to which to map the remote user or group. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MFABypass** *(v1.12+)* { | object | *Mandatory (Read)* | The multi-factor authentication bypass settings. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BypassTypes** *(v1.12+)* [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The types of multi-factor authentication this account or role mapping is allowed to bypass. *For the possible property values, see BypassTypes in Property details.* |
@@ -5731,6 +5647,7 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AdditionalExternalAccountProviders** *(v1.3+)* {} | object | *Mandatory (Read-only)* | The additional external account providers that this account service uses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AuthFailureLoggingThreshold** | integer | *Mandatory (Read)* | The number of authorization failures per account that are allowed before the failed attempt is logged to the manager log. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EnforcePasswordHistoryCount** *(v1.17+)* | integer | *Mandatory (Read)* | The number of unique new passwords that need to be associated with a user account before a previous password is accepted when modifying the password.  If `0`, a user does not need to provide a unique new password. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HTTPBasicAuth** *(v1.15+)* | string<br>(enum) | *Mandatory (Read)* | Indicates if HTTP Basic authentication is enabled for this service. *For the possible property values, see HTTPBasicAuth in Property details.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LDAP** *(v1.3+)* { | object | *Mandatory (Read)* | The first LDAP external account provider that this account service supports. |
@@ -5767,6 +5684,8 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the `Password` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Priority** *(v1.8+)* | integer | *Mandatory (Read)* | The authentication priority for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRoleMapping** *(v1.3+)* [ { | array | *Mandatory (Read)* | The mapping rules to convert the external account providers account information to the local Redfish role. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalAccountTypes** *(v1.16+)* [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The list of local services in the manager that the remote user or group is allowed to access. *For the possible property values, see LocalAccountTypes in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalOEMAccountTypes** *(v1.16+)* [ ] | array (string, null) | *Mandatory (Read)* | The OEM account types for the remote user or group. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalRole** *(v1.3+)* | string | *Mandatory (Read)* | The name of the local Redfish role to which to map the remote user or group. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MFABypass** *(v1.12+)* { | object | *Mandatory (Read)* | The multi-factor authentication bypass settings. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BypassTypes** *(v1.12+)* [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The types of multi-factor authentication this account or role mapping is allowed to bypass. *For the possible property values, see BypassTypes in Property details.* |
@@ -5796,12 +5715,12 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Enabled** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether client certificate authentication is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RespondToUnauthenticatedClients** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether the service responds to clients that do not successfully authenticate. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GoogleAuthenticator** *(v1.12+)* { | object | *Mandatory (Read)* | The settings related to Google Authenticator multi-factor authentication. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**GoogleAuthenticator** *(v1.12+)* { | object | *Mandatory (Read)* | The settings related to Google Authenticator multi-factor authentication.  For generic Time-Based One-Time Password (TOTP) multi-factor authentication, use the `TimeBasedOneTimePassword` property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Enabled** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether multi-factor authentication with Google Authenticator is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecretKey** *(v1.12+)* | string | *Mandatory (Read)* | The secret key to use when communicating with the Google Authenticator server.  This property is `null` in responses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecretKeySet** *(v1.12+)* | boolean | *Mandatory (Read-only)* | Indicates if the `SecretKey` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MicrosoftAuthenticator** *(v1.12+)* { | object | *Mandatory (Read)* | The settings related to Microsoft Authenticator multi-factor authentication. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MicrosoftAuthenticator** *(v1.12+)* { | object | *Mandatory (Read)* | The settings related to Microsoft Authenticator multi-factor authentication.  For generic Time-Based One-Time Password (TOTP) multi-factor authentication, use the `TimeBasedOneTimePassword` property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Enabled** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether multi-factor authentication with Microsoft Authenticator is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecretKey** *(v1.12+)* | string | *Mandatory (Read)* | The secret key to use when communicating with the Microsoft Authenticator server.  This property is `null` in responses. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SecretKeySet** *(v1.12+)* | boolean | *Mandatory (Read-only)* | Indicates if the `SecretKey` property is set. |
@@ -5816,6 +5735,10 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ClientSecretSet** *(v1.12+)* | boolean | *Mandatory (Read-only)* | Indicates if the `ClientSecret` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Enabled** *(v1.12+)* | boolean | *Mandatory (Read)* | An indication of whether multi-factor authentication with RSA SecurID is enabled. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ServerURI** *(v1.12+)* | string<br>(URI) | *Mandatory (Read)* | The URI of the RSA SecurID server. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TimeBasedOneTimePassword** *(v1.16+)* { | object | *Mandatory (Read)* | The settings related to Time-based One-Time Password (TOTP) multi-factor authentication. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Enabled** *(v1.16+)* | boolean | *Mandatory (Read)* | An indication of whether multi-factor authentication with a Time-based One-Time Password (TOTP) is enabled. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**TimeStepSeconds** *(v1.16+)* | integer | *Mandatory (Read)* | The time step, in seconds, for calculating the one-time password. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Name** | string | *Mandatory (Read-only)* | The name of the resource or array member. |
@@ -5853,6 +5776,8 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the `Password` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Priority** *(v1.8+)* | integer | *Mandatory (Read)* | The authentication priority for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRoleMapping** *(v1.3+)* [ { | array | *Mandatory (Read)* | The mapping rules to convert the external account providers account information to the local Redfish role. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalAccountTypes** *(v1.16+)* [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The list of local services in the manager that the remote user or group is allowed to access. *For the possible property values, see LocalAccountTypes in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalOEMAccountTypes** *(v1.16+)* [ ] | array (string, null) | *Mandatory (Read)* | The OEM account types for the remote user or group. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalRole** *(v1.3+)* | string | *Mandatory (Read)* | The name of the local Redfish role to which to map the remote user or group. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MFABypass** *(v1.12+)* { | object | *Mandatory (Read)* | The multi-factor authentication bypass settings. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BypassTypes** *(v1.12+)* [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The types of multi-factor authentication this account or role mapping is allowed to bypass. *For the possible property values, see BypassTypes in Property details.* |
@@ -5920,6 +5845,8 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PasswordSet** *(v1.7+)* | boolean | *Mandatory (Read-only)* | Indicates if the `Password` property is set. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Priority** *(v1.8+)* | integer | *Mandatory (Read)* | The authentication priority for the external account provider. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**RemoteRoleMapping** *(v1.3+)* [ { | array | *Mandatory (Read)* | The mapping rules to convert the external account providers account information to the local Redfish role. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalAccountTypes** *(v1.16+)* [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The list of local services in the manager that the remote user or group is allowed to access. *For the possible property values, see LocalAccountTypes in Property details.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalOEMAccountTypes** *(v1.16+)* [ ] | array (string, null) | *Mandatory (Read)* | The OEM account types for the remote user or group. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**LocalRole** *(v1.3+)* | string | *Mandatory (Read)* | The name of the local Redfish role to which to map the remote user or group. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MFABypass** *(v1.12+)* { | object | *Mandatory (Read)* | The multi-factor authentication bypass settings. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**BypassTypes** *(v1.12+)* [ ] | array (string<br>(enum)) | *Mandatory (Read)* | The types of multi-factor authentication this account or role mapping is allowed to bypass. *For the possible property values, see BypassTypes in Property details.* |
@@ -5966,7 +5893,7 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#EventService.SubmitTestEvent** {} | object | *Mandatory (Read)* | This action generates a test event. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**#EventService.TestEventSubscription** *(v1.10+)* {} | object | *Mandatory (Read)* | This action generates a test event using the pre-defined test message. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeliveryRetryAttempts** | integer | *Mandatory (Read)* | The number of times that the `POST` of an event is retried before the subscription terminates.  This retry occurs at the service level, which means that the HTTP `POST` to the event destination fails with an HTTP `4XX` or `5XX` status code or an HTTP timeout occurs this many times before the event destination subscription terminates. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeliveryRetryAttempts** | integer | *Mandatory (Read)* | The number of times that the `POST` of an event is retried before the subscription terminates or is suspended.  This retry occurs at the service level, which means that the HTTP `POST` to the event destination fails with an HTTP `4XX` or `5XX` status code or an HTTP timeout occurs this many times before the event destination subscription terminates or is suspended. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**DeliveryRetryIntervalSeconds** | integer<br>(seconds) | *Mandatory (Read)* | The interval, in seconds, between retry attempts for sending any event. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**EventFormatTypes** *(v1.2+)* [ ] | array (string<br>(enum)) | *Mandatory (Read-only)* | The content types of the message that this service can send to the event destination. *For the possible property values, see EventFormatTypes in Property details.* |
@@ -6102,6 +6029,8 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.etag** | string | *Mandatory (Read-only)* | The current ETag of the resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.type** | string | *Mandatory (Read-only)* | The type of a resource. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AbsoluteSessionTimeout** *(v1.2+)* | integer<br>(seconds) | *Mandatory (Read)* | The maximum number of seconds that a session is open before the service closes the session regardless of activity. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**AbsoluteSessionTimeoutEnabled** *(v1.2+)* | boolean | *Mandatory (Read)* | An indication of whether an absolute session timeout is applied to sessions. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Actions** *(v1.1+)* {} | object | *Mandatory (Read)* | The available actions for this resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Description** | string | *Mandatory (Read-only)* | The description of this resource.  Used for commonality in the schema definitions. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
@@ -6132,8 +6061,8 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**FirmwareInventory** { | object | *Mandatory (Read-only)* | An inventory of firmware. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**@odata.id** | string<br>(URI) | *Mandatory (Read-only)* | The unique identifier for a resource. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUri** *(v1.1+)* | string<br>(URI) | *Mandatory (Read-only)* | The URI used to perform an HTTP or HTTPS push update to the update service.  The format of the message is vendor-specific. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriOptions** *(v1.4+)* { | object | *Mandatory (Read)* | The options for `HttpPushUri`-provided software updates. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUri** *(v1.1+, deprecated v1.15)* | string<br>(URI) | *Mandatory (Read-only)* | The URI used to perform an HTTP or HTTPS push update to the update service.  The format of the message is vendor-specific. *Deprecated in v1.15 and later. This property has been deprecated in favor of the `MultipartHttpPushUri` property.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriOptions** *(v1.4+, deprecated v1.15)* { | object | *Mandatory (Read)* | The options for `HttpPushUri`-provided software updates. *Deprecated in v1.15 and later. This property has been deprecated in favor of the update parameters used with `MultipartHttpPushUri`-provided software updates.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ForceUpdate** *(v1.11+)* | boolean | *Mandatory (Read)* | An indication of whether the service should bypass update policies when applying the `HttpPushUri`-provided image. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriApplyTime** *(v1.4+)* { | object | *Mandatory (Read)* | The settings for when to apply `HttpPushUri`-provided firmware. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ApplyTime** *(v1.4+)* | string<br>(enum) | *Mandatory (Read)* | The time when to apply the `HttpPushUri`-provided software update. *For the possible property values, see ApplyTime in Property details.* |
@@ -6141,9 +6070,9 @@ The severity of the condition.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaintenanceWindowStartTime** *(v1.4+)* | string<br>(date-time) | *Mandatory (Read)* | The start time of a maintenance window. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} |   |   |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriOptionsBusy** *(v1.4+)* | boolean | *Mandatory (Read)* | An indication of whether a client has reserved the `HttpPushUriOptions` properties for software updates. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriTargets** *(v1.2+)* [ ] | array<br>(URI) (string, null) | *Mandatory (Read)* | An array of URIs that indicate where to apply the update image. |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriTargetsBusy** *(v1.2+)* | boolean | *Mandatory (Read)* | An indication of whether any client has reserved the `HttpPushUriTargets` property. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriOptionsBusy** *(v1.4+, deprecated v1.15)* | boolean | *Mandatory (Read)* | An indication of whether a client has reserved the `HttpPushUriOptions` properties for software updates. *Deprecated in v1.15 and later. This property has been deprecated in favor of `MultipartHttpPushUri`-provided software updates.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriTargets** *(v1.2+, deprecated v1.15)* [ ] | array<br>(URI) (string, null) | *Mandatory (Read)* | An array of URIs that indicate where to apply the update image. *Deprecated in v1.15 and later. This property has been deprecated in favor of the update parameters used with `MultipartHttpPushUri`-provided software updates.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HttpPushUriTargetsBusy** *(v1.2+, deprecated v1.15)* | boolean | *Mandatory (Read)* | An indication of whether any client has reserved the `HttpPushUriTargets` property. *Deprecated in v1.15 and later. This property has been deprecated in favor of `MultipartHttpPushUri`-provided software updates.* |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Id** | string | *Mandatory (Read-only)* | The unique identifier for this resource within the collection of similar resources. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MaxImageSizeBytes** *(v1.5+)* | integer<br>(bytes) | *Mandatory (Read-only)* | The maximum size in bytes of the software update image that this service supports. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MultipartHttpPushUri** *(v1.6+)* | string<br>(URI) | *Mandatory (Read-only)* | The URI used to perform a Redfish Specification-defined multipart HTTP or HTTPS push update to the update service. |
@@ -6233,6 +6162,7 @@ The types of multi-factor authentication this account or role mapping is allowed
 | OEM | Bypass OEM-defined multi-factor authentication. |  |
 | OneTimePasscode | Bypass one-time passcode authentication. |  |
 | SecurID | Bypass RSA SecurID. |  |
+| TimeBasedOneTimePassword | Bypass Time-based One-Time Password (TOTP) authentication. |  |
 
 #### CertificateMappingAttribute
 
@@ -6313,6 +6243,22 @@ An indication of how the service uses the accounts collection within this accoun
 | Enabled | The service authenticates users based on the account service-defined accounts collection. |  |
 | Fallback | The service authenticates users based on the account service-defined accounts collection only if any external account providers are currently unreachable. |  |
 | LocalFirst *(v1.6+)* | The service first authenticates users based on the account service-defined accounts collection.  If authentication fails, the service authenticates by using external account providers. |  |
+
+#### LocalAccountTypes
+
+The list of local services in the manager that the remote user or group is allowed to access.
+
+| string | Description | Profile Specifies |
+| :--- | :------ | :--- |
+| HostConsole | Allow access to the host's console, which could be connected through Telnet, SSH, or another protocol. |  |
+| IPMI | Allow access to the Intelligent Platform Management Interface service. |  |
+| KVMIP | Allow access to a Keyboard-Video-Mouse over IP session. |  |
+| ManagerConsole | Allow access to the manager's console, which could be connected through Telnet, SSH, SM CLP, or another protocol. |  |
+| OEM | OEM account type.  See the `OEMAccountTypes` property. |  |
+| Redfish | Allow access to the Redfish service. |  |
+| SNMP | Allow access to SNMP services. |  |
+| VirtualMedia | Allow access to control virtual media. |  |
+| WebUI | Allow access to a web user interface session, such as a graphical interface or another web-based protocol. |  |
 
 #### Mode
 
@@ -6458,12 +6404,12 @@ The image format types supported by the service.
 
 
 
-## <a name="session-1.7.2"></a>Session 1.7.2
+## <a name="session-1.8.0"></a>Session 1.8.0
 
-|     |     |     |     |     |     |     |     |     |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
-| **Release** | 2023.2 | 2022.3 | 2022.2 | 2022.1 | 2020.3 | 2019.1 | 2017.1 | 1.0 |
+|     |     |     |     |     |     |     |     |     |     |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Version** | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *v1.3* | *v1.2* | *v1.1* | *v1.0* |
+| **Release** | 2024.4 | 2023.2 | 2022.3 | 2022.2 | 2022.1 | 2020.3 | 2019.1 | 2017.1 | 1.0 |
 
 ### URIs
 
@@ -6546,7 +6492,7 @@ The type of retry policy for this outbound connection.
 
 ```json
 {
-    "@odata.type": "#Session.v1_7_2.Session",
+    "@odata.type": "#Session.v1_8_0.Session",
     "Id": "1234567890ABCDEF",
     "Name": "User Session",
     "Description": "Manager User Session",
@@ -6557,12 +6503,12 @@ The type of retry policy for this outbound connection.
 
 
 
-## <a name="sessionservice-1.1.9"></a>SessionService 1.1.9
+## <a name="sessionservice-1.2.0"></a>SessionService 1.2.0
 
-|     |     |     |
-| :--- | :--- | :--- |
-| **Version** | *v1.1* | *v1.0* |
-| **Release** | 2016.2 | 1.0 |
+|     |     |     |     |
+| :--- | :--- | :--- | :--- |
+| **Version** | *v1.2* | *v1.1* | *v1.0* |
+| **Release** | 2024.4 | 2016.2 | 1.0 |
 
 ### URIs
 
@@ -6582,7 +6528,7 @@ The type of retry policy for this outbound connection.
 
 ```json
 {
-    "@odata.type": "#SessionService.v1_1_9.SessionService",
+    "@odata.type": "#SessionService.v1_2_0.SessionService",
     "Id": "SessionService",
     "Name": "Session Service",
     "Description": "Session Service",
@@ -6709,6 +6655,8 @@ The format of the version.
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Resolution** | string | *Mandatory (Read-only)* | Used to provide suggestions on how to resolve the situation that caused the message. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**ResolutionSteps** *(v1.2+)* [ { } ] | array (object) | *Mandatory (Read)* | The list of recommended steps to resolve the situation that caused the message. See the *v1_0_1.v1_0_1* schema for details on this property. |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Severity** *(deprecated v1.1)* | string | *Mandatory (Read-only)* | The severity of the message. *Deprecated in v1.1 and later. This property has been deprecated in favor of `MessageSeverity`, which ties the values to the enumerations defined for the `Health` property within `Status`.* |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**UserAuthenticationSource** *(v1.3+)* | string | *Mandatory (Read-only)* | The source of authentication for the username property associated with the message. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Username** *(v1.3+)* | string | *Mandatory (Read-only)* | The username of the account associated with the message. |
 | } ] |   |   |
 | **TaskMonitor** *(v1.2+)* | string<br>(URI) | *Mandatory (Read-only)* | The URI of the task monitor for this task. |
 | **TaskState** | string<br>(enum) | *Mandatory (Read-only)* | The state of the task. *For the possible property values, see TaskState in Property details.* |
@@ -6833,12 +6781,12 @@ The completion status of the task.
 
 
 
-## <a name="updateservice-1.14.0"></a>UpdateService 1.14.0
+## <a name="updateservice-1.15.0"></a>UpdateService 1.15.0
 
 |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Version** | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *v1.4* | *...* |
-| **Release** | 2024.1 | 2023.3 | 2023.2 | 2021.4 | 2021.2 | 2021.1 | 2019.4 | 2019.3 | 2019.2 | 2019.1 | 2018.3 | ... |
+| **Version** | *v1.15* | *v1.14* | *v1.13* | *v1.12* | *v1.11* | *v1.10* | *v1.9* | *v1.8* | *v1.7* | *v1.6* | *v1.5* | *...* |
+| **Release** | 2024.4 | 2024.1 | 2023.3 | 2023.2 | 2021.4 | 2021.2 | 2021.1 | 2019.4 | 2019.3 | 2019.2 | 2019.1 | ... |
 
 ### URIs
 
@@ -6917,7 +6865,7 @@ The network protocol that the update service uses to retrieve the software image
 
 ```json
 {
-    "@odata.type": "#UpdateService.v1_14_0.UpdateService",
+    "@odata.type": "#UpdateService.v1_15_0.UpdateService",
     "Id": "UpdateService",
     "Name": "Update service",
     "Status": {
@@ -6935,7 +6883,7 @@ The network protocol that the update service uses to retrieve the software image
     },
     "Actions": {
         "#UpdateService.SimpleUpdate": {
-            "target": "/redfish/v1/UpdateService/Actions/SimpleUpdate",
+            "target": "/redfish/v1/UpdateService/Actions/UpdateService.SimpleUpdate",
             "@Redfish.ActionInfo": "/redfish/v1/UpdateService/SimpleUpdateActionInfo"
         }
     },

@@ -1,0 +1,23 @@
+{
+    "@odata.context": "/redfish/v1/$metadata#EthernetInterfaceCollection.EthernetInterfaceCollection",
+    "@odata.etag": "W/\"D602A98A\"",
+    "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces",
+    "@odata.type": "#EthernetInterfaceCollection.EthernetInterfaceCollection",
+    "Description": "Collection of System Ethernet Interfaces",
+    "Name": "System Ethernet Interfaces",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/5"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/6"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/141"
+        },
+        {
+            "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/142"
+        }
+    ],
+    "Members@odata.count": 4
+}

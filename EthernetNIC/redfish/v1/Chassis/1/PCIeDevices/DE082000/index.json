@@ -5,19 +5,19 @@
     "Id": "DE082000",
     "AssetTag": null,
     "DeviceType": "MultiFunction",
-    "FirmwareVersion": "4.50 (0x8001D8BB)",
-    "Manufacturer": "Intel Corp.",
-    "Model": "E810",
-    "Name": "E810 Network Adapter",
+    "FirmwareVersion": "4.50",
+    "Manufacturer": "Contoso",
+    "Model": "ABCDEQ",
+    "Name": "Network Adapter",
     "PCIeInterface": {
         "LanesInUse": 16,
         "MaxLanes": 16,
         "MaxPCIeType": "Gen4",
         "PCIeType": "Gen4"
     },
-    "PartNumber": "P41638-001",
-    "SKU": "Intel(R) Ethernet Network Adapter E810-XXVDA4T",
-    "SerialNumber": "507C6FFFFF0A93EC",
+    "PartNumber": "456789",
+    "SKU": "I8976AKLJH",
+    "SerialNumber": "ABCDEFG",
     "Status": {
         "State": "Enabled",
         "Health": "OK"

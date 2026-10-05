@@ -90,9 +90,9 @@
             "Health": "OK",
             "State": "Enabled"
         },
-        "Manufacturer": "Mellanox",
-        "PartNumber": "844483-B21",
-        "SerialNumber": "THY1020240",
+        "Manufacturer": "Contoso",
+        "PartNumber": "844483",
+        "SerialNumber": "20240",
         "MediumType": "FiberOptic",
         "FiberConnectionType": "SingleMode",
         "Type": "SFP28"

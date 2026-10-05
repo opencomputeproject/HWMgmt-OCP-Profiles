@@ -4,6 +4,12 @@
     "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/2",
     "@odata.etag": "W/\"ABB4BAD8\"",
     "Id": "2",
+    "@Redfish.Settings": {
+        "SettingsObject": {
+            "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/NetworkDeviceFunctions/2/Settings"
+        },
+        "@odata.type": "#Settings.v1_3_3.Settings"
+    },		
     "Name": "Network Device Function 2",
     "Status": {
         "Health": "OK",
@@ -36,6 +42,11 @@
         },
         "PhysicalNetworkPortAssignment": {
             "@odata.id": "/redfish/v1/Chassis/1/NetworkAdapters/DE07A000/Ports/2"
-        }
+        },
+        "EthernetInterfaces": [
+            {
+                "@odata.id": "/redfish/v1/Systems/1/EthernetInterfaces/6"
+            }
+        ]
     }
 }

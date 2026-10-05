@@ -1,0 +1,1 @@
+The GPU profile and associated documents have been moved to the [repository](https://github.com/opencomputeproject/ocp-hm-system-gpu-management) owned by the System GPU Management workstream.

@@ -1,3 +1,21 @@
+
+# Version History
+
+| **Date**  | **Version** | **Author** | **Description** |
+| :---      | :---: | :---:      | :--- |
+| 6/15/2021 | 1.0   | John Leung | Initial Baseline usage guide and profile contribution |
+| 11/4/2025 | 1.1   | John Leung | Allow either PowerSubsystem or Power resource |
+|           |       |            | Allow either ThermalSubsystem or Thermal resource |
+|           |       |            | Require the StaticNameServers to be writable |
+|           |       |            | Require power limit to be writeable | 
+
+# License
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+
+![Manageability Architectures](images/CreativeCommonsBYSA.png)
+
+NOTWITHSTANDING THE FOREGOING LICENSES, THIS SPECIFICATION IS PROVIDED BY OCP "AS IS" AND OCP EXPRESSLY DISCLAIMS ANY WARRANTIES (EXPRESS, IMPLIED, OR OTHERWISE), INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, FITNESS FOR A PARTICULAR PURPOSE, OR TITLE, RELATED TO THE SPECIFICATION. NOTICE IS HEREBY GIVEN, THAT OTHER RIGHTS NOT GRANTED AS SET FORTH ABOVE, INCLUDING WITHOUT LIMITATION, RIGHTS OF THIRD PARTIES WHO DID NOT EXECUTE THE ABOVE LICENSES, MAY BE IMPLICATED BY THE IMPLEMENTATION OF OR COMPLIANCE WITH THIS SPECIFICATION. OCP IS NOT RESPONSIBLE FOR IDENTIFYING RIGHTS FOR WHICH A LICENSE MAY BE REQUIRED IN ORDER TO IMPLEMENT THIS SPECIFICATION. THE ENTIRE RISK AS TO IMPLEMENTING OR OTHERWISE USING THE SPECIFICATION IS ASSUMED BY YOU. IN NO EVENT WILL OCP BE LIABLE TO YOU FOR ANY MONETARY DAMAGES WITH RESPECT TO ANY CLAIMS RELATED TO, OR ARISING OUT OF YOUR USE OF THIS SPECIFICATION, INCLUDING BUT NOT LIMITED TO ANY LIABILITY FOR LOST PROFITS OR ANY CONSEQUENTIAL, INCIDENTAL, INDIRECT, SPECIAL OR PUNITIVE DAMAGES OF ANY CHARACTER FROM ANY CAUSES OF ACTION OF ANY KIND WITH RESPECT TO THIS SPECIFICATION, WHETHER BASED ON BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, AND EVEN IF OCP HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 # Scope
 
 This document contains requirements and provide usage examples for the OCP Baseline Hardware Management API v1.1.
@@ -647,14 +665,6 @@ contains type of reset to perform.
 
 \[4\] "[Baseline v1.1 Profile](https://github.com/opencomputeproject/OCP-Profiles/blob/master/OCPBaselineHardwareManagement.v1_1.json)"
 
-# Revision 
 
-| **Revision**  | **Date**      | **Description** |
-| :---          | :---          | :--- |
-| 1.0           | 6/15/2021     | Initial Baseline usage guide and profile contribution |
-| 1.1           | TBD           | Allow either PowerSubsystem or Power resource |
-|               |               | Allow either ThermalSubsystem or Thermal resource |
-|               |               | Require the StaticNameServers to be writable |
-|               |               | Require power limit to be writeable | 
 
 

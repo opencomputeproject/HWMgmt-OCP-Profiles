@@ -80,7 +80,7 @@
     "MaxFrameSize": 9728,
     "LinkTransitionIndicator": 3,
     "MaxSpeedGbps": 25.0,
-    "Name": "E810 Port Current Setting",
+    "Name": "Port Current Setting",
     "PortId": "1",
     "PortType": "BidirectionalPort",
     "Metrics": {
@@ -109,10 +109,10 @@
     ],
     "SFP": {
         "FiberConnectionType": null,
-        "Manufacturer": "TE Connectivity",
+        "Manufacturer": "Contoso",
         "MediumType": "Copper",
-        "PartNumber": "2159287-2",
-        "SerialNumber": "2152400718",
+        "PartNumber": "52159",
+        "SerialNumber": "ANCDEFMOUSE",
         "Status": {
             "Health": null,
             "State": "Enabled"

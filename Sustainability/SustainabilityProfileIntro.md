@@ -6,9 +6,9 @@
 
 This document contains the Redfish interface requirements for reporting Sustainability data. It is intended to apply to any product or device not directly involved with the power distribution infrastructure.  Power distribution products report power and energy using equivalent Redfish resources and properties, which are located in a separate portion of the data model.  Therefore, sustainability reporting requirements for those products are covered by their product-specific profiles.
 
-Profile source: OCP-PDU-Profile.json
+Profile source: OCP-Sustainability-Profile.json
 
-Direct feedback to: jeff.autor@hpe.com
+Direct feedback to: jeff.autor@ocproject.net
 
 
 # Sustainability Use Cases
@@ -93,9 +93,7 @@ Example Location and PhysicalAddress portions of a Chassis instance:
 }
 ```
 
-
-
-# Sustainability Profile Reference Guide
+# Appendix A: Sustainability Profile Reference Guide
 
 To produce this guide, DMTF's [Redfish Documentation Generator](#redfish-documentation-generator) merges DMTF's Redfish Schema bundle (DSP8010) contents with supplemental text.
 

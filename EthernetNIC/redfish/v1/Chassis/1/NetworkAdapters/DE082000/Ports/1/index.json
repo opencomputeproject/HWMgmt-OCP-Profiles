@@ -80,7 +80,7 @@
     "MaxFrameSize": 9728,
     "LinkTransitionIndicator": 0,
     "MaxSpeedGbps": 25.0,
-    "Name": "E810 Port Current Setting",
+    "Name": "Port Current Setting 2",
     "PortId": "2",
     "PortType": "BidirectionalPort",
     "Metrics": {

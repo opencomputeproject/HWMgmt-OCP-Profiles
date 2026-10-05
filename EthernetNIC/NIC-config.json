@@ -1,0 +1,81 @@
+{
+	"description": "OCP NIC Redfish Requirements",
+	"format": "markdown",
+	"import_from": ["../../Redfish-Publications/json-schema"],
+	"outfile": "OCP-NIC-Profile.md",
+	"uri_mapping": {
+		"redfish.dmtf.org/schemas/v1": "../../Redfish-Publications/json-schema"
+	},
+	"payload_dir": "mockups",
+	"profile_uri_to_local": {
+		"redfish.dmtf.org/profiles": "."
+	},
+	"profile_doc": "OCP_NIC.v1_0_0.json",
+	"profile_terse": true,
+    "boilerplate_intro": "OCPNICProfileIntro.md",
+    "boilerplate_postscript": "NICProfilePostscript.md",
+	"warn_missing_payloads": true,
+	"add_toc": true,
+	"actions_in_property_table": false,
+	"table_numbering": false,
+	"combine_multiple_refs": 3,
+	"excluded_properties": [
+		"@odata.context",
+		"@odata.type",
+		"@odata.id",
+		"@odata.etag",
+		"Name",
+		"Id",
+		"Description",
+		"Oem"
+	],
+	"excluded_annotations": [
+		"*@odata.count",
+		"*@odata.navigationLink"
+	],
+	"excluded_schemas": [
+		"*Collection",
+		"HostedStorageServices",
+		"StorageService",
+		"StorageSystem",
+		"idRef",
+		"Oem"
+	],
+	"excluded_schema_uris": [
+		"{ResourceBlockId}/"
+	],
+	"excluded_pattern_properties": [
+		"^([a-zA-Z_][a-zA-Z0-9_]*)?@(odata|Redfish|Message)\\.[a-zA-Z_][a-zA-Z0-9_]*$"
+	],
+	"units_translation": {
+		"s": "seconds",
+		"Mb/s": "Mbit/s",
+		"bps": "bit/s",
+		"By": "bytes",
+		"Cel": "Celsius",
+		"MiBy": "mebibytes",
+		"W": "watts",
+		"V": "volts",
+		"mW": "milliwatts",
+		"m": "meters",
+		"m3/min": "m^3^/minute",
+		"L/min": "liters/minute",
+		"kJ/kg/K": "kJ/(kg*K)",
+		"kW.h": "kW-h"
+	},
+	"object_reference_disposition": {
+		"common_object": [
+			"Redundancy",
+			"RedundancyGroup",
+			"Message",
+			"Manifest"
+		],
+		"include": [
+			"http://redfish.dmtf.org/schemas/v1/PCIeDevice.json#/definitions/PCIeInterface",
+			"http://redfish.dmtf.org/schemas/v1/PCIeDevice.json#/definitions/PCIeErrors",
+			"http://redfish.dmtf.org/schemas/v1/SoftwareInventory.json#/definitions/AdditionalVersions",
+			"http://redfish.dmtf.org/schemas/v1/VLanNetworkInterface.json#/definitions/VLAN",
+			"http://redfish.dmtf.org/schemas/v1/Manifest.json#/definitions/Manifest"
+		]
+	}
+}
