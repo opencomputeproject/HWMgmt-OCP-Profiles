@@ -27,7 +27,7 @@
 					"ReadRequirement": "Recommended",
           			"ConditionalRequirements": [
             			{
-              				"Purpose": "Required if ChassisType are specific values",
+              				"Purpose": "Recommended if ChassisType are specific values",
               				"ReadRequirement": "Recommended",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
@@ -40,7 +40,7 @@
 					"ReadRequirement": "Recommended",
           			"ConditionalRequirements": [
             			{
-              				"Purpose": "Required if ChassisType are specific values",
+              				"Purpose": "Recommended if ChassisType are specific values",
               				"ReadRequirement": "Recommended",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
