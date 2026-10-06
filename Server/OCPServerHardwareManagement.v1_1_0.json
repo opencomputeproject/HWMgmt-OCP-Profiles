@@ -27,8 +27,8 @@
 					"ReadRequirement": "Recommended",
           			"ConditionalRequirements": [
             			{
-              				"Purpose": "Recommended if ChassisType are specific values",
-              				"ReadRequirement": "Recommended",
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Mandatory",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
               				"CompareValues": ["RackMount", "Sled", "Drawer"]
@@ -40,8 +40,8 @@
 					"ReadRequirement": "Recommended",
           			"ConditionalRequirements": [
             			{
-              				"Purpose": "Recommended if ChassisType are specific values",
-              				"ReadRequirement": "Recommended",
+              				"Purpose": "Required if ChassisType are specific values",
+              				"ReadRequirement": "Mandatory",
               				"CompareType": "AnyOf",
               				"CompareProperty": "ChassisType",
               				"CompareValues": ["RackMount", "Sled", "Drawer"]
