@@ -7,7 +7,7 @@
     "ContactInfo": "michael.raineri@dell.com",
     "RequiredProfiles": {
         "OCPServiceBaseline": {
-            "MinVersion": "1.0.0"
+            "MinVersion": "1.0.1"
         }
     },
     "Resources": {
