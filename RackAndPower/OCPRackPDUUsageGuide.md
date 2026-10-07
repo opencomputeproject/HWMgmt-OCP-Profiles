@@ -37,9 +37,9 @@ The following table lists the capabilities prescribed in the OCP Rack PDU profil
 | Use Case        | Management Task                                           | Requirement |
 | :---            | :---------                                                | :---        |
 | Power equipment | [Get PDU info](#get-pdu-info)                             | Mandatory |
-|                 | [Get PDU metrics](#get-pdu-metrics)                       | Mandatory |
 |                 | [Set PDU LED](#set-pdu-led)                               | If implemented, mandatory |
-| Circuits        | [Get mains circuits](#get-main-circuits)                  | Mandatory |
+|                 | [Get PDU metrics](#get-pdu-metrics)                       | Mandatory |
+| Circuits        | [Get mains circuits](#get-mains-circuits)                 | Mandatory |
 |                 | [Get branch circuits](#get-branch-circuits)               | Mandatory |
 |                 | [Set circuit source](#set-circuit-source)                 | Recommended |
 | Outlets         | [Get outlets](#get-outlets)                               | Mandatory |
@@ -61,7 +61,7 @@ This section describes how each capability is accomplished by interacting with t
 To access PDU information, perform a `GET` operation on a `PowerDistribution` resource:
 
 ```http
-GET /redfish/v1/PowerEquipment/PowerShelves/1
+GET /redfish/v1/PowerEquipment/RackPDUs/1
 ```
 
 ```json
@@ -109,6 +109,18 @@ GET /redfish/v1/PowerEquipment/PowerShelves/1
 }
 ```
 
+## Set PDU LED
+
+To set the LED on a PDU, perform a `PATCH` operation on a `PowerDistribution` resource:
+
+```HTTP
+PATCH /redfish/v1/PowerEquipment/RackPDUs/1
+
+{
+    "LocationIndicatorActive": true
+}
+```
+
 ## Get PDU metrics
 
 To access PDU metrics, perform a `GET` operation on a `PowerDistributionMetrics` resource:
@@ -138,27 +150,11 @@ GET /redfish/v1/PowerEquipment/RackPDUs/1/Metrics
         "DataSourceUri": "/redfish/v1/PowerEquipment/RackPDUs/1/Sensors/PDUTemp",
         "Reading": 26.3
     },
-    "HumidityPercent": {
-        "DataSourceUri": "/redfish/v1/PowerEquipment/RackPDUs/1/Sensors/PDUHumidity",
-        "Reading": 52.7
-    },
     "Actions": {
         "#PowerDistributionMetrics.ResetMetrics": {
             "target": "/redfish/v1/PowerEquipment/RackPDUs/1/Metrics/PowerDistributionMetrics.ResetMetrics"
         }
     }
-}
-```
-
-## Set PDU LED
-
-To set the LED on a PDU, perform a `PATCH` operation on a `PowerDistribution` resource:
-
-```HTTP
-PATCH /redfish/v1/PowerEquipment/RackPDUs/1
-
-{
-    "LocationIndicatorActive": true
 }
 ```
 
