@@ -1,0 +1,219 @@
+{
+	"SchemaDefinition": "RedfishInteroperabilityProfile.v1_4_0",
+	"ProfileName": "OCP_DC-SCM",
+	"ProfileVersion": "1.0.0",
+	"Purpose": "Specifies the Redfish manageability requirements for the an OCP DC-SCM module",
+	"OwningEntity": "Open Compute Project",
+	"License": "Creative Common Attribution-ShareAlike 4.0 International License",
+
+	"Resources": {
+		"Manager": {
+			"MinVersion": "1.0.0",
+			"PropertyRequirements": {
+				"Links": {
+					"PropertyRequirements": {
+						"ManagerInChassis": {},
+                        "ManagerForChassis": {},
+						"ManagerForServer": {}
+                    }
+				},
+				"Assembly": {
+					"ReadRequirement": "Recommended",
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ManagerType are specific values",
+              				"ReadRequirement": "Mandatory",
+              				"CompareType": "qual",
+              				"CompareProperty": "ManagerType",
+              				"CompareValues": ["BMC"]
+            			}
+          			]
+				},
+                "ThermalSubsystem": {
+					"ReadRequirement": "Recommended",
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ManagerType are specific values",
+              				"ReadRequirement": "Mandatory",
+              				"CompareType": "Equal",
+              				"CompareProperty": "ManagerType",
+              				"CompareValues": ["BMC"]
+                        }
+            		
+          			]
+        		},
+				"PowerSubsystem": {
+					"ReadRequirement": "Recommended",
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ManagerType are specific values",
+              				"ReadRequirement": "Mandatory",
+              				"CompareType": "qual",
+              				"CompareProperty": "ManagerType",
+              				"CompareValues": ["BMC"]
+            			}
+          			]
+				},
+                "LogServices": {
+					"ReadRequirement": "IfImplemented",
+          			"ConditionalRequirements": [
+            			{
+              				"Purpose": "Required if ManagerType are specific values",
+              				"ReadRequirement": "Mandatory",
+              				"CompareType": "qual",
+              				"CompareProperty": "ManagerType",
+              				"CompareValues": ["BMC"]
+            			}
+          			]
+				}
+      		}
+
+		},
+		"ComputerSystem": {
+			"MinVersion": "1.0.0",
+			"PropertyRequirements": {
+				"AssetTag": {
+					"WriteRequirement": "Mandatory"
+				},
+				"MemorySummary": {
+					"PropertyRequirements": {
+						"TotalSystemMemoryGiB": {}
+					}
+				},
+
+				"Model": {},
+				"SKU": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "Either PartNumber or SKU (or both) must be implemented.",
+						"CompareProperty": "PartNumber",
+						"CompareType": "Absent",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"PartNumber": {
+					"ReadRequirement": "Recommended",
+					"ConditionalRequirements": [{
+						"Purpose": "Either PartNumber or SKU (or both) must be implemented.",
+						"CompareProperty": "SKU",
+						"CompareType": "Absent",
+						"ReadRequirement": "Mandatory"
+					}]
+				},
+				"PowerState": {},
+				"BiosVersion": {},
+				"Status": {
+					"PropertyRequirements": {
+						"State": {},
+						"Health": {}
+					}
+				},
+				"LogServices": {
+					"ReadRequirement": "Recommended"
+				},
+				"SerialConsole": {
+					"ReadRequirement": "IfImplemented",
+					"Purpose": "SSH or IPMI-based serial remote console is required.",
+					"PropertyRequirements": {
+						"ConnectTypesSupported": {
+							"Values": [ "SSH", "IPMI"],
+							"Comparison": "AnyOf"
+						}
+					}
+				}
+			}
+		},
+		"ComputerSystemCollection": {
+			"PropertyRequirements": {
+				"Members": {
+					"MinCount": 1
+				}
+			}
+		},
+		"EthernetInterface": {
+			"MinVersion": "1.1.0",
+			"ReadRequirement": "Recommended",
+			"PropertyRequirements": {
+				"MACAddress": {},
+				"SpeedMbps": {},
+				"InterfaceEnabled": {},
+				"LinkStatus": {},
+				"Status": {
+					"PropertyRequirements": {
+						"Health": {},
+						"State": {}
+					}
+				},
+				"IPv4Addresses": {
+					"PropertyRequirements": {
+						"Address": {},
+						"SubnetMask": {},
+						"AddressOrigin": {},
+						"Gateway": {}
+					}
+				}
+			}
+		},
+		"PowerSubsystem": {
+			"ReadRequirement": "Mandatory",
+			"PropertyRequirements": {
+				"PowerControl": {
+					"PropertyRequirements": {
+						"PowerConsumedWatts": {},
+						"PowerCapacityWatts": {},
+						"PowerLimit": {
+							"PropertyRequirements": {
+								"LimitInWatts": {},
+								"LimitException": {}
+							}
+						}
+					}
+				}
+			}
+		},
+		"ThermalSubsystem": {
+			"MinVersion": "1.1.0",
+			"PropertyRequirements": {
+				"Temperatures": {
+					"ReadRequirement": "Mandatory",
+					"MinCount": 3,
+					"PropertyRequirements": {
+						"ReadingCelsius": {},
+						"PhysicalContext": {
+							"Comparison": "AllOf",
+							"Values": ["CPU", "Intake", "SystemBoard"]
+						},
+						"UpperThresholdFatal": {
+							"ReadRequirement": "Recommended"
+						},
+						"UpperThresholdCritical": {
+							"ReadRequirement": "Recommended"
+						},
+						"UpperThresholdNonCritical": {
+							"ReadRequirement": "Recommended"
+						},
+						"Status": {}
+					}
+				},
+				"Redundancy": {
+					"ReadRequirement": "IfImplemented",
+					"PropertyRequirements": {
+						"MemberId": {},
+						"RedundancySet": {},
+						"Mode": {},
+						"Status": {},
+						"MinNumNeeded": {},
+						"MaxNumSupported": {
+							"ReadRequirement": "Recommended"
+						}
+					}
+				}
+			}
+		},
+		"ServiceRoot": {
+			"PropertyRequirements": {
+				"Systems": {}
+			}
+		}
+	}
+}
