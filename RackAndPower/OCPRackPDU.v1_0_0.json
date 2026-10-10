@@ -726,6 +726,9 @@
             }
         },
         "Chassis": {
+            "URIs": [
+                "/redfish/v1/Chassis/{ChassisId}"
+            ],
             "PropertyRequirements": {
                 "AssetTag": {
                     "ReadRequirement": "Recommended",
