@@ -21,7 +21,7 @@ This means that the specification requires conformance to the OCP Service Baseli
 
 ```
 "RequiredProfiles": {
-    "OCPBaselineRedfishService": {
+    "OCPServiceBaseline": {
         "MinVersion": "1.0.0"
     }
 },
@@ -53,6 +53,7 @@ This section describes how each capability is accomplished by interacting with t
 ## Get chassis info
 
 The `Chassis` resource represents the physical container of the liquid cooling unit.
+When leak detectors are implemented, `Chassis` links to the `LeakDetectors` collection.
 For the full schema definition, see the `Chassis` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
@@ -78,6 +79,9 @@ GET /redfish/v1/Chassis/1
     },
     "Sensors": {
         "@odata.id": "/redfish/v1/Chassis/1/Sensors"
+    },
+    "LeakDetectors": {
+        "@odata.id": "/redfish/v1/Chassis/1/LeakDetectors"
     },
     "Links": {
         "ManagedBy": [
@@ -330,27 +334,27 @@ GET /redfish/v1/ThermalEquipment/CDUs/1/LeakDetection
             },
             "Detectors": [
                 {
-                    "DataSourceUri": "/redfish/v1/ThermalEquipment/CDUs/1/LeakDetection/LeakDetectors/Moisture",
+                    "DataSourceUri": "/redfish/v1/Chassis/1/LeakDetectors/Moisture",
                     "DeviceName": "Moisture Leak Detector",
                     "DetectorState": "OK"
                 }
             ]
         }
-    ],
-    "LeakDetectors": {
-        "@odata.id": "/redfish/v1/ThermalEquipment/CDUs/1/LeakDetection/LeakDetectors"
-    }
+    ]
 }
 ```
 
 ## Get leak detector info
 
-The `LeakDetector` resource contains the state of an individual leak detector in a cooling unit.
+The `LeakDetector` resource contains the state of an individual leak detector.
+The profile places this resource in the chassis `LeakDetectors` collection.
 For the full schema definition, see the `LeakDetector` section of the reference guide in the [*Redfish Data Model Specification*](https://www.dmtf.org/dsp/DSP0268).
 
 ```
+GET /redfish/v1/Chassis/1/LeakDetectors/Moisture
+
 {
-    "@odata.id": "/redfish/v1/ThermalEquipment/CDUs/1/LeakDetection/LeakDetectors/Moisture"
+    "@odata.id": "/redfish/v1/Chassis/1/LeakDetectors/Moisture",
     "@odata.type": "#LeakDetector.v1_1_0.LeakDetector",
     "Id": "Moisture",
     "Name": "Moisture Leak Detector",

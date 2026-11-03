@@ -1,5 +1,5 @@
 {
-    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_7_0",
+    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_10_0",
     "ProfileName": "OCP Coolant Distribution Unit",
     "ProfileVersion": "1.0.0",
     "Purpose": "Specifies the OCP management requirements for the Redfish interface on OCP coolant distribution units.",

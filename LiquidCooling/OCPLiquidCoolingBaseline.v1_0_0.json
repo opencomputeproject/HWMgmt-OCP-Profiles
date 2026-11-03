@@ -1,5 +1,5 @@
 {
-    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_7_0",
+    "SchemaDefinition": "RedfishInteroperabilityProfile.v1_10_0",
     "ProfileName": "OCP Liquid Cooling Baseline",
     "ProfileVersion": "1.0.0",
     "Purpose": "Specifies the baseline OCP management requirements for the Redfish interface on OCP liquid cooling units.",
@@ -7,7 +7,7 @@
     "ContactInfo": "michael.raineri@dell.com",
     "RequiredProfiles": {
         "OCPServiceBaseline": {
-            "MinVersion": "1.0.0"
+            "MinVersion": "1.0.1"
         }
     },
     "Resources": {
@@ -37,6 +37,9 @@
                         "Health": {},
                         "State": {}
                     }
+                },
+                "LeakDetectors": {
+                    "ReadRequirement": "IfImplemented"
                 },
                 "ThermalSubsystem": {
                     "ReadRequirement": "IfImplemented"
@@ -198,8 +201,7 @@
                         },
                         "HumidityPercent": {}
                     }
-                },
-                "LeakDetectors": {},
+                },                
                 "Status": {
                     "PropertyRequirements": {
                         "Health": {},
@@ -209,8 +211,8 @@
             }
         },
         "LeakDetector": {
-            "URIs": [
-                "/redfish/v1/ThermalEquipment/{CoolingUnitTypeId}/{CoolingUnitId}/LeakDetection/LeakDetectors/{LeakDetectorId}"
+            "URIs": [                
+                "/redfish/v1/Chassis/{ChassisId}/LeakDetectors/{LeakDetectorId}"                
             ],
             "PropertyRequirements": {
                 "DetectorState": {},
