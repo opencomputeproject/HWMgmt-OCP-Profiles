@@ -460,7 +460,7 @@
                         "Branch",
                         "Bus"
                     ],
-                    "UseCaseComparison": "AnyOf",
+                    "UseCaseComparison": "Equal",
                     "ReadRequirement": "Mandatory",
                     "Purpose": "Output circuits are required to provide the external bus connectivity.  Measurements are only required if the power shelf implements monitoring capabilities.",
                     "URIs": [

@@ -151,7 +151,7 @@
                     }
                 },
                 "TemperatureCelsius": {
-                    "ReadRequirement": "IfImplemented"
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Reading": {},
                         "DataSourceUri": {
@@ -458,7 +458,7 @@
                         "Branch",
                         "Bus"
                     ],
-                    "UseCaseComparison": "AnyOf",
+                    "UseCaseComparison": "Equal",
                     "ReadRequirement": "Mandatory",
                     "Purpose": "Output circuits are required to provide mapping to outlets.  Measurements are only required if the PDU implements monitoring capabilities.",
                     "URIs": [
@@ -809,7 +809,7 @@
             ],
             "PropertyRequirements": {
                 "AmbientTemperatureCelsius": {
-                    "ReadRequirement": "IfImplemented"
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Reading": {},
                         "DataSourceUri": {
@@ -835,7 +835,7 @@
                     }
                 },
                 "TemperatureCelsius": {
-                    "ReadRequirement": "IfImplemented"
+                    "ReadRequirement": "IfImplemented",
                     "PropertyRequirements": {
                         "Reading": {},
                         "DataSourceUri": {
