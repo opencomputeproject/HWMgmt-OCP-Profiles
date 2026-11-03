@@ -34,20 +34,21 @@ For capabilities specified in the the OCP Service Baseline profile, see the [OCP
 
 The following table lists the capabilities prescribed in the OCP Power Shelf profile.
 
-| Use Case             | Management Task                                             | Requirement |
-| :---                 | :---------                                                  | :---        |
-| Power                | [Get power supply info](#get-the-power-supply-info)         | Mandatory |
-|                      | [Get power supply redundancy](#get-power-supply-redundancy) | If implemented, mandatory |
-|                      | [Get power supply metrics](#get-power-supply-metrics)       | Mandatory |
-|                      | [Set power supply LED](#set-power-supply-led)               | Mandatory |
-|                      | [Get power consumption](#get-power-consumption)             | Mandatory |
-| Temperature          | [Get the temperature](#get-the-temperature)                 | If implemented, mandatory |
-| Power equipment      | [Get power shelf info](#get-power-shelf-info)               | Mandatory |
-|                      | [Get power shelf metrics](#get-power-shelf-metrics)         | Mandatory |
-|                      | [Set power shelf LED](#set-power-shelf-led)                 | Mandatory |
-|                      | [Get mains circuits](#get-main-circuits)                    | Mandatory |
-|                      | [Get branch circuits](#get-branch-circuits)                 | Mandatory |
-|                      | [Get outlets](#get-outlets)                                 | If implemented, mandatory |
+| Use Case        | Management Task                                             | Requirement |
+| :---            | :---------                                                  | :---        |
+| Power equipment | [Get power shelf info](#get-power-shelf-info)               | Mandatory |
+|                 | [Set power shelf LED](#set-power-shelf-led)                 | If implemented, mandatory |
+|                 | [Get power shelf metrics](#get-power-shelf-metrics)         | Mandatory |
+| Circuits        | [Get mains circuits](#get-mains-circuits)                   | Mandatory |
+|                 | [Get branch circuits](#get-branch-circuits)                 | Mandatory |
+|                 | [Set circuit source](#set-circuit-source)                   | Recommended |
+| Outlets         | [Get outlets](#get-outlets)                                 | If implemented, mandatory |
+|                 | [Control outlet power state](#control-outlet-power-state)   | If implemented, mandatory |
+|                 | [Set outlet consumer](#set-outlet-consumer)                 | Recommended |
+| Power supplies  | [Get power supply info](#get-power-supply-info)             | Mandatory |
+|                 | [Get power supply redundancy](#get-power-supply-redundancy) | If implemented, mandatory |
+|                 | [Get power supply metrics](#get-power-supply-metrics)       | Mandatory |
+|                 | [Set power supply LED](#set-power-supply-led)               | If implemented, mandatory |
 
 Figure 1 shows a diagram of the power distribution unit model for a power shelf, which represents the functional view of the power shelf.
 Figure 2 shows a diagram of the chassis model for a power shelf, which represents the physical view of the power shelf.
@@ -62,15 +63,329 @@ Figure 2 shows a diagram of the chassis model for a power shelf, which represent
 
 Refer to the following sections of the [*Redfish Data Model Specification*](#dsp0268) for the Redfish schema definitions for the previous use cases:
 
-* Power: `PowerSubsystem`, `PowerSupply`, `PowerSupplyMetrics`, and `EnvironmentMetrics` sections.
-* Temperature: `EnvironmentMetrics` section.
-* Power equipment: `PowerEquipment`, `PowerDistribution`, `PowerDistributionMetrics`, `Circuit`, and `Outlet` sections.
+* Power equipment: `PowerEquipment`, `PowerDistribution`, and `PowerDistributionMetrics` sections.
+* Circuits: `Circuit` section.
+* Outlets: `Outlet` section.
+* Power supplies: `PowerSubsystem`, `PowerSupply`, and `PowerSupplyMetrics` sections.
 
 # Use Cases
 
 This section describes how each capability is accomplished by interacting with the Redfish service.
 
-## Get the power supply info
+## Get power shelf info
+
+To access power shelf information, perform a `GET` operation on a `PowerDistribution` resource:
+
+```http
+GET /redfish/v1/PowerEquipment/PowerShelves/1
+```
+
+```json
+{
+    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1",
+    "@odata.type": "#PowerDistribution.v1_3_2.PowerDistribution",
+    "Id": "1",
+    "EquipmentType": "PowerShelf",
+    "Name": "Power Shelf 1",
+    "FirmwareVersion": "FW VERSION",
+    "Version": "HW VERSION",
+    "ProductionDate": "2023-08-01T08:00:00Z",
+    "Manufacturer": "MANUFACTURER",
+    "Model": "MODEL",
+    "SerialNumber": "SERIAL NUMBER",
+    "PartNumber": "PART NUMBER",
+    "UUID": "32354641-4135-4332-4a35-313735303734",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "LocationIndicatorActive": false,
+    "MainsRedundancy": {
+        "RedundancyType": "Sharing",
+        "MaxSupportedInGroup": 2,
+        "MinNeededInGroup": 1,
+        "RedundancyGroup": [
+            {
+                "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1"
+            },
+            {
+                "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC2"
+            }
+        ],
+        "Status": {
+            "State": "Enabled",
+            "Health": "OK"
+        }
+    },
+    "Mains": {
+        "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Mains"
+    },
+    "Branches": {
+        "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Branches"
+    },
+    "Outlets": {
+        "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Outlets"
+    },
+    "Metrics": {
+        "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Metrics"
+    },
+    "Links": {
+        "Chassis": [
+            {
+                "@odata.id": "/redfish/v1/Chassis/PowerShelf"
+            }
+        ]
+    }
+}
+```
+
+## Set power shelf LED
+
+To set the LED on a power shelf, perform a `PATCH` operation on a `PowerDistribution` resource:
+
+```HTTP
+PATCH /redfish/v1/PowerEquipment/PowerShelves/1
+
+{
+    "LocationIndicatorActive": true
+}
+```
+
+## Get power shelf metrics
+
+To access power shelf metrics, perform a `GET` operation on a `PowerDistributionMetrics` resource:
+
+```http
+GET /redfish/v1/PowerEquipment/PowerShelves/1/Metrics
+```
+
+```json
+{
+    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Metrics",
+    "@odata.type": "#PowerDistributionMetrics.v1_3_0.PowerDistributionMetrics",
+    "Id": "Metrics",
+    "Name": "Metrics for Power Shelf 1",
+    "PowerWatts": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/ShelfPower",
+        "Reading": 6438,
+        "ApparentVA": 6300,
+        "ReactiveVAR": 100,
+        "PowerFactor": 0.93
+    },
+    "EnergykWh": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/ShelfEnergy",
+        "Reading": 56438
+    },
+    "TemperatureCelsius": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/ShelfTemp",
+        "Reading": 31
+    },
+    "PowerLoadPercent": {
+        "Reading": 55
+    },
+    "Actions": {
+        "#PowerDistributionMetrics.ResetMetrics": {
+            "target": "/redfish/v1/PowerEquipment/PowerShelves/1/Metrics/PowerDistributionMetrics.ResetMetrics"
+        }
+    }
+}
+```
+
+## Get mains circuits
+
+To access mains circuit information, perform a `GET` operation on a `Circuit` resource from the `Mains` circuit collection:
+
+```http
+GET /redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1
+```
+
+```json
+{
+    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1",
+    "@odata.type": "#Circuit.v1_7_0.Circuit",
+    "Id": "AC1",
+    "Name": "Mains AC Input #1",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "CircuitType": "Mains",
+    "PhaseWiringType": "OnePhase3Wire",
+    "ElectricalContext": "Total",
+    "RatedCurrentAmps": 20,
+    "NominalVoltage": "AC200To240V",
+    "VoltageType": "AC",
+    "Voltage": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/VoltageMains1",
+        "Reading": 222.8
+    },
+    "CurrentAmps": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/CurrentMains1",
+        "Reading": 5.68
+    },
+    "PowerWatts": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/PowerMains1",
+        "Reading": 897.4,
+        "ApparentVA": 897.4,
+        "ReactiveVAR": 0.1,
+        "PowerFactor": 0.99
+    },
+    "FrequencyHz": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/FreqMains1",
+        "Reading": 60.1
+    },
+    "Links": {
+        "PowerOutlet": {
+            "@odata.id": "/redfish/v1/PowerEquipment/ElectricalBuses/Busway/Outlets/A4"
+        },
+        "SourceCircuit": {
+            "@odata.id": "/redfish/v1/PowerEquipment/ElectricalBuses/Busway/Branches/A4"
+        }
+    }
+}
+```
+
+## Get branch circuits
+
+To access mains circuit information, perform a `GET` operation on a `Circuit` resource from the `Branches` circuit collection:
+
+```http
+GET /redfish/v1/PowerEquipment/PowerShelves/1/Branches/DC
+```
+
+```json
+{
+    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Branches/DC",
+    "@odata.type": "#Circuit.v1_7_0.Circuit",
+    "Id": "DC",
+    "Name": "DC Output Circuit to Busbar",
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "CircuitType": "Bus",
+    "ElectricalContext": "Total",
+    "NominalVoltage": "DC48V",
+    "RatedCurrentAmps": 250,
+    "BreakerState": "Normal",
+    "VoltageType": "DC",
+    "Voltage": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/VoltageDC",
+        "Reading": 48.45
+    },
+    "CurrentAmps": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/CurrentDC",
+        "Reading": 16.93
+    },
+    "PowerWatts": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/PowerDC",
+        "Reading": 816.5
+    },
+    "EnergykWh": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/EnergyDC",
+        "Reading": 121666
+    },
+    "Links": {
+        "DistributionCircuits": [
+            {
+                "@odata.id": "/redfish/v1/PowerEquipment/ElectricalBuses/Rack42Busbar/Mains/DC"
+            }
+        ]
+    }
+}
+```
+
+## Set circuit source
+
+To configure the electrical source information for a circuit, perform a `PATCH` operation on a `Circuit` resource:
+
+```http
+PATCH /redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1
+
+{
+    "ElectricalSourceName": "Row 7 FloorPDU Branch C",
+    "ElectricalSourceManagerURI": "http://192.168.48.93/pdu-login",
+    "Links": {
+        "SourceCircuit": {
+            "@odata.id": "http://192.168.48.93/redfish/v1/PowerEquipment/FloorPDUs/7/Branches/C"
+        }
+    }
+}
+```
+
+## Get outlets
+
+To access outlet information, perform a `GET` operation on an `Outlet` resource:
+
+```http
+GET /redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1
+```
+
+```json
+{
+    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1",
+    "@odata.type": "#Outlet.v1_4_1.Outlet",
+    "Id": "A1",
+    "Name": "Outlet A1",
+    "Status": {
+        "Health": "OK",
+        "State": "Enabled"
+    },
+    "PhaseWiringType": "OnePhase3Wire",
+    "VoltageType": "AC",
+    "OutletType": "NEMA_5_15R",
+    "RatedCurrentAmps": 15,
+    "NominalVoltage": "AC120V",
+    "LocationIndicatorActive": true,
+    "PowerOnDelaySeconds": 4,
+    "PowerOffDelaySeconds": 0,
+    "PowerState": "On",
+    "PowerEnabled": true,
+    "Voltage": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/VoltageA",
+        "Reading": 121.4
+    },
+    "CurrentAmps": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/CurrentA",
+        "Reading": 1.59
+    },
+    "PowerWatts": {
+        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/PowerA",
+        "Reading": 192.4
+    },
+    "Links": {
+        "BranchCircuit": {
+            "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Branches/A"
+        }
+    }
+}
+```
+
+## Control outlet power state
+
+To control the power state of an outlet, perform a `POST` operation on the URI for the `Outlet.PowerControl` action:
+
+```http
+{
+    "PowerState": "Off"
+}
+```
+
+## Set outlet consumer
+
+To configure the electrical consumer information for an outlet, perform a `PATCH` operation on an `Outlet` resource:
+
+```http
+PATCH /redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1
+
+{
+    "ElectricalConsumerNames": [
+        "Rack 45 Terminal"
+    ]
+}
+```
+
+## Get power supply info
 
 To access power supply information, perform a `GET` operation on a `PowerSupply` resource:
 
@@ -257,322 +572,6 @@ PATCH /redfish/v1/Chassis/PowerShelf/PowerSubsystem/PowerSupplies/1
 
 {
     "LocationIndicatorActive": true
-}
-```
-
-## Get power consumption
-
-To access power consumption information, perform a `GET` operation on an `EnvironmentMetrics` resource:
-
-```http
-GET /redfish/v1/Chassis/PowerShelf/EnvironmentMetrics
-```
-
-```json
-{
-    "@odata.id": "/redfish/v1/Chassis/PowerShelf/EnvironmentMetrics",
-    "@odata.type": "#EnvironmentMetrics.v1_3_0.EnvironmentMetrics",
-    "Name": "Chassis Environment Metrics",
-    "PowerWatts": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/ShelfPower",
-        "Reading": 6438,
-        "ApparentVA": 6300,
-        "ReactiveVAR": 100,
-        "PowerFactor": 0.93
-    },
-    ...
-}
-```
-
-## Get the temperature
-
-To access power consumption information, perform a `GET` operation on an `EnvironmentMetrics` resource:
-
-```http
-GET /redfish/v1/Chassis/PowerShelf/EnvironmentMetrics
-```
-
-```json
-{
-    "@odata.id": "/redfish/v1/Chassis/PowerShelf/EnvironmentMetrics",
-    "@odata.type": "#EnvironmentMetrics.v1_3_0.EnvironmentMetrics",
-    "Name": "Chassis Environment Metrics",
-    "TemperatureCelsius": {
-        "Reading": 39,
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/ChassisTemp"
-    },
-    ...
-}
-```
-
-## Get power shelf info
-
-To access power shelf information, perform a `GET` operation on a `PowerDistribution` resource:
-
-```http
-GET /redfish/v1/PowerEquipment/PowerShelves/1
-```
-
-```json
-{
-    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1",
-    "@odata.type": "#PowerDistribution.v1_3_2.PowerDistribution",
-    "Id": "1",
-    "EquipmentType": "PowerShelf",
-    "Name": "Power Shelf 1",
-    "FirmwareVersion": "FW VERSION",
-    "Version": "HW VERSION",
-    "ProductionDate": "2023-08-01T08:00:00Z",
-    "Manufacturer": "MANUFACTURER",
-    "Model": "MODEL",
-    "SerialNumber": "SERIAL NUMBER",
-    "PartNumber": "PART NUMBER",
-    "UUID": "32354641-4135-4332-4a35-313735303734",
-    "Status": {
-        "State": "Enabled",
-        "Health": "OK"
-    },
-    "LocationIndicatorActive": false,
-    "MainsRedundancy": {
-        "RedundancyType": "Sharing",
-        "MaxSupportedInGroup": 2,
-        "MinNeededInGroup": 1,
-        "RedundancyGroup": [
-            {
-                "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1"
-            },
-            {
-                "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC2"
-            }
-        ],
-        "Status": {
-            "State": "Enabled",
-            "Health": "OK"
-        }
-    },
-    "Mains": {
-        "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Mains"
-    },
-    "Branches": {
-        "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Branches"
-    },
-    "Outlets": {
-        "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Outlets"
-    },
-    "Metrics": {
-        "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Metrics"
-    },
-    "Links": {
-        "Chassis": [
-            {
-                "@odata.id": "/redfish/v1/Chassis/PowerShelf"
-            }
-        ]
-    }
-}
-```
-
-## Get power shelf metrics
-
-To access power shelf metrics, perform a `GET` operation on a `PowerDistributionMetrics` resource:
-
-```http
-GET /redfish/v1/PowerEquipment/PowerShelves/1/Metrics
-```
-
-```json
-{
-    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Metrics",
-    "@odata.type": "#PowerDistributionMetrics.v1_3_0.PowerDistributionMetrics",
-    "Id": "Metrics",
-    "Name": "Metrics for Power Shelf 1",
-    "PowerWatts": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/ShelfPower",
-        "Reading": 6438,
-        "ApparentVA": 6300,
-        "ReactiveVAR": 100,
-        "PowerFactor": 0.93
-    },
-    "EnergykWh": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/ShelfEnergy",
-        "Reading": 56438
-    },
-    "TemperatureCelsius": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/ShelfTemp",
-        "Reading": 31
-    },
-    "PowerLoadPercent": {
-        "Reading": 55
-    },
-    "Actions": {
-        "#PowerDistributionMetrics.ResetMetrics": {
-            "target": "/redfish/v1/PowerEquipment/PowerShelves/1/Metrics/PowerDistributionMetrics.ResetMetrics"
-        }
-    }
-}
-```
-
-## Set power shelf LED
-
-To set the LED on a power shelf, perform a `PATCH` operation on a `PowerDistribution` resource:
-
-```HTTP
-PATCH /redfish/v1/PowerEquipment/PowerShelves/1
-
-{
-    "LocationIndicatorActive": true
-}
-```
-
-## Get mains circuits
-
-To access mains circuit information, perform a `GET` operation on a `Circuit` resource from the `Mains` circuit collection:
-
-```http
-GET /redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1
-```
-
-```json
-{
-    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Mains/AC1",
-    "@odata.type": "#Circuit.v1_7_0.Circuit",
-    "Id": "AC1",
-    "Name": "Mains AC Input #1",
-    "Status": {
-        "State": "Enabled",
-        "Health": "OK"
-    },
-    "CircuitType": "Mains",
-    "PhaseWiringType": "OnePhase3Wire",
-    "ElectricalContext": "Total",
-    "RatedCurrentAmps": 20,
-    "NominalVoltage": "AC200To240V",
-    "VoltageType": "AC",
-    "Voltage": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/VoltageMains1",
-        "Reading": 222.8
-    },
-    "CurrentAmps": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/CurrentMains1",
-        "Reading": 5.68
-    },
-    "PowerWatts": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/PowerMains1",
-        "Reading": 897.4,
-        "ApparentVA": 897.4,
-        "ReactiveVAR": 0.1,
-        "PowerFactor": 0.99
-    },
-    "FrequencyHz": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/FreqMains1",
-        "Reading": 60.1
-    },
-    "Links": {
-        "PowerOutlet": {
-            "@odata.id": "/redfish/v1/PowerEquipment/ElectricalBuses/Busway/Outlets/A4"
-        },
-        "SourceCircuit": {
-            "@odata.id": "/redfish/v1/PowerEquipment/ElectricalBuses/Busway/Branches/A4"
-        }
-    }
-}
-```
-
-## Get branch circuits
-
-To access mains circuit information, perform a `GET` operation on a `Circuit` resource from the `Branches` circuit collection:
-
-```http
-GET /redfish/v1/PowerEquipment/PowerShelves/1/Branches/DC
-```
-
-```json
-{
-    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Branches/DC",
-    "@odata.type": "#Circuit.v1_7_0.Circuit",
-    "Id": "DC",
-    "Name": "DC Output Circuit to Busbar",
-    "Status": {
-        "State": "Enabled",
-        "Health": "OK"
-    },
-    "CircuitType": "Bus",
-    "ElectricalContext": "Total",
-    "NominalVoltage": "DC48V",
-    "RatedCurrentAmps": 250,
-    "BreakerState": "Normal",
-    "VoltageType": "DC",
-    "Voltage": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/VoltageDC",
-        "Reading": 48.45
-    },
-    "CurrentAmps": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/CurrentDC",
-        "Reading": 16.93
-    },
-    "PowerWatts": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/PowerDC",
-        "Reading": 816.5
-    },
-    "EnergykWh": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/EnergyDC",
-        "Reading": 121666
-    },
-    "Links": {
-        "DistributionCircuits": [
-            {
-                "@odata.id": "/redfish/v1/PowerEquipment/ElectricalBuses/Rack42Busbar/Mains/DC"
-            }
-        ]
-    }
-}
-```
-
-## Get outlets
-
-To access outlet information, perform a `GET` operation on an `Outlet` resource:
-
-```http
-GET /redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1
-```
-
-```json
-{
-    "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Outlets/A1",
-    "@odata.type": "#Outlet.v1_4_1.Outlet",
-    "Id": "A1",
-    "Name": "Outlet A1",
-    "Status": {
-        "Health": "OK",
-        "State": "Enabled"
-    },
-    "PhaseWiringType": "OnePhase3Wire",
-    "VoltageType": "AC",
-    "OutletType": "NEMA_5_15R",
-    "RatedCurrentAmps": 15,
-    "NominalVoltage": "AC120V",
-    "LocationIndicatorActive": true,
-    "PowerOnDelaySeconds": 4,
-    "PowerOffDelaySeconds": 0,
-    "PowerState": "On",
-    "PowerEnabled": true,
-    "Voltage": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/VoltageA",
-        "Reading": 121.4
-    },
-    "CurrentAmps": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/CurrentA",
-        "Reading": 1.59
-    },
-    "PowerWatts": {
-        "DataSourceUri": "/redfish/v1/Chassis/PowerShelf/Sensors/PowerA",
-        "Reading": 192.4
-    },
-    "Links": {
-        "BranchCircuit": {
-            "@odata.id": "/redfish/v1/PowerEquipment/PowerShelves/1/Branches/A"
-        }
-    }
 }
 ```
 
